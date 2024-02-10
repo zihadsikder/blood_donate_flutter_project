@@ -1,7 +1,7 @@
+import 'package:blood_donate_flutter_project/app/core/constants/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
 import '../controllers/auth_controller.dart';
 import 'forget_password.dart';
 import 'sign_up_view.dart';
@@ -48,7 +48,7 @@ class LoginView extends GetView<AuthController> {
                     ],
                   ),
                   Image.asset(
-                    'assets/blood.png',
+                   AppAssets.loginLogo,
                     width: 150,
                     height: 80,
                   ),

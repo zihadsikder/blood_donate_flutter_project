@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../core/constants/app_assets.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
@@ -9,17 +10,26 @@ class SplashView extends GetView<SplashController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.onInit();
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('SplashView'),
-        centerTitle: true,
-      ),
-      body: const Center(
-        child: Text(
-          'SplashView is working',
-          style: TextStyle(fontSize: 20),
+      body: Center(
+        child: Column(
+          children: [
+            const Spacer(),
+            Image.asset(
+              AppAssets.logo,
+              width: 120,
+            ),
+            const SizedBox(height: 16),
+            const Text('আমি বাচাঁতে চাই একটি প্রাণ'),
+            const Text('তাইতো করবো রক্তদান'),
+            const Spacer(),
+            const CircularProgressIndicator(),
+            const SizedBox(
+              height: 8.0,
+            ),
+            const Text('Version 1.0'),
+            const SizedBox(height: 8.0),
+          ],
         ),
       ),
     );

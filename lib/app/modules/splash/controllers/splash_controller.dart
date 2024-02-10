@@ -5,16 +5,10 @@ import '../../../routes/app_pages.dart';
 
 class SplashController extends GetxController {
 
-
   @override
   void onInit() {
     super.onInit();
-
-    Future.delayed(1.seconds, () {
-      Get.toNamed(Routes.LOGIN);
-    });
-
-
+    checkLoggedIn();
   }
 
   @override
@@ -27,10 +21,14 @@ class SplashController extends GetxController {
     super.onClose();
   }
 
-  Future<bool> isLoggedIn() async {
+  Future<void> checkLoggedIn() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? token = sharedPreferences.getString('token');
-    return token != null;
-  }
 
+    if (token != null) {
+      Get.toNamed(Routes.BOTTOM_NAV);
+    } else {
+      Get.toNamed(Routes.LOGIN);
+    }
+  }
 }

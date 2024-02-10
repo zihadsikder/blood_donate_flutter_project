@@ -27,6 +27,7 @@ class AuthController extends GetxController {
   final isLoading = false.obs;
 
   String failMessage = '';
+  String get failureMessage => failMessage;
 
   final TextEditingController usernameTEController = TextEditingController();
   final TextEditingController mobileNumberTEController =
@@ -37,10 +38,6 @@ class AuthController extends GetxController {
   final weightOver50Controller = false.obs;
 
   String selectedBloodGroup = ' ';
-
-  String _failMessage = '';
-
-  String get failureMessage => _failMessage;
 
   List<Division>? divisionList;
   final selectedDivision = ''.obs;
