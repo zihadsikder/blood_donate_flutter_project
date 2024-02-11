@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../controllers/bottom_nav_controller.dart';
 
 class BottomNavView extends GetView<BottomNavController> {
-  BottomNavView({super.key});
+  const BottomNavView({super.key});
 
   final List<Widget> pages = const [
     HomeView(),
@@ -17,18 +17,11 @@ class BottomNavView extends GetView<BottomNavController> {
   ];
 
 
-  int currentIndex = 0;
-
-  void onTap(int index) {
-      currentIndex = index;
-
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: pages[currentIndex],
+      body: pages[controller.currentIndex],
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30.0),
@@ -39,8 +32,8 @@ class BottomNavView extends GetView<BottomNavController> {
           // selectedFontSize: 0,
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.red.shade900,
-          onTap: onTap,
-          currentIndex: currentIndex,
+          onTap: controller.changeIndex,
+          currentIndex: controller.currentIndex,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.grey.shade500,
           showUnselectedLabels: true,

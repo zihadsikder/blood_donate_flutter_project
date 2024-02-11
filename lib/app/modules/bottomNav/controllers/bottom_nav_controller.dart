@@ -17,19 +17,4 @@ class BottomNavController extends GetxController {
   void backToHome() {
   changeIndex(0);
   }
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }

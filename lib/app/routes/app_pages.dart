@@ -48,7 +48,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.BOTTOM_NAV,
-      page: () => BottomNavView(),
+      page: () => const BottomNavView(),
       binding: BottomNavBinding(),
     ),
   ];
