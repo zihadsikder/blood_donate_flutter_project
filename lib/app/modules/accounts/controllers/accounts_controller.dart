@@ -1,5 +1,6 @@
 import 'package:blood_donate_flutter_project/app/services/api_client.dart';
 import 'package:blood_donate_flutter_project/app/services/api_end_points.dart';
+import 'package:blood_donate_flutter_project/app/services/auth_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +8,6 @@ import '../../../data/models/donor_history_list_model.dart';
 import '../../../data/models/network_response.dart';
 
 class AccountsController extends GetxController {
-
   DonorHistoryList _donorHistoryList = DonorHistoryList();
 
   DonorHistoryList get donorHistoryList => _donorHistoryList;
@@ -16,8 +16,7 @@ class AccountsController extends GetxController {
 
   final inProgress = false.obs;
 
-
-
+  AuthCache get authCache => Get.find<AuthCache>();
 
   String failMessage = '';
 
@@ -26,8 +25,7 @@ class AccountsController extends GetxController {
   Future<bool> getDonationList() async {
     inProgress.value = true;
 
-    final NetworkResponse response =
-    await ApiClient().getRequest(ApiEndPoints.getDonorList);
+    final NetworkResponse response = await ApiClient().getRequest(ApiEndPoints.getDonorList);
     inProgress.value = false;
     if (response.isSuccess) {
       _donorHistoryList = donorHistoryListFromJson(response.jsonResponse!);
@@ -39,11 +37,8 @@ class AccountsController extends GetxController {
     }
   }
 
-
-
   Future<bool> addDonation(String place, String date) async {
     inProgress.value = true;
-
 
     final response = await ApiClient().postRequest(
       ApiEndPoints.storeDonationHistory,
@@ -60,12 +55,10 @@ class AccountsController extends GetxController {
       failMessage = ('New History added!');
       return true;
     } else {
-
       failMessage = 'Add Donation Fail!';
       return false;
     }
   }
-
 
   @override
   void onInit() {
@@ -81,5 +74,4 @@ class AccountsController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
 }

@@ -55,7 +55,7 @@ class AccountsView extends GetView<AccountsController> {
                                 title: Row(
                                   children: [
                                     Text(
-                                      Get.find<AuthCache>().userModel?.data.name ??
+                                      controller.authCache.getUser()?.data.name ??
                                           'name',
                                     ),
                                   ],
@@ -110,7 +110,7 @@ class AccountsView extends GetView<AccountsController> {
                                           height: 5,
                                         ),
                                         Text(
-                                          Get.find<AuthCache>().userModel?.data
+                                          controller.authCache.getUser()?.data
                                               .bloodGroup ??
                                               'blood group',
                                         ),
@@ -130,7 +130,7 @@ class AccountsView extends GetView<AccountsController> {
                                           height: 5,
                                         ),
                                         Text(DateFormat.yMd().format(
-                                            Get.find<AuthCache>().userModel?.data
+                                            controller.authCache.getUser()?.data
                                                 .lastDonation ??
                                                 DateTime.now())),
                                         const Text('Last Donation'),
@@ -162,7 +162,7 @@ class AccountsView extends GetView<AccountsController> {
                           ],
                         ),
                         subtitle: Text(
-                          Get.find<AuthCache>().userModel?.data.name ?? '',
+                          controller.authCache.getUser()?.data.name ?? '',
                         ),
                       ),
                       Container(height: 1, color: Colors.grey.shade100),
@@ -182,7 +182,7 @@ class AccountsView extends GetView<AccountsController> {
                           ],
                         ),
                         subtitle: Text(
-                          Get.find<AuthCache>().userModel?.data.email ?? '',
+                          controller.authCache.getUser()?.data.email ?? '',
                         ),
                       ),
                       Container(height: 1, color: Colors.grey.shade100),
@@ -209,7 +209,7 @@ class AccountsView extends GetView<AccountsController> {
                           ],
                         ),
                         subtitle: Text(
-                            Get.find<AuthCache>().userModel?.data.address.postOffice ??
+                            controller.authCache.getUser()?.data.address.postOffice ??
                                 ''),
                       ),
                       Container(height: 1, color: Colors.grey.shade100),

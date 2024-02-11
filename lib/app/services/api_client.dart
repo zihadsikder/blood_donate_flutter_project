@@ -5,20 +5,15 @@ import 'package:get/get.dart';
 import 'package:http/http.dart';
 import '../data/models/network_response.dart';
 
-class ApiClient{
-
-final auth = Get.find<AuthCache>();
-  Future<NetworkResponse> postRequest(String url,
-      {Map<String, dynamic>? body, String? token}) async {
+class ApiClient {
+  final auth = Get.find<AuthCache>();
+  Future<NetworkResponse> postRequest(String url, {Map<String, dynamic>? body, String? token}) async {
     try {
       log(url);
       log(body.toString());
-      final response =
-      await post(Uri.parse(url), body: jsonEncode(body), headers: {
-        'Authorization': auth.userModel?.data != null
-            ? "Bearer ${auth.userModel!.data.accessToken}"
-            : "",
-        'Content-Type': 'application/json'
+      final response = await post(Uri.parse(url), body: jsonEncode(body), headers: {
+        'Content-Type': 'application/json',
+        'Authorization': AuthCache.to.checkAuthState() ? "Bearer ${AuthCache.to.getToken()}" : "",
       });
       log(response.statusCode.toString());
       log(response.body.toString());
@@ -45,10 +40,8 @@ final auth = Get.find<AuthCache>();
       log(url);
       log(token.toString());
       final response = await get(Uri.parse(url), headers: {
-        'Content-type': 'Application/json',
-        'Authorization': auth.userModel?.data != null
-            ? "Bearer ${auth.userModel!.data.accessToken}"
-            : "",
+        'Content-Type': 'application/json',
+        'Authorization': AuthCache.to.checkAuthState() ? "Bearer ${AuthCache.to.getToken()}" : "",
       });
       log(response.headers.toString());
       log(response.statusCode.toString());
@@ -78,4 +71,3 @@ final auth = Get.find<AuthCache>();
     }
   }
 }
-

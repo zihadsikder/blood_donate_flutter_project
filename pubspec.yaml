@@ -11,7 +11,6 @@ dependencies:
   flutter: 
     sdk: flutter
 
-  provider: ^6.1.1
   flutter_svg: ^2.0.9
   pin_code_fields: ^8.0.1
   carousel_slider: ^4.2.1
@@ -24,7 +23,6 @@ dev_dependencies:
   flutter_lints: 3.0.1
   flutter_test: 
     sdk: flutter
-
 
 flutter: 
   uses-material-design: true
