@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,10 +20,29 @@ class AuthCache extends GetxService{
 
   Future<void> initialize() async {
     token = await _getToken();
+    userModel = await _getUser();
+  }
+
+  Future<bool> isLoggedIn() async {
+    await initialize();
+    return token != null;
   }
 
   Future<String?> _getToken() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getString('token');
+  }
 
+  Future<UserModel?> _getUser() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+
+    final String? strUserModel = sharedPreferences.getString('model');
+
+    if (strUserModel == null) {
+      return null;
+    } else {
+      return UserModel.fromJson(jsonDecode(strUserModel));
+    }
   }
 
 
