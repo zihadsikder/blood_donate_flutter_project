@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-import '../../../core/constants/app_assets.dart';
-import '../../../routes/app_pages.dart';
+import '../../../../core/constants/app_assets.dart';
+import '../../../../routes/app_pages.dart';
 import 'reset_password.dart';
 
 class PinVerificationScreen extends StatefulWidget {

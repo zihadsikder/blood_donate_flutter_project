@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../auth/views/widgets/location_form.dart';
 import 'widget/aleart_cancel_button.dart';
 
 class AccountUpdateDialoge extends StatefulWidget {
@@ -11,15 +10,14 @@ class AccountUpdateDialoge extends StatefulWidget {
 }
 
 class _AccountUpdateDialogeState extends State<AccountUpdateDialoge> {
-
   final TextEditingController _mobileTEController = TextEditingController();
   final TextEditingController _emailTEController = TextEditingController();
 
   String selectedBloodGroup = 'A+';
   String selectedDivision = 'Select Division';
   String selectedDistrict = ' ';
-  String selectedUpzila =' ';
-  String selectedUnion =' ';
+  String selectedUpzila = ' ';
+  String selectedUnion = ' ';
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +26,11 @@ class _AccountUpdateDialogeState extends State<AccountUpdateDialoge> {
         children: [
           const Text("Edit Your Profile", style: TextStyle(fontSize: 16)),
           const Spacer(),
-          IconButton(onPressed: (){
-            Navigator.pop(context);
-          }, icon: const Icon(Icons.highlight_remove_outlined))
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(Icons.highlight_remove_outlined))
         ],
       ),
       content: SingleChildScrollView(
@@ -78,10 +78,9 @@ class _AccountUpdateDialogeState extends State<AccountUpdateDialoge> {
       ),
       actions: [
         const AlertCancelButton(),
-        TextButton(onPressed: (){},
-          style: TextButton.styleFrom(
-              backgroundColor: Colors.red.shade800
-          ),
+        TextButton(
+          onPressed: () {},
+          style: TextButton.styleFrom(backgroundColor: Colors.red.shade800),
           child: const Text('Save', style: TextStyle(color: Colors.white)),
         ),
       ],

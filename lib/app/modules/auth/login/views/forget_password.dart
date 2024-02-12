@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/constants/app_assets.dart';
-import '../../../routes/app_pages.dart';
 
-class ResetPasswordScreen extends StatefulWidget {
-  const ResetPasswordScreen({super.key});
+import '../../../../core/constants/app_assets.dart';
+import 'pin_verify.dart';
+
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({super.key});
 
   @override
-  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
+  State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
+class _ForgotPasswordState extends State<ForgotPassword> {
+  final TextEditingController _emailTEController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,34 +38,20 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   height: 16,
                 ),
                 Text(
-                  'Set Password',
+                  'Your Email Address',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                const Text(
-                  'Minimum password length should be more than 8 letters',
-                  style: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.w600),
-                ),
+                Text('A 6 digit OTP will be sent to your email address',
+                    style: Theme.of(context).textTheme.bodySmall),
                 const SizedBox(
                   height: 24,
                 ),
                 TextFormField(
-                  decoration: const InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    hintText: 'Password',
-                  ),
-                ),
-                TextFormField(
+                  controller: _emailTEController,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
@@ -72,7 +61,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide.none,
                     ),
-                    hintText: 'Confirm Password',
+                    hintText: 'Email',
                   ),
                 ),
                 const SizedBox(
@@ -82,14 +71,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const PinVerificationScreen(),
-                      //   ),
-                      // );
+                      Get.to(const PinVerificationScreen());
                     },
-                    child: const Text('Confirm'),
+                    child: const Icon(Icons.arrow_circle_right_outlined),
                   ),
                 ),
                 const SizedBox(
@@ -98,16 +82,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Have an account?",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black54),
-                    ),
+                    Text("Have an account?",
+                        style: Theme.of(context).textTheme.bodySmall),
                     TextButton(
                       onPressed: () {
-                       Get.toNamed(Routes.LOGIN);
+                        Navigator.pop(context);
                       },
                       child: const Text(
                         'Sign In',

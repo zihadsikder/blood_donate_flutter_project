@@ -2,8 +2,10 @@ import 'package:get/get.dart';
 
 import '../modules/accounts/bindings/accounts_binding.dart';
 import '../modules/accounts/views/accounts_view.dart';
-import '../modules/auth/bindings/auth_binding.dart';
-import '../modules/auth/views/login_view.dart';
+import '../modules/auth/login/bindings/login_binding.dart';
+import '../modules/auth/signup/bindings/signup_binding.dart';
+import '../modules/auth/login/views/login_view.dart';
+import '../modules/auth/signup/views/sign_up_view.dart';
 import '../modules/bottomNav/bindings/bottom_nav_binding.dart';
 import '../modules/bottomNav/views/bottom_nav_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -34,7 +36,7 @@ class AppPages {
     GetPage(
       name: _Paths.LOGIN,
       page: () => const LoginView(),
-      binding: AuthBinding(),
+      binding: LoginBinding(),
     ),
     GetPage(
       name: _Paths.SETTING,
@@ -50,6 +52,11 @@ class AppPages {
       name: _Paths.BOTTOM_NAV,
       page: () => const BottomNavView(),
       binding: BottomNavBinding(),
+    ),
+    GetPage(
+      name: _Paths.SIGNUP,
+      page: () => const SignUpView(),
+      binding: SignupBinding(),
     ),
   ];
 }

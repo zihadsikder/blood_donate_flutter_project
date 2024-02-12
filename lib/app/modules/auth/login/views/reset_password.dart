@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/constants/app_assets.dart';
-import 'pin_verify.dart';
+import '../../../../core/constants/app_assets.dart';
+import '../../../../routes/app_pages.dart';
 
-class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({super.key});
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<ForgotPassword> createState() => _ForgotPasswordState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _ForgotPasswordState extends State<ForgotPassword> {
-  final TextEditingController _emailTEController = TextEditingController();
-
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,20 +35,33 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   height: 16,
                 ),
                 Text(
-                  'Your Email Address',
+                  'Set Password',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                Text('A 6 digit OTP will be sent to your email address',
-                    style: Theme.of(context).textTheme.bodySmall),
+                const Text(
+                  'Minimum password length should be more than 8 letters',
+                  style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
+                ),
                 const SizedBox(
                   height: 24,
                 ),
                 TextFormField(
-                  controller: _emailTEController,
-                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white),
+                    ),
+                    hintText: 'Password',
+                  ),
+                ),
+                TextFormField(
                   decoration: const InputDecoration(
                     fillColor: Colors.white,
                     filled: true,
@@ -60,7 +71,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide.none,
                     ),
-                    hintText: 'Email',
+                    hintText: 'Confirm Password',
                   ),
                 ),
                 const SizedBox(
@@ -70,9 +81,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Get.to(const PinVerificationScreen());
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => const PinVerificationScreen(),
+                      //   ),
+                      // );
                     },
-                    child: const Icon(Icons.arrow_circle_right_outlined),
+                    child: const Text('Confirm'),
                   ),
                 ),
                 const SizedBox(
@@ -81,11 +97,13 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Have an account?",
-                        style: Theme.of(context).textTheme.bodySmall),
+                    const Text(
+                      "Have an account?",
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
+                    ),
                     TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Get.toNamed(Routes.LOGIN);
                       },
                       child: const Text(
                         'Sign In',
