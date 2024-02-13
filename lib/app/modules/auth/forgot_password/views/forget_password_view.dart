@@ -1,19 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../../../../core/constants/app_assets.dart';
-import 'pin_verify.dart';
+import '../controllers/forgot_password_controller.dart';
 
-class ForgotPassword extends StatefulWidget {
-  const ForgotPassword({super.key});
-
-  @override
-  State<ForgotPassword> createState() => _ForgotPasswordState();
-}
-
-class _ForgotPasswordState extends State<ForgotPassword> {
-  final TextEditingController _emailTEController = TextEditingController();
+class ForgotPasswordView extends GetView<ForgotPasswordController> {
+  const ForgotPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,24 +36,26 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 const SizedBox(
                   height: 8,
                 ),
-                Text('A 6 digit OTP will be sent to your email address',
-                    style: Theme.of(context).textTheme.bodySmall),
+                Text('A 6 digit OTP will be sent to your email address', style: Theme.of(context).textTheme.bodySmall),
                 const SizedBox(
                   height: 24,
                 ),
-                TextFormField(
-                  controller: _emailTEController,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    fillColor: Colors.white,
-                    filled: true,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
+                Form(
+                  key: controller.forgotPassFormKey,
+                  child: TextFormField(
+                    controller: controller.emailTextEditController,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                      ),
+                      hintText: 'Email',
                     ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                    ),
-                    hintText: 'Email',
                   ),
                 ),
                 const SizedBox(
@@ -70,9 +64,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                      Get.to(const PinVerificationScreen());
-                    },
+                    onPressed: controller.sendOtp,
                     child: const Icon(Icons.arrow_circle_right_outlined),
                   ),
                 ),
@@ -82,11 +74,10 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Have an account?",
-                        style: Theme.of(context).textTheme.bodySmall),
+                    Text("Have an account?", style: Theme.of(context).textTheme.bodySmall),
                     TextButton(
                       onPressed: () {
-                        Navigator.pop(context);
+                        Get.back();
                       },
                       child: const Text(
                         'Sign In',

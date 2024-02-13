@@ -10,7 +10,7 @@ import '../../../../data/models/user_model.dart';
 import '../../../../routes/app_pages.dart';
 
 class LoginController extends GetxController {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   final TextEditingController passwordTEController = TextEditingController();
   final TextEditingController numberTEController = TextEditingController();

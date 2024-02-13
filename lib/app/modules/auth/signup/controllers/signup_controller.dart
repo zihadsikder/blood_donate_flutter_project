@@ -11,7 +11,7 @@ import '../../../../data/repositories/location_repository.dart';
 import '../../../../routes/app_pages.dart';
 
 class SignupController extends GetxController {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   final TextEditingController usernameTEController = TextEditingController();
   final TextEditingController emailTEController = TextEditingController();

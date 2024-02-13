@@ -4,16 +4,13 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../core/constants/app_assets.dart';
 import '../../../../routes/app_pages.dart';
-import 'reset_password.dart';
+import '../controllers/forgot_password_controller.dart';
 
-class PinVerificationScreen extends StatefulWidget {
-  const PinVerificationScreen({super.key});
+class PinVerificationView extends StatelessWidget {
+  PinVerificationView({super.key});
 
-  @override
-  State<PinVerificationScreen> createState() => _PinVerificationScreenState();
-}
+  final controller = Get.put(ForgotPasswordController());
 
-class _PinVerificationScreenState extends State<PinVerificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,10 +24,12 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 const SizedBox(
                   height: 80,
                 ),
-                Center(child:  Image.asset(
-                  AppAssets.logo,
-                  width: 120,
-                ),),
+                Center(
+                  child: Image.asset(
+                    AppAssets.logo,
+                    width: 120,
+                  ),
+                ),
                 const SizedBox(
                   height: 16,
                 ),
@@ -43,34 +42,37 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 ),
                 const Text(
                   'A 6 digit OTP will be sent to your email address',
-                  style: TextStyle(
-                      color: Colors.grey, fontWeight: FontWeight.w600),
+                  style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
                   height: 24,
                 ),
-                PinCodeTextField(
-                  length: 6,
-                  obscureText: false,
-                  animationType: AnimationType.fade,
-                  pinTheme: PinTheme(
-                    shape: PinCodeFieldShape.box,
-                    borderRadius: BorderRadius.circular(5),
-                    fieldHeight: 50,
-                    fieldWidth: 40,
-                    activeFillColor: Colors.white,
-                    activeColor: Colors.green,
-                    selectedFillColor: Colors.white,
-                    inactiveFillColor: Colors.white,
+                Form(
+                  key: controller.otpFormKey,
+                  child: PinCodeTextField(
+                    controller: controller.otpTextEditController,
+                    length: 6,
+                    obscureText: false,
+                    animationType: AnimationType.fade,
+                    pinTheme: PinTheme(
+                      shape: PinCodeFieldShape.box,
+                      borderRadius: BorderRadius.circular(5),
+                      fieldHeight: 50,
+                      fieldWidth: 40,
+                      activeFillColor: Colors.white,
+                      activeColor: Colors.green,
+                      selectedFillColor: Colors.white,
+                      inactiveFillColor: Colors.white,
+                    ),
+                    animationDuration: const Duration(milliseconds: 300),
+                    enableActiveFill: true,
+                    onCompleted: (v) {},
+                    onChanged: (value) {},
+                    beforeTextPaste: (text) {
+                      return true;
+                    },
+                    appContext: context,
                   ),
-                  animationDuration: const Duration(milliseconds: 300),
-                  enableActiveFill: true,
-                  onCompleted: (v) {},
-                  onChanged: (value) {},
-                  beforeTextPaste: (text) {
-                    return true;
-                  },
-                  appContext: context,
                 ),
                 const SizedBox(
                   height: 16,
@@ -78,9 +80,7 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
-                     Get.to(const ResetPasswordScreen());
-                    },
+                    onPressed: controller.verifyOtp,
                     child: const Text('Verify'),
                   ),
                 ),
@@ -92,14 +92,11 @@ class _PinVerificationScreenState extends State<PinVerificationScreen> {
                   children: [
                     const Text(
                       "Have an account?",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black54),
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
                     ),
                     TextButton(
                       onPressed: () {
-                       Get.offNamed(Routes.LOGIN);
+                        Get.offNamed(Routes.LOGIN);
                       },
                       child: const Text(
                         'Sign In',

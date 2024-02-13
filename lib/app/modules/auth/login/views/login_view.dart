@@ -4,7 +4,7 @@ import 'package:blood_donate_flutter_project/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'forget_password.dart';
+import '../../forgot_password/views/forget_password_view.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
@@ -71,7 +71,55 @@ class LoginView extends GetView<LoginController> {
                           ),
                           Container(
                             decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10), boxShadow: const [BoxShadow(color: Color.fromRGBO(225, 95, 27, .3), blurRadius: 20, offset: Offset(0, 10))]),
-                            child: textField,
+                            child: Column(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
+                                  child: TextFormField(
+                                    keyboardType: TextInputType.number,
+                                    controller: controller.numberTEController,
+                                    decoration: const InputDecoration(hintText: "Mobile", hintStyle: TextStyle(color: Colors.grey), border: InputBorder.none),
+                                    validator: (String? value) {
+                                      if (value?.trim().isEmpty ?? true) {
+                                        return 'Enter Your Number';
+                                      }
+                                      return null;
+                                    },
+                                  ),
+                                ),
+                                //SizedBox(height: 20),
+                                Container(
+                                  padding: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
+                                  child: TextFormField(
+                                    controller: controller.passwordTEController,
+                                    obscureText: controller.obscureText.value,
+                                    // Use a boolean variable to toggle password visibility
+                                    decoration: InputDecoration(
+                                        hintText: 'Password',
+                                        hintStyle: const TextStyle(color: Colors.grey),
+                                        border: InputBorder.none,
+                                        suffixIcon: IconButton(
+                                          onPressed: () {
+                                            controller.obscureText.value = !controller.obscureText.value; // Toggle the password visibility
+                                          },
+                                          icon: Icon(
+                                            controller.obscureText.value ? Icons.visibility : Icons.visibility_off,
+                                            color: Colors.grey, // Customize the icon color as needed
+                                          ),
+                                        )),
+                                    validator: (String? value) {
+                                      if (value?.trim().isEmpty ?? true) {
+                                        return 'Enter Correct Password';
+                                      }
+                                      return null;
+                                    },
+                                    keyboardType: TextInputType.visiblePassword,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           const SizedBox(
                             height: 30,
@@ -91,9 +139,10 @@ class LoginView extends GetView<LoginController> {
                               ),
                             ),
                           ),
+                          const SizedBox(height: 16),
                           GestureDetector(
                             onTap: () {
-                              showDialog(barrierDismissible: false, context: context, builder: (context) => const ForgotPassword());
+                              Get.toNamed(Routes.FORGOT_PASSWORD);
                             },
                             child: const Text(
                               "Forgot Password?",
@@ -202,57 +251,57 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
-  Column get textField {
-    return Column(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
-          child: TextFormField(
-            keyboardType: TextInputType.number,
-            controller: controller.numberTEController,
-            decoration: const InputDecoration(hintText: "Mobile", hintStyle: TextStyle(color: Colors.grey), border: InputBorder.none),
-            validator: (String? value) {
-              if (value?.trim().isEmpty ?? true) {
-                return 'Enter Your Number';
-              }
-              return null;
-            },
-          ),
-        ),
-        //SizedBox(height: 20),
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
-          child: TextFormField(
-            controller: controller.passwordTEController,
-            obscureText: controller.obscureText.value,
-            // Use a boolean variable to toggle password visibility
-            decoration: InputDecoration(
-                hintText: 'Password',
-                hintStyle: const TextStyle(color: Colors.grey),
-                border: InputBorder.none,
-                suffixIcon: IconButton(
-                  onPressed: () {
-                    controller.obscureText.value = !controller.obscureText.value; // Toggle the password visibility
-                  },
-                  icon: Icon(
-                    controller.obscureText.value ? Icons.visibility : Icons.visibility_off,
-                    color: Colors.grey, // Customize the icon color as needed
-                  ),
-                )),
-            validator: (String? value) {
-              if (value?.trim().isEmpty ?? true) {
-                return 'Enter Correct Password';
-              }
-              return null;
-            },
-            keyboardType: TextInputType.visiblePassword,
-          ),
-        ),
-      ],
-    );
-  }
+  // Column get textField {
+  //   return Column(
+  //     children: [
+  //       Container(
+  //         padding: const EdgeInsets.all(10),
+  //         decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
+  //         child: TextFormField(
+  //           keyboardType: TextInputType.number,
+  //           controller: controller.numberTEController,
+  //           decoration: const InputDecoration(hintText: "Mobile", hintStyle: TextStyle(color: Colors.grey), border: InputBorder.none),
+  //           validator: (String? value) {
+  //             if (value?.trim().isEmpty ?? true) {
+  //               return 'Enter Your Number';
+  //             }
+  //             return null;
+  //           },
+  //         ),
+  //       ),
+  //       //SizedBox(height: 20),
+  //       Container(
+  //         padding: const EdgeInsets.all(10),
+  //         decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
+  //         child: TextFormField(
+  //           controller: controller.passwordTEController,
+  //           obscureText: controller.obscureText.value,
+  //           // Use a boolean variable to toggle password visibility
+  //           decoration: InputDecoration(
+  //               hintText: 'Password',
+  //               hintStyle: const TextStyle(color: Colors.grey),
+  //               border: InputBorder.none,
+  //               suffixIcon: IconButton(
+  //                 onPressed: () {
+  //                   controller.obscureText.value = !controller.obscureText.value; // Toggle the password visibility
+  //                 },
+  //                 icon: Icon(
+  //                   controller.obscureText.value ? Icons.visibility : Icons.visibility_off,
+  //                   color: Colors.grey, // Customize the icon color as needed
+  //                 ),
+  //               )),
+  //           validator: (String? value) {
+  //             if (value?.trim().isEmpty ?? true) {
+  //               return 'Enter Correct Password';
+  //             }
+  //             return null;
+  //           },
+  //           keyboardType: TextInputType.visiblePassword,
+  //         ),
+  //       ),
+  //     ],
+  //   );
+  // }
 
   void launchFacebook() {}
 

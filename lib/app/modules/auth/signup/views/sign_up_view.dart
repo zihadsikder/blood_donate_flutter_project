@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../data/models/request/registration_req.dart';
+import '../../../../routes/app_pages.dart';
 import '../../login/views/widgets/area_dropdown.dart';
 import '../../login/views/widgets/location_form.dart';
 import '../../login/views/widgets/password_text_field.dart';
@@ -245,7 +246,7 @@ class SignUpView extends GetView<SignupController> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.offAll(const LoginView());
+                            Get.back();
                           },
                           child: const Text(
                             'Sign In',
