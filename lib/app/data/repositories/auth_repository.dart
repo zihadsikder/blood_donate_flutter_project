@@ -11,12 +11,14 @@ class AuthRepository {
       body: params.toJson(),
     );
 
-    if (response.isSuccess) {
-      return response.copyWith(
-          successMessage: 'Account has been created! Please Sign In.');
-    } else {
-      return response.copyWith(
-          errorMessage: 'Account creation failed! Please try again.');
-    }
+   return response;
+  }
+
+  static Future<NetworkResponse> login(String mobile, String password) async {
+    final NetworkResponse response = await ApiClient().postRequest(
+      ApiEndPoints.login,
+      body: {"mobile": mobile, "password": password},
+    );
+    return response;
   }
 }

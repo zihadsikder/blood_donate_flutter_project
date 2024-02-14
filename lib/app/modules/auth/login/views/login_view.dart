@@ -4,8 +4,6 @@ import 'package:blood_donate_flutter_project/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../forgot_password/views/forget_password_view.dart';
-
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});
 
@@ -124,17 +122,20 @@ class LoginView extends GetView<LoginController> {
                           const SizedBox(
                             height: 30,
                           ),
-                          Container(
-                            height: 50,
-                            margin: const EdgeInsets.symmetric(horizontal: 50),
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: Colors.red.shade800),
-                            child: Visibility(
-                              visible: controller.isLoading.value == false,
-                              replacement: const Center(child: CircularProgressIndicator()),
-                              child: const Center(
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                          InkWell(
+                            onTap: ()=>controller.login(),
+                            child: Container(
+                              height: 50,
+                              margin: const EdgeInsets.symmetric(horizontal: 50),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(50), color: Colors.red.shade800),
+                              child: Visibility(
+                                visible: controller.isLoading.value == false,
+                                replacement: const Center(child: CircularProgressIndicator()),
+                                child: const Center(
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                                  ),
                                 ),
                               ),
                             ),

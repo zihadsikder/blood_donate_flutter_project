@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 DonorHistoryList donorHistoryListFromJson(String str) => DonorHistoryList.fromJson(json.decode(str));
@@ -6,10 +5,10 @@ DonorHistoryList donorHistoryListFromJson(String str) => DonorHistoryList.fromJs
 String donorHistoryListToJson(DonorHistoryList data) => json.encode(data.toJson());
 
 class DonorHistoryList {
-  Pagination? pagination;
-  List<Datum>? data;
-  int? status;
-  String? message;
+  final Pagination? pagination;
+  final List<Datum>? data;
+  final int? status;
+  final String? message;
 
   DonorHistoryList({
     this.pagination,
@@ -34,19 +33,17 @@ class DonorHistoryList {
 }
 
 class Datum {
-  String? id;
-  DateTime? donationDate;
-  String? donationPlace;
-  String? donarName;
-  String? donarId;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  final String? id;
+  final DateTime? donationDate;
+  final String? donationPlace;
+  final String? donarId;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   Datum({
     this.id,
     this.donationDate,
     this.donationPlace,
-    this.donarName,
     this.donarId,
     this.createdAt,
     this.updatedAt,
@@ -56,7 +53,6 @@ class Datum {
     id: json["_id"],
     donationDate: json["donation_date"] == null ? null : DateTime.parse(json["donation_date"]),
     donationPlace: json["donation_place"],
-    donarName: json["donar_name"],
     donarId: json["donar_id"],
     createdAt: json["createdAt"] == null ? null : DateTime.parse(json["createdAt"]),
     updatedAt: json["updatedAt"] == null ? null : DateTime.parse(json["updatedAt"]),
@@ -66,7 +62,6 @@ class Datum {
     "_id": id,
     "donation_date": donationDate?.toIso8601String(),
     "donation_place": donationPlace,
-    "donar_name": donarName,
     "donar_id": donarId,
     "createdAt": createdAt?.toIso8601String(),
     "updatedAt": updatedAt?.toIso8601String(),
@@ -74,10 +69,10 @@ class Datum {
 }
 
 class Pagination {
-  int? totalData;
-  int? totalPage;
-  int? currentPage;
-  int? dataLoadCurrentPage;
+  final int? totalData;
+  final int? totalPage;
+  final int? currentPage;
+  final int? dataLoadCurrentPage;
 
   Pagination({
     this.totalData,

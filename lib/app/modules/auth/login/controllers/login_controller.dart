@@ -1,11 +1,8 @@
-import 'package:blood_donate_flutter_project/app/data/models/request/registration_req.dart';
 import 'package:blood_donate_flutter_project/app/data/repositories/auth_repository.dart';
-import 'package:blood_donate_flutter_project/app/services/api_client.dart';
-import 'package:blood_donate_flutter_project/app/services/api_end_points.dart';
+import 'package:blood_donate_flutter_project/app/services/auth_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../data/models/network_response.dart';
 import '../../../../data/models/user_model.dart';
 import '../../../../routes/app_pages.dart';
 
@@ -19,50 +16,39 @@ class LoginController extends GetxController {
 
   final isLoading = false.obs;
 
-  Future<void> registration(RegistrationReq params) async {
-    isLoading.value = true;
-    NetworkResponse response = await AuthRepository.registration(params);
-    if (response.isSuccess) {
-      //successful snackber
-    } else {
-      //error snackber
-    }
-    isLoading.value = false;
-  }
-
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  Future<bool> login(String mobile, String password) async {
+  Future<void> login() async {
+    if (formKey.currentState!.validate()) {
     isLoading.value = true;
 
-    final NetworkResponse response = await ApiClient().postRequest(
-      ApiEndPoints.login,
-      body: {"mobile": mobile, "password": password},
-    );
+    final mobile = numberTEController.text.trim();
+    final password = passwordTEController.text.trim();
+
+    final response = await AuthRepository.login(mobile, password);
+
     isLoading.value = false;
 
     if (response.isSuccess && response.jsonResponse != null) {
-      UserModel user = userModelFromJson(response.jsonResponse!);
+      LoginRes loginRes = loginResFromJson(response.jsonResponse!);
 
-      //show snackbar
-      const GetSnackBar(
-        message: 'Login Successfully',
+      AuthCache.to.saveUserInformation(
+        loginRes.data?.accessToken ?? '',
+        loginRes,
       );
 
-      return true;
+      Get.to(Routes.BOTTOM_NAV);
+
+      const GetSnackBar(
+        message: 'Login Successfully',
+        duration: Duration(seconds: 1),
+      );
+      isLoading.value = true;
     } else {
       const GetSnackBar(
         message: 'Login failed. Try again',
+        //duration:Duration(seconds: 2),
       );
-
-      return false;
+      isLoading.value = false;
     }
   }
-
-  onPressHome() {
-    Get.toNamed(Routes.HOME);
   }
 }

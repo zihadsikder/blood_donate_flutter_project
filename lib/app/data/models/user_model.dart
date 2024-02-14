@@ -1,117 +1,126 @@
 import 'dart:convert';
 
-UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
+LoginRes loginResFromJson(String str) => LoginRes.fromJson(json.decode(str));
 
-String userModelToJson(UserModel data) => json.encode(data.toJson());
+String loginResToJson(LoginRes data) => json.encode(data.toJson());
 
-class UserModel {
-  int status;
-  String message;
-  Data data;
+class LoginRes {
+  final int? status;
+  final String? message;
+  final Data? data;
 
-  UserModel({
-    required this.status,
-    required this.message,
-    required this.data,
+  LoginRes({
+    this.status,
+    this.message,
+    this.data,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    status: json["status"],
-    message: json["message"],
-    data: Data.fromJson(json["data"]),
-  );
+  factory LoginRes.fromJson(Map<String, dynamic> json) => LoginRes(
+        status: json["status"],
+        message: json["message"],
+        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "status": status,
-    "message": message,
-    "data": data.toJson(),
-  };
+        "status": status,
+        "message": message,
+        "data": data?.toJson(),
+      };
 }
 
 class Data {
-  String id;
-  String name;
-  String email;
-  DateTime dob;
-  String occupation;
-  String bloodGroup;
-  Address address;
-  bool isWeight50Kg;
-  DateTime lastDonation;
-  String pic;
-  String accessToken;
+  final String? id;
+  final String? name;
+  final int? mobile;
+  final String? email;
+  final DateTime? dob;
+  final String? occupation;
+  final String? bloodGroup;
+  final bool? isAvailable;
+  final bool? isActive;
+  final bool? isWeight50Kg;
+  final dynamic lastDonation;
+  final Address? address;
+  final String? pic;
+  final String? accessToken;
 
   Data({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.dob,
-    required this.occupation,
-    required this.bloodGroup,
-    required this.address,
-    required this.isWeight50Kg,
-    required this.lastDonation,
-    required this.pic,
-    required this.accessToken,
+    this.id,
+    this.name,
+    this.mobile,
+    this.email,
+    this.dob,
+    this.occupation,
+    this.bloodGroup,
+    this.isAvailable,
+    this.isActive,
+    this.isWeight50Kg,
+    this.lastDonation,
+    this.address,
+    this.pic,
+    this.accessToken,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-    id: json["_id"],
-    name: json["name"],
-    email: json["email"],
-    dob: DateTime.parse(json["dob"]),
-    occupation: json["occupation"],
-    bloodGroup: json["blood_group"],
-    address: Address.fromJson(json["address"]),
-    isWeight50Kg: json["is_weight_50kg"],
-    lastDonation: DateTime.parse(json["last_donation"]),
-    pic: json["pic"],
-    accessToken: json["access_token"],
-  );
+        id: json["_id"],
+        name: json["name"],
+        mobile: json["mobile"],
+        email: json["email"],
+        dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+        occupation: json["occupation"],
+        bloodGroup: json["blood_group"],
+        isAvailable: json["isAvailable"],
+        isActive: json["isActive"],
+        isWeight50Kg: json["is_weight_50kg"],
+        lastDonation: json["last_donation"],
+        address:
+            json["address"] == null ? null : Address.fromJson(json["address"]),
+        pic: json["pic"],
+        accessToken: json["access_token"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "_id": id,
-    "name": name,
-    "email": email,
-    "dob": dob.toIso8601String(),
-    "occupation": occupation,
-    "blood_group": bloodGroup,
-    "address": address.toJson(),
-    "is_weight_50kg": isWeight50Kg,
-    "last_donation": lastDonation.toIso8601String(),
-    "pic": pic,
-    "access_token": accessToken,
-  };
+        "_id": id,
+        "name": name,
+        "mobile": mobile,
+        "email": email,
+        "dob": dob?.toIso8601String(),
+        "occupation": occupation,
+        "blood_group": bloodGroup,
+        "isAvailable": isAvailable,
+        "isActive": isActive,
+        "is_weight_50kg": isWeight50Kg,
+        "last_donation": lastDonation,
+        "address": address?.toJson(),
+        "pic": pic,
+        "access_token": accessToken,
+      };
 }
 
 class Address {
-  int divisionId;
-  int districtId;
-  int areaId;
-  String postOffice;
-  String id;
+  final String? division;
+  final String? district;
+  final String? area;
+  final String? postOffice;
 
   Address({
-    required this.divisionId,
-    required this.districtId,
-    required this.areaId,
-    required this.postOffice,
-    required this.id,
+    this.division,
+    this.district,
+    this.area,
+    this.postOffice,
   });
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
-    divisionId: json["division_id"],
-    districtId: json["district_id"],
-    areaId: json["area_id"],
-    postOffice: json["post_office"],
-    id: json["_id"],
-  );
+        division: json["division"],
+        district: json["district"],
+        area: json["area"],
+        postOffice: json["post_office"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "division_id": divisionId,
-    "district_id": districtId,
-    "area_id": areaId,
-    "post_office": postOffice,
-    "_id": id,
-  };
+        "division": division,
+        "district": district,
+        "area": area,
+        "post_office": postOffice,
+      };
 }

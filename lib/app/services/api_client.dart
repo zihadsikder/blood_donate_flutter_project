@@ -31,7 +31,7 @@ class ApiClient {
         );
       }
     } catch (e) {
-      return NetworkResponse(isSuccess: false, errorMessage: e.toString());
+      return NetworkResponse(isSuccess: false, message: e.toString());
     }
   }
 
@@ -67,7 +67,7 @@ class ApiClient {
         );
       }
     } catch (e) {
-      return NetworkResponse(isSuccess: false, errorMessage: e.toString());
+      return NetworkResponse(isSuccess: false, message: e.toString());
     }
   }
 }

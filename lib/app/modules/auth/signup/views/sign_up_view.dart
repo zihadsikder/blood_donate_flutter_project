@@ -77,6 +77,7 @@ class SignUpView extends GetView<SignupController> {
                         return null;
                       },
                     ),
+                    const SizedBox(height: 4.0),
                     BloodGroupDropdown(
                       onSelectBloodGroup: (String? val) {
                         controller.onSelectedBloodGroup(val);
@@ -111,6 +112,7 @@ class SignUpView extends GetView<SignupController> {
                       },
                       items: controller.unionList,
                     ),
+                    const SizedBox(height: 4.0),
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: controller.emailTEController,

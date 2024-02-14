@@ -19,19 +19,19 @@ class AuthCache extends GetxService {
     return _prefs.getString('token');
   }
 
-  UserModel? getUser() {
+  LoginRes? getUser() {
     final String? strUserModel = _prefs.getString('model');
 
     if (strUserModel == null) {
       return null;
     } else {
-      return UserModel.fromJson(jsonDecode(strUserModel));
+      return LoginRes.fromJson(jsonDecode(strUserModel));
     }
   }
 
-  Future<void> saveUserInformation(String token, UserModel userModel) async {
+  Future<void> saveUserInformation(String token, LoginRes userModel) async {
     await _prefs.setString('token', token);
-    await _prefs.setString('model', userModelToJson(userModel));
+    await _prefs.setString('model', loginResToJson(userModel));
   }
 
   bool checkAuthState() {

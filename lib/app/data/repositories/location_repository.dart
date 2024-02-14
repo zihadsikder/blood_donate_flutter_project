@@ -7,45 +7,25 @@ class LocationRepository {
  static Future<NetworkResponse> getDivision() async {
     final NetworkResponse response =
         await ApiClient().getRequest(ApiEndPoints.getDivisionData);
-    if (response.isSuccess) {
-      return response;
-    } else {
-      return response.copyWith(
-          errorMessage: 'An error occurred while fetching Division data.');
-    }
+    return response;
   }
 
   static Future<NetworkResponse> getDistrict({required String id}) async {
     final NetworkResponse response =
         await ApiClient().getRequest(ApiEndPoints.getDistrictData + id);
 
-    if (response.isSuccess) {
-      return response;
-    } else {
-      return response.copyWith(
-          errorMessage: 'An error occurred while fetching District data.');
-    }
+    return response;
   }
 
   static Future<NetworkResponse> getUpzila({required String id}) async {
     final NetworkResponse response =
         await ApiClient().getRequest(ApiEndPoints.getUpzilaData + id);
-    if (response.isSuccess) {
-      return response;
-    } else {
-      return response.copyWith(
-          errorMessage: 'An error occurred while fetching Upzila data.');
-    }
+    return response;
   }
 
   static Future<NetworkResponse> getUnion({required String id}) async {
     final NetworkResponse response =
         await ApiClient().getRequest(ApiEndPoints.getUnionData + id);
-    if (response.isSuccess) {
-      return response;
-    } else {
-      return response.copyWith(
-          errorMessage: 'An error occurred while fetching Union data.');
-    }
+    return response;
   }
 }

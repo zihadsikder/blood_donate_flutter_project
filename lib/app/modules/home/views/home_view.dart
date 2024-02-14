@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import '../../../core/widgets/profile_summary_card.dart';
 import 'widgets/banner_carousel.dart';
 class HomeView extends GetView<SearchController> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(

@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,24 +7,21 @@ import '../../../../data/models/network_response.dart';
 import '../../../../data/models/request/registration_req.dart';
 import '../../../../data/repositories/auth_repository.dart';
 import '../../../../data/repositories/location_repository.dart';
-import '../../../../routes/app_pages.dart';
 
 class SignupController extends GetxController {
-  final formKey = GlobalKey<FormState>();
+  final isLoading = false.obs;
 
+  final formKey = GlobalKey<FormState>();
   final TextEditingController usernameTEController = TextEditingController();
   final TextEditingController emailTEController = TextEditingController();
-  final TextEditingController mobileNumberTEController = TextEditingController();
+  final TextEditingController mobileNumberTEController =
+      TextEditingController();
   final TextEditingController dobController = TextEditingController();
   final TextEditingController passwordTEController = TextEditingController();
+  final TextEditingController weightTEController = TextEditingController();
 
   final isWeightOk = false.obs;
   final obscureText = true.obs;
-
-  final isLoading = false.obs;
-
-  String failMessage = '';
-  String get failureMessage => failMessage;
 
   final selectedBloodGroup = 'A+'.obs;
 
@@ -41,13 +37,12 @@ class SignupController extends GetxController {
   final unionList = <AreaModel>[].obs;
   final selectedUnion = ''.obs;
 
-  String? onSelectedBloodGroup(String? val) {
+  void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
     log('select blood group: $val');
-    return val;
   }
 
-  onSelectedDivision(String? val) {
+  void onSelectedDivision(String? val) {
     if (val != null && val.isNotEmpty) {
       // clear all the selected values and list
       selectedDistrict.value = '';
@@ -99,14 +94,23 @@ class SignupController extends GetxController {
   }
 
   Future<void> registration(RegistrationReq params) async {
-    isLoading.value = true;
-    NetworkResponse response = await AuthRepository.registration(params);
-    if (response.isSuccess) {
-      //successful snackbar
-    } else {
-      //error snackbar
+    if (formKey.currentState!.validate()) {
+      NetworkResponse response = await AuthRepository.registration(params);
+      isLoading.value = false;
+
+      if (response.isSuccess) {
+        isLoading.value = true;
+        const GetSnackBar(
+          message: 'Login Successfully',
+          duration: Duration(seconds: 1),
+        );
+      } else {
+        isLoading.value = false;
+        const GetSnackBar(
+          message: 'Login Failed',
+        );
+      }
     }
-    isLoading.value = false;
   }
 
   @override
@@ -124,7 +128,8 @@ class SignupController extends GetxController {
 
   Future<void> getDistrict({required String id}) async {
     isLoading.value = true;
-    final NetworkResponse response = await LocationRepository.getDistrict(id: id);
+    final NetworkResponse response =
+        await LocationRepository.getDistrict(id: id);
     districtList.value = areaFromJson(response.jsonResponse!).data ?? [];
     isLoading.value = false;
   }
@@ -141,9 +146,5 @@ class SignupController extends GetxController {
     NetworkResponse response = await LocationRepository.getUnion(id: id);
     unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
     isLoading.value = false;
-  }
-
-  onPressHome() {
-    Get.toNamed(Routes.HOME);
   }
 }

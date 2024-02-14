@@ -4,6 +4,6 @@ import 'package:get/get.dart';
 class IntBinding extends Bindings {
   @override
   void dependencies() async {
-    await Get.putAsync<AuthCache>(() async => AuthCache().init());
+    await Get.putAsync<AuthCache>(() async => await AuthCache().init());
   }
 }

@@ -2,29 +2,27 @@ class NetworkResponse {
   final int? statusCode;
   final bool isSuccess;
   String? jsonResponse;
-  final String successMessage;
-  final String errorMessage;
+  final String? message;
 
   NetworkResponse(
       {this.statusCode = -1,
         required this.isSuccess,
         this.jsonResponse,
-        this.successMessage = "Success",
-        this.errorMessage = "something went wrong!"});
+        this.message ,
+        });
 
   NetworkResponse copyWith({
     int? statusCode,
     bool? isSuccess,
     String? jsonResponse,
-    String? successMessage,
-    String? errorMessage,
+    String? message,
   }) {
     return NetworkResponse(
       statusCode: statusCode ?? this.statusCode,
       isSuccess: isSuccess ?? this.isSuccess,
       jsonResponse: jsonResponse ?? this.jsonResponse,
-      successMessage: successMessage ?? this.successMessage,
-      errorMessage: errorMessage ?? this.errorMessage,
+      message: message ?? this.message,
+
     );
   }
 
