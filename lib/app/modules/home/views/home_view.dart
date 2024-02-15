@@ -1,3 +1,4 @@
+import 'package:blood_donate_flutter_project/app/modules/home/views/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,7 @@ class HomeView extends GetView<SearchController> {
                     const SizedBox(height: 12),
                     ElevatedButton(
                         onPressed: () {
-                          //Get.to(() => const SearchScreen());
+                          Get.to(() => SearchScreen());
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -71,18 +72,4 @@ class HomeView extends GetView<SearchController> {
     );
   }
 
-  AppBar get buildAppBar {
-    return AppBar(
-      title: const Text("Search a Blood Donor"),
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.search),
-          onPressed: () {
-            //Get.to(const SearchScreen());
-          },
-        ),
-      ],
-      elevation: 10,
-    );
-  }
 }

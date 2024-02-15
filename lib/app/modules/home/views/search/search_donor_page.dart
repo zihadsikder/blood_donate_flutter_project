@@ -9,8 +9,8 @@ class SearchDonorPage extends StatelessWidget {
   final String address;
   final String mobile;
 
-  final DateTime lastDonationDate;
-  final bool isEligibleToDonate;
+  //final DateTime lastDonationDate;
+  //final bool isEligibleToDonate;
 
   const SearchDonorPage({
     super.key,
@@ -20,8 +20,8 @@ class SearchDonorPage extends StatelessWidget {
     required this.totalDonations,
     required this.address,
     required this.mobile,
-    required this.lastDonationDate,
-    required this.isEligibleToDonate,
+    //required this.lastDonationDate,
+    //required this.isEligibleToDonate,
   });
 
   @override
@@ -75,10 +75,10 @@ class SearchDonorPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               // Show lock icon if the user is not eligible to donate
-              if (!isEligibleToDonate) Icon(Icons.lock, color: Colors.red.shade800),
+
 
               // Show call and SMS buttons if the user is eligible to donate
-              if (isEligibleToDonate) ...[
+
                 IconButton(
                   icon: Icon(Icons.phone, color: Colors.red.shade800),
                   onPressed: () {
@@ -92,7 +92,7 @@ class SearchDonorPage extends StatelessWidget {
                   },
                 ),
               ],
-            ],
+
           ),
         ),
         const SizedBox(

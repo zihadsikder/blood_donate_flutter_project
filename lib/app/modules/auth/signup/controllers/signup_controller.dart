@@ -99,15 +99,16 @@ class SignupController extends GetxController {
       isLoading.value = false;
 
       if (response.isSuccess) {
+        clearTextFields();
         isLoading.value = true;
         const GetSnackBar(
-          message: 'Login Successfully',
+          message: 'Registration Successfully',
           duration: Duration(seconds: 1),
         );
       } else {
         isLoading.value = false;
         const GetSnackBar(
-          message: 'Login Failed',
+          message: 'Registration Failed',
         );
       }
     }
@@ -146,5 +147,13 @@ class SignupController extends GetxController {
     NetworkResponse response = await LocationRepository.getUnion(id: id);
     unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
     isLoading.value = false;
+  }
+
+  void clearTextFields() {
+    usernameTEController.clear();
+    emailTEController.clear();
+    dobController.clear();
+    mobileNumberTEController.clear();
+    passwordTEController.clear();
   }
 }

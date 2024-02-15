@@ -1,4 +1,6 @@
+import 'package:blood_donate_flutter_project/app/modules/home/views/search/search_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileSummaryCard extends StatefulWidget {
   const ProfileSummaryCard({
@@ -33,7 +35,7 @@ class _ProfileSummaryCardState extends State<ProfileSummaryCard> {
       ),
       trailing: IconButton(
         onPressed: () async {
-          //Get.to(()=> const SearchScreen());
+          Get.to(()=> SearchScreen());
         },
         icon: const Icon(Icons.search_outlined, color: Colors.white),
       ),

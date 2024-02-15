@@ -120,7 +120,9 @@ class SignUpView extends GetView<SignupController> {
                         labelText: "Email",
                       ),
                       validator: (String? value) {
-                        bool isValidEmail = RegExp(r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$").hasMatch(value!);
+                        bool isValidEmail = RegExp(
+                                r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                            .hasMatch(value!);
 
                         if (!isValidEmail) {
                           return 'Enter a valid email address';
@@ -136,7 +138,8 @@ class SignUpView extends GetView<SignupController> {
                       ),
                       keyboardType: TextInputType.phone,
                       validator: (String? value) {
-                        bool isValidPhoneNumber = RegExp(r"^0[0-9]{10}$").hasMatch(value!);
+                        bool isValidPhoneNumber =
+                            RegExp(r"^0[0-9]{10}$").hasMatch(value!);
                         if (!isValidPhoneNumber) {
                           return 'Enter a valid 11-digit mobile number starting with 0';
                         }
@@ -150,7 +153,8 @@ class SignUpView extends GetView<SignupController> {
                       passwordController: controller.passwordTEController,
                       obscureText: controller.obscureText.value,
                       onTapSuffix: () {
-                        controller.obscureText.value = !controller.obscureText.value;
+                        controller.obscureText.value =
+                            !controller.obscureText.value;
                       },
                     ),
                     const SizedBox(height: 4.0),
@@ -171,7 +175,10 @@ class SignUpView extends GetView<SignupController> {
                             ),
                           ],
                         ),
-                        if (!controller.isWeightOk.value) const Text('Please confirm that your weight is over 50 kg', style: TextStyle(color: Colors.red, fontSize: 12))
+                        if (!controller.isWeightOk.value)
+                          const Text(
+                              'Please confirm that your weight is over 50 kg',
+                              style: TextStyle(color: Colors.red, fontSize: 12))
                       ],
                     ),
                     const SizedBox(height: 8.0),
@@ -187,7 +194,8 @@ class SignUpView extends GetView<SignupController> {
                             if (controller.formKey.currentState!.validate()) {
                               final registrationParams = RegistrationReq(
                                 name: controller.usernameTEController.text,
-                                mobile: controller.mobileNumberTEController.text.trim(),
+                                mobile: controller.mobileNumberTEController.text
+                                    .trim(),
                                 email: controller.emailTEController.text.trim(),
                                 dob: controller.dobController.text,
                                 blood: controller.selectedBloodGroup.value,
@@ -200,31 +208,35 @@ class SignUpView extends GetView<SignupController> {
                                   postOffice: controller.selectedUnion.value,
                                 ),
                               );
-                              if (controller.selectedBloodGroup == ' ') {
+                              if (controller.selectedBloodGroup == '') {
                                 // showSnackMessage(
                                 //     context, 'Select your blood group');
                                 return;
                               }
 
-                              if (controller.selectedDivision == null || controller.selectedDivision.isEmpty) {
+                              if (
+                                  controller.selectedDivision.isEmpty) {
                                 // showSnackMessage(
                                 //     context, 'Select your division');
                                 return;
                               }
 
-                              if (controller.selectedDistrict == null || controller.selectedDistrict.isEmpty) {
+                              if (
+                                  controller.selectedDistrict.isEmpty) {
                                 // showSnackMessage(
                                 //     context, 'Select your district');
                                 return;
                               }
 
-                              if (controller.selectedUpzila == null || controller.selectedUpzila.isEmpty) {
+                              if (
+                                  controller.selectedUpzila.isEmpty) {
                                 // showSnackMessage(
                                 //     context, 'Select your upzila');
                                 return;
                               }
 
-                              if (controller.selectedUnion == null || controller.selectedUnion.isEmpty) {
+                              if (
+                                  controller.selectedUnion.isEmpty) {
                                 // showSnackMessage(
                                 //     context, 'Select your union');
                                 return;
@@ -281,8 +293,10 @@ class SignUpView extends GetView<SignupController> {
               firstDate: DateTime(1950),
               lastDate: DateTime(2050),
             );
-            if (pickedDate != null && pickedDate != controller.dobController.text) {
-              controller.dobController.text = "${pickedDate.toLocal()}".split(' ')[0];
+            if (pickedDate != null &&
+                pickedDate != controller.dobController.text) {
+              controller.dobController.text =
+                  "${pickedDate.toLocal()}".split(' ')[0];
             }
           },
           icon: const Icon(Icons.calendar_today, color: Colors.grey),
@@ -298,11 +312,5 @@ class SignUpView extends GetView<SignupController> {
     );
   }
 
-  void _clearTextFields() {
-    controller.usernameTEController.clear();
-    controller.emailTEController.clear();
-    controller.dobController.clear();
-    controller.mobileNumberTEController.clear();
-    controller.passwordTEController.clear();
-  }
+
 }
