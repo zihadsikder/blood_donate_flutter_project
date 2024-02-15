@@ -33,7 +33,7 @@ class SettingView extends GetView<SettingController> {
                     Icon(Icons.support_agent, color: Colors.red.shade800),
                     title: const Text("Support"),
                     onTap: () {
-                      Get.offAll(const Support());
+                      Get.to(const Support());
                     },
                     trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                   ),
@@ -48,10 +48,7 @@ class SettingView extends GetView<SettingController> {
                         color: Colors.red.shade800),
                     title: const Text("Privacy Policy"),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const PrivacyScreen()));
+                      Get.to(const PrivacyScreen());
                     },
                     trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                   ),
@@ -66,10 +63,7 @@ class SettingView extends GetView<SettingController> {
                     Icon(Icons.fitness_center, color: Colors.red.shade800),
                     title: const Text('Exercise Guidelines'),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ExercisesScreen()));
+                      Get.to(const ExercisesScreen());
                     },
                     trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                   ),
@@ -83,10 +77,7 @@ class SettingView extends GetView<SettingController> {
                     leading: Icon(Icons.fastfood, color: Colors.red.shade800),
                     title: const Text('Diet Chart'),
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const DietChart()));
+                      Get.to(const DietChart());
                     },
                     trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                   ),

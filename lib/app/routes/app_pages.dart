@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/accounts/bindings/accounts_binding.dart';
+import '../modules/accounts/views/accounts_view.dart';
 import '../modules/auth/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/auth/forgot_password/views/forget_password_view.dart';
 import '../modules/auth/login/bindings/login_binding.dart';
@@ -8,6 +10,8 @@ import '../modules/auth/signup/bindings/signup_binding.dart';
 import '../modules/auth/signup/views/sign_up_view.dart';
 import '../modules/bottom_nav/bindings/bottom_nav_binding.dart';
 import '../modules/bottom_nav/views/bottom_nav_view.dart';
+import '../modules/govt_services/bindings/govt_services_binding.dart';
+import '../modules/govt_services/views/govt_services_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
@@ -43,11 +47,11 @@ class AppPages {
       page: () => const SettingView(),
       binding: SettingBinding(),
     ),
-    // GetPage(
-    //   name: _Paths.ACCOUNTS,
-    //   page: () => const AccountsView(),
-    //   binding: AccountsBinding(),
-    // ),
+    GetPage(
+      name: _Paths.ACCOUNTS,
+      page: () => AccountsView(),
+      binding: AccountsBinding(),
+    ),
 
     GetPage(
       name: _Paths.SIGNUP,
@@ -61,9 +65,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.BOTTOM_NAV,
-      page: () =>  BottomNavView(),
+      page: () => BottomNavView(),
       binding: BottomNavBinding(),
     ),
-
+    GetPage(
+      name: _Paths.GOVT_SERVICES,
+      page: () => GovtServicesView(),
+      binding: GovtServicesBinding(),
+    ),
   ];
 }

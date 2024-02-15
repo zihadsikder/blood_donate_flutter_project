@@ -1,4 +1,3 @@
-
 import 'package:blood_donate_flutter_project/app/modules/home/controllers/search_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +14,8 @@ class SearchScreen extends StatelessWidget {
   SearchScreen({super.key});
 
   final SignupController signupController = Get.put(SignupController());
-  final SearchDonationController searchController = Get.put(SearchDonationController());
+  final SearchDonationController searchController =
+      Get.put(SearchDonationController());
 
   @override
   Widget build(BuildContext context) {
@@ -72,62 +72,50 @@ class SearchScreen extends StatelessWidget {
                 const SizedBox(height: 16.0),
                 SizedBox(
                   width: double.infinity,
-                  child: GetBuilder<SearchDonationController>(
-                    builder: (searchDonationController) {
-                      return Visibility(
-                        visible: !searchDonationController.inProgress.value,
-                        replacement: const Center(child: CircularProgressIndicator()),
-                        child: ElevatedButton(
-                          onPressed: ()=>searchController.searchDonor(
-                            signupController.selectedBloodGroup.value,
-                            signupController.selectedDivision.value,
-                            signupController.selectedDistrict.value,
-                            signupController.selectedUpzila.value,
-                            signupController.selectedUnion.value,
-                          ),
-
-                          child: const Text('Search'),
-                        ),
-                      );
-                    }
+                  child: Visibility(
+                    visible: !searchController.inProgress.value,
+                    replacement:
+                        const Center(child: CircularProgressIndicator()),
+                    child: ElevatedButton(
+                      onPressed: () => searchController.searchDonor(
+                        signupController.selectedBloodGroup.value,
+                        signupController.selectedDivision.value,
+                        signupController.selectedDistrict.value,
+                        signupController.selectedUpzila.value,
+                        signupController.selectedUnion.value,
+                      ),
+                      child: const Text('Search'),
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16.0),
-                // Display search results as a ListView
-                GetBuilder<SearchDonationController>(
-                  builder: (searchController) {
-                    if (searchController.searchUser == null || searchController.searchUser!.data == null) {
-                      return const Text('No search results');
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: searchController.searchUser?.data?.length ?? 0,
+                  itemBuilder: (context, index) {
+                    // Access the donor from the donorHistoryList
+                    final donor = searchController.searchUser?.data?[index];
+
+                    if (donor != null) {
+                      String formattedLastDonation =
+                          DateFormat('dd-MM-yyyy').format(
+                        donor.lastDonation!.toLocal(),
+                      );
+                      return SearchDonorPage(
+                        name: donor.name ?? '',
+                        bloodGroup: donor.bloodGroup ?? '',
+                        lastDonation: formattedLastDonation,
+                        totalDonations: donor.totalDonation?.toString() ?? '',
+                        mobile: donor.mobile?.toString() ?? '',
+                        address: donor.address?.postOffice ?? '',
+                      );
+                    } else {
+                      // Return a placeholder widget or handle the null case
+                      return Container();
                     }
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: searchController.searchUser?.data?.length ?? 0,
-                      itemBuilder: (context, index) {
-                        // Access the donor from the donorHistoryList
-                        final donor = searchController.searchUser?.data?[index];
-
-                        if (donor != null) {
-                          String formattedLastDonation = DateFormat('dd-MM-yyyy').format(
-                            donor.lastDonation!.toLocal(),
-                          );
-                          return SearchDonorPage(
-                            name: donor.name ?? '',
-                            bloodGroup: donor.bloodGroup ?? '',
-                            lastDonation: formattedLastDonation,
-                            totalDonations: donor.totalDonation?.toString() ?? '',
-                            mobile: donor.mobile?.toString() ?? '',
-                            address: donor.address?.postOffice ?? '',
-                          );
-                        } else {
-                          // Return a placeholder widget or handle the null case
-                          return Container();
-                        }
-                      },
-                    );
-                  }
+                  },
                 ),
-
               ],
             ),
           ),

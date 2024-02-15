@@ -32,6 +32,7 @@ class SearchDonationController extends GetxController {
       if (response.isSuccess) {
         searchUser = searchUserModelFromJson(response.jsonResponse!);
         inProgress.value = true;
+      }else{
         Get.showSnackbar(const GetSnackBar(
           title: 'Search Donor Fail',
           duration: Duration(seconds: 2),
