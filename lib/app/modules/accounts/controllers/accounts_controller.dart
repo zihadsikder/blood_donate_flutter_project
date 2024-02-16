@@ -9,6 +9,10 @@ import '../../../data/models/donor_history_list_model.dart';
 import '../../../data/models/network_response.dart';
 
 class AccountsController extends GetxController {
+
+  final TextEditingController placeTEController = TextEditingController();
+  final TextEditingController dateTEController = TextEditingController();
+
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final inProgress = false.obs;
@@ -24,7 +28,7 @@ class AccountsController extends GetxController {
     inProgress.value = true;
 
     final NetworkResponse response =
-        await ApiClient().getRequest(ApiEndPoints.getDonorList);
+    await ApiClient().getRequest(ApiEndPoints.getDonorList);
     inProgress.value = false;
     if (response.isSuccess) {
       donorHistoryList = donorHistoryListFromJson(response.jsonResponse!);
@@ -36,26 +40,29 @@ class AccountsController extends GetxController {
     }
   }
 
-  Future<bool> addDonation(String place, String date) async {
-    inProgress.value = true;
+  Future<void> addDonation(String place, String date) async {
+    if (formKey.currentState!.validate()) {
+      inProgress.value = true;
 
-    final response = await ApiClient().postRequest(
-      ApiEndPoints.storeDonationHistory,
-      body: {
-        "donation_place": place,
-        "donation_date": date,
-      },
-    );
-    inProgress.value = false;
-    if (response.isSuccess) {
-      place;
-      date;
 
-      failMessage = ('New History added!');
-      return true;
-    } else {
-      failMessage = 'Add Donation Fail!';
-      return false;
+      final response = await ApiClient().postRequest(
+        ApiEndPoints.storeDonationHistory,
+        body: {
+          "donation_place": place,
+          "donation_date": date,
+        },
+      );
+      inProgress.value = false;
+      if (response.isSuccess) {
+        place;
+        date;
+
+        failMessage = ('New History added!');
+        inProgress.value = true;
+      } else {
+        failMessage = 'Add Donation Fail!';
+        inProgress.value = false;
+      }
     }
   }
 
@@ -63,7 +70,7 @@ class AccountsController extends GetxController {
     if (formKey.currentState!.validate()) {
       inProgress.value = true;
       final response =
-          await ApiClient().postRequest(ApiEndPoints.logout, body: {});
+      await ApiClient().postRequest(ApiEndPoints.logout, body: {});
       inProgress.value = false;
       if (response.isSuccess) {
         authCache.clearAuthData();

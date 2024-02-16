@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'widget/aleart_cancel_button.dart';
+import 'widget/alert_cancel_button.dart';
 
 class AccountUpdateDialoge extends StatefulWidget {
   const AccountUpdateDialoge({super.key});

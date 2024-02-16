@@ -8,10 +8,12 @@ import 'package:intl/intl.dart';
 
 import '../../../core/widgets/profile_summary_card.dart';
 import '../controllers/accounts_controller.dart';
-import 'widget/aleart_cancel_button.dart';
+import 'widget/alert_cancel_button.dart';
 
 class AccountsView extends GetView<AccountsController> {
   AccountsView({super.key});
+
+  final AuthCache authCache = Get.find<AuthCache>();
 
   final userModel = AuthCache.to.getUser()?.data;
 
@@ -34,108 +36,103 @@ class AccountsView extends GetView<AccountsController> {
                             width: 0, color: Colors.transparent),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Form(
-                        key: controller.formKey,
-                        child: Column(
-                          children: [
-                            ListTile(
-                              shape: RoundedRectangleBorder(
-                                side: const BorderSide(
-                                    width: 0, color: Colors.transparent),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              leading: const CircleAvatar(
-                                backgroundColor: Colors.white,
-                                backgroundImage: AssetImage('assets/blood.png'),
-                              ),
-                              title: Row(
-                                children: [
-                                  Text('zihad'),
-                                  //Text(userModel?.name ?? 'Name'),
-                                ],
-                              ),
-                              subtitle: const Text('Blood : Available'),
-                              trailing: GestureDetector(
-                                  onTap: () {
-                                    //Get.to(EditProfileScreen());
-                                    showDialog(
-                                        barrierDismissible: false,
-                                        context: context,
-                                        builder: (context) =>
-                                            const AccountUpdateDialoge());
-                                  },
-                                  child: Icon(
-                                    Icons.edit,
-                                    color: Colors.red.shade800,
-                                  )),
+                      child: Column(
+                        children: [
+                          ListTile(
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                  width: 0, color: Colors.transparent),
+                              borderRadius: BorderRadius.circular(8),
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            leading: const CircleAvatar(
+                              backgroundColor: Colors.white,
+                              backgroundImage: AssetImage('assets/blood.png'),
+                            ),
+                            title: Row(
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Icon(
-                                        Icons.bloodtype_outlined,
-                                        color: Colors.red.shade900,
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      // Text(
-                                      //     '${controller.donorHistoryList.data?.length ?? 0}'),
-                                      GestureDetector(
-                                          onTap: () {
-                                            Get.to(() =>
-                                                const DonationViewScreen());
-                                          },
-                                          child: const Text('Total Donate')),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Icon(
-                                        Icons.bloodtype_outlined,
-                                        color: Colors.red.shade900,
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Text('zihad'),
-                                      // Text(
-                                      //   userModel?.bloodGroup ?? 'Blood Group',
-                                      // ),
-                                      const Text('Blood Group'),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Icon(
-                                        Icons.bloodtype_outlined,
-                                        color: Colors.red.shade900,
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      // Text(DateFormat.yMd().format(
-                                      //     controller.authCache.getUser()?.data!
-                                      //         .lastDonation ??
-                                      //         DateTime.now())),
-                                      const Text('Last Donation'),
-                                    ],
-                                  ),
-                                ),
+                                Text(userModel?.name ?? 'Name'),
                               ],
                             ),
-                          ],
-                        ),
+                            subtitle: const Text('Blood : Available'),
+                            trailing: GestureDetector(
+                                onTap: () {
+                                  //Get.to(EditProfileScreen());
+                                  showDialog(
+                                      barrierDismissible: false,
+                                      context: context,
+                                      builder: (context) =>
+                                          const AccountUpdateDialoge());
+                                },
+                                child: Icon(
+                                  Icons.edit,
+                                  color: Colors.red.shade800,
+                                )),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.bloodtype_outlined,
+                                      color: Colors.red.shade900,
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    // Text(
+                                    //     '${controller.donorHistoryList?.data?.length ?? 0}'),
+                                    GestureDetector(
+                                        onTap: () {
+                                          Get.to(() =>
+                                              const DonationViewScreen());
+                                        },
+                                        child: const Text('Total Donate')),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.bloodtype_outlined,
+                                      color: Colors.red.shade900,
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      userModel?.bloodGroup ?? 'Blood Group',
+                                    ),
+                                    const Text('Blood Group'),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.bloodtype_outlined,
+                                      color: Colors.red.shade900,
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(DateFormat.yMd().format(
+                                        userModel!
+                                            .lastDonation ??
+                                            DateTime.now())),
+                                    const Text('Last Donation'),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                     const SizedBox(
@@ -156,8 +153,8 @@ class AccountsView extends GetView<AccountsController> {
                           Text('Mobile'),
                         ],
                       ),
-                      subtitle: Text('zihad'),
-                      //Text(userModel!.mobile.toString() ?? ''),
+                      subtitle:
+                      Text(userModel!.mobile.toString() ?? ''),
                     ),
                     Container(height: 1, color: Colors.grey.shade100),
                     ListTile(
@@ -175,10 +172,10 @@ class AccountsView extends GetView<AccountsController> {
                           Text('Email'),
                         ],
                       ),
-                      subtitle: Text('zihad'),
-                      // Text(
-                      //   userModel!.email ?? '',
-                      // ),
+                      subtitle:
+                      Text(
+                        userModel!.email ?? '',
+                      ),
                     ),
                     Container(height: 1, color: Colors.grey.shade100),
                     ListTile(
@@ -203,8 +200,8 @@ class AccountsView extends GetView<AccountsController> {
                           Text('Address'),
                         ],
                       ),
-                      subtitle: Text('zihad'),
-                      //Text(userModel!.address!.postOffice ?? ''),
+                      subtitle:
+                      Text(userModel!.address!.postOffice ?? ''),
                     ),
                     Container(height: 1, color: Colors.grey.shade100),
                     const SizedBox(

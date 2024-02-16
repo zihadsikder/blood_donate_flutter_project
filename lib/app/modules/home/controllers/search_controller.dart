@@ -9,7 +9,6 @@ import '../../../data/models/search_user_model.dart';
 class SearchDonationController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  String selectedBloodGroup = ' ';
   final inProgress = false.obs;
 
   SearchUserModel? searchUser;
@@ -17,19 +16,22 @@ class SearchDonationController extends GetxController {
   Future<void> searchDonor(String bloodGroup, String division,
       String district, String upzila, String postOffice) async {
     if (formKey.currentState!.validate()) {
+      update();
       inProgress.value = true;
 
       final response = await ApiClient().getRequest(
           "${ApiEndPoints.getSearchDonor}"
               "blood_group=$bloodGroup"
-              "&division=$division"
-              "&district=$district"
-              "&area=$upzila"
+              "&division_id=$division"
+              "&district_id=$district"
+              "&area_id=$upzila"
               "&post_office=$postOffice");
 
       inProgress.value = false;
+      update();
 
       if (response.isSuccess) {
+        update();
         searchUser = searchUserModelFromJson(response.jsonResponse!);
 
         inProgress.value = true;

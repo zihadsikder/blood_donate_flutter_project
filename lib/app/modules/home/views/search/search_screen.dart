@@ -9,11 +9,18 @@ import '../../../auth/signup/controllers/signup_controller.dart';
 import '../../controllers/search_controller.dart';
 import 'search_donor_page.dart';
 
-class SearchScreen extends StatelessWidget {
+class SearchScreen extends StatefulWidget {
   SearchScreen({super.key});
 
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
   final SignupController signupController = Get.put(SignupController());
+
   final SearchDonationController searchController = Get.put(SearchDonationController());
+  @override
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +59,7 @@ class SearchScreen extends StatelessWidget {
                   label: 'select district',
                   onChanged: (String? val) {
                     // Update selected district
-                    signupController.selectedDistrict.value = val ?? '';
+                    signupController.selectedDistrict.value;
                   },
                   items: signupController.districtList,
                 ),
@@ -60,7 +67,7 @@ class SearchScreen extends StatelessWidget {
                   label: 'select upzila',
                   onChanged: (String? val) {
                     // Update selected upzila
-                    signupController.selectedUpzila.value = val ?? '';
+                    signupController.selectedUpzila.value;
                   },
                   items: signupController.upzilaList,
                 ),
@@ -68,7 +75,7 @@ class SearchScreen extends StatelessWidget {
                   label: 'select union',
                   onChanged: (String? val) {
                     // Update selected union
-                    signupController.selectedUnion.value = val ?? '';
+                    signupController.selectedUnion.value;
                   },
                   items: signupController.unionList,
                 ),
@@ -76,7 +83,7 @@ class SearchScreen extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: Visibility(
-                    visible: !searchController.inProgress.value,
+                    visible: searchController.inProgress.value == false,
                     replacement: const Center(child: CircularProgressIndicator()),
                     child: ElevatedButton(
                       onPressed: () => searchController.searchDonor(

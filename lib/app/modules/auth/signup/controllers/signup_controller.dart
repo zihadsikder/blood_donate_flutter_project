@@ -23,7 +23,7 @@ class SignupController extends GetxController {
   final isWeightOk = false.obs;
   final obscureText = true.obs;
 
-  final selectedBloodGroup = 'A+'.obs;
+  final selectedBloodGroup = ''.obs;
 
   final divisionList = <AreaModel>[].obs;
   final selectedDivision = ''.obs;
@@ -102,13 +102,13 @@ class SignupController extends GetxController {
         clearTextFields();
         isLoading.value = true;
         const GetSnackBar(
-          message: 'Registration Successfully',
+          message: 'Welcome to Blood Donor Family',
           duration: Duration(seconds: 1),
         );
       } else {
         isLoading.value = false;
         const GetSnackBar(
-          message: 'Registration Failed',
+          message: 'Registration Failed! Try Again',
         );
       }
     }
@@ -125,6 +125,7 @@ class SignupController extends GetxController {
     final NetworkResponse response = await LocationRepository.getDivision();
     divisionList.value = areaFromJson(response.jsonResponse!).data ?? [];
     isLoading.value = false;
+
   }
 
   Future<void> getDistrict({required String id}) async {

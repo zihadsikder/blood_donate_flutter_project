@@ -1,5 +1,3 @@
-// ignore_for_file: constant_identifier_names
-
 part of 'app_pages.dart';
 
 abstract class Routes {
@@ -21,7 +19,6 @@ abstract class _Paths {
   static const SPLASH = '/splash';
   static const SETTING = '/setting';
   static const ACCOUNTS = '/accounts';
-
   static const SIGNUP = '/signup';
   static const LOGIN = '/login';
   static const FORGOT_PASSWORD = '/forgot-password';

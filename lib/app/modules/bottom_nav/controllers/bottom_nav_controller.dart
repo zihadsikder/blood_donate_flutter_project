@@ -10,26 +10,13 @@ class BottomNavController extends GetxController {
     if (selectedIndex == index) {
       return;
     }
+
     selectedIndex = index;
+    update();
   }
 
   void backToHome() {
     changeIndex(0);
   }
 
-  //
-  // @override
-  // void onInit() {
-  //   super.onInit();
-  // }
-  //
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  // }
-  //
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
 }
