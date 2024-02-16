@@ -245,7 +245,7 @@ class AccountsView extends GetView<AccountsController> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          //Get.to(()=>const Donation());
+          Get.to(()=>const DonationViewScreen());
         },
         child: const Icon(Icons.add),
       ),

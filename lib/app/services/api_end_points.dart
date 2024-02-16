@@ -9,6 +9,9 @@ class ApiEndPoints {
   static const String getUnionData = '$_baseUrl/union/';
   static const String storeDonationHistory = '$_baseUrl/store-donation';
   static const String getDonorList = '$_baseUrl/donation-list?';
-  static const String getSearchDonor= '$_baseUrl/search-donar?';
-  static const String logout= '$_baseUrl/auth/logout';
+  static const String getSearchDonor = '$_baseUrl/search-donar?';
+  static const String logout = '$_baseUrl/auth/logout';
+  static const String deleteDonation = '$_baseUrl/delete-donation/';
+  static const String updateProfile = '$_baseUrl/auth/profile-update';
+  static const String profileActive = '$_baseUrl/auth/profile-activation';
 }

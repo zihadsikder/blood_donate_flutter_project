@@ -32,6 +32,7 @@ class AppPages {
       page: () => const HomeView(),
       binding: HomeBinding(),
     ),
+
     GetPage(
       name: _Paths.SPLASH,
       page: () => const SplashView(),
@@ -52,7 +53,6 @@ class AppPages {
       page: () => AccountsView(),
       binding: AccountsBinding(),
     ),
-
     GetPage(
       name: _Paths.SIGNUP,
       page: () => const SignUpView(),
@@ -73,5 +73,6 @@ class AppPages {
       page: () => GovtServicesView(),
       binding: GovtServicesBinding(),
     ),
+
   ];
 }

@@ -1,4 +1,4 @@
-import 'package:blood_donate_flutter_project/app/modules/home/views/search/search_screen.dart';
+import 'package:blood_donate_flutter_project/app/modules/home/views/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +35,8 @@ class _ProfileSummaryCardState extends State<ProfileSummaryCard> {
       ),
       trailing: IconButton(
         onPressed: () async {
-          Get.to(()=> SearchScreen());
+         Get.to(()=> SearchScreenView());
+
         },
         icon: const Icon(Icons.search_outlined, color: Colors.white),
       ),

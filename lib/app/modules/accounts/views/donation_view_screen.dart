@@ -22,7 +22,7 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
   @override
   void initState() {
     super.initState();
-    //_getDonationHistoryController.getDonationList();
+    controller.getDonationList();
   }
 
   @override
@@ -68,24 +68,22 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                   ),
                   SizedBox(
                     width: double.infinity,
-                    child: GetBuilder<AccountsController>(
-                        builder: (controller) {
-                          return Visibility(
-                            visible: controller.inProgress.value == false,
-                            replacement:
-                            const Center(child: CircularProgressIndicator()),
-                            child: ElevatedButton(
-                              onPressed: () async {
-
-                              },
-                              child: const Text(
-                                'ADD DONATION',
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                    child: Obx(
+                      ()=>Visibility(
+                              visible: controller.inProgress.value == false,
+                              replacement:
+                              const Center(child: CircularProgressIndicator()),
+                              child: ElevatedButton(
+                                onPressed: ()=>controller.addDonation,
+                                child: const Text(
+                                  'ADD DONATION',
+                                  style: TextStyle(
+                                      fontSize: 16, fontWeight: FontWeight.bold),
+                                ),
                               ),
+
                             ),
-                          );
-                        }),
+                    ),
                   ),
                 ],
               ),
@@ -190,9 +188,7 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                             actions: [
                               const AlertCancelButton(),
                               TextButton(
-                                onPressed: () {
-                                  // Handle delete operation
-                                },
+                                onPressed: ()=>controller.deleteDonation(id: controller.donorHistoryList!.data![index].id!),
                                 child: const Text(
                                   'Okk',
                                   style: TextStyle(color: Colors.red),

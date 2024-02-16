@@ -40,7 +40,7 @@ class AccountsController extends GetxController {
     }
   }
 
-  Future<void> addDonation(String place, String date) async {
+  Future<void> addDonation() async {
     if (formKey.currentState!.validate()) {
       inProgress.value = true;
 
@@ -48,15 +48,14 @@ class AccountsController extends GetxController {
       final response = await ApiClient().postRequest(
         ApiEndPoints.storeDonationHistory,
         body: {
-          "donation_place": place,
-          "donation_date": date,
+          "donation_place": placeTEController.text.trim(),
+          "donation_date": dateTEController.text.trim(),
         },
       );
       inProgress.value = false;
       if (response.isSuccess) {
-        place;
-        date;
-
+        placeTEController.text.trim();
+        dateTEController.text.trim();
         failMessage = ('New History added!');
         inProgress.value = true;
       } else {
@@ -75,6 +74,26 @@ class AccountsController extends GetxController {
       if (response.isSuccess) {
         authCache.clearAuthData();
         Get.offAllNamed(Routes.LOGIN);
+        inProgress.value = true;
+      } else {
+        const GetSnackBar(
+          message: 'Something Error',
+          duration: Duration(seconds: 1),
+        );
+        inProgress.value = false;
+      }
+    }
+  }
+
+
+  Future<void> deleteDonation({required String id}) async {
+    if (formKey.currentState!.validate()) {
+      inProgress.value = true;
+      final response =
+      await ApiClient().delRequest(ApiEndPoints.deleteDonation+id);
+      inProgress.value = false;
+      if (response.isSuccess) {
+        failMessage = ('Delete Successful');
         inProgress.value = true;
       } else {
         const GetSnackBar(

@@ -1,10 +1,8 @@
-import 'package:blood_donate_flutter_project/app/modules/auth/login/views/login_view.dart';
 import 'package:blood_donate_flutter_project/app/modules/auth/signup/controllers/signup_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../data/models/request/registration_req.dart';
-import '../../../../routes/app_pages.dart';
 import '../../login/views/widgets/area_dropdown.dart';
 import '../../login/views/widgets/location_form.dart';
 import '../../login/views/widgets/password_text_field.dart';
