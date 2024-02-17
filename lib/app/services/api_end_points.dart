@@ -1,5 +1,4 @@
 class ApiEndPoints {
-  //static const String _baseUrl = 'http://192.168.10.187:5000/api/v1';
   static const String _baseUrl = 'https://blood-donation-apis.vercel.app/v1';
   static const String registration = '$_baseUrl/auth/';
   static const String login = '$_baseUrl/auth/login';

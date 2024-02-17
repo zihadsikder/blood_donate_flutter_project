@@ -2,13 +2,12 @@ import 'package:blood_donate_flutter_project/app/modules/accounts/views/account_
 import 'package:blood_donate_flutter_project/app/modules/accounts/views/donation_view_screen.dart';
 import 'package:blood_donate_flutter_project/app/services/auth_cache.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import '../../../core/widgets/profile_summary_card.dart';
 import '../controllers/accounts_controller.dart';
-import 'widget/alert_cancel_button.dart';
+import 'widget/activated_profile.dart';
+import 'widget/logoutEleButton.dart';
 
 class AccountsView extends GetView<AccountsController> {
   AccountsView({super.key});
@@ -24,9 +23,10 @@ class AccountsView extends GetView<AccountsController> {
         child: Column(
           children: [
             const ProfileSummaryCard(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Expanded(
+            const SizedBox(height: 16),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
                 child: ListView(
                   shrinkWrap: true,
                   children: [
@@ -83,11 +83,12 @@ class AccountsView extends GetView<AccountsController> {
                                       height: 5,
                                     ),
                                     // Text(
-                                    //     '${controller.donorHistoryList?.data?.length ?? 0}'),
+                                    //   '${userModel?.donorHistoryList?.data?.length ?? 0}',
+                                    // ),
                                     GestureDetector(
                                         onTap: () {
-                                          Get.to(() =>
-                                              const DonationViewScreen());
+                                          Get.to(
+                                              () => const DonationViewScreen());
                                         },
                                         child: const Text('Total Donate')),
                                   ],
@@ -122,10 +123,9 @@ class AccountsView extends GetView<AccountsController> {
                                     const SizedBox(
                                       height: 5,
                                     ),
-                                    Text(DateFormat.yMd().format(
-                                        userModel!
-                                            .lastDonation ??
-                                            DateTime.now())),
+                                    Text(
+                                      DateFormat('dd/MM/yyyy').format(DateTime.parse(userModel?.lastDonation ?? DateTime.now().toString())),
+                                    ),
                                     const Text('Last Donation'),
                                   ],
                                 ),
@@ -153,8 +153,7 @@ class AccountsView extends GetView<AccountsController> {
                           Text('Mobile'),
                         ],
                       ),
-                      subtitle:
-                      Text(userModel!.mobile.toString() ?? ''),
+                      subtitle: Text(userModel!.mobile.toString()),
                     ),
                     Container(height: 1, color: Colors.grey.shade100),
                     ListTile(
@@ -172,8 +171,7 @@ class AccountsView extends GetView<AccountsController> {
                           Text('Email'),
                         ],
                       ),
-                      subtitle:
-                      Text(
+                      subtitle: Text(
                         userModel!.email ?? '',
                       ),
                     ),
@@ -200,42 +198,15 @@ class AccountsView extends GetView<AccountsController> {
                           Text('Address'),
                         ],
                       ),
-                      subtitle:
-                      Text(userModel!.address!.postOffice ?? ''),
+                      subtitle: Text(userModel!.address!.postOffice ?? ''),
                     ),
                     Container(height: 1, color: Colors.grey.shade100),
                     const SizedBox(
                       height: 16,
                     ),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            TextButton(
-                                onPressed: () {},
-                                child: const Text(
-                                  'Donate your blood',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                )),
-                            const Spacer(),
-                            Switch(
-                                value: true,
-                                onChanged: (isTrue) {
-                                  // setState(() {
-                                  //   donateBlood = isTrue;
-                                  // });
-                                })
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    buildLogoutElevatedButton(context),
+                    ActivatedProfile(),
+                    const SizedBox(height: 16),
+                    LogoutEleButton(),
                   ],
                 ),
               ),
@@ -245,52 +216,11 @@ class AccountsView extends GetView<AccountsController> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Get.to(()=>const DonationViewScreen());
+          Get.to(() => const DonationViewScreen());
         },
         child: const Icon(Icons.add),
       ),
     );
   }
-
-  ElevatedButton buildLogoutElevatedButton(BuildContext context) {
-    return ElevatedButton(
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: Row(
-                    children: [
-                      const Text("Ready to Leave?",
-                          style: TextStyle(fontSize: 16)),
-                      const Spacer(),
-                      IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(Icons.highlight_remove_outlined))
-                    ],
-                  ),
-                  content: const Text(
-                      'Select "Logout" below if you are ready to end your current session.'),
-                  actions: [
-                    const AlertCancelButton(),
-                    Visibility(
-                      visible: controller.inProgress.value = false,
-                      replacement:
-                          const Center(child: CircularProgressIndicator()),
-                      child: TextButton(
-                        onPressed: ()=> controller.logout(),
-                        style: TextButton.styleFrom(
-                            backgroundColor: Colors.red.shade800),
-                        child: const Text('Logout',
-                            style: TextStyle(color: Colors.white)),
-                      ),
-                    ),
-                  ],
-                );
-              });
-        },
-        child: const Text('Logout'));
-  }
 }
+

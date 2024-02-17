@@ -106,6 +106,7 @@ class SearchScreenView extends StatelessWidget {
                           totalDonations: donor.totalDonation?.toString() ?? '',
                           mobile: donor.mobile?.toString() ?? '',
                           address: donor.address?.postOffice ?? '',
+                          isEligibleToDonate: false,
                         );
                       } else {
                         return Container(); // Or you can return a placeholder widget

@@ -15,32 +15,18 @@ class AccountsController extends GetxController {
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  AuthCache get authCache => Get.find<AuthCache>();
+
   final inProgress = false.obs;
 
-  AuthCache get authCache => Get.find<AuthCache>();
+  final isProfileActive = false.obs;
 
   String failMessage = '';
 
   String get failureMessage => failMessage;
   DonorHistoryList? donorHistoryList;
 
-  Future<bool> getDonationList() async {
-    inProgress.value = true;
-
-    final NetworkResponse response =
-    await ApiClient().getRequest(ApiEndPoints.getDonorList);
-    inProgress.value = false;
-    if (response.isSuccess) {
-      donorHistoryList = donorHistoryListFromJson(response.jsonResponse!);
-      update();
-      return true;
-    } else {
-      update();
-      return false;
-    }
-  }
-
-  Future<void> addDonation() async {
+  Future<bool> addDonation() async {
     if (formKey.currentState!.validate()) {
       inProgress.value = true;
 
@@ -57,34 +43,31 @@ class AccountsController extends GetxController {
         placeTEController.text.trim();
         dateTEController.text.trim();
         failMessage = ('New History added!');
-        inProgress.value = true;
+        return true;
       } else {
         failMessage = 'Add Donation Fail!';
-        inProgress.value = false;
+        return false;
       }
+
     }
+    return false;
   }
 
-  Future<void> logout() async {
-    if (formKey.currentState!.validate()) {
-      inProgress.value = true;
-      final response =
-      await ApiClient().postRequest(ApiEndPoints.logout, body: {});
-      inProgress.value = false;
-      if (response.isSuccess) {
-        authCache.clearAuthData();
-        Get.offAllNamed(Routes.LOGIN);
-        inProgress.value = true;
-      } else {
-        const GetSnackBar(
-          message: 'Something Error',
-          duration: Duration(seconds: 1),
-        );
-        inProgress.value = false;
-      }
+  Future<bool> getDonationList() async {
+    inProgress.value = true;
+
+    final NetworkResponse response =
+    await ApiClient().getRequest(ApiEndPoints.getDonorList);
+    inProgress.value = false;
+    if (response.isSuccess) {
+      donorHistoryList = donorHistoryListFromJson(response.jsonResponse!);
+
+      return true;
+    } else {
+
+      return false;
     }
   }
-
 
   Future<void> deleteDonation({required String id}) async {
     if (formKey.currentState!.validate()) {
@@ -94,29 +77,55 @@ class AccountsController extends GetxController {
       inProgress.value = false;
       if (response.isSuccess) {
         failMessage = ('Delete Successful');
-        inProgress.value = true;
       } else {
         const GetSnackBar(
           message: 'Something Error',
           duration: Duration(seconds: 1),
         );
-        inProgress.value = false;
       }
     }
   }
 
-  @override
-  void onInit() {
-    super.onInit();
+  Future<bool> toggleProfileActivation(bool isActive) async {
+    if (formKey.currentState!.validate()) {
+      inProgress.value = true;
+      try {
+        final response = await ApiClient().putRequest(
+            ApiEndPoints.profileActive, body:{
+          "isActive": isActive
+        } );
+        if (response.isSuccess) {
+          return true;
+        } else {
+          return false;
+        }
+      } catch (e) {
+        return false;
+      }
+    }
+    return false;
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  Future<bool> logout() async {
+    if (formKey.currentState!.validate()) {
+      inProgress.value = true;
+      final response =
+      await ApiClient().postRequest(ApiEndPoints.logout, body: {});
+      inProgress.value = false;
+      if (response.isSuccess) {
+        authCache.clearAuthData();
+        Get.offAllNamed(Routes.LOGIN);
+        return true;
+      } else {
+        const GetSnackBar(
+          message: 'Something Error',
+          duration: Duration(seconds: 1),
+        );
+      }
+    }
+    return false;
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
+
+
 }

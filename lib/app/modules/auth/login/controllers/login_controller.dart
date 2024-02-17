@@ -35,7 +35,7 @@ class LoginController extends GetxController {
         loginRes,
       );
 
-      Get.to(Routes.BOTTOM_NAV);
+      Get.toNamed(Routes.BOTTOM_NAV);
 
       const GetSnackBar(
         message: 'Login Successfully',

@@ -13,6 +13,7 @@ class HomeController extends GetxController {
   final searchUser = SearchUserModel().obs;
   final isLoading = false.obs;
 
+
   final selectedBloodGroup = ''.obs;
 
   final divisionList = <AreaModel>[].obs;
@@ -129,7 +130,7 @@ class HomeController extends GetxController {
   //   super.onClose();
   // }
 
-  Future<void> searchDonor(String bloodGroup, String division, String district,
+  Future<bool> searchDonor(String bloodGroup, String division, String district,
       String upzila, String postOffice) async {
     if (formKey.currentState!.validate()) {
 
@@ -148,7 +149,7 @@ class HomeController extends GetxController {
       if (response.isSuccess) {
         searchUser.value = searchUserModelFromJson(response.jsonResponse!);
 
-        isLoading.value = true;
+        return true;
       } else {
         Get.showSnackbar(
           const GetSnackBar(
@@ -158,8 +159,11 @@ class HomeController extends GetxController {
             message: 'No donor found at this moment',
           ),
         );
-        isLoading.value = false;
+        return false;
       }
+
     }
+    return false;
   }
+
 }
