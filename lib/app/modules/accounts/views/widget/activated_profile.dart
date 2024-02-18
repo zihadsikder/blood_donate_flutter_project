@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/accounts_controller.dart';
-
 class ActivatedProfile extends StatelessWidget {
-ActivatedProfile({
-    super.key,});
+  const ActivatedProfile({
+    super.key,
+    required this.testValue,
+    required this.value,
+    required this.onChanged,
+  });
 
-  final controller = Get.find<AccountsController>();
+  final Text testValue;
+  final bool value;
+  final Function(bool) onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -16,28 +20,13 @@ ActivatedProfile({
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            Text(
-              controller.isProfileActive.value ? 'Deactivate Your Account' : 'Activate Your Account',
-              style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16),
-            ),
+            testValue,
             const Spacer(),
-            Obx(() {
-                return Switch(
-                    value: controller.isProfileActive.value,
-                    onChanged: (isActive) async {
-                      controller.isProfileActive.value = isActive;
-                      await controller.toggleProfileActivation(isActive);
-                      // if(success){
-                      //   controller.isProfileActive.value = isActive;
-                      // }else{
-                      //   controller.failMessage = 'Something Went Wrong!';
-                      // }
 
-                    });
-              }
-            )
+              Switch(
+                  value:value ,
+                  onChanged: onChanged,),
+
           ],
         ),
       ),

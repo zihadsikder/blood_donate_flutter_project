@@ -16,12 +16,15 @@ class ExercisesScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 16),
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
+              const SizedBox(height: 8.0),
               const ImagesAssets(
-                height: 300,
+                height: 280,
                 asset: AppAssets.fitness,
+
               ),
               const SizedBox(height: 20),
               const Text(
@@ -51,7 +54,7 @@ class ExercisesScreen extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+                height: 350,
                 asset: AppAssets.pushup,
               ),
               const SizedBox(height: 10),

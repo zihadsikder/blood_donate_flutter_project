@@ -87,7 +87,6 @@ class SearchScreenView extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 16.0),
                   ListView.builder(
                     shrinkWrap: true,
@@ -96,9 +95,11 @@ class SearchScreenView extends StatelessWidget {
                     itemBuilder: (context, index) {
                       final donor = controller.searchUser.value.data?[index];
                       if (donor != null) {
-                        String formattedLastDonation = donor.lastDonation != null
-                            ? DateFormat('dd-MM-yyyy').format(donor.lastDonation!.toLocal())
-                            : "N/A";
+                        String formattedLastDonation =
+                            donor.lastDonation != null
+                                ? DateFormat('dd-MM-yyyy')
+                                    .format(donor.lastDonation!.toLocal())
+                                : "N/A";
                         return SearchDonorPage(
                           name: donor.name ?? '',
                           bloodGroup: donor.bloodGroup ?? '',
@@ -113,8 +114,6 @@ class SearchScreenView extends StatelessWidget {
                       }
                     },
                   ),
-
-
                 ],
               ),
             ),

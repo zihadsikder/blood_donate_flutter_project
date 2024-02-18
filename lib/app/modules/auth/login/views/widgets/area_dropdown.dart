@@ -6,11 +6,13 @@ class AreaDropDown extends StatelessWidget {
     super.key,
     required this.label,
     this.onChanged,
+    this.validator,
     this.items = const <AreaModel>[],
   });
 
   final String label;
   final void Function(String?)? onChanged;
+  final String? Function(String?)? validator;
   final List<AreaModel> items;
 
   @override
@@ -27,6 +29,7 @@ class AreaDropDown extends StatelessWidget {
                 child: Text(value.name!),
               );
             }).toList(),
+            validator: validator,
           )
         : const SizedBox();
   }

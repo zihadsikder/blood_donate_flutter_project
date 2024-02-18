@@ -2,10 +2,11 @@ import 'package:blood_donate_flutter_project/app/modules/auth/signup/controllers
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/widgets/dob_text_field.dart';
 import '../../../../data/models/request/registration_req.dart';
 import '../../login/views/widgets/area_dropdown.dart';
 import '../../login/views/widgets/location_form.dart';
-import '../../login/views/widgets/password_text_field.dart';
+import '../../../../core/widgets/password_text_field.dart';
 
 class SignUpView extends GetView<SignupController> {
   const SignUpView({super.key});
@@ -80,6 +81,12 @@ class SignUpView extends GetView<SignupController> {
                       onSelectBloodGroup: (String? val) {
                         controller.onSelectedBloodGroup(val);
                       },
+                      validator: (String? value) {
+                        if (value?.trim().isEmpty ?? true) {
+                          return 'Enter your blood group';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 8.0),
                     AreaDropDown(
@@ -88,6 +95,12 @@ class SignUpView extends GetView<SignupController> {
                         controller.onSelectedDivision(val);
                       },
                       items: controller.divisionList,
+                      validator: (String? value) {
+                        if (value?.trim().isEmpty ?? true) {
+                          return 'Please Select Division';
+                        }
+                        return null;
+                      },
                     ),
                     AreaDropDown(
                       label: 'select district',
@@ -95,6 +108,12 @@ class SignUpView extends GetView<SignupController> {
                         controller.onSelectedDistrict(val);
                       },
                       items: controller.districtList,
+                      validator: (String? value) {
+                        if (value?.trim().isEmpty ?? true) {
+                          return 'Please Select District';
+                        }
+                        return null;
+                      },
                     ),
                     AreaDropDown(
                       label: 'select upzila',
@@ -102,6 +121,12 @@ class SignUpView extends GetView<SignupController> {
                         controller.onSelectedUpzila(val);
                       },
                       items: controller.upzilaList,
+                      validator: (String? value) {
+                        if (value?.trim().isEmpty ?? true) {
+                          return 'Please Select Upzila';
+                        }
+                        return null;
+                      },
                     ),
                     AreaDropDown(
                       label: 'select union',
@@ -109,24 +134,30 @@ class SignUpView extends GetView<SignupController> {
                         controller.onSelectedUnion(val);
                       },
                       items: controller.unionList,
+                      validator: (String? value) {
+                        if (value?.trim().isEmpty ?? true) {
+                          return 'Please Select Union';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 4.0),
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: controller.emailTEController,
                       decoration: const InputDecoration(
-                        labelText: "Email",
+                        labelText: "Email (Optional)",
                       ),
-                      validator: (String? value) {
-                        bool isValidEmail = RegExp(
-                                r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-                            .hasMatch(value!);
-
-                        if (!isValidEmail) {
-                          return 'Enter a valid email address';
-                        }
-                        return null;
-                      },
+                      // validator: (String? value) {
+                      //   bool isValidEmail = RegExp(
+                      //           r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                      //       .hasMatch(value!);
+                      //
+                      //   if (!isValidEmail) {
+                      //     return 'Enter a valid email address';
+                      //   }
+                      //   return null;
+                      // },
                     ),
                     const SizedBox(height: 4.0),
                     TextFormField(
@@ -145,7 +176,21 @@ class SignUpView extends GetView<SignupController> {
                       },
                     ),
                     const SizedBox(height: 4.0),
-                    dobTextFormField(context),
+                    DobTextField(
+                        dbirthController: controller.dobController,
+                        onTapSuffix: () async {
+                          DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1950),
+                            lastDate: DateTime(2050),
+                          );
+                          if (pickedDate != null &&
+                              pickedDate != controller.dobController.text) {
+                            controller.dobController.text =
+                                "${pickedDate.toLocal()}".split(' ')[0];
+                          }
+                        }),
                     const SizedBox(height: 4.0),
                     PasswordTextField(
                       passwordController: controller.passwordTEController,
@@ -206,39 +251,6 @@ class SignUpView extends GetView<SignupController> {
                                   postOffice: controller.selectedUnion.value,
                                 ),
                               );
-                              if (controller.selectedBloodGroup == '') {
-                                // showSnackMessage(
-                                //     context, 'Select your blood group');
-                                return;
-                              }
-
-                              if (
-                                  controller.selectedDivision.isEmpty) {
-                                // showSnackMessage(
-                                //     context, 'Select your division');
-                                return;
-                              }
-
-                              if (
-                                  controller.selectedDistrict.isEmpty) {
-                                // showSnackMessage(
-                                //     context, 'Select your district');
-                                return;
-                              }
-
-                              if (
-                                  controller.selectedUpzila.isEmpty) {
-                                // showSnackMessage(
-                                //     context, 'Select your upzila');
-                                return;
-                              }
-
-                              if (
-                                  controller.selectedUnion.isEmpty) {
-                                // showSnackMessage(
-                                //     context, 'Select your union');
-                                return;
-                              }
                               await controller.registration(registrationParams);
                             }
                           },
@@ -276,39 +288,4 @@ class SignUpView extends GetView<SignupController> {
       ),
     );
   }
-
-  TextFormField dobTextFormField(BuildContext context) {
-    return TextFormField(
-      controller: controller.dobController,
-      readOnly: true,
-      decoration: InputDecoration(
-        labelText: 'Date of Birth',
-        suffixIcon: IconButton(
-          onPressed: () async {
-            DateTime? pickedDate = await showDatePicker(
-              context: context,
-              initialDate: DateTime.now(),
-              firstDate: DateTime(1950),
-              lastDate: DateTime(2050),
-            );
-            if (pickedDate != null &&
-                pickedDate != controller.dobController.text) {
-              controller.dobController.text =
-                  "${pickedDate.toLocal()}".split(' ')[0];
-            }
-          },
-          icon: const Icon(Icons.calendar_today, color: Colors.grey),
-        ),
-      ),
-      keyboardType: TextInputType.datetime,
-      validator: (String? value) {
-        if (value?.trim().isEmpty ?? true) {
-          return 'Enter your Date of Birth';
-        }
-        return null;
-      },
-    );
-  }
-
-
 }

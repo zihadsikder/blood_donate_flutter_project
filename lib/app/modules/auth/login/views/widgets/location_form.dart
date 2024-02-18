@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 
 class BloodGroupDropdown extends StatelessWidget {
-  final List<String> bloodGroups = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+  final List<String> bloodGroups = [
+    'A+',
+    'A-',
+    'B+',
+    'B-',
+    'O+',
+    'O-',
+    'AB+',
+    'AB-'
+  ];
   final void Function(String?)? onSelectBloodGroup;
+  final String? Function(String?)? validator;
 
   BloodGroupDropdown({
     super.key,
     this.onSelectBloodGroup,
+    this.validator,
   });
 
   @override
@@ -22,5 +33,6 @@ class BloodGroupDropdown extends StatelessWidget {
             child: Text(value),
           );
         }).toList(),
+        validator: validator
       );
 }

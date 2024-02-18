@@ -13,7 +13,6 @@ class HomeController extends GetxController {
   final searchUser = SearchUserModel().obs;
   final isLoading = false.obs;
 
-
   final selectedBloodGroup = ''.obs;
 
   final divisionList = <AreaModel>[].obs;
@@ -119,21 +118,9 @@ class HomeController extends GetxController {
     isLoading.value = false;
   }
 
-  //
-  // @override
-  // void onReady() {
-  //   super.onReady();
-  // }
-  //
-  // @override
-  // void onClose() {
-  //   super.onClose();
-  // }
-
   Future<bool> searchDonor(String bloodGroup, String division, String district,
       String upzila, String postOffice) async {
     if (formKey.currentState!.validate()) {
-
       isLoading.value = true;
 
       final response =
@@ -161,9 +148,7 @@ class HomeController extends GetxController {
         );
         return false;
       }
-
     }
     return false;
   }
-
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/widgets/dob_text_field.dart';
 import 'widget/alert_cancel_button.dart';
 
 class DonationViewScreen extends StatefulWidget {
@@ -13,8 +14,7 @@ class DonationViewScreen extends StatefulWidget {
 }
 
 class _DonationViewScreenState extends State<DonationViewScreen> {
-  final AccountsController controller =
-  Get.put(AccountsController());
+  final AccountsController controller = Get.put(AccountsController());
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
             padding: const EdgeInsets.all(8),
             color: Colors.white,
             child: Form(
-             key: controller.formKey,
+              key: controller.formKey,
               child: Column(
                 children: [
                   TextFormField(
@@ -59,62 +59,43 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                     },
                   ),
                   Container(height: 2, color: Colors.grey.shade100),
-                  TextFormField(
-                    controller: controller.dateTEController,
-                    decoration: InputDecoration(
-                      hintText: 'Date of Donation',
-                      border:
-                      const OutlineInputBorder(borderSide: BorderSide.none),
-                      suffixIcon: IconButton(
-                        onPressed: () async {
-                          DateTime? pickedDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1950),
-                            lastDate: DateTime(2050),
-                          );
-                          if (pickedDate != null &&
-                              pickedDate != controller.dateTEController.text) {
-                            setState(() {
-                              controller.dateTEController.text =
+                  DobTextField(
+                      dbirthController: controller.dateTEController,
+                      onTapSuffix: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1950),
+                          lastDate: DateTime(2050),
+                        );
+                        if (pickedDate != null &&
+                            pickedDate != controller.dateTEController.text) {
+                          controller.dateTEController.text =
                               "${pickedDate.toLocal()}".split(' ')[0];
-                            });
-                          }
-                        },
-                        icon: const Icon(Icons.calendar_today,
-                            color: Colors.grey),
-                      ),
-                    ),
-                    validator: (value) {
-                      if (value?.trim().isEmpty ?? true) {
-                        return 'Enter Donation Date';
-                      }
-                      return null;
-                    },
-                  ),
+                        }
+                      }),
                   const SizedBox(
                     height: 8,
                   ),
                   SizedBox(
                     width: double.infinity,
                     child: Obx(
-                      ()=>Visibility(
-                              visible: controller.inProgress.value == false,
-                              replacement:
-                              const Center(child: CircularProgressIndicator()),
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  // Await the addDonation method call
-                                  await controller.addDonation();
-                                },
-                                child: const Text(
-                                  'ADD DONATION',
-                                  style: TextStyle(
-                                      fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                              ),
-
-                            ),
+                      () => Visibility(
+                        visible: controller.inProgress.value == false,
+                        replacement:
+                            const Center(child: CircularProgressIndicator()),
+                        child: ElevatedButton(
+                          onPressed: () async {
+                            // Await the addDonation method call
+                            await controller.addDonation();
+                          },
+                          child: const Text(
+                            'ADD DONATION',
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -126,17 +107,16 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
           ),
           Expanded(
             flex: 70,
-            child: Obx((){
+            child: Obx(
+              () {
                 if (controller.inProgress.value) {
                   return const Center(child: CircularProgressIndicator());
-                } else if (controller.donorHistoryList?.data !=
-                    null) {
+                } else if (controller.donorHistoryList?.data != null) {
                   return ListView.builder(
-                    itemCount:
-                    controller.donorHistoryList?.data!.length,
+                    itemCount: controller.donorHistoryList?.data!.length,
                     itemBuilder: (context, index) {
                       final donation =
-                      controller.donorHistoryList?.data![index];
+                          controller.donorHistoryList?.data![index];
 
                       return Padding(
                         padding: const EdgeInsets.all(5.0),
@@ -149,11 +129,12 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                           leading: CircleAvatar(
                             backgroundColor: Colors.red,
                             child: Text('${index + 1}',
-                                style: const TextStyle(fontWeight: FontWeight.bold)),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold)),
                           ),
                           title: Text(donation?.donationPlace ?? '',
-                              style:
-                              const TextStyle(overflow: TextOverflow.ellipsis)),
+                              style: const TextStyle(
+                                  overflow: TextOverflow.ellipsis)),
                           subtitle: Text(
                               'Date: ${DateFormat('yyyy.MM.dd').format(donation?.donationDate ?? DateTime.now())}'),
                           trailing: const Icon(
@@ -170,10 +151,15 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                                   actions: [
                                     const AlertCancelButton(),
                                     TextButton(
-                                      onPressed: ()=>controller.deleteDonation(id: controller.donorHistoryList!.data![index].id!),
+                                      onPressed: () =>
+                                          controller.deleteDonation(
+                                              id: controller.donorHistoryList!
+                                                  .data![index].id!),
+                                      style: TextButton.styleFrom(
+                                          backgroundColor: Colors.red.shade800),
                                       child: const Text(
                                         'Okk',
-                                        style: TextStyle(color: Colors.red),
+                                        style: TextStyle(color: Colors.white),
                                       ),
                                     ),
                                   ],
@@ -186,7 +172,8 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                     },
                   );
                 } else {
-                  return const Center(child: Text("No donation history available"));
+                  return const Center(
+                      child: Text("No donation history available"));
                 }
               },
             ),
