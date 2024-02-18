@@ -1,6 +1,7 @@
 import 'package:blood_donate_flutter_project/app/modules/auth/signup/controllers/signup_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../core/widgets/dob_text_field.dart';
 import '../../../../data/models/request/registration_req.dart';
@@ -185,10 +186,9 @@ class SignUpView extends GetView<SignupController> {
                             firstDate: DateTime(1950),
                             lastDate: DateTime(2050),
                           );
-                          if (pickedDate != null &&
-                              pickedDate != controller.dobController.text) {
-                            controller.dobController.text =
-                                "${pickedDate.toLocal()}".split(' ')[0];
+                          if (pickedDate != null) {
+                            String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                            controller.dobController.text = formattedDate;
                           }
                         }),
                     const SizedBox(height: 4.0),

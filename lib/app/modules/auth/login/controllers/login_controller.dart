@@ -12,7 +12,7 @@ class LoginController extends GetxController {
   final TextEditingController passwordTEController = TextEditingController();
   final TextEditingController numberTEController = TextEditingController();
 
-  final obscureText = true.obs;
+  final obscureText = false.obs;
 
   final isLoading = false.obs;
 

@@ -210,7 +210,6 @@ class AccountsView extends GetView<AccountsController> {
                             controller.isProfileActive.value = isActive;
                             await controller.toggleProfileActivation(isActive);
                           },),
-
                       const SizedBox(height: 16),
                       LogoutEleButton(
                         onPress: ()=> controller.logout(),

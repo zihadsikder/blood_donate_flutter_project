@@ -68,10 +68,10 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                           firstDate: DateTime(1950),
                           lastDate: DateTime(2050),
                         );
-                        if (pickedDate != null &&
-                            pickedDate != controller.dateTEController.text) {
-                          controller.dateTEController.text =
-                              "${pickedDate.toLocal()}".split(' ')[0];
+                        if (pickedDate != null) {
+                          // Convert pickedDate to a formatted string before assigning it
+                          String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                          controller.dateTEController.text = formattedDate;
                         }
                       }),
                   const SizedBox(
@@ -158,7 +158,7 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                                       style: TextButton.styleFrom(
                                           backgroundColor: Colors.red.shade800),
                                       child: const Text(
-                                        'Okk',
+                                        'Yes',
                                         style: TextStyle(color: Colors.white),
                                       ),
                                     ),
