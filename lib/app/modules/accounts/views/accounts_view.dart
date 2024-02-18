@@ -28,7 +28,7 @@ class AccountsView extends GetView<AccountsController> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Obx(
-                    ()=>Column(
+                  () => Column(
                     children: [
                       Card(
                         shape: RoundedRectangleBorder(
@@ -199,20 +199,22 @@ class AccountsView extends GetView<AccountsController> {
                       const SizedBox(height: 5.0),
                       const DonationHistory(),
                       ActivatedProfile(
-                          testValue: Text(
-                            controller.isProfileActive.value
-                                ? 'Deactivate Your Account'
-                                : 'Activate Your Account',
-                            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                          ),
-                          value:  controller.isProfileActive.value,
-                          onChanged: (isActive) async {
-                            controller.isProfileActive.value = isActive;
-                            await controller.toggleProfileActivation(isActive);
-                          },),
+                        testValue: Text(
+                          controller.isProfileActive.value
+                              ? 'Deactivate Your Account'
+                              : 'Activate Your Account',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16),
+                        ),
+                        value: controller.isProfileActive.value,
+                        onChanged: (isActive) async {
+                          controller.isProfileActive.value = isActive;
+                          await controller.toggleProfileActivation(isActive);
+                        },
+                      ),
                       const SizedBox(height: 16),
                       LogoutEleButton(
-                        onPress: ()=> controller.logout(),
+                        onPress: () => controller.logout(),
                       ),
                     ],
                   ),

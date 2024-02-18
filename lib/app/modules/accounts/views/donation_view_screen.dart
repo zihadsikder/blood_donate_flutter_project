@@ -70,7 +70,8 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                         );
                         if (pickedDate != null) {
                           // Convert pickedDate to a formatted string before assigning it
-                          String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                          String formattedDate =
+                              DateFormat('yyyy-MM-dd').format(pickedDate);
                           controller.dateTEController.text = formattedDate;
                         }
                       }),

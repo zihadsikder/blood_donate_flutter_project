@@ -1,3 +1,5 @@
+import 'package:blood_donate_flutter_project/app/data/models/request/update_req.dart';
+import 'package:blood_donate_flutter_project/app/data/repositories/account_repository.dart';
 import 'package:blood_donate_flutter_project/app/routes/app_pages.dart';
 import 'package:blood_donate_flutter_project/app/services/api_client.dart';
 import 'package:blood_donate_flutter_project/app/services/api_end_points.dart';
@@ -13,6 +15,9 @@ import '../../../data/repositories/location_repository.dart';
 class AccountsController extends GetxController {
   final TextEditingController placeTEController = TextEditingController();
   final TextEditingController dateTEController = TextEditingController();
+  final TextEditingController usernameTEController = TextEditingController();
+  final TextEditingController emailTEController = TextEditingController();
+  final TextEditingController dobTEController = TextEditingController();
   final TextEditingController mobileTEController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -134,6 +139,19 @@ class AccountsController extends GetxController {
     inProgress.value = false;
   }
 
+  Future<void> updateProfile(UpdateReq params) async {
+    if (formKey.currentState!.validate()) {
+      NetworkResponse response = await AccountRepository.updateProfile(params);
+      inProgress.value = false;
+      if (response.isSuccess) {
+        inProgress.value = true;
+      } else {
+        inProgress.value = false;
+        failMessage = 'Update Profile Fail!';
+      }
+    }
+  }
+
   Future<bool> addDonation() async {
     if (formKey.currentState!.validate()) {
       inProgress.value = true;
@@ -149,7 +167,7 @@ class AccountsController extends GetxController {
       if (response.isSuccess) {
         placeTEController.text.trim();
         dateTEController.text.trim();
-        failMessage = ('New History added!');
+        clearTextFields();
         return true;
       } else {
         failMessage = 'Add Donation Fail!';
@@ -160,17 +178,17 @@ class AccountsController extends GetxController {
   }
 
   Future<bool> getDonationList() async {
-      inProgress.value = true;
+    inProgress.value = true;
 
-      final NetworkResponse response =
-          await ApiClient().getRequest(ApiEndPoints.getDonorList);
-      inProgress.value = false;
-      if (response.isSuccess) {
-        donorHistoryList = donorHistoryListFromJson(response.jsonResponse!);
-        return true;
-      } else {
-        failMessage = 'Please Try Again Later';
-      }
+    final NetworkResponse response =
+        await ApiClient().getRequest(ApiEndPoints.getDonorList);
+    inProgress.value = false;
+    if (response.isSuccess) {
+      donorHistoryList = donorHistoryListFromJson(response.jsonResponse!);
+      return true;
+    } else {
+      failMessage = 'Please Try Again Later';
+    }
 
     return false;
   }
@@ -221,5 +239,10 @@ class AccountsController extends GetxController {
         );
       }
     return false;
+  }
+
+  void clearTextFields() {
+    placeTEController.clear();
+    dateTEController.clear();
   }
 }

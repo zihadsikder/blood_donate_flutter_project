@@ -6,7 +6,9 @@ import 'package:http/http.dart';
 import '../data/models/network_response.dart';
 
 class ApiClient {
+
   final auth = Get.find<AuthCache>();
+
   Future<NetworkResponse> postRequest(String url, {Map<String, dynamic>? body, String? token}) async {
     try {
       log(url);

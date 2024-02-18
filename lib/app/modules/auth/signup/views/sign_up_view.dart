@@ -187,7 +187,8 @@ class SignUpView extends GetView<SignupController> {
                             lastDate: DateTime(2050),
                           );
                           if (pickedDate != null) {
-                            String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
+                            String formattedDate =
+                                DateFormat('yyyy-MM-dd').format(pickedDate);
                             controller.dobController.text = formattedDate;
                           }
                         }),
