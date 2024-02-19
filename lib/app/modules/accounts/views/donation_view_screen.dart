@@ -88,7 +88,10 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                         child: ElevatedButton(
                           onPressed: () async {
                             // Await the addDonation method call
-                            await controller.addDonation();
+                            await controller.addDonation(
+                              donationPlace: controller.placeTEController.text,
+                              donationDate: controller.dateTEController.text,
+                            );
                           },
                           child: const Text(
                             'ADD DONATION',

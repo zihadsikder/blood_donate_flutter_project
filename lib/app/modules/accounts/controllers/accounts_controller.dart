@@ -1,5 +1,6 @@
 import 'package:blood_donate_flutter_project/app/data/models/request/update_req.dart';
 import 'package:blood_donate_flutter_project/app/data/repositories/account_repository.dart';
+import 'package:blood_donate_flutter_project/app/modules/accounts/views/donation_view_screen.dart';
 import 'package:blood_donate_flutter_project/app/routes/app_pages.dart';
 import 'package:blood_donate_flutter_project/app/services/api_client.dart';
 import 'package:blood_donate_flutter_project/app/services/api_end_points.dart';
@@ -17,7 +18,6 @@ class AccountsController extends GetxController {
   final TextEditingController dateTEController = TextEditingController();
   final TextEditingController usernameTEController = TextEditingController();
   final TextEditingController emailTEController = TextEditingController();
-  final TextEditingController dobTEController = TextEditingController();
   final TextEditingController mobileTEController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -26,11 +26,7 @@ class AccountsController extends GetxController {
 
   final inProgress = false.obs;
 
-  final isProfileActive = false.obs;
-
-  String failMessage = '';
-
-  String get failureMessage => failMessage;
+  final isProfileActive = true.obs;
 
   DonorHistoryList? donorHistoryList;
 
@@ -50,7 +46,6 @@ class AccountsController extends GetxController {
 
   void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
-    //log('select blood group: $val');
   }
 
   void onSelectedDivision(String? val) {
@@ -92,7 +87,7 @@ class AccountsController extends GetxController {
 
       unionList.clear();
 
-      getUnion(id: val);
+      getUnion(name: val);
 
       selectedUpzila.value = val;
     }
@@ -132,9 +127,9 @@ class AccountsController extends GetxController {
     inProgress.value = false;
   }
 
-  Future<void> getUnion({required String id}) async {
+  Future<void> getUnion({required String name}) async {
     inProgress.value = true;
-    NetworkResponse response = await LocationRepository.getUnion(id: id);
+    NetworkResponse response = await LocationRepository.getUnion(name: name);
     unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
     inProgress.value = false;
   }
@@ -147,12 +142,15 @@ class AccountsController extends GetxController {
         inProgress.value = true;
       } else {
         inProgress.value = false;
-        failMessage = 'Update Profile Fail!';
+        Get.snackbar('Error', 'Profile Update Fail!');
       }
     }
   }
 
-  Future<bool> addDonation() async {
+  Future<bool> addDonation({
+    required String donationPlace,
+    required String donationDate,
+  }) async {
     if (formKey.currentState!.validate()) {
       inProgress.value = true;
 
@@ -160,7 +158,7 @@ class AccountsController extends GetxController {
         ApiEndPoints.storeDonationHistory,
         body: {
           "donation_place": placeTEController.text.trim(),
-          "donation_date": dateTEController.text.trim(),
+          "donation_date": dateTEController.text,
         },
       );
       inProgress.value = false;
@@ -168,9 +166,10 @@ class AccountsController extends GetxController {
         placeTEController.text.trim();
         dateTEController.text.trim();
         clearTextFields();
+        Get.snackbar('Success', 'Add Donation Successful',colorText: Colors.white);
         return true;
       } else {
-        failMessage = 'Add Donation Fail!';
+        Get.snackbar('Error', 'Something went wrong');
         return false;
       }
     }
@@ -187,57 +186,54 @@ class AccountsController extends GetxController {
       donorHistoryList = donorHistoryListFromJson(response.jsonResponse!);
       return true;
     } else {
-      failMessage = 'Please Try Again Later';
+      Get.snackbar('Error', 'Try Again Later');
     }
 
     return false;
   }
 
   Future<bool> deleteDonation({required String id}) async {
-      inProgress.value = true;
-      final response =
-          await ApiClient().delRequest(ApiEndPoints.deleteDonation + id);
-      inProgress.value = false;
-      if (response.isSuccess) {
-        Get.snackbar('Success', 'Delete Successful');
-        return true;
-      } else {
-        Get.snackbar('Error', 'Something went wrong');
-        return false;
-      }
+    inProgress.value = true;
+    final response =
+        await ApiClient().delRequest(ApiEndPoints.deleteDonation + id);
+    inProgress.value = false;
+    if (response.isSuccess) {
+      Get.snackbar('Success', 'Delete Successful',colorText: Colors.white);
+      Get.to(DonationViewScreen);
+      return true;
+    } else {
+      Get.snackbar('Error', 'Something went wrong');
+      return false;
     }
+  }
 
   Future<bool> toggleProfileActivation(bool isActive) async {
-      inProgress.value = true;
-      try {
-        final response = await ApiClient().putRequest(
-            ApiEndPoints.profileActive,
-            body: {"isActive": isActive});
-        if (response.isSuccess) {
-          return true;
-        } else {
-          return false;
-        }
-      } catch (e) {
+    inProgress.value = true;
+    try {
+      final response = await ApiClient()
+          .putRequest(ApiEndPoints.profileActive, body: {"isActive": isActive});
+      if (response.isSuccess) {
+        return true;
+      } else {
         return false;
       }
+    } catch (e) {
+      return false;
+    }
   }
 
   Future<bool> logout() async {
-      inProgress.value = true;
-      final response =
-          await ApiClient().postRequest(ApiEndPoints.logout, body: {});
-      inProgress.value = false;
-      if (response.isSuccess) {
-        authCache.clearAuthData();
-        Get.toNamed(Routes.LOGIN);
-        return true;
-      } else {
-        const GetSnackBar(
-          message: 'Something Error',
-          duration: Duration(seconds: 1),
-        );
-      }
+    inProgress.value = true;
+    final response =
+        await ApiClient().postRequest(ApiEndPoints.logout, body: {});
+    inProgress.value = false;
+    if (response.isSuccess) {
+      authCache.clearAuthData();
+      Get.toNamed(Routes.LOGIN);
+      return true;
+    } else {
+      Get.snackbar('Error', 'Something wrong');
+    }
     return false;
   }
 

@@ -81,7 +81,7 @@ class SignupController extends GetxController {
 
       unionList.clear();
 
-      getUnion(id: val);
+      getUnion(name: val);
 
       selectedUpzila.value = val;
     }
@@ -101,15 +101,10 @@ class SignupController extends GetxController {
       if (response.isSuccess) {
         clearTextFields();
         isLoading.value = true;
-        const GetSnackBar(
-          message: 'Welcome to Blood Donor Family',
-          duration: Duration(seconds: 1),
-        );
+        Get.snackbar('Welcome To', 'Largest Blood Donor Family');
       } else {
         isLoading.value = false;
-        const GetSnackBar(
-          message: 'Registration Failed! Try Again',
-        );
+        Get.snackbar('Error', 'Account Creation Fail!');
       }
     }
   }
@@ -143,9 +138,9 @@ class SignupController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<void> getUnion({required String id}) async {
+  Future<void> getUnion({required String name}) async {
     isLoading.value = true;
-    NetworkResponse response = await LocationRepository.getUnion(id: id);
+    NetworkResponse response = await LocationRepository.getUnion(name: name);
     unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
     isLoading.value = false;
   }

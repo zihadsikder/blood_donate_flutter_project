@@ -34,19 +34,10 @@ class LoginController extends GetxController {
         loginRes.data?.accessToken ?? '',
         loginRes,
       );
-
       Get.toNamed(Routes.BOTTOM_NAV);
-
-      const GetSnackBar(
-        message: 'Login Successfully',
-        duration: Duration(seconds: 1),
-      );
       isLoading.value = true;
     } else {
-      const GetSnackBar(
-        message: 'Login failed. Try again',
-        //duration:Duration(seconds: 2),
-      );
+      Get.snackbar('Error', 'Try Again Later');
       isLoading.value = false;
     }
   }

@@ -23,9 +23,9 @@ class LocationRepository {
     return response;
   }
 
-  static Future<NetworkResponse> getUnion({required String id}) async {
+  static Future<NetworkResponse> getUnion({required String name}) async {
     final NetworkResponse response =
-        await ApiClient().getRequest(ApiEndPoints.getUnionData + id);
+        await ApiClient().getRequest(ApiEndPoints.getUnionData + name);
     return response;
   }
 }

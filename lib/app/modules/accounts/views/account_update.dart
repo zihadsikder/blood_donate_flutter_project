@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../core/widgets/dob_text_field.dart';
+import '../../../services/auth_cache.dart';
 import '../../auth/login/views/widgets/area_dropdown.dart';
 import '../../auth/login/views/widgets/location_form.dart';
 import 'widget/alert_cancel_button.dart';
@@ -13,6 +14,10 @@ class AccountUpdateDialog extends StatelessWidget {
   AccountUpdateDialog({super.key});
 
   final controller = Get.find<AccountsController>();
+
+  final AuthCache authCache = Get.find<AuthCache>();
+
+  final userModel = AuthCache.to.getUser()?.data;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +62,7 @@ class AccountUpdateDialog extends StatelessWidget {
             ),
             Container(height: 1, color: Colors.grey.shade100),
             DobTextField(
-                dbirthController: controller.dobTEController,
+                dbirthController: controller.dateTEController,
                 onTapSuffix: () async {
                   DateTime? pickedDate = await showDatePicker(
                     context: context,
@@ -68,7 +73,7 @@ class AccountUpdateDialog extends StatelessWidget {
                   if (pickedDate != null) {
                     String formattedDate =
                     DateFormat('yyyy-MM-dd').format(pickedDate);
-                    controller.dobTEController.text = formattedDate;
+                    controller.dateTEController.text = formattedDate;
                   }
                 }),
             Container(height: 1, color: Colors.grey.shade100),
@@ -127,7 +132,7 @@ class AccountUpdateDialog extends StatelessWidget {
                     //     .trim(),
                     email: 'niamot@gmail.com',
                     //email: controller.emailTEController.text,
-                    dob: controller.dobTEController.text,
+                    dob: controller.dateTEController.text,
                     blood: controller.selectedBloodGroup.value,
                     weight: 'true',
                     address: Address(

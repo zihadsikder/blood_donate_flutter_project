@@ -54,7 +54,7 @@ class AccountsView extends GetView<AccountsController> {
                                 ],
                               ),
                               subtitle: Text(
-                                  userModel!.isActive! ? 'Active' : 'Inactive'),
+                                  controller.isProfileActive.value ? 'Active' : 'Inactive'),
                               trailing: GestureDetector(
                                   onTap: () {
                                     showDialog(
@@ -85,6 +85,7 @@ class AccountsView extends GetView<AccountsController> {
                                       // Text(
                                       //   '${userModel?.donorHistoryList?.data?.length ?? 0}',
                                       // ),
+                                      const Text('Total Donation'),
                                     ],
                                   ),
                                 ),
@@ -200,16 +201,15 @@ class AccountsView extends GetView<AccountsController> {
                       const DonationHistory(),
                       ActivatedProfile(
                         testValue: Text(
-                          controller.isProfileActive.value
-                              ? 'Deactivate Your Account'
-                              : 'Activate Your Account',
-                          style: const TextStyle(
+                        controller.isProfileActive.value ? 'Activate Your Account':'Deactivate Your Account',
+                          style:const TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                         value: controller.isProfileActive.value,
                         onChanged: (isActive) async {
                           controller.isProfileActive.value = isActive;
                           await controller.toggleProfileActivation(isActive);
+
                         },
                       ),
                       const SizedBox(height: 16),

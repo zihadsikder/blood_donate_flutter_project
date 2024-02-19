@@ -71,7 +71,7 @@ class HomeController extends GetxController {
 
       unionList.clear();
 
-      getUnion(id: val);
+      getUnion(name: val);
 
       selectedUpzila.value = val;
     }
@@ -111,9 +111,9 @@ class HomeController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<void> getUnion({required String id}) async {
+  Future<void> getUnion({required String name}) async {
     isLoading.value = true;
-    NetworkResponse response = await LocationRepository.getUnion(id: id);
+    NetworkResponse response = await LocationRepository.getUnion(name: name);
     unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
     isLoading.value = false;
   }
