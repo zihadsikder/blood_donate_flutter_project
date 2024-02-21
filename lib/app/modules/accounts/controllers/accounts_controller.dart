@@ -102,6 +102,7 @@ class AccountsController extends GetxController {
   @override
   void onInit() {
     getDivision();
+    getDonationList();
     super.onInit();
   }
 
@@ -166,6 +167,8 @@ class AccountsController extends GetxController {
         placeTEController.text.trim();
         dateTEController.text.trim();
         clearTextFields();
+
+        await getDonationList();
         Get.snackbar('Success', 'Add Donation Successful',colorText: Colors.white);
         return true;
       } else {

@@ -6,33 +6,18 @@ import 'package:intl/intl.dart';
 import '../../../core/widgets/dob_text_field.dart';
 import 'widget/alert_cancel_button.dart';
 
-class DonationViewScreen extends StatefulWidget {
-  const DonationViewScreen({super.key});
+class DonationViewScreen extends StatelessWidget {
+  DonationViewScreen({super.key});
 
-  @override
-  State<DonationViewScreen> createState() => _DonationViewScreenState();
-}
-
-class _DonationViewScreenState extends State<DonationViewScreen> {
   final AccountsController controller = Get.put(AccountsController());
 
   @override
-  void initState() {
-    super.initState();
-    controller.getDonationList();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    controller.getDonationList();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Donation History'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Get.back();
-          },
-        ),
+        leading: const BackButton(color: Colors.white),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -87,11 +72,13 @@ class _DonationViewScreenState extends State<DonationViewScreen> {
                             const Center(child: CircularProgressIndicator()),
                         child: ElevatedButton(
                           onPressed: () async {
+                            controller.inProgress.value = true;
                             // Await the addDonation method call
                             await controller.addDonation(
                               donationPlace: controller.placeTEController.text,
                               donationDate: controller.dateTEController.text,
                             );
+                            controller.inProgress.value = false;
                           },
                           child: const Text(
                             'ADD DONATION',

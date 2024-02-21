@@ -14,6 +14,8 @@ import '../modules/govt_services/bindings/govt_services_binding.dart';
 import '../modules/govt_services/views/govt_services_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/network_activity/bindings/network_activity_binding.dart';
+import '../modules/network_activity/views/network_activity_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
 import '../modules/setting/views/setting_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -24,7 +26,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  static const initial = Routes.SPLASH;
 
   static final routes = [
     GetPage(
@@ -32,7 +34,6 @@ class AppPages {
       page: () => const HomeView(),
       binding: HomeBinding(),
     ),
-
     GetPage(
       name: _Paths.SPLASH,
       page: () => const SplashView(),
@@ -73,6 +74,10 @@ class AppPages {
       page: () => GovtServicesView(),
       binding: GovtServicesBinding(),
     ),
-
+    GetPage(
+      name: _Paths.NETWORK_ACTIVITY,
+      page: () => const NetworkActivityView(),
+      binding: NetworkActivityBinding(),
+    ),
   ];
 }

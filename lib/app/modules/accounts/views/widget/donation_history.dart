@@ -16,9 +16,9 @@ class DonationHistory extends StatelessWidget {
               barrierDismissible: false,
               context: context,
               builder: (context) =>
-                  const DonationViewScreen());
+                   DonationViewScreen());
         },
-        child: const Card(
+        child:const Card(
           child: Padding(
             padding: EdgeInsets.all(8.0),
             child: Row(

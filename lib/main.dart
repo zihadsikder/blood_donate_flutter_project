@@ -12,7 +12,7 @@ void main() {
       title: 'Blood Donor App',
       debugShowCheckedModeBanner: false,
       initialBinding: IntBinding(),
-      initialRoute: AppPages.INITIAL,
+      initialRoute: AppPages.initial,
       getPages: AppPages.routes,
       theme: AppThemeData.lightThemeData,
       themeMode: ThemeMode.system,

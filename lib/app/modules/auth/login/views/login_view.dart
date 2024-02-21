@@ -143,7 +143,9 @@ class LoginView extends GetView<LoginController> {
                               child: Visibility(
                                 visible: controller.isLoading.value == false,
                                 replacement: const Center(
-                                    child: CircularProgressIndicator()),
+                                    child: CircularProgressIndicator(
+
+                                    )),
                                 child: const Center(
                                   child: Text(
                                     "Login",

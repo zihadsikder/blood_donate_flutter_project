@@ -130,6 +130,7 @@ class SignUpView extends GetView<SignupController> {
                       },
                     ),
                     AreaDropDown(
+                      union: true,
                       label: 'select union',
                       onChanged: (String? val) {
                         controller.onSelectedUnion(val);

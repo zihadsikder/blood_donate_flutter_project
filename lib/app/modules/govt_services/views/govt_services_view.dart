@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../core/widgets/profile_summary_card.dart';
 import '../../../data/models/request/service_data_req.dart';
+import '../../bottom_nav/controllers/bottom_nav_controller.dart';
 import '../controllers/govt_services_controller.dart';
 
 class GovtServicesView extends GetView<GovtServicesController> {
@@ -52,53 +52,59 @@ class GovtServicesView extends GetView<GovtServicesController> {
   }
    @override
    Widget build(BuildContext context) {
-     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-         statusBarColor: Colors.red.shade800,
-         statusBarIconBrightness: Brightness.light));
-     return SafeArea(
-       child: Scaffold(
-         body: Column(
-           children: [
-             const ProfileSummaryCard(),
-             // const BannerCarousel(
-             //     height: 200.0,
-             //     imageUrls: [
-             //       'assets/blood1.jpeg',
-             //       'assets/blood2.png',
-             //       'assets/blood3.png',
-             //       'assets/blood4.png',
-             //     ]),
-             const SizedBox(height: 16),
-             Expanded(
-               child: GridView.builder(
-                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                   crossAxisCount: 3,
-                 ),
-                 itemCount: websites.length,
-                 itemBuilder: (context, index) {
-                   return GestureDetector(
-                     onTap: () {
-                       _launchUrl(websites[index].link);
-                     },
-                     child: Card(
-                       elevation: 1,
-                       child: Column(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                         children: [
-                           Image.asset(
-                             websites[index].profilePicAsset,
-                             width: 100,
-                             height: 100,
-                           ),
-                           Text(websites[index].name),
-                         ],
+     // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+     //     statusBarColor: Colors.red.shade800,
+     //     statusBarIconBrightness: Brightness.light));
+     return PopScope(
+       canPop: false,
+       onPopInvoked: (value){
+         Get.find<BottomNavController>().backToHome();
+       },
+       child: SafeArea(
+         child: Scaffold(
+           body: Column(
+             children: [
+               const ProfileSummaryCard(),
+               // const BannerCarousel(
+               //     height: 200.0,
+               //     imageUrls: [
+               //       'assets/blood1.jpeg',
+               //       'assets/blood2.png',
+               //       'assets/blood3.png',
+               //       'assets/blood4.png',
+               //     ]),
+               const SizedBox(height: 16),
+               Expanded(
+                 child: GridView.builder(
+                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                     crossAxisCount: 3,
+                   ),
+                   itemCount: websites.length,
+                   itemBuilder: (context, index) {
+                     return GestureDetector(
+                       onTap: () {
+                         _launchUrl(websites[index].link);
+                       },
+                       child: Card(
+                         elevation: 1,
+                         child: Column(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             Image.asset(
+                               websites[index].profilePicAsset,
+                               width: 100,
+                               height: 100,
+                             ),
+                             Text(websites[index].name),
+                           ],
+                         ),
                        ),
-                     ),
-                   );
-                 },
+                     );
+                   },
+                 ),
                ),
-             ),
-           ],
+             ],
+           ),
          ),
        ),
      );

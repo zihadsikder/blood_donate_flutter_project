@@ -11,6 +11,7 @@ abstract class Routes {
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
   static const BOTTOM_NAV = _Paths.BOTTOM_NAV;
   static const GOVT_SERVICES = _Paths.GOVT_SERVICES;
+  static const NETWORK_ACTIVITY = _Paths.NETWORK_ACTIVITY;
 }
 
 abstract class _Paths {
@@ -24,4 +25,5 @@ abstract class _Paths {
   static const FORGOT_PASSWORD = '/forgot-password';
   static const BOTTOM_NAV = '/bottom-nav';
   static const GOVT_SERVICES = '/govt-services';
+  static const NETWORK_ACTIVITY = '/network-activity';
 }
