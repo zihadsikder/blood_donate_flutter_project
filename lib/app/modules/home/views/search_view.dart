@@ -39,6 +39,12 @@ class SearchScreenView extends StatelessWidget {
                     onSelectBloodGroup: (String? val) {
                       controller.onSelectedBloodGroup(val);
                     },
+                    validator: (String? value) {
+                      if (value?.trim().isEmpty ?? true) {
+                        return 'Please Select blood group';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 8.0),
                   AreaDropDown(
@@ -88,32 +94,42 @@ class SearchScreenView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16.0),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.searchUser.value.data?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final donor = controller.searchUser.value.data?[index];
-                      if (donor != null) {
-                        String formattedLastDonation =
-                            donor.lastDonation != null
-                                ? DateFormat('dd-MM-yyyy')
-                                    .format(donor.lastDonation!.toLocal())
-                                : "N/A";
-                        return SearchDonorPage(
-                          name: donor.name ?? '',
-                          bloodGroup: donor.bloodGroup ?? '',
-                          lastDonation: formattedLastDonation,
-                          totalDonations: donor.totalDonation?.toString() ?? '',
-                          mobile: donor.mobile?.toString() ?? '',
-                          address: donor.address?.postOffice ?? '',
-                          isEligibleToDonate: true,
-                        );
-                      } else {
-                        return Container(); // Or you can return a placeholder widget
-                      }
-                    },
-                  ),
+                  if (!controller.isLoading.value &&
+                      (controller.searchUser.value.data?.isEmpty ?? true))
+                    const Center(
+                      child: Column(
+                        children: [
+                          Text("No donor available at this moment"),
+                          Text('Please search Blood group & Address base'),
+                        ],
+                      ),
+                    ),
+                  if (!controller.isLoading.value &&
+                      (controller.searchUser.value.data?.isNotEmpty ?? false))
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: controller.searchUser.value.data?.length ?? 0,
+                      itemBuilder: (context, index) {
+                        final donor = controller.searchUser.value.data?[index];
+                        if (donor != null) {
+                          String formattedLastDonation = donor.lastDonation != null
+                              ? DateFormat('dd-MM-yyyy').format(donor.lastDonation!.toLocal())
+                              : "N/A";
+                          return DonorCard(
+                            name: donor.name ?? '',
+                            bloodGroup: donor.bloodGroup ?? '',
+                            lastDonation: formattedLastDonation,
+                            totalDonations: donor.totalDonation?.toString() ?? '',
+                            mobile: donor.mobile?.toString() ?? '',
+                            address: donor.address?.postOffice ?? '',
+                            isEligibleToDonate: true,
+                          );
+                        } else {
+                          return const SizedBox(); // Return empty SizedBox if donor is null
+                        }
+                      },
+                    ),
                 ],
               ),
             ),

@@ -5,13 +5,14 @@ class PasswordTextField extends StatelessWidget {
     super.key,
     required this.passwordController,
     required this.obscureText,
-    required this.onTapSuffix,
+    required this.onTapSuffix, required this.suffixIcon,
   });
 
   final TextEditingController passwordController;
 
   final bool obscureText;
   final VoidCallback onTapSuffix;
+  final Icon suffixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +20,10 @@ class PasswordTextField extends StatelessWidget {
       controller: passwordController,
       obscureText: obscureText,
       decoration: InputDecoration(
-        labelText: 'Enter Password',
+        hintText: 'Password',
         suffixIcon: IconButton(
           onPressed: onTapSuffix,
-          icon: Icon(
-            obscureText ? Icons.visibility : Icons.visibility_off,
-            color: Colors.grey, // Customize the icon color as needed
-          ),
+          icon:suffixIcon
         ),
       ),
       keyboardType: TextInputType.visiblePassword,

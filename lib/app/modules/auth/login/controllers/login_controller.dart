@@ -12,7 +12,7 @@ class LoginController extends GetxController {
   final TextEditingController passwordTEController = TextEditingController();
   final TextEditingController numberTEController = TextEditingController();
 
-  final obscureText = false.obs;
+  final obscureText = true.obs;
 
   final isLoading = false.obs;
 
@@ -24,7 +24,6 @@ class LoginController extends GetxController {
     final password = passwordTEController.text.trim();
 
     final response = await AuthRepository.login(mobile, password);
-
     isLoading.value = false;
 
     if (response.isSuccess && response.jsonResponse != null) {
@@ -34,8 +33,9 @@ class LoginController extends GetxController {
         loginRes.data?.accessToken ?? '',
         loginRes,
       );
-      Get.toNamed(Routes.BOTTOM_NAV);
       isLoading.value = true;
+      Get.toNamed(Routes.BOTTOM_NAV);
+
     } else {
       Get.snackbar('Error', 'Try Again Later');
       isLoading.value = false;

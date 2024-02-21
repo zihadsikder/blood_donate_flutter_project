@@ -1,6 +1,5 @@
 import 'package:blood_donate_flutter_project/app/data/models/request/update_req.dart';
 import 'package:blood_donate_flutter_project/app/data/repositories/account_repository.dart';
-import 'package:blood_donate_flutter_project/app/modules/accounts/views/donation_view_screen.dart';
 import 'package:blood_donate_flutter_project/app/routes/app_pages.dart';
 import 'package:blood_donate_flutter_project/app/services/api_client.dart';
 import 'package:blood_donate_flutter_project/app/services/api_end_points.dart';
@@ -148,7 +147,7 @@ class AccountsController extends GetxController {
     }
   }
 
-  Future<bool> addDonation({
+  Future<void> addDonation({
     required String donationPlace,
     required String donationDate,
   }) async {
@@ -167,16 +166,14 @@ class AccountsController extends GetxController {
         placeTEController.text.trim();
         dateTEController.text.trim();
         clearTextFields();
-
+        inProgress.value = true;
         await getDonationList();
         Get.snackbar('Success', 'Add Donation Successful',colorText: Colors.white);
-        return true;
       } else {
         Get.snackbar('Error', 'Something went wrong');
-        return false;
+        inProgress.value = false;
       }
     }
-    return false;
   }
 
   Future<bool> getDonationList() async {
@@ -191,7 +188,6 @@ class AccountsController extends GetxController {
     } else {
       Get.snackbar('Error', 'Try Again Later');
     }
-
     return false;
   }
 
@@ -201,8 +197,9 @@ class AccountsController extends GetxController {
         await ApiClient().delRequest(ApiEndPoints.deleteDonation + id);
     inProgress.value = false;
     if (response.isSuccess) {
+      donorHistoryList!.data!.removeWhere((element) => element.id == id);
+      Get.back();
       Get.snackbar('Success', 'Delete Successful',colorText: Colors.white);
-      Get.to(DonationViewScreen);
       return true;
     } else {
       Get.snackbar('Error', 'Something went wrong');

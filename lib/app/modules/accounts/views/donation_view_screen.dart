@@ -72,13 +72,10 @@ class DonationViewScreen extends StatelessWidget {
                             const Center(child: CircularProgressIndicator()),
                         child: ElevatedButton(
                           onPressed: () async {
-                            controller.inProgress.value = true;
-                            // Await the addDonation method call
                             await controller.addDonation(
                               donationPlace: controller.placeTEController.text,
                               donationDate: controller.dateTEController.text,
                             );
-                            controller.inProgress.value = false;
                           },
                           child: const Text(
                             'ADD DONATION',

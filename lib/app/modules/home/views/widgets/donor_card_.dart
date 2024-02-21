@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class SearchDonorPage extends StatelessWidget {
+class DonorCard extends StatelessWidget {
   final String name;
   final String bloodGroup;
   final String lastDonation;
@@ -12,7 +12,7 @@ class SearchDonorPage extends StatelessWidget {
   //final DateTime lastDonationDate;
   final bool isEligibleToDonate;
 
-  const SearchDonorPage({
+  const DonorCard({
     super.key,
     required this.name,
     required this.bloodGroup,
@@ -32,11 +32,14 @@ class SearchDonorPage extends StatelessWidget {
         ListTile(
           title: Row(
             children: [
-              Text(
-                '$name  ',
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
+              Expanded(
+                child: Text(
+                  '$name  ',
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
               //const Spacer(), // Adds spacing between name and blood group
@@ -61,15 +64,14 @@ class SearchDonorPage extends StatelessWidget {
               ),
               const SizedBox(width: 8.0),
               if (!isEligibleToDonate)
-                const Flexible(
-                    child: Text(
+                const Text(
                   'Available Soon...',
                   style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                      overflow: TextOverflow.ellipsis),
-                )),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.red,
+                  ),
+                ),
               //const Icon(Icons.lock)
             ],
           ),
@@ -107,30 +109,28 @@ class SearchDonorPage extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(
-          height: 8,
-        ),
+        const SizedBox(height: 8),
       ],
     );
   }
-}
 
-_launchSmsApp(String phoneNumber) async {
-  final smsUri = Uri.parse('sms:$phoneNumber');
+  _launchSmsApp(String phoneNumber) async {
+    final smsUri = Uri.parse('sms:$phoneNumber');
 
-  if (await canLaunchUrl(smsUri)) {
-    await launchUrl(smsUri);
-  } else {
-    // Handle error, for example, show an error message
-    throw 'Could not launch';
+    if (await canLaunchUrl(smsUri)) {
+      await launchUrl(smsUri);
+    } else {
+      // Handle error, for example, show an error message
+      throw 'Could not launch';
+    }
   }
-}
 
-_launchPhoneDialer(String phoneNumber) async {
-  final url = Uri.parse('tel:$phoneNumber');
-  if (await canLaunchUrl(url)) {
-    await launchUrl(url);
-  } else {
-    throw 'Could not launch $url';
+  _launchPhoneDialer(String phoneNumber) async {
+    final url = Uri.parse('tel:$phoneNumber');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

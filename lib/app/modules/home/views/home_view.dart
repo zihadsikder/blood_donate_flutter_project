@@ -10,9 +10,6 @@ class HomeView extends GetView<SearchController> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-        statusBarColor: Colors.red.shade800,
-        statusBarIconBrightness: Brightness.light));
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -31,7 +28,6 @@ class HomeView extends GetView<SearchController> {
                             'assets/donation.png',
                             'assets/2.png',
                             'assets/3.png',
-                            'assets/4.png',
                             'assets/5.png',
                           ]
                       ),

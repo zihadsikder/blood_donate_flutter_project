@@ -1,5 +1,6 @@
 import 'package:blood_donate_flutter_project/app/core/constants/app_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../widget/image_assets.dart';
 
 class ExercisesScreen extends StatelessWidget {
@@ -12,6 +13,9 @@ class ExercisesScreen extends StatelessWidget {
       appBar: AppBar(
         leading: const BackButton(color: Colors.white),
         title: const Text('Exercises'),
+        systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.red.shade800,
+            statusBarIconBrightness: Brightness.light),
       ),
       body: SingleChildScrollView(
         child: Container(

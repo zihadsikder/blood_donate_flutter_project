@@ -4,9 +4,12 @@ import 'alert_cancel_button.dart';
 class LogoutEleButton extends StatelessWidget {
  const LogoutEleButton({
    super.key,
-   required this.onPress});
+   required this.onPress,
+
+ });
 
  final VoidCallback onPress;
+
 
   @override
   Widget build(BuildContext context) {

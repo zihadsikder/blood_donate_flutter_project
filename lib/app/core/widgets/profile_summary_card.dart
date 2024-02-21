@@ -1,8 +1,9 @@
 import 'package:blood_donate_flutter_project/app/modules/home/views/search_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class ProfileSummaryCard extends StatefulWidget {
+class ProfileSummaryCard extends StatelessWidget {
   const ProfileSummaryCard({
     super.key,
     this.enableOnTap = true,
@@ -11,12 +12,10 @@ class ProfileSummaryCard extends StatefulWidget {
   final bool enableOnTap;
 
   @override
-  State<ProfileSummaryCard> createState() => _ProfileSummaryCardState();
-}
-
-class _ProfileSummaryCardState extends State<ProfileSummaryCard> {
-  @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+        statusBarColor: Colors.red.shade800,
+        statusBarIconBrightness: Brightness.light));
     return ListTile(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
