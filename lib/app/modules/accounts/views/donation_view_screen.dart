@@ -6,14 +6,15 @@ import 'package:intl/intl.dart';
 import '../../../core/widgets/dob_text_field.dart';
 import 'widget/alert_cancel_button.dart';
 
-class DonationViewScreen extends StatelessWidget {
+class DonationViewScreen extends GetView<AccountsController> {
   DonationViewScreen({super.key});
 
+  @override
   final AccountsController controller = Get.put(AccountsController());
 
   @override
   Widget build(BuildContext context) {
-    controller.getDonationList();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Donation History'),
@@ -65,24 +66,17 @@ class DonationViewScreen extends StatelessWidget {
                   ),
                   SizedBox(
                     width: double.infinity,
-                    child: Obx(
-                      () => Visibility(
-                        visible: controller.inProgress.value == false,
-                        replacement:
-                            const Center(child: CircularProgressIndicator()),
-                        child: ElevatedButton(
-                          onPressed: () async {
-                            await controller.addDonation(
-                              donationPlace: controller.placeTEController.text,
-                              donationDate: controller.dateTEController.text,
-                            );
-                          },
-                          child: const Text(
-                            'ADD DONATION',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await controller.addDonation(
+                          donationPlace: controller.placeTEController.text,
+                          donationDate: controller.dateTEController.text,
+                        );
+                      },
+                      child: const Text(
+                        'ADD DONATION',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),

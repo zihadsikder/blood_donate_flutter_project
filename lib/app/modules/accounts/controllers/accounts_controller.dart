@@ -168,7 +168,8 @@ class AccountsController extends GetxController {
         clearTextFields();
         inProgress.value = true;
         await getDonationList();
-        Get.snackbar('Success', 'Add Donation Successful',colorText: Colors.white);
+        Get.snackbar('Success', 'Add Donation Successful',
+            colorText: Colors.white);
       } else {
         Get.snackbar('Error', 'Something went wrong');
         inProgress.value = false;
@@ -193,13 +194,16 @@ class AccountsController extends GetxController {
 
   Future<bool> deleteDonation({required String id}) async {
     inProgress.value = true;
+
+    Get.back();
+
     final response =
         await ApiClient().delRequest(ApiEndPoints.deleteDonation + id);
     inProgress.value = false;
     if (response.isSuccess) {
       donorHistoryList!.data!.removeWhere((element) => element.id == id);
-      Get.back();
-      Get.snackbar('Success', 'Delete Successful',colorText: Colors.white);
+
+      Get.snackbar('Success', 'Delete Successful', colorText: Colors.white);
       return true;
     } else {
       Get.snackbar('Error', 'Something went wrong');

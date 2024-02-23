@@ -24,7 +24,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.islanditltd.blood_donate.blood_donate_flutter_project"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34 //flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
     compileOptions {

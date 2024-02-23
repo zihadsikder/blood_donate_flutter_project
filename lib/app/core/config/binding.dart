@@ -1,6 +1,8 @@
 import 'package:blood_donate_flutter_project/app/services/auth_cache.dart';
 import 'package:get/get.dart';
+
 import '../../modules/accounts/controllers/accounts_controller.dart';
+import '../../modules/network_activity/controllers/network_activity_controller.dart';
 
 class IntBinding extends Bindings {
   @override
@@ -8,7 +10,7 @@ class IntBinding extends Bindings {
     await Get.putAsync<AuthCache>(() async => await AuthCache().init());
     Get.lazyPut<AccountsController>(() => AccountsController());
     // Get.put(()=> HomeController());
-    // Get.put(()=> NetworkActivityController());
+    Get.put(()=> NetworkActivityController());
 
   }
 }

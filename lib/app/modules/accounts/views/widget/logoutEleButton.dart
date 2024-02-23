@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'alert_cancel_button.dart';
 
-class LogoutEleButton extends StatelessWidget {
+class LogoutEleButton extends StatefulWidget {
  const LogoutEleButton({
    super.key,
    required this.onPress,
@@ -10,7 +10,11 @@ class LogoutEleButton extends StatelessWidget {
 
  final VoidCallback onPress;
 
+  @override
+  State<LogoutEleButton> createState() => _LogoutEleButtonState();
+}
 
+class _LogoutEleButtonState extends State<LogoutEleButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -38,7 +42,7 @@ class LogoutEleButton extends StatelessWidget {
                     actions: [
                       const AlertCancelButton(),
                       TextButton(
-                        onPressed: onPress,
+                        onPressed: widget.onPress,
                         style: TextButton.styleFrom(
                             backgroundColor: Colors.red.shade800),
                         child: const Text('Logout',
