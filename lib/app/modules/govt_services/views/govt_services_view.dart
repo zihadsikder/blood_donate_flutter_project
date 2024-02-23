@@ -65,14 +65,6 @@ class GovtServicesView extends GetView<GovtServicesController> {
            body: Column(
              children: [
                const ProfileSummaryCard(),
-               // const BannerCarousel(
-               //     height: 200.0,
-               //     imageUrls: [
-               //       'assets/blood1.jpeg',
-               //       'assets/blood2.png',
-               //       'assets/blood3.png',
-               //       'assets/blood4.png',
-               //     ]),
                const SizedBox(height: 16),
                Expanded(
                  child: GridView.builder(

@@ -7,6 +7,7 @@ import 'package:blood_donate_flutter_project/app/services/auth_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/widgets/snack_message.dart';
 import '../../../data/models/area_res.dart';
 import '../../../data/models/donor_history_list_model.dart';
 import '../../../data/models/network_response.dart';
@@ -232,8 +233,11 @@ class AccountsController extends GetxController {
         await ApiClient().postRequest(ApiEndPoints.logout, body: {});
     inProgress.value = false;
     if (response.isSuccess) {
+      Get.back();
+      showSnackMessage(message: 'Successfully Logout!');
+
       authCache.clearAuthData();
-      Get.toNamed(Routes.LOGIN);
+      Get.offAllNamed(Routes.LOGIN);
       return true;
     } else {
       Get.snackbar('Error', 'Something wrong');
