@@ -1,16 +1,15 @@
+import 'package:blood_donate_flutter_project/app/modules/account/update_accounts/controllers/update_accounts_controller.dart';
 import 'package:blood_donate_flutter_project/app/services/auth_cache.dart';
 import 'package:get/get.dart';
-
-import '../../modules/accounts/controllers/accounts_controller.dart';
-import '../../modules/network_activity/controllers/network_activity_controller.dart';
+import '../../modules/account/accounts/controllers/accounts_controller.dart';
+import '../../modules/account/donation_history/controllers/donation_history_controller.dart';
 
 class IntBinding extends Bindings {
   @override
   void dependencies() async {
     await Get.putAsync<AuthCache>(() async => await AuthCache().init());
     Get.lazyPut<AccountsController>(() => AccountsController());
-    // Get.put(()=> HomeController());
-    Get.put(()=> NetworkActivityController());
-
+    Get.lazyPut<DonationHistoryController>(()=>DonationHistoryController());
+    Get.lazyPut<UpdateAccountsController>(()=>UpdateAccountsController());
   }
 }

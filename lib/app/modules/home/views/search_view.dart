@@ -1,6 +1,7 @@
 import 'package:blood_donate_flutter_project/app/modules/home/controllers/home_controller.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -25,6 +26,9 @@ class SearchScreenView extends StatelessWidget {
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
         ),
+        systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.red.shade800,
+            statusBarIconBrightness: Brightness.light),
       ),
       body: SingleChildScrollView(
         child: Padding(

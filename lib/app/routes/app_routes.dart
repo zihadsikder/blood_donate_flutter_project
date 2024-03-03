@@ -11,7 +11,8 @@ abstract class Routes {
   static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
   static const BOTTOM_NAV = _Paths.BOTTOM_NAV;
   static const GOVT_SERVICES = _Paths.GOVT_SERVICES;
-  static const NETWORK_ACTIVITY = _Paths.NETWORK_ACTIVITY;
+  static const DONATION_HISTORY = _Paths.DONATION_HISTORY;
+  static const UPDATE_ACCOUNTS = _Paths.UPDATE_ACCOUNTS;
 }
 
 abstract class _Paths {
@@ -25,5 +26,6 @@ abstract class _Paths {
   static const FORGOT_PASSWORD = '/forgot-password';
   static const BOTTOM_NAV = '/bottom-nav';
   static const GOVT_SERVICES = '/govt-services';
-  static const NETWORK_ACTIVITY = '/network-activity';
+  static const DONATION_HISTORY = '/donation-history';
+  static const UPDATE_ACCOUNTS = '/update-accounts';
 }

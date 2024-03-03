@@ -1,4 +1,4 @@
-import 'package:blood_donate_flutter_project/app/modules/accounts/views/accounts_view.dart';
+import 'package:blood_donate_flutter_project/app/modules/account/accounts/views/accounts_view.dart';
 import 'package:blood_donate_flutter_project/app/modules/home/views/home_view.dart';
 import 'package:blood_donate_flutter_project/app/modules/setting/views/setting_view.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,10 @@
 import 'package:get/get.dart';
 
-import '../modules/accounts/bindings/accounts_binding.dart';
-import '../modules/accounts/views/accounts_view.dart';
+import '../modules/account/accounts/bindings/accounts_binding.dart';
+import '../modules/account/donation_history/bindings/donation_history_binding.dart';
+import '../modules/account/donation_history/views/donation_history_view.dart';
+import '../modules/account/accounts/views/accounts_view.dart';
+import '../modules/account/update_accounts/bindings/update_accounts_binding.dart';
 import '../modules/auth/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/auth/forgot_password/views/forget_password_view.dart';
 import '../modules/auth/login/bindings/login_binding.dart';
@@ -14,12 +17,11 @@ import '../modules/govt_services/bindings/govt_services_binding.dart';
 import '../modules/govt_services/views/govt_services_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
-import '../modules/network_activity/bindings/network_activity_binding.dart';
-import '../modules/network_activity/views/network_activity_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
 import '../modules/setting/views/setting_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/account/update_accounts/views/update_accounts_view.dart';
 
 part 'app_routes.dart';
 
@@ -75,9 +77,14 @@ class AppPages {
       binding: GovtServicesBinding(),
     ),
     GetPage(
-      name: _Paths.NETWORK_ACTIVITY,
-      page: () => const NetworkActivityView(),
-      binding: NetworkActivityBinding(),
+      name: _Paths.DONATION_HISTORY,
+      page: () => const DonationHistoryView(),
+      binding: DonationHistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.UPDATE_ACCOUNTS,
+      page: () => const UpdateAccountsView(),
+      binding: UpdateAccountsBinding(),
     ),
   ];
 }

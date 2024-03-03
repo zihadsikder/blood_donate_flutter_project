@@ -1,4 +1,4 @@
-import 'package:blood_donate_flutter_project/app/modules/accounts/views/donation_view_screen.dart';
+import 'package:blood_donate_flutter_project/app/modules/account/donation_history/views/donation_history_view.dart';
 import 'package:flutter/material.dart';
 
 class DonationHistory extends StatelessWidget {
@@ -16,7 +16,7 @@ class DonationHistory extends StatelessWidget {
               barrierDismissible: false,
               context: context,
               builder: (context) =>
-                   DonationViewScreen());
+                   const DonationHistoryView());
         },
         child:const Card(
           child: Padding(
