@@ -1,28 +1,22 @@
-import 'dart:developer';
-import 'package:blood_donate_flutter_project/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/models/area_res.dart';
 import '../../../../data/models/network_response.dart';
-import '../../../../data/models/request/registration_req.dart';
-import '../../../../data/repositories/auth_repository.dart';
+import '../../../../data/models/request/update_req.dart';
+import '../../../../data/repositories/account_repository.dart';
 import '../../../../data/repositories/location_repository.dart';
 
-class SignupController extends GetxController {
-  final isLoading = false.obs;
+class UpdateAccountsController extends GetxController {
 
-  final formKey = GlobalKey<FormState>();
   final TextEditingController usernameTEController = TextEditingController();
+  final TextEditingController dateTEController = TextEditingController();
   final TextEditingController emailTEController = TextEditingController();
-  final TextEditingController mobileNumberTEController =
-      TextEditingController();
-  final TextEditingController dobController = TextEditingController();
-  final TextEditingController passwordTEController = TextEditingController();
-  final TextEditingController weightTEController = TextEditingController();
+  final TextEditingController mobileTEController = TextEditingController();
 
-  final isWeightOk = false.obs;
-  final obscureText = false.obs;
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  final inProgress = false.obs;
 
   final selectedBloodGroup = ''.obs;
 
@@ -40,7 +34,6 @@ class SignupController extends GetxController {
 
   void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
-    log('select blood group: $val');
   }
 
   void onSelectedDivision(String? val) {
@@ -94,22 +87,6 @@ class SignupController extends GetxController {
     }
   }
 
-  Future<void> registration(RegistrationReq params) async {
-    if (formKey.currentState!.validate()) {
-      NetworkResponse response = await AuthRepository.registration(params);
-      isLoading.value = false;
-      if (response.isSuccess) {
-        clearTextFields();
-        isLoading.value = false;
-        Get.toNamed(Routes.LOGIN);
-        Get.snackbar('Welcome To', 'Largest Blood Donor Family');
-      } else {
-        isLoading.value = false;
-        Get.snackbar('Error', 'Account Creation Fail!');
-      }
-    }
-  }
-
   @override
   void onInit() {
     getDivision();
@@ -117,40 +94,44 @@ class SignupController extends GetxController {
   }
 
   Future<void> getDivision() async {
-    isLoading.value = true;
+    inProgress.value = true;
     final NetworkResponse response = await LocationRepository.getDivision();
     divisionList.value = areaFromJson(response.jsonResponse!).data ?? [];
-    isLoading.value = false;
-
+    inProgress.value = false;
   }
 
   Future<void> getDistrict({required String id}) async {
-    isLoading.value = true;
+    inProgress.value = true;
     final NetworkResponse response =
-        await LocationRepository.getDistrict(id: id);
+    await LocationRepository.getDistrict(id: id);
     districtList.value = areaFromJson(response.jsonResponse!).data ?? [];
-    isLoading.value = false;
+    inProgress.value = false;
   }
 
   Future<void> getUpzila({required String id}) async {
-    isLoading.value = true;
+    inProgress.value = true;
     final NetworkResponse response = await LocationRepository.getUpzila(id: id);
     upzilaList.value = areaFromJson(response.jsonResponse!).data ?? [];
-    isLoading.value = false;
+    inProgress.value = false;
   }
 
   Future<void> getUnion({required String name}) async {
-    isLoading.value = true;
+    inProgress.value = true;
     NetworkResponse response = await LocationRepository.getUnion(name: name);
     unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
-    isLoading.value = false;
+    inProgress.value = false;
   }
 
-  void clearTextFields() {
-    usernameTEController.clear();
-    emailTEController.clear();
-    dobController.clear();
-    mobileNumberTEController.clear();
-    passwordTEController.clear();
+  Future<void> updateProfile(UpdateReq params) async {
+    if (formKey.currentState!.validate()) {
+      NetworkResponse response = await AccountRepository.updateProfile(params);
+      inProgress.value = false;
+      if (response.isSuccess) {
+        inProgress.value = true;
+      } else {
+        inProgress.value = false;
+        Get.snackbar('Error', 'Profile Update Fail!');
+      }
+    }
   }
 }

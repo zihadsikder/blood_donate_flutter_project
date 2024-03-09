@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/constants/app_assets.dart';
+import '../../../../core/widgets/password_text_field.dart';
 import '../../../../routes/app_pages.dart';
 import '../controllers/forgot_password_controller.dart';
 
@@ -44,23 +45,23 @@ class ResetPasswordView extends StatelessWidget {
                   style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
-                  height: 24,
+                  height: 18,
                 ),
                 Form(
                   key: controller.resetPassFormKey,
                   child: Column(
                     children: [
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Password',
+                      PasswordTextField(
+                        passwordController:
+                        controller.passwordTextEditController,
+                        obscureText: controller.obscureText.value,
+                        onTapSuffix: () {
+                          controller.obscureText.value =
+                          !controller.obscureText.value;
+                        },
+                        suffixIcon:  Icon(
+                          controller.obscureText.value ? Icons.visibility : Icons.visibility_off,
+                          color: Colors.grey, // Customize the icon color as needed
                         ),
                       ),
                       TextFormField(
@@ -90,7 +91,7 @@ class ResetPasswordView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 24,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

@@ -31,8 +31,6 @@ class BottomNavView extends GetView<BottomNavController> {
               topRight: Radius.circular(30.0),
             ),
             child: BottomNavigationBar(
-              // unselectedFontSize: 0,
-              // selectedFontSize: 0,
               type: BottomNavigationBarType.fixed,
               backgroundColor: Colors.red.shade900,
               onTap: controller.changeIndex,

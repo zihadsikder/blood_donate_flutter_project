@@ -116,11 +116,9 @@ class DonorCard extends StatelessWidget {
 
   _launchSmsApp(String phoneNumber) async {
     final smsUri = Uri.parse('sms:$phoneNumber');
-
     if (await canLaunchUrl(smsUri)) {
       await launchUrl(smsUri);
     } else {
-      // Handle error, for example, show an error message
       throw 'Could not launch';
     }
   }

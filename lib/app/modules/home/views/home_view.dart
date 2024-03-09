@@ -4,12 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../../core/widgets/profile_summary_card.dart';
+import '../controllers/home_controller.dart';
 
-class HomeView extends GetView<SearchController> {
+class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
+
 
   @override
   Widget build(BuildContext context) {
+
+    Color color = Theme.of(context).primaryColor;
+    print(color);
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -35,7 +41,8 @@ class HomeView extends GetView<SearchController> {
                     const SizedBox(height: 12),
                     ElevatedButton(
                         onPressed: () {
-                          Get.to(()=> SearchScreenView());
+                          print("xxxL 3453455454");
+                         controller.loadInterstitialAd;
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

@@ -35,7 +35,7 @@ class Support extends StatelessWidget {
                 leading: Icon(Icons.email_outlined, color: Colors.red.shade800),
                 title: const Text("islanditltd@gmail.com"),
                 onTap: () {
-                  _launchEmailSubmission("islanditltd@gmail.com");
+                  _launchEmailSubmission('islanditltd@gmail.com');
                 },
               ),
             ],
@@ -56,25 +56,26 @@ class Support extends StatelessWidget {
   }
 
   _launchPhoneDialer(String phoneNumber) async {
-    final url = 'tel:$phoneNumber';
-    if (await canLaunchUrl(url as Uri)) {
-      await launchUrl(url as Uri);
+    final url = Uri.parse('tel:$phoneNumber');
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
     } else {
       throw 'Could not launch $url';
     }
   }
 
-
   _launchEmailSubmission(String email) async {
-    final Uri params = Uri(
+    final Uri emailLaunchUri = Uri(
       scheme: 'mailto',
       path: email,
     );
-    String url = params.toString();
-    if (await canLaunchUrl(url as Uri)) {
-      await launchUrl(url as Uri);
-    } else {
-      throw 'Could not launch $url';
+    try {
+      await launch(emailLaunchUri.toString());
+    } catch (e) {
+      throw 'Could not launch $email';
     }
   }
+
+
+
 }

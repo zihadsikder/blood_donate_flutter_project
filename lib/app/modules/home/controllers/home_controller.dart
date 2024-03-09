@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import '../../../core/utils/ad_helper.dart';
 import '../../../data/models/area_res.dart';
 import '../../../data/models/network_response.dart';
 import '../../../data/models/search_user_model.dart';
 import '../../../data/repositories/location_repository.dart';
 import '../../../services/api_client.dart';
 import '../../../services/api_end_points.dart';
+import '../../../services/network.dart';
+import '../views/search_view.dart';
 
 class HomeController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  final connectivityController = Get.find<ConnectivityController>();
+
   final searchUser = SearchUserModel().obs;
   final isLoading = false.obs;
 
@@ -26,6 +33,38 @@ class HomeController extends GetxController {
 
   final unionList = <AreaModel>[].obs;
   final selectedUnion = ''.obs;
+
+
+  // TODO: Add _interstitialAd
+ var _interstitialAd;
+
+  // TODO: Implement _loadInterstitialAd()
+  void loadInterstitialAd() {
+
+    print('-----------------------3453455454-------------------');
+
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              Get.to(()=> SearchScreenView());
+            },
+          );
+
+
+            _interstitialAd = ad.obs;
+        },
+        onAdFailedToLoad: (err) {
+
+          print('Failed to load an interstitial ad: ${err.message}');
+          Get.to(()=> SearchScreenView());
+        },
+      ),
+    );
+  }
 
   void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
@@ -87,6 +126,8 @@ class HomeController extends GetxController {
   void onInit() {
     getDivision();
     super.onInit();
+    connectivityController;
+    loadInterstitialAd();
   }
 
   Future<void> getDivision() async {
@@ -150,5 +191,10 @@ class HomeController extends GetxController {
       }
     }
     return false;
+  }
+
+  Future<InitializationStatus> _initGoogleMobileAds() {
+    // TODO: Initialize Google Mobile Ads SDK
+    return MobileAds.instance.initialize();
   }
 }

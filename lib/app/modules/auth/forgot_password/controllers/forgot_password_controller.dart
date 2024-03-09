@@ -15,6 +15,8 @@ class ForgotPasswordController extends GetxController {
   final passwordTextEditController = TextEditingController();
   final confirmPasswordTextEditController = TextEditingController();
 
+  final obscureText = true.obs;
+
   @override
   void onInit() {
     super.onInit();

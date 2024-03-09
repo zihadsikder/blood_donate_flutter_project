@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../../data/models/user_model.dart';
 import '../../../../routes/app_pages.dart';
+import '../../../../services/network.dart';
 
 class LoginController extends GetxController {
   final formKey = GlobalKey<FormState>();
@@ -12,9 +13,19 @@ class LoginController extends GetxController {
   final TextEditingController passwordTEController = TextEditingController();
   final TextEditingController numberTEController = TextEditingController();
 
-  final obscureText = true.obs;
+  final obscureText = false.obs;
 
   final isLoading = false.obs;
+
+
+ final connectivityController = Get.find<ConnectivityController>();
+
+
+  @override
+  void onInit() {
+    super.onInit();
+    connectivityController;
+  }
 
   Future<void> login() async {
     if (formKey.currentState!.validate()) {
@@ -25,6 +36,7 @@ class LoginController extends GetxController {
 
     final response = await AuthRepository.login(mobile, password);
     isLoading.value = false;
+
 
     if (response.isSuccess && response.jsonResponse != null) {
       LoginRes loginRes = loginResFromJson(response.jsonResponse!);

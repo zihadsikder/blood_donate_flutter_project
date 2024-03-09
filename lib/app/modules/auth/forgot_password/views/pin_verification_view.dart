@@ -41,11 +41,11 @@ class PinVerificationView extends StatelessWidget {
                   height: 8,
                 ),
                 const Text(
-                  'A 6 digit OTP will be sent to your email address',
+                  'A 6 digit OTP will be sent to your mobile number',
                   style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
-                  height: 24,
+                  height: 18,
                 ),
                 Form(
                   key: controller.otpFormKey,
@@ -85,7 +85,7 @@ class PinVerificationView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 24,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

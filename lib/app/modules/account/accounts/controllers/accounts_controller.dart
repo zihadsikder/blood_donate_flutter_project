@@ -4,9 +4,9 @@ import 'package:blood_donate_flutter_project/app/services/api_end_points.dart';
 import 'package:blood_donate_flutter_project/app/services/auth_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../../core/widgets/snack_message.dart';
 
 class AccountsController extends GetxController {
+
   final TextEditingController placeTEController = TextEditingController();
   final TextEditingController dateTEController = TextEditingController();
   final TextEditingController usernameTEController = TextEditingController();
@@ -20,7 +20,6 @@ class AccountsController extends GetxController {
   final inProgress = false.obs;
 
   final isProfileActive = true.obs;
-
 
   Future<bool> toggleProfileActivation(bool isActive) async {
     inProgress.value = true;
@@ -44,8 +43,7 @@ class AccountsController extends GetxController {
     inProgress.value = false;
     if (response.isSuccess) {
       Get.back();
-      showSnackMessage(message: 'Successfully Logout!');
-
+      Get.snackbar('Success', 'Successfully Logout');
       authCache.clearAuthData();
       Get.offAllNamed(Routes.LOGIN);
       return true;
@@ -54,6 +52,4 @@ class AccountsController extends GetxController {
     }
     return false;
   }
-
-
 }

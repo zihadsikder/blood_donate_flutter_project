@@ -169,8 +169,8 @@ class LoginView extends GetView<LoginController> {
                                 Get.toNamed(Routes.FORGOT_PASSWORD);
                               },
                               child: const Text(
-                                "Forgot Password?",
-                                style: TextStyle(color: Colors.grey),
+                                "Forgot Password!",
+                                style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
                               ),
                             ),
                             const SizedBox(
@@ -281,41 +281,6 @@ class LoginView extends GetView<LoginController> {
       ),
     );
   }
-
-
-  //       Container(
-  //         padding: const EdgeInsets.all(10),
-  //         decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey.shade200))),
-  //         child: TextFormField(
-  //           controller: controller.passwordTEController,
-  //           obscureText: controller.obscureText.value,
-  //           // Use a boolean variable to toggle password visibility
-  //           decoration: InputDecoration(
-  //               hintText: 'Password',
-  //               hintStyle: const TextStyle(color: Colors.grey),
-  //               border: InputBorder.none,
-  //               suffixIcon: IconButton(
-  //                 onPressed: () {
-  //                   controller.obscureText.value = !controller.obscureText.value; // Toggle the password visibility
-  //                 },
-  //                 icon: Icon(
-  //                   controller.obscureText.value ? Icons.visibility : Icons.visibility_off,
-  //                   color: Colors.grey, // Customize the icon color as needed
-  //                 ),
-  //               )),
-  //           validator: (String? value) {
-  //             if (value?.trim().isEmpty ?? true) {
-  //               return 'Enter Correct Password';
-  //             }
-  //             return null;
-  //           },
-  //           keyboardType: TextInputType.visiblePassword,
-  //         ),
-  //       ),
-  //     ],
-  //   );
-  // }
-
   void launchFacebook() {}
 
   void launchGoogle() {}

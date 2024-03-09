@@ -30,21 +30,21 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                   height: 16,
                 ),
                 Text(
-                  'Your Email Address',
+                  'Your Mobile Number',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(
                   height: 8,
                 ),
-                Text('A 6 digit OTP will be sent to your email address', style: Theme.of(context).textTheme.bodySmall),
+                Text('A 6 digit OTP will be sent to your mobile number', style: Theme.of(context).textTheme.bodySmall),
                 const SizedBox(
-                  height: 24,
+                  height: 18,
                 ),
                 Form(
                   key: controller.forgotPassFormKey,
                   child: TextFormField(
                     controller: controller.emailTextEditController,
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       fillColor: Colors.white,
                       filled: true,
@@ -54,7 +54,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide.none,
                       ),
-                      hintText: 'Email',
+                      hintText: 'Number',
                     ),
                   ),
                 ),
@@ -69,7 +69,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 24,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
