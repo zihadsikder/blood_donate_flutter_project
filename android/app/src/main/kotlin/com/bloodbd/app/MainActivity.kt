@@ -1,4 +1,4 @@
-package com.islanditltd.blood_donate.blood_donate_flutter_project
+package com.bloodbd.app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -202,7 +202,7 @@ class SignUpView extends GetView<SignupController> {
                             !controller.obscureText.value;
                       },
                       suffixIcon:  Icon(
-                        controller.obscureText.value ? Icons.visibility : Icons.visibility_off,
+                        controller.obscureText.value ? Icons.visibility_off : Icons.visibility,
                         color: Colors.grey, // Customize the icon color as needed
                       ),
                     ),

@@ -126,7 +126,7 @@ class LoginView extends GetView<LoginController> {
                                         !controller.obscureText.value;
                                       },
                                       suffixIcon:  Icon(
-                                        controller.obscureText.value ? Icons.visibility : Icons.visibility_off,
+                                        controller.obscureText.value ? Icons.visibility_off : Icons.visibility,
                                         color: Colors.grey, // Customize the icon color as needed
                                       ),
                                     ),
@@ -150,8 +150,7 @@ class LoginView extends GetView<LoginController> {
                                   visible: controller.isLoading.value == false,
                                   replacement: const Center(
                                       child: CircularProgressIndicator(
-
-                                      )),
+                                      ),),
                                   child: const Center(
                                     child: Text(
                                       "Login",

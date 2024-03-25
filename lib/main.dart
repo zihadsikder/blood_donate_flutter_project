@@ -11,7 +11,7 @@ import 'app/routes/app_pages.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  unawaited(MobileAds.instance.initialize());
+  MobileAds.instance.initialize();
 
   runApp(
     GetMaterialApp(

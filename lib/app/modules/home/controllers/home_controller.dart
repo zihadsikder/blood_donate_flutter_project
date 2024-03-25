@@ -36,13 +36,9 @@ class HomeController extends GetxController {
 
   InterstitialAd? interstitialAd;
 
-  // TODO: Add _interstitialAd
- var _interstitialAd;
 
   // TODO: Implement _loadInterstitialAd()
   void loadInterstitialAd() {
-
-    print('-----------------------3453455454-------------------');
 
     InterstitialAd.load(
       adUnitId: AdHelper.interstitialAdUnitId,
@@ -56,12 +52,12 @@ class HomeController extends GetxController {
           );
 
 
-            _interstitialAd = ad.obs;
+            interstitialAd = ad;
         },
         onAdFailedToLoad: (err) {
 
           print('Failed to load an interstitial ad: ${err.message}');
-          Get.to(()=> SearchScreenView());
+
         },
       ),
     );
@@ -130,7 +126,7 @@ class HomeController extends GetxController {
     getDivision();
     loadInterstitialAd();
     connectivityController;
-    //loadInterstitialAd();
+    loadInterstitialAd();
   }
 
   Future<void> getDivision() async {
