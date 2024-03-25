@@ -8,11 +8,13 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
-
   @override
   Widget build(BuildContext context) {
-
     Color color = Theme.of(context).primaryColor;
+
+    // TODO: lifecycle method should automatically call
+    controller.onInit();
+
     print(color);
 
     return Scaffold(
@@ -27,19 +29,25 @@ class HomeView extends GetView<HomeController> {
                   children: [
                     const Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: BannerCarousel(
-                          imageUrls: [
-                            'assets/rltn.png',
-                            'assets/donation.png',
-                            'assets/2.png',
-                            'assets/3.png',
-                            'assets/5.png',
-                          ]
-                      ),
+                      child: BannerCarousel(imageUrls: [
+                        'assets/rltn.png',
+                        'assets/donation.png',
+                        'assets/2.png',
+                        'assets/3.png',
+                        'assets/5.png',
+                      ]),
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
                         onPressed: () {
+                          print("xxxL 3453455454");
+
+                          // Display an Interstitial Ad
+                          if (controller.interstitialAd != null) {
+                            controller.interstitialAd!.show();
+                          } else {
+                            Get.to(() => SearchScreenView());
+                          }
                           Get.to(()=> SearchScreenView());
                          //controller.loadInterstitialAd;
                         },
@@ -57,9 +65,7 @@ class HomeView extends GetView<HomeController> {
                             Text(
                               'FIND DONOR',
                               style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                                  fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
                             ),
                           ],
                         )),
@@ -73,5 +79,4 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-
 }

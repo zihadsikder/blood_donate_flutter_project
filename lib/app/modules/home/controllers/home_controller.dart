@@ -34,37 +34,38 @@ class HomeController extends GetxController {
   final unionList = <AreaModel>[].obs;
   final selectedUnion = ''.obs;
 
+  InterstitialAd? interstitialAd;
 
- //  // TODO: Add _interstitialAd
- // var _interstitialAd;
- //
- //  // TODO: Implement _loadInterstitialAd()
- //  void loadInterstitialAd() {
- //
- //    print('-----------------------3453455454-------------------');
- //
- //    InterstitialAd.load(
- //      adUnitId: AdHelper.interstitialAdUnitId,
- //      request: AdRequest(),
- //      adLoadCallback: InterstitialAdLoadCallback(
- //        onAdLoaded: (ad) {
- //          ad.fullScreenContentCallback = FullScreenContentCallback(
- //            onAdDismissedFullScreenContent: (ad) {
- //              Get.to(()=> SearchScreenView());
- //            },
- //          );
- //
- //
- //            _interstitialAd = ad.obs;
- //        },
- //        onAdFailedToLoad: (err) {
- //
- //          print('Failed to load an interstitial ad: ${err.message}');
- //          Get.to(()=> SearchScreenView());
- //        },
- //      ),
- //    );
- //  }
+  // TODO: Add _interstitialAd
+ var _interstitialAd;
+
+  // TODO: Implement _loadInterstitialAd()
+  void loadInterstitialAd() {
+
+    print('-----------------------3453455454-------------------');
+
+    InterstitialAd.load(
+      adUnitId: AdHelper.interstitialAdUnitId,
+      request: AdRequest(),
+      adLoadCallback: InterstitialAdLoadCallback(
+        onAdLoaded: (ad) {
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) {
+              Get.to(()=> SearchScreenView());
+            },
+          );
+
+
+            _interstitialAd = ad.obs;
+        },
+        onAdFailedToLoad: (err) {
+
+          print('Failed to load an interstitial ad: ${err.message}');
+          Get.to(()=> SearchScreenView());
+        },
+      ),
+    );
+  }
 
   void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
@@ -124,8 +125,10 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    getDivision();
     super.onInit();
+    print('onInit');
+    getDivision();
+    loadInterstitialAd();
     connectivityController;
     //loadInterstitialAd();
   }
@@ -139,8 +142,7 @@ class HomeController extends GetxController {
 
   Future<void> getDistrict({required String id}) async {
     isLoading.value = true;
-    final NetworkResponse response =
-        await LocationRepository.getDistrict(id: id);
+    final NetworkResponse response = await LocationRepository.getDistrict(id: id);
     districtList.value = areaFromJson(response.jsonResponse!).data ?? [];
     isLoading.value = false;
   }
@@ -159,18 +161,17 @@ class HomeController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<bool> searchDonor(String bloodGroup, String division, String district,
-      String upzila, String postOffice) async {
+  Future<bool> searchDonor(
+      String bloodGroup, String division, String district, String upzila, String postOffice) async {
     if (formKey.currentState!.validate()) {
       isLoading.value = true;
 
-      final response =
-          await ApiClient().getRequest("${ApiEndPoints.getSearchDonor}"
-              "blood_group=$bloodGroup"
-              "&division_id=$division"
-              "&district_id=$district"
-              "&area_id=$upzila"
-              "&post_office=$postOffice");
+      final response = await ApiClient().getRequest("${ApiEndPoints.getSearchDonor}"
+          "blood_group=$bloodGroup"
+          "&division_id=$division"
+          "&district_id=$district"
+          "&area_id=$upzila"
+          "&post_office=$postOffice");
 
       isLoading.value = false;
 

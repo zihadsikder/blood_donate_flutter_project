@@ -4,6 +4,10 @@ class AppThemeData {
   static ThemeData lightThemeData = ThemeData(
     primaryColor: Colors.red.shade900,
     primarySwatch: Colors.red,
+    useMaterial3: false,
+    // colorScheme: ColorScheme.fromSwatch(
+    //       primarySwatch: Colors.red
+    //     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: Colors.red.shade900,
