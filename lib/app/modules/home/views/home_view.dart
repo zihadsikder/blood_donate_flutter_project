@@ -1,7 +1,6 @@
 import 'package:blood_donate_flutter_project/app/modules/home/views/search_view.dart';
 import 'package:blood_donate_flutter_project/app/modules/home/views/widgets/banner_carousel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import '../../../core/widgets/profile_summary_card.dart';
 import '../controllers/home_controller.dart';
@@ -41,8 +40,8 @@ class HomeView extends GetView<HomeController> {
                     const SizedBox(height: 12),
                     ElevatedButton(
                         onPressed: () {
-                          print("xxxL 3453455454");
-                         controller.loadInterstitialAd;
+                          Get.to(()=> SearchScreenView());
+                         //controller.loadInterstitialAd;
                         },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,

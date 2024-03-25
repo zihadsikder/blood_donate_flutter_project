@@ -1,9 +1,9 @@
-import 'package:blood_donate_flutter_project/app/modules/auth/forgot_password/views/pin_verification_view.dart';
-import 'package:blood_donate_flutter_project/app/modules/auth/forgot_password/views/reset_password_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../routes/app_pages.dart';
+import '../views/pin_verification_view.dart';
+import '../views/reset_password_view.dart';
 
 class ForgotPasswordController extends GetxController {
   final forgotPassFormKey = GlobalKey<FormState>();

@@ -1,9 +1,10 @@
-import 'package:blood_donate_flutter_project/app/routes/app_pages.dart';
-import 'package:blood_donate_flutter_project/app/services/api_client.dart';
-import 'package:blood_donate_flutter_project/app/services/api_end_points.dart';
-import 'package:blood_donate_flutter_project/app/services/auth_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../../routes/app_pages.dart';
+import '../../../../services/api_client.dart';
+import '../../../../services/api_end_points.dart';
+import '../../../../services/auth_cache.dart';
 
 class AccountsController extends GetxController {
 

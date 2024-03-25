@@ -1,6 +1,7 @@
-import 'package:blood_donate_flutter_project/app/modules/setting/views/widget/privacy_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../widget/privacy_text.dart';
 
 class PrivacyScreen extends StatefulWidget {
   const PrivacyScreen({super.key});

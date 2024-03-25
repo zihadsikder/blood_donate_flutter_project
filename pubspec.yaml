@@ -1,5 +1,5 @@
 name: blood_donate_flutter_project
-version: 1.0.0+1
+version: 1.0.0+2
 publish_to: none
 description: A new Flutter project.
 environment: 
@@ -19,6 +19,7 @@ dependencies:
   intl: ^0.19.0
   connectivity_plus: ^5.0.2
   google_mobile_ads: ^4.0.0
+  change_app_package_name: ^1.1.0
 
 
 dev_dependencies: 

@@ -1,5 +1,6 @@
-import 'package:blood_donate_flutter_project/app/data/models/area_res.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../data/models/area_res.dart';
 
 class AreaDropDown extends StatelessWidget {
    AreaDropDown({

@@ -1,10 +1,11 @@
-import 'package:blood_donate_flutter_project/app/core/constants/app_assets.dart';
-import 'package:blood_donate_flutter_project/app/modules/auth/login/controllers/login_controller.dart';
-import 'package:blood_donate_flutter_project/app/routes/app_pages.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/constants/app_assets.dart';
 import '../../../../core/widgets/password_text_field.dart';
+import '../../../../routes/app_pages.dart';
+import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({super.key});

@@ -35,36 +35,36 @@ class HomeController extends GetxController {
   final selectedUnion = ''.obs;
 
 
-  // TODO: Add _interstitialAd
- var _interstitialAd;
-
-  // TODO: Implement _loadInterstitialAd()
-  void loadInterstitialAd() {
-
-    print('-----------------------3453455454-------------------');
-
-    InterstitialAd.load(
-      adUnitId: AdHelper.interstitialAdUnitId,
-      request: AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              Get.to(()=> SearchScreenView());
-            },
-          );
-
-
-            _interstitialAd = ad.obs;
-        },
-        onAdFailedToLoad: (err) {
-
-          print('Failed to load an interstitial ad: ${err.message}');
-          Get.to(()=> SearchScreenView());
-        },
-      ),
-    );
-  }
+ //  // TODO: Add _interstitialAd
+ // var _interstitialAd;
+ //
+ //  // TODO: Implement _loadInterstitialAd()
+ //  void loadInterstitialAd() {
+ //
+ //    print('-----------------------3453455454-------------------');
+ //
+ //    InterstitialAd.load(
+ //      adUnitId: AdHelper.interstitialAdUnitId,
+ //      request: AdRequest(),
+ //      adLoadCallback: InterstitialAdLoadCallback(
+ //        onAdLoaded: (ad) {
+ //          ad.fullScreenContentCallback = FullScreenContentCallback(
+ //            onAdDismissedFullScreenContent: (ad) {
+ //              Get.to(()=> SearchScreenView());
+ //            },
+ //          );
+ //
+ //
+ //            _interstitialAd = ad.obs;
+ //        },
+ //        onAdFailedToLoad: (err) {
+ //
+ //          print('Failed to load an interstitial ad: ${err.message}');
+ //          Get.to(()=> SearchScreenView());
+ //        },
+ //      ),
+ //    );
+ //  }
 
   void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
@@ -127,7 +127,7 @@ class HomeController extends GetxController {
     getDivision();
     super.onInit();
     connectivityController;
-    loadInterstitialAd();
+    //loadInterstitialAd();
   }
 
   Future<void> getDivision() async {

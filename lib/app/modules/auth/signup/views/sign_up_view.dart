@@ -1,4 +1,3 @@
-import 'package:blood_donate_flutter_project/app/modules/auth/signup/controllers/signup_controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -8,6 +7,7 @@ import '../../../../data/models/request/registration_req.dart';
 import '../../login/views/widgets/area_dropdown.dart';
 import '../../login/views/widgets/location_form.dart';
 import '../../../../core/widgets/password_text_field.dart';
+import '../controllers/signup_controller.dart';
 
 class SignUpView extends GetView<SignupController> {
   const SignUpView({super.key});

@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'package:blood_donate_flutter_project/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +7,7 @@ import '../../../../data/models/network_response.dart';
 import '../../../../data/models/request/registration_req.dart';
 import '../../../../data/repositories/auth_repository.dart';
 import '../../../../data/repositories/location_repository.dart';
+import '../../../../routes/app_pages.dart';
 
 class SignupController extends GetxController {
   final isLoading = false.obs;

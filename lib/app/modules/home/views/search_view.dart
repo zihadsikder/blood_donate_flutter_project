@@ -1,4 +1,3 @@
-import 'package:blood_donate_flutter_project/app/modules/home/controllers/home_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,6 +8,7 @@ import 'package:intl/intl.dart';
 import '../../auth/login/views/widgets/area_dropdown.dart';
 import '../../auth/login/views/widgets/location_form.dart';
 
+import '../controllers/home_controller.dart';
 import 'widgets/donor_card_.dart';
 
 class SearchScreenView extends StatelessWidget {

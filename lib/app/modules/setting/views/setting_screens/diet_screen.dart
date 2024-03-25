@@ -1,6 +1,6 @@
-import 'package:blood_donate_flutter_project/app/core/constants/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../core/constants/app_assets.dart';
 import '../widget/image_assets.dart';
 
 class DietChart extends StatelessWidget {

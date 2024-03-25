@@ -1,8 +1,7 @@
-import 'package:blood_donate_flutter_project/app/modules/bottom_nav/controllers/bottom_nav_controller.dart';
-import 'package:blood_donate_flutter_project/app/modules/setting/views/setting_screens/donation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/widgets/profile_summary_card.dart';
+import '../../bottom_nav/controllers/bottom_nav_controller.dart';
 import '../controllers/setting_controller.dart';
 import 'setting_screens/diet_screen.dart';
 import 'setting_screens/exercises_screen.dart';
@@ -85,23 +84,23 @@ class SettingView extends GetView<SettingController> {
             ),
           ),
         ),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-          child: SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                showDialog(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (context) =>
-                    const DonationScreen());
-              },
-              child: const Text('ডোনেশন করুন'),
-            ),
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        // floatingActionButton: Padding(
+        //   padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+        //   child: SizedBox(
+        //     width: double.infinity,
+        //     child: ElevatedButton(
+        //       onPressed: () {
+        //         showDialog(
+        //             barrierDismissible: false,
+        //             context: context,
+        //             builder: (context) =>
+        //             const DonationScreen());
+        //       },
+        //       child: const Text('ডোনেশন করুন'),
+        //     ),
+        //   ),
+        // ),
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       ),
     );
   }

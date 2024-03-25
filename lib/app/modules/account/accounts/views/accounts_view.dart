@@ -1,15 +1,16 @@
-import 'package:blood_donate_flutter_project/app/modules/account/donation_history/views/donation_history_view.dart';
-import 'package:blood_donate_flutter_project/app/modules/account/update_accounts/views/update_accounts_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/widgets/profile_summary_card.dart';
+import '../../../../services/auth_cache.dart';
 import '../../../bottom_nav/controllers/bottom_nav_controller.dart';
+import '../../donation_history/views/donation_history_view.dart';
+import '../../donation_history/views/widget/donation_history.dart';
+import '../../update_accounts/views/update_accounts_view.dart';
 import '../controllers/accounts_controller.dart';
 import 'widget/activated_profile.dart';
 import 'widget/logoutEleButton.dart';
-import 'package:blood_donate_flutter_project/app/services/auth_cache.dart';
-import 'package:blood_donate_flutter_project/app/modules/account/donation_history/views/widget/donation_history.dart';
 
 class AccountsView extends GetView<AccountsController> {
   AccountsView({super.key});

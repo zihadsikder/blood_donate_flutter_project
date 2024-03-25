@@ -1,6 +1,5 @@
-import 'package:blood_donate_flutter_project/app/services/api_client.dart';
-import 'package:blood_donate_flutter_project/app/services/api_end_points.dart';
-
+import '../../services/api_client.dart';
+import '../../services/api_end_points.dart';
 import '../models/network_response.dart';
 
 class LocationRepository {

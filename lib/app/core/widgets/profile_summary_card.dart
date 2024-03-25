@@ -1,7 +1,8 @@
-import 'package:blood_donate_flutter_project/app/modules/home/views/search_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+
+import '../../modules/home/views/search_view.dart';
 
 class ProfileSummaryCard extends StatelessWidget {
   const ProfileSummaryCard({
