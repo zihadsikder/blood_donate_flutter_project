@@ -23,10 +23,8 @@ class SplashView extends GetView<SplashController> {
             const Text('তাইতো করবো রক্তদান'),
             const Spacer(),
             const CircularProgressIndicator(),
-            const SizedBox(
-              height: 8.0,
-            ),
-            const Text('Version 1.0'),
+            const SizedBox(height: 8.0),
+            const Text('Version 1.0.1'),
             const SizedBox(height: 8.0),
           ],
         ),

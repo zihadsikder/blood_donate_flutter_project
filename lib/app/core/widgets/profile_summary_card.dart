@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../modules/home/controllers/home_controller.dart';
 import '../../modules/home/views/search_view.dart';
 
 class ProfileSummaryCard extends StatelessWidget {
-  const ProfileSummaryCard({
+   ProfileSummaryCard({
     super.key,
     this.enableOnTap = true,
   });
+
+  final controller = Get.put(HomeController());
 
   final bool enableOnTap;
 
@@ -17,6 +20,8 @@ class ProfileSummaryCard extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
         statusBarColor: Colors.red.shade800,
         statusBarIconBrightness: Brightness.light));
+    controller.onInit();
+
     return ListTile(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0),
@@ -34,9 +39,15 @@ class ProfileSummaryCard extends StatelessWidget {
         style: TextStyle(color: Colors.white, fontSize: 10),
       ),
       trailing: IconButton(
-        onPressed: () async {
-         Get.to(()=> SearchScreenView());
+        onPressed: () {
+          // Display an Interstitial Ad
+          if (controller.interstitialAd != null) {
+            controller.interstitialAd!.show();
+          } else {
+            Get.to(() => SearchScreenView());
+          }
 
+          controller.loadInterstitialAd;
         },
         icon: const Icon(Icons.search_outlined, color: Colors.white),
       ),

@@ -41,7 +41,7 @@ class PinVerificationView extends StatelessWidget {
                   height: 8,
                 ),
                 const Text(
-                  'A 6 digit OTP will be sent to your mobile number',
+                  'A 4 digit OTP will be sent to your mobile number',
                   style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
@@ -51,7 +51,7 @@ class PinVerificationView extends StatelessWidget {
                   key: controller.otpFormKey,
                   child: PinCodeTextField(
                     controller: controller.otpTextEditController,
-                    length: 6,
+                    length: 4 ,
                     obscureText: false,
                     animationType: AnimationType.fade,
                     pinTheme: PinTheme(

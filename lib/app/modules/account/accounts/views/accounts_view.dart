@@ -31,7 +31,7 @@ class AccountsView extends GetView<AccountsController> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                const ProfileSummaryCard(),
+                ProfileSummaryCard(),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Obx(
@@ -233,7 +233,7 @@ class AccountsView extends GetView<AccountsController> {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.red.shade50,
+          backgroundColor: Colors.red.shade700,
           onPressed: () {
             Get.to(() => const DonationHistoryView());
           },

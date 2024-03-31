@@ -23,7 +23,7 @@ class SettingView extends GetView<SettingController> {
           child: SafeArea(
             child: Column(
               children: [
-                const ProfileSummaryCard(),
+                ProfileSummaryCard(),
                 ListTile(
                   shape: const RoundedRectangleBorder(
                     side: BorderSide.none,

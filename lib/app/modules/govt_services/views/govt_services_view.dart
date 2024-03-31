@@ -65,7 +65,7 @@ class GovtServicesView extends GetView<GovtServicesController> {
         child: Scaffold(
           body: Column(
             children: [
-              const ProfileSummaryCard(),
+              ProfileSummaryCard(),
               const SizedBox(height: 16),
               Expanded(
                 child: GridView.builder(

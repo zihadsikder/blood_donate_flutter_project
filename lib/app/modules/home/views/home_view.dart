@@ -10,8 +10,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Color color = Theme.of(context).primaryColor;
-
+    final controller = Get.put(HomeController());
     // TODO: lifecycle method should automatically call
     controller.onInit();
 
@@ -20,7 +19,7 @@ class HomeView extends GetView<HomeController> {
         child: SafeArea(
           child: Column(
             children: [
-              const ProfileSummaryCard(),
+              ProfileSummaryCard(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
