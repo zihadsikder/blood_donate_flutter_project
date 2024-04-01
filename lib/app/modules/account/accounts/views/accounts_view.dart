@@ -157,7 +157,7 @@ class AccountsView extends GetView<AccountsController> {
                               Text('Mobile'),
                             ],
                           ),
-                          subtitle: Text('+88 0${userModel!.mobile.toString()}'),
+                          subtitle: Text('+88 0${userModel?.mobile.toString()}'),
                         ),
                         Container(height: 2, color: Colors.grey.shade100),
                         ListTile(

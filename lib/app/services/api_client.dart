@@ -26,10 +26,23 @@ class ApiClient {
           statusCode: 200,
         );
       } else {
+        final  responseBodyJson = jsonDecode(response.body);
+
+        print('!!!! ${responseBodyJson}');
+        print('!!!! ${responseBodyJson.runtimeType}');
+        print('!!!! ${responseBodyJson['message']}');
+
+
+    Get.snackbar('Error', responseBodyJson['message'] ?? 'Try Again Later');
+
+
+
+
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
           jsonResponse: jsonDecode(response.body),
+          message: responseBodyJson['message'] ?? 'Something went wrong',
         );
       }
     } catch (e) {

@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import '../../../../core/widgets/dob_text_field.dart';
 import '../../../../data/models/request/registration_req.dart';
 import '../../login/views/widgets/area_dropdown.dart';
@@ -11,7 +10,6 @@ import '../controllers/signup_controller.dart';
 
 class SignUpView extends GetView<SignupController> {
   const SignUpView({super.key});
-
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
@@ -48,7 +46,7 @@ class SignUpView extends GetView<SignupController> {
                           Text(
                             "Donate Blood, Save A Life",
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 24,
                               color: Colors.red.shade900,
                               fontWeight: FontWeight.bold,
                             ),
@@ -56,7 +54,7 @@ class SignUpView extends GetView<SignupController> {
                           Text(
                             "Provide Your Information",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 18,
                               color: Colors.grey[500],
                               fontWeight: FontWeight.bold,
                             ),
@@ -170,13 +168,14 @@ class SignUpView extends GetView<SignupController> {
                       keyboardType: TextInputType.phone,
                       validator: (String? value) {
                         bool isValidPhoneNumber =
-                            RegExp(r"^0[0-9]{10}$").hasMatch(value!);
+                        RegExp(r"^0[0-9]{10}$").hasMatch(value!);
                         if (!isValidPhoneNumber) {
                           return 'Enter a valid 11-digit mobile number starting with 0';
                         }
                         return null;
                       },
                     ),
+
                     const SizedBox(height: 4.0),
                     DobTextField(
                         dbirthController: controller.dobController,

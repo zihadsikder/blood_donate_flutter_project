@@ -46,12 +46,9 @@ class LoginController extends GetxController {
         loginRes.data?.accessToken ?? '',
         loginRes,
       );
-      isLoading.value = true;
+
       Get.toNamed(Routes.BOTTOM_NAV);
 
-    } else {
-      Get.snackbar('Error', 'Try Again Later');
-      isLoading.value = false;
     }
   }
   }
