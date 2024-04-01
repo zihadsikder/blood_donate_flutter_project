@@ -12,11 +12,14 @@ import '../../../../routes/app_pages.dart';
 class SignupController extends GetxController {
   final isLoading = false.obs;
 
+  final showOtpVerificationField = true.obs; // Add the showOtpVerificationField variable
+
   final formKey = GlobalKey<FormState>();
   final TextEditingController usernameTEController = TextEditingController();
   final TextEditingController emailTEController = TextEditingController();
   final TextEditingController mobileNumberTEController =
       TextEditingController();
+  final TextEditingController otpTextEditController = TextEditingController();
   final TextEditingController dobController = TextEditingController();
   final TextEditingController passwordTEController = TextEditingController();
   final TextEditingController weightTEController = TextEditingController();
@@ -94,6 +97,23 @@ class SignupController extends GetxController {
     }
   }
 
+  // Add OTP verification logic here
+  void toggleOtpVerificationField(bool value) {
+    showOtpVerificationField.value = value;
+  }
+
+
+  //Future<bool> validateOTP() async {
+    // Implement your OTP validation logic here
+    // Return true if OTP is valid, false otherwise
+    // For example:
+    // if (otpTextEditController.text == '1234') {
+    //   return true;
+    // } else {
+    //   return false;
+    // }
+  //}
+
   Future<void> registration(RegistrationReq params) async {
     if (formKey.currentState!.validate()) {
       NetworkResponse response = await AuthRepository.registration(params);
@@ -105,7 +125,7 @@ class SignupController extends GetxController {
         Get.snackbar('Welcome To', 'Largest Blood Donor Family');
       } else {
         isLoading.value = false;
-        Get.snackbar('Error', 'Account Creation Fail!');
+        Get.snackbar('Error', response.message ?? 'Account Creation Fail!');
       }
     }
   }
