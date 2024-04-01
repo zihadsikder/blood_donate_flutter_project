@@ -27,16 +27,7 @@ class ApiClient {
         );
       } else {
         final  responseBodyJson = jsonDecode(response.body);
-
-        print('!!!! ${responseBodyJson}');
-        print('!!!! ${responseBodyJson.runtimeType}');
-        print('!!!! ${responseBodyJson['message']}');
-
-
-    Get.snackbar('Error', responseBodyJson['message'] ?? 'Try Again Later');
-
-
-
+        Get.snackbar('Message', responseBodyJson['message'] ?? 'Try Again Later');
 
         return NetworkResponse(
           isSuccess: false,

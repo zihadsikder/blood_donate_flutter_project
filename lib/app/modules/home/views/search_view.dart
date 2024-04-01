@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -117,17 +116,20 @@ class SearchScreenView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final donor = controller.searchUser.value.data?[index];
                         if (donor != null) {
-                          String formattedLastDonation = donor.lastDonation != null
-                              ? DateFormat('dd-MM-yyyy').format(donor.lastDonation!.toLocal())
-                              : "N/A";
+                          String formattedLastDonation =
+                              donor.lastDonation != null
+                                  ? DateFormat('dd-MM-yyyy')
+                                      .format(donor.lastDonation!.toLocal())
+                                  : "N/A";
                           return DonorCard(
                             name: donor.name ?? '',
                             bloodGroup: donor.bloodGroup ?? '',
                             lastDonation: formattedLastDonation,
-                            totalDonations: donor.totalDonation?.toString() ?? '',
+                            totalDonations:
+                                donor.totalDonation?.toString() ?? '',
                             mobile: donor.mobile?.toString() ?? '',
                             address: donor.address?.postOffice ?? '',
-                            isEligibleToDonate: true,
+                            isEligibleToDonate: false,
                           );
                         } else {
                           return const SizedBox(); // Return empty SizedBox if donor is null

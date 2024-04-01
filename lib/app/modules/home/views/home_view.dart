@@ -60,7 +60,43 @@ class HomeView extends GetView<HomeController> {
                             Text(
                               'FIND DONOR',
                               style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ],
+                        )),
+                    ElevatedButton(
+                        // onPressed: () {
+                        //   // Display an Interstitial Ad
+                        //   if (controller.interstitialAd != null) {
+                        //     controller.interstitialAd!.show();
+                        //   } else {
+                        //     Get.to(() => SearchScreenView());
+                        //   }
+                        //   //Get.to(()=> SearchScreenView());
+                        //   controller.loadInterstitialAd;
+                        // },
+                        onPressed: () {
+                          Get.to(() => SearchScreenView());
+                        },
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.search,
+                              size: 32,
+                              color: Colors.white,
+                            ),
+                            SizedBox(
+                              width: 16,
+                            ),
+                            Text(
+                              'FIND DONOR',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                             ),
                           ],
                         )),

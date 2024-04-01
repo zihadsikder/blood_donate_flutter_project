@@ -42,7 +42,7 @@ class HomeController extends GetxController {
 
     InterstitialAd.load(
       adUnitId: AdHelper.interstitialAdUnitId,
-      request: AdRequest(),
+      request: const AdRequest(),
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
@@ -55,8 +55,6 @@ class HomeController extends GetxController {
             interstitialAd = ad;
         },
         onAdFailedToLoad: (err) {
-
-          print('Failed to load an interstitial ad: ${err.message}');
 
         },
       ),
@@ -122,7 +120,6 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    print('onInit');
     getDivision();
     loadInterstitialAd();
     connectivityController;

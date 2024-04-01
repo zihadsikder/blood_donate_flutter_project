@@ -217,8 +217,8 @@ class AccountsView extends GetView<AccountsController> {
                         ActivatedProfile(
                           testValue: Text(
                             controller.isProfileActive.value
-                                ? 'Deactivate Your Account!'
-                                : 'Activate Your Account!',
+                                ? 'Activate Your Account!'
+                                : 'Deactivate Your Account!',
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 16),
                           ),
