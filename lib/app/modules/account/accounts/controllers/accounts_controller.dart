@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,7 +8,6 @@ import '../../../../services/api_end_points.dart';
 import '../../../../services/auth_cache.dart';
 
 class AccountsController extends GetxController {
-
   final TextEditingController placeTEController = TextEditingController();
   final TextEditingController dateTEController = TextEditingController();
   final TextEditingController usernameTEController = TextEditingController();
@@ -37,8 +37,23 @@ class AccountsController extends GetxController {
     }
   }
 
-  Future<bool> logout() async {
+  void logout() async {
     inProgress.value = true;
+
+    Get.back(closeOverlays: true);
+
+    // show overlay loader
+    Get.dialog(
+      const SizedBox(
+        height: 16,
+        width: 16,
+        child: Center(child: CircularProgressIndicator()),
+      ),
+      barrierDismissible: false,
+    );
+
+
+
     final response =
         await ApiClient().postRequest(ApiEndPoints.logout, body: {});
     inProgress.value = false;
@@ -47,10 +62,9 @@ class AccountsController extends GetxController {
       Get.snackbar('Success', 'Successfully Logout');
       authCache.clearAuthData();
       Get.offAllNamed(Routes.LOGIN);
-      return true;
+
     } else {
       Get.snackbar('Error', 'Something wrong');
     }
-    return false;
   }
 }

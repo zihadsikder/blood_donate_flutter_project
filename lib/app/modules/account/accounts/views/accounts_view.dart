@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -23,7 +22,7 @@ class AccountsView extends GetView<AccountsController> {
   Widget build(BuildContext context) {
     return PopScope(
       canPop: false,
-      onPopInvoked: (value){
+      onPopInvoked: (value) {
         Get.find<BottomNavController>().backToHome();
       },
       child: Scaffold(
@@ -53,15 +52,17 @@ class AccountsView extends GetView<AccountsController> {
                                 ),
                                 leading: const CircleAvatar(
                                   backgroundColor: Colors.white,
-                                  backgroundImage: AssetImage('assets/blood.png'),
+                                  backgroundImage:
+                                      AssetImage('assets/blood.png'),
                                 ),
                                 title: Row(
                                   children: [
                                     Text(userModel?.name ?? 'Name'),
                                   ],
                                 ),
-                                subtitle: Text(
-                                    controller.isProfileActive.value ? 'Active' : 'Inactive'),
+                                subtitle: Text(controller.isProfileActive.value
+                                    ? 'Active'
+                                    : 'Inactive'),
                                 trailing: GestureDetector(
                                     onTap: () {
                                       showDialog(
@@ -76,7 +77,8 @@ class AccountsView extends GetView<AccountsController> {
                                     )),
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -109,7 +111,8 @@ class AccountsView extends GetView<AccountsController> {
                                           height: 5,
                                         ),
                                         Text(
-                                          userModel?.bloodGroup ?? 'Blood Group',
+                                          userModel?.bloodGroup ??
+                                              'Blood Group',
                                         ),
                                         const Text('Blood Group'),
                                       ],
@@ -128,9 +131,9 @@ class AccountsView extends GetView<AccountsController> {
                                         ),
                                         Text(
                                           DateFormat('dd/MM/yyyy').format(
-                                              DateTime.parse(
-                                                  userModel?.lastDonation ??
-                                                      DateTime.now().toString())),
+                                              DateTime.parse(userModel
+                                                      ?.lastDonation ??
+                                                  DateTime.now().toString())),
                                         ),
                                         const Text('Last Donation'),
                                       ],
@@ -144,7 +147,8 @@ class AccountsView extends GetView<AccountsController> {
                         const SizedBox(height: 8.0),
                         ListTile(
                           shape: RoundedRectangleBorder(
-                            side: const BorderSide(width: 2, color: Colors.white),
+                            side:
+                                const BorderSide(width: 2, color: Colors.white),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           leading: Icon(
@@ -157,12 +161,14 @@ class AccountsView extends GetView<AccountsController> {
                               Text('Mobile'),
                             ],
                           ),
-                          subtitle: Text('+88 0${userModel?.mobile.toString()}'),
+                          subtitle:
+                              Text('+88 0${userModel?.mobile.toString()}'),
                         ),
                         Container(height: 2, color: Colors.grey.shade100),
                         ListTile(
                           shape: RoundedRectangleBorder(
-                            side: const BorderSide(width: 2, color: Colors.white),
+                            side:
+                                const BorderSide(width: 2, color: Colors.white),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           leading: Icon(
@@ -182,7 +188,8 @@ class AccountsView extends GetView<AccountsController> {
                         Container(height: 2, color: Colors.grey.shade100),
                         ListTile(
                           shape: RoundedRectangleBorder(
-                            side: const BorderSide(width: 2, color: Colors.white),
+                            side:
+                                const BorderSide(width: 2, color: Colors.white),
                             borderRadius: BorderRadius.circular(5),
                           ),
                           leading: SizedBox(
@@ -209,15 +216,16 @@ class AccountsView extends GetView<AccountsController> {
                         const DonationHistory(),
                         ActivatedProfile(
                           testValue: Text(
-                          controller.isProfileActive.value ? 'Deactivate Your Account!':'Activate Your Account!',
-                            style:const TextStyle(
+                            controller.isProfileActive.value
+                                ? 'Deactivate Your Account!'
+                                : 'Activate Your Account!',
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 16),
                           ),
                           value: controller.isProfileActive.value,
                           onChanged: (isActive) async {
                             controller.isProfileActive.value = isActive;
                             await controller.toggleProfileActivation(isActive);
-
                           },
                         ),
                         const SizedBox(height: 16),

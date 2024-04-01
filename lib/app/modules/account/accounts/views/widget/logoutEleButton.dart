@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'alert_cancel_button.dart';
 
 class LogoutEleButton extends StatefulWidget {
- const LogoutEleButton({
-   super.key,
-   required this.onPress,
+  const LogoutEleButton({
+    super.key,
+    required this.onPress,
+  });
 
- });
-
- final VoidCallback onPress;
+  final VoidCallback onPress;
 
   @override
   State<LogoutEleButton> createState() => _LogoutEleButtonState();
