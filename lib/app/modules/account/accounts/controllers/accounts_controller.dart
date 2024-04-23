@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../data/models/network_response.dart';
+import '../../../../data/models/request/profile_data_res.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../../services/api_client.dart';
 import '../../../../services/api_end_points.dart';
@@ -21,6 +22,21 @@ class AccountsController extends GetxController {
   final inProgress = false.obs;
 
   final isProfileActive = true.obs;
+
+  ProfileData? profileInfo;
+
+  Future<bool> getProfileData() async {
+    inProgress.value = true;
+
+    final NetworkResponse response =
+    await ApiClient().getRequest(ApiEndPoints.getProfileData);
+    inProgress.value = false;
+    if (response.isSuccess) {
+      profileInfo = profileDataFromJson(response.jsonResponse!);
+      return true;
+    }
+    return false;
+  }
 
   Future<bool> toggleProfileActivation(bool isActive) async {
     inProgress.value = true;
@@ -52,19 +68,13 @@ class AccountsController extends GetxController {
       barrierDismissible: false,
     );
 
-
-
     final response =
         await ApiClient().postRequest(ApiEndPoints.logout, body: {});
     inProgress.value = false;
     if (response.isSuccess) {
       Get.back();
-      Get.snackbar('Success', 'Successfully Logout');
       authCache.clearAuthData();
       Get.offAllNamed(Routes.LOGIN);
-
-    } else {
-      Get.snackbar('Error', 'Something wrong');
     }
   }
 }

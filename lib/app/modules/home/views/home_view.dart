@@ -36,37 +36,6 @@ class HomeView extends GetView<HomeController> {
                     ),
                     const SizedBox(height: 12),
                     ElevatedButton(
-                        onPressed: () {
-                          // Display an Interstitial Ad
-                          if (controller.interstitialAd != null) {
-                            controller.interstitialAd!.show();
-                          } else {
-                            Get.to(() => SearchScreenView());
-                          }
-                          //Get.to(()=> SearchScreenView());
-                          controller.loadInterstitialAd;
-                        },
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.search,
-                              size: 32,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            Text(
-                              'FIND DONOR',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ],
-                        )),
-                    ElevatedButton(
                         // onPressed: () {
                         //   // Display an Interstitial Ad
                         //   if (controller.interstitialAd != null) {

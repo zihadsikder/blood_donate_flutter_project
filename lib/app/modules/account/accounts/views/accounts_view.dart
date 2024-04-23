@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/widgets/profile_summary_card.dart';
-import '../../../../services/auth_cache.dart';
 import '../../../bottom_nav/controllers/bottom_nav_controller.dart';
 import '../../donation_history/views/donation_history_view.dart';
 import '../../donation_history/views/widget/donation_history.dart';
@@ -12,11 +11,9 @@ import 'widget/activated_profile.dart';
 import 'widget/logoutEleButton.dart';
 
 class AccountsView extends GetView<AccountsController> {
-  AccountsView({super.key});
+  const AccountsView({super.key});
 
-  final AuthCache authCache = Get.find<AuthCache>();
 
-  final userModel = AuthCache.to.getUser()?.data;
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +54,7 @@ class AccountsView extends GetView<AccountsController> {
                                 ),
                                 title: Row(
                                   children: [
-                                    Text(userModel?.name ?? 'Name'),
+                                    Text(controller.profileInfo?.data?.name ?? 'Name'),
                                   ],
                                 ),
                                 subtitle: Text(controller.isProfileActive.value
@@ -91,10 +88,10 @@ class AccountsView extends GetView<AccountsController> {
                                         const SizedBox(
                                           height: 5,
                                         ),
-                                        // Text(
-                                        //   '${userModel?.donorHistoryList?.data?.length ?? 0}',
-                                        // ),
-                                        const Text('2'),
+                                        Text(
+                                          '${controller.profileInfo?.data?.lastDonation.length ?? 0}',
+                                        ),
+                                        //const Text('2'),
                                         const Text('Total Donation'),
                                       ],
                                     ),
@@ -111,7 +108,7 @@ class AccountsView extends GetView<AccountsController> {
                                           height: 5,
                                         ),
                                         Text(
-                                          userModel?.bloodGroup ??
+                                          controller.profileInfo?.data?.bloodGroup ??
                                               'Blood Group',
                                         ),
                                         const Text('Blood Group'),
@@ -131,7 +128,7 @@ class AccountsView extends GetView<AccountsController> {
                                         ),
                                         Text(
                                           DateFormat('dd/MM/yyyy').format(
-                                              DateTime.parse(userModel
+                                              DateTime.parse(controller.profileInfo?.data
                                                       ?.lastDonation ??
                                                   DateTime.now().toString())),
                                         ),
@@ -162,7 +159,7 @@ class AccountsView extends GetView<AccountsController> {
                             ],
                           ),
                           subtitle:
-                              Text('+88 0${userModel?.mobile.toString()}'),
+                              Text('+88 0${controller.profileInfo?.data?.mobile.toString()}'),
                         ),
                         Container(height: 2, color: Colors.grey.shade100),
                         ListTile(
@@ -182,7 +179,7 @@ class AccountsView extends GetView<AccountsController> {
                             ],
                           ),
                           subtitle: Text(
-                            userModel!.email ?? 'N/A',
+                            controller.profileInfo?.data?.email ?? 'N/A',
                           ),
                         ),
                         Container(height: 2, color: Colors.grey.shade100),
@@ -209,7 +206,7 @@ class AccountsView extends GetView<AccountsController> {
                               Text('Address'),
                             ],
                           ),
-                          subtitle: Text(userModel!.address!.postOffice ?? ''),
+                          subtitle: Text(controller.profileInfo?.data?.address!.postOffice ?? ''),
                         ),
                         Container(height: 1, color: Colors.grey.shade100),
                         const SizedBox(height: 5.0),

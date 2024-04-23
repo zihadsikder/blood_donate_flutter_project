@@ -22,9 +22,9 @@ class LocationRepository {
     return response;
   }
 
-  static Future<NetworkResponse> getUnion({required String name}) async {
-    final NetworkResponse response =
-        await ApiClient().getRequest(ApiEndPoints.getUnionData + name);
-    return response;
+//   static Future<NetworkResponse> getUnion({required String name}) async {
+//     final NetworkResponse response =
+//         await ApiClient().getRequest(ApiEndPoints.getUnionData + name);
+//     return response;
+//   }
   }
-}

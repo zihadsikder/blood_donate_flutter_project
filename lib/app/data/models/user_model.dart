@@ -31,7 +31,7 @@ class LoginRes {
 class Data {
   final String? id;
   final String? name;
-  final int? mobile;
+  final String? mobile;
   final String? email;
   final DateTime? dob;
   final String? occupation;

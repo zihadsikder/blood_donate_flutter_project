@@ -24,6 +24,7 @@ class ApiClient {
           isSuccess: true,
           jsonResponse: response.body,
           statusCode: 200,
+
         );
       } else {
         final  responseBodyJson = jsonDecode(response.body);
@@ -66,10 +67,14 @@ class ApiClient {
           jsonResponse: jsonDecode(response.body),
         );
       } else {
+        final  responseBodyJson = jsonDecode(response.body);
+        Get.snackbar('Message', responseBodyJson['message'] ?? 'Try Again Later');
+
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
           jsonResponse: response.body,
+          message: responseBodyJson['message'] ?? 'Something went wrong',
         );
       }
     } catch (e) {
@@ -94,10 +99,14 @@ class ApiClient {
           statusCode: 200,
         );
       } else {
+        final  responseBodyJson = jsonDecode(response.body);
+        Get.snackbar('Message', responseBodyJson['message'] ?? 'Try Again Later');
+
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
           jsonResponse: jsonDecode(response.body),
+          message: responseBodyJson['message'] ?? 'Something went wrong',
         );
       }
     } catch (e) {
@@ -122,17 +131,21 @@ class ApiClient {
           statusCode: 200,
         );
       } else if (response.statusCode == 401) {
-        //backToLogin();
+
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
           jsonResponse: jsonDecode(response.body),
         );
       } else {
+        final  responseBodyJson = jsonDecode(response.body);
+        Get.snackbar('Message', responseBodyJson['message'] ?? 'Try Again Later');
+
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
           jsonResponse: response.body,
+          message: responseBodyJson['message'] ?? 'Something went wrong',
         );
       }
     } catch (e) {

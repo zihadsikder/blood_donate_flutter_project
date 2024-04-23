@@ -13,6 +13,7 @@ class UpdateAccountsController extends GetxController {
   final TextEditingController dateTEController = TextEditingController();
   final TextEditingController emailTEController = TextEditingController();
   final TextEditingController mobileTEController = TextEditingController();
+  final TextEditingController postOfficeTEController = TextEditingController();
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -29,8 +30,8 @@ class UpdateAccountsController extends GetxController {
   final upzilaList = <AreaModel>[].obs;
   final selectedUpzila = ''.obs;
 
-  final unionList = <AreaModel>[].obs;
-  final selectedUnion = ''.obs;
+  // final unionList = <AreaModel>[].obs;
+  // final selectedUnion = ''.obs;
 
   void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
@@ -41,11 +42,11 @@ class UpdateAccountsController extends GetxController {
       // clear all the selected values and list
       selectedDistrict.value = '';
       selectedUpzila.value = '';
-      selectedUnion.value = '';
+      //selectedUnion.value = '';
 
       districtList.clear();
       upzilaList.clear();
-      unionList.clear();
+      //unionList.clear();
 
       getDistrict(id: val);
 
@@ -57,10 +58,10 @@ class UpdateAccountsController extends GetxController {
     if (val != null && val.isNotEmpty) {
       // clear all the selected values and list
       selectedUpzila.value = '';
-      selectedUnion.value = '';
+      //selectedUnion.value = '';
 
       upzilaList.clear();
-      unionList.clear();
+      //unionList.clear();
 
       getUpzila(id: val);
 
@@ -71,21 +72,21 @@ class UpdateAccountsController extends GetxController {
   onSelectedUpzila(String? val) {
     if (val != null && val.isNotEmpty) {
       // clear all the selected values and list
-      selectedUnion.value = '';
+      //selectedUnion.value = '';
 
-      unionList.clear();
+      //unionList.clear();
 
-      getUnion(name: val);
+      //getUnion(name: val);
 
       selectedUpzila.value = val;
     }
   }
 
-  onSelectedUnion(String? val) {
-    if (val != null && val.isNotEmpty) {
-      selectedUnion.value = val;
-    }
-  }
+  // onSelectedUnion(String? val) {
+  //   if (val != null && val.isNotEmpty) {
+  //     selectedUnion.value = val;
+  //   }
+  // }
 
   @override
   void onInit() {
@@ -114,13 +115,13 @@ class UpdateAccountsController extends GetxController {
     upzilaList.value = areaFromJson(response.jsonResponse!).data ?? [];
     inProgress.value = false;
   }
-
-  Future<void> getUnion({required String name}) async {
-    inProgress.value = true;
-    NetworkResponse response = await LocationRepository.getUnion(name: name);
-    unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
-    inProgress.value = false;
-  }
+  //
+  // Future<void> getUnion({required String name}) async {
+  //   inProgress.value = true;
+  //   NetworkResponse response = await LocationRepository.getUnion(name: name);
+  //   unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
+  //   inProgress.value = false;
+  // }
 
   Future<void> updateProfile(UpdateReq params) async {
     if (formKey.currentState!.validate()) {
@@ -130,7 +131,6 @@ class UpdateAccountsController extends GetxController {
         inProgress.value = true;
       } else {
         inProgress.value = false;
-        Get.snackbar('Error', 'Profile Update Fail!');
       }
     }
   }

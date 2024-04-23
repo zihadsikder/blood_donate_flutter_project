@@ -99,12 +99,25 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
               },
               items: controller.upzilaList,
             ),
-            AreaDropDown(
-              label: 'select union',
-              onChanged: (String? val) {
-                controller.onSelectedUnion(val);
+            // AreaDropDown(
+            //   label: 'select union',
+            //   onChanged: (String? val) {
+            //     controller.onSelectedUnion(val);
+            //   },
+            //   items: controller.unionList,
+            // ),
+            const SizedBox(height: 8.0),
+            TextFormField(
+              controller: controller.postOfficeTEController,
+              decoration: const InputDecoration(
+                labelText: 'Post Office',
+              ),
+              validator: (String? value) {
+                if (value?.trim().isEmpty ?? true) {
+                  return 'Enter your post office';
+                }
+                return null;
               },
-              items: controller.unionList,
             ),
             const SizedBox(height: 8.0),
           ],
@@ -133,7 +146,7 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
                       divisionId: controller.selectedDivision.value,
                       districtId: controller.selectedDistrict.value,
                       areaId: controller.selectedUpzila.value,
-                      postOffice: controller.selectedUnion.value,
+                      postOffice: controller.postOfficeTEController.text,
                     ),
                   );
                   await controller.updateProfile(updateProfileParams);

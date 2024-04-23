@@ -71,13 +71,13 @@ class SearchScreenView extends StatelessWidget {
                     },
                     items: controller.upzilaList,
                   ),
-                  AreaDropDown(
-                    label: 'select union',
-                    onChanged: (String? val) {
-                      controller.onSelectedUnion(val);
-                    },
-                    items: controller.unionList,
-                  ),
+                  // AreaDropDown(
+                  //   label: 'select union',
+                  //   onChanged: (String? val) {
+                  //     controller.onSelectedUnion(val);
+                  //   },
+                  //   items: controller.unionList,
+                  // ),
                   const SizedBox(height: 16.0),
                   SizedBox(
                     width: double.infinity,
@@ -90,8 +90,8 @@ class SearchScreenView extends StatelessWidget {
                             controller.selectedBloodGroup.value,
                             controller.selectedDivision.value,
                             controller.selectedDistrict.value,
-                            controller.selectedUpzila.value,
-                            controller.selectedUnion.value),
+                            controller.selectedUpzila.value),
+                            //controller.selectedUnion.value),
                         child: const Text('Search'),
                       ),
                     ),
@@ -129,7 +129,7 @@ class SearchScreenView extends StatelessWidget {
                                 donor.totalDonation?.toString() ?? '',
                             mobile: donor.mobile?.toString() ?? '',
                             address: donor.address?.postOffice ?? '',
-                            isEligibleToDonate: false,
+                            isEligibleToDonate: true,
                           );
                         } else {
                           return const SizedBox(); // Return empty SizedBox if donor is null

@@ -46,7 +46,6 @@ class LoginController extends GetxController {
         loginRes.data?.accessToken ?? '',
         loginRes,
       );
-
       Get.toNamed(Routes.BOTTOM_NAV);
 
     }

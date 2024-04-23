@@ -23,6 +23,7 @@ class SignupController extends GetxController {
   final TextEditingController dobController = TextEditingController();
   final TextEditingController passwordTEController = TextEditingController();
   final TextEditingController weightTEController = TextEditingController();
+  final TextEditingController postOfficeTEController = TextEditingController();
 
   final isWeightOk = false.obs;
   final obscureText = false.obs;
@@ -38,8 +39,8 @@ class SignupController extends GetxController {
   final upzilaList = <AreaModel>[].obs;
   final selectedUpzila = ''.obs;
 
-  final unionList = <AreaModel>[].obs;
-  final selectedUnion = ''.obs;
+  // final unionList = <AreaModel>[].obs;
+  // final selectedUnion = ''.obs;
 
   void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
@@ -51,11 +52,11 @@ class SignupController extends GetxController {
       // clear all the selected values and list
       selectedDistrict.value = '';
       selectedUpzila.value = '';
-      selectedUnion.value = '';
+      //selectedUnion.value = '';
 
       districtList.clear();
       upzilaList.clear();
-      unionList.clear();
+      //unionList.clear();
 
       getDistrict(id: val);
 
@@ -67,10 +68,10 @@ class SignupController extends GetxController {
     if (val != null && val.isNotEmpty) {
       // clear all the selected values and list
       selectedUpzila.value = '';
-      selectedUnion.value = '';
+     // selectedUnion.value = '';
 
       upzilaList.clear();
-      unionList.clear();
+      //unionList.clear();
 
       getUpzila(id: val);
 
@@ -81,21 +82,21 @@ class SignupController extends GetxController {
   onSelectedUpzila(String? val) {
     if (val != null && val.isNotEmpty) {
       // clear all the selected values and list
-      selectedUnion.value = '';
+      //selectedUnion.value = '';
 
-      unionList.clear();
+      //unionList.clear();
 
-      getUnion(name: val);
+      //getUnion(name: val);
 
       selectedUpzila.value = val;
     }
   }
 
-  onSelectedUnion(String? val) {
-    if (val != null && val.isNotEmpty) {
-      selectedUnion.value = val;
-    }
-  }
+  // onSelectedUnion(String? val) {
+  //   if (val != null && val.isNotEmpty) {
+  //     selectedUnion.value = val;
+  //   }
+  //}
 
   // Add OTP verification logic here
   void toggleOtpVerificationField(bool value) {
@@ -125,7 +126,6 @@ class SignupController extends GetxController {
         Get.snackbar('Welcome To', 'Largest Blood Donor Family');
       } else {
         isLoading.value = false;
-        Get.snackbar('Error', response.message ?? 'Account Creation Fail!');
       }
     }
   }
@@ -159,12 +159,12 @@ class SignupController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<void> getUnion({required String name}) async {
-    isLoading.value = true;
-    NetworkResponse response = await LocationRepository.getUnion(name: name);
-    unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
-    isLoading.value = false;
-  }
+  // Future<void> getUnion({required String name}) async {
+  //   isLoading.value = true;
+  //   NetworkResponse response = await LocationRepository.getUnion(name: name);
+  //   unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
+  //   isLoading.value = false;
+  // }
 
   void clearTextFields() {
     usernameTEController.clear();

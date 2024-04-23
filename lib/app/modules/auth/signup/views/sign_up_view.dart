@@ -127,16 +127,29 @@ class SignUpView extends GetView<SignupController> {
                         return null;
                       },
                     ),
-                    AreaDropDown(
-                      union: true,
-                      label: 'select union',
-                      onChanged: (String? val) {
-                        controller.onSelectedUnion(val);
-                      },
-                      items: controller.unionList,
+                    // AreaDropDown(
+                    //   union: true,
+                    //   label: 'select union',
+                    //   onChanged: (String? val) {
+                    //     controller.onSelectedUnion(val);
+                    //   },
+                    //   items: controller.unionList,
+                    //   validator: (String? value) {
+                    //     if (value?.trim().isEmpty ?? true) {
+                    //       return 'Please Select Union';
+                    //     }
+                    //     return null;
+                    //   },
+                    // ),
+                    const SizedBox(height: 4.0),
+                    TextFormField(
+                      controller: controller.postOfficeTEController,
+                      decoration: const InputDecoration(
+                        labelText: 'Post Office',
+                      ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
-                          return 'Please Select Union';
+                          return 'Enter your post office';
                         }
                         return null;
                       },
@@ -253,7 +266,7 @@ class SignUpView extends GetView<SignupController> {
                                   divisionId: controller.selectedDivision.value,
                                   districtId: controller.selectedDistrict.value,
                                   areaId: controller.selectedUpzila.value,
-                                  postOffice: controller.selectedUnion.value,
+                                  postOffice: controller.postOfficeTEController.text.trim(),
                                 ),
                               );
                               await controller.registration(registrationParams);

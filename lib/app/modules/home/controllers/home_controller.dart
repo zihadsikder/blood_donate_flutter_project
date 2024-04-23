@@ -31,11 +31,7 @@ class HomeController extends GetxController {
   final upzilaList = <AreaModel>[].obs;
   final selectedUpzila = ''.obs;
 
-  final unionList = <AreaModel>[].obs;
-  final selectedUnion = ''.obs;
-
   InterstitialAd? interstitialAd;
-
 
   // TODO: Implement _loadInterstitialAd()
   void loadInterstitialAd() {
@@ -50,8 +46,6 @@ class HomeController extends GetxController {
               Get.to(()=> SearchScreenView());
             },
           );
-
-
             interstitialAd = ad;
         },
         onAdFailedToLoad: (err) {
@@ -63,57 +57,33 @@ class HomeController extends GetxController {
 
   void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
-    //log('select blood group: $val');
   }
 
   void onSelectedDivision(String? val) {
     if (val != null && val.isNotEmpty) {
-      // clear all the selected values and list
       selectedDistrict.value = '';
       selectedUpzila.value = '';
-      selectedUnion.value = '';
 
       districtList.clear();
       upzilaList.clear();
-      unionList.clear();
-
       getDistrict(id: val);
-
       selectedDivision.value = val;
     }
   }
 
   onSelectedDistrict(String? val) {
     if (val != null && val.isNotEmpty) {
-      // clear all the selected values and list
+
       selectedUpzila.value = '';
-      selectedUnion.value = '';
-
       upzilaList.clear();
-      unionList.clear();
-
       getUpzila(id: val);
-
       selectedDistrict.value = val;
     }
   }
 
   onSelectedUpzila(String? val) {
     if (val != null && val.isNotEmpty) {
-      // clear all the selected values and list
-      selectedUnion.value = '';
-
-      unionList.clear();
-
-      getUnion(name: val);
-
       selectedUpzila.value = val;
-    }
-  }
-
-  onSelectedUnion(String? val) {
-    if (val != null && val.isNotEmpty) {
-      selectedUnion.value = val;
     }
   }
 
@@ -147,15 +117,9 @@ class HomeController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<void> getUnion({required String name}) async {
-    isLoading.value = true;
-    NetworkResponse response = await LocationRepository.getUnion(name: name);
-    unionList.value = areaFromJson(response.jsonResponse!).data ?? [];
-    isLoading.value = false;
-  }
 
   Future<bool> searchDonor(
-      String bloodGroup, String division, String district, String upzila, String postOffice) async {
+      String bloodGroup, String division, String district, String upzila,) async {
     if (formKey.currentState!.validate()) {
       isLoading.value = true;
 
@@ -164,7 +128,8 @@ class HomeController extends GetxController {
           "&division_id=$division"
           "&district_id=$district"
           "&area_id=$upzila"
-          "&post_office=$postOffice");
+          //"&post_office=$postOffice"
+      );
 
       isLoading.value = false;
 

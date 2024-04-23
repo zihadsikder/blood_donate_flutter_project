@@ -44,16 +44,16 @@ class SearchUserModel {
 class Datum {
   final String? id;
   final String? name;
-  final int? mobile;
+  final String? mobile;
   final String? email;
   final DateTime? dob;
   final String? bloodGroup;
+  final String? occupation;
   final bool? isWeight50Kg;
-  final DateTime? lastDonation;
+  final dynamic lastDonation;
   final Address? address;
   final String? pic;
   final DateTime? createdAt;
-  final String? occupation;
   final int? totalDonation;
 
   Datum({
@@ -63,12 +63,12 @@ class Datum {
     this.email,
     this.dob,
     this.bloodGroup,
+    this.occupation,
     this.isWeight50Kg,
     this.lastDonation,
     this.address,
     this.pic,
     this.createdAt,
-    this.occupation,
     this.totalDonation,
   });
 
