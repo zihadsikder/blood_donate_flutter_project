@@ -11,10 +11,9 @@ import 'widget/activated_profile.dart';
 import 'widget/logoutEleButton.dart';
 
 class AccountsView extends GetView<AccountsController> {
-  const AccountsView({super.key});
+ const AccountsView({super.key});
 
-
-
+  //final profile = controller.profileData.value.data;
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -54,7 +53,7 @@ class AccountsView extends GetView<AccountsController> {
                                 ),
                                 title: Row(
                                   children: [
-                                    Text(controller.profileData?.data?.name ?? 'Name'),
+                                    Text(controller.profileData.value.data?.name ?? 'Name'),
                                   ],
                                 ),
                                 subtitle: Text(controller.isProfileActive.value
@@ -89,7 +88,7 @@ class AccountsView extends GetView<AccountsController> {
                                           height: 5,
                                         ),
                                         Text(
-                                          '${controller.profileData?.data?.lastDonation.length ?? 0}',
+                                          '${controller.profileData.value.data?.totalDonation ?? 0}',
                                         ),
                                         //const Text('2'),
                                         const Text('Total Donation'),
@@ -108,7 +107,7 @@ class AccountsView extends GetView<AccountsController> {
                                           height: 5,
                                         ),
                                         Text(
-                                          controller.profileData?.data?.bloodGroup ??
+                                          controller.profileData.value.data?.bloodGroup ??
                                               'Blood Group',
                                         ),
                                         const Text('Blood Group'),
@@ -128,7 +127,7 @@ class AccountsView extends GetView<AccountsController> {
                                         ),
                                         Text(
                                           DateFormat('dd/MM/yyyy').format(
-                                              DateTime.parse(controller.profileData?.data
+                                              DateTime.parse(controller.profileData.value.data
                                                       ?.lastDonation ??
                                                   DateTime.now().toString())),
                                         ),
@@ -159,7 +158,7 @@ class AccountsView extends GetView<AccountsController> {
                             ],
                           ),
                           subtitle:
-                              Text('+88 ${controller.profileData?.data?.mobile.toString()}'),
+                              Text('+88 ${controller.profileData.value.data?.mobile.toString()}'),
                         ),
                         Container(height: 2, color: Colors.grey.shade100),
                         ListTile(
@@ -179,7 +178,7 @@ class AccountsView extends GetView<AccountsController> {
                             ],
                           ),
                           subtitle: Text(
-                            controller.profileData?.data?.email ?? 'N/A',
+                            controller.profileData.value.data?.email ?? 'N/A',
                           ),
                         ),
                         Container(height: 2, color: Colors.grey.shade100),
@@ -206,7 +205,7 @@ class AccountsView extends GetView<AccountsController> {
                               Text('Address'),
                             ],
                           ),
-                          subtitle: Text(controller.profileData?.data?.address!.postOffice ?? ''),
+                          subtitle: Text(controller.profileData.value.data?.address!.postOffice ?? ''),
                         ),
                         Container(height: 1, color: Colors.grey.shade100),
                         const SizedBox(height: 5.0),
@@ -214,8 +213,8 @@ class AccountsView extends GetView<AccountsController> {
                         ActivatedProfile(
                           testValue: Text(
                             controller.isProfileActive.value
-                                ? 'Activate Your Account!'
-                                : 'Deactivate Your Account!',
+                                ? 'Deactivate Your Profile!'
+                                : 'Activate Your Profile!',
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 16),
                           ),

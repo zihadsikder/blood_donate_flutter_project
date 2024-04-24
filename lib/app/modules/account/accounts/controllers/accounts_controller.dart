@@ -23,7 +23,8 @@ class AccountsController extends GetxController {
 
   final isProfileActive = true.obs;
 
-   ProfileData? profileData ;
+   //ProfileData? profileData ;
+   final profileData = ProfileData().obs;
 
   @override
   void onInit() {
@@ -38,7 +39,7 @@ class AccountsController extends GetxController {
     await ApiClient().getRequest(ApiEndPoints.getProfileData);
     inProgress.value = false;
     if (response.isSuccess) {
-      profileData = profileDataFromJson(response.jsonResponse!);
+      profileData.value = profileDataFromJson(response.jsonResponse!);
       return true;
     }
     return false;
