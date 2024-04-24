@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/models/network_response.dart';
-import '../../../../data/models/request/profile_data_res.dart';
+import '../../../../data/models/profile_data_res.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../../services/api_client.dart';
 import '../../../../services/api_end_points.dart';
@@ -23,7 +23,13 @@ class AccountsController extends GetxController {
 
   final isProfileActive = true.obs;
 
-  ProfileData? profileInfo;
+   ProfileData? profileData ;
+
+  @override
+  void onInit() {
+    getProfileData();
+    super.onInit();
+  }
 
   Future<bool> getProfileData() async {
     inProgress.value = true;
@@ -32,7 +38,7 @@ class AccountsController extends GetxController {
     await ApiClient().getRequest(ApiEndPoints.getProfileData);
     inProgress.value = false;
     if (response.isSuccess) {
-      profileInfo = profileDataFromJson(response.jsonResponse!);
+      profileData = profileDataFromJson(response.jsonResponse!);
       return true;
     }
     return false;

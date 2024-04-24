@@ -8,8 +8,6 @@ class DonorCard extends StatelessWidget {
   final String totalDonations;
   final String address;
   final String mobile;
-
-  //final DateTime lastDonationDate;
   final bool isEligibleToDonate;
 
   const DonorCard({
@@ -20,7 +18,6 @@ class DonorCard extends StatelessWidget {
     required this.totalDonations,
     required this.address,
     required this.mobile,
-    //required this.lastDonationDate,
     required this.isEligibleToDonate,
   });
 

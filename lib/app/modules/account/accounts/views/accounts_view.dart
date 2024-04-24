@@ -54,7 +54,7 @@ class AccountsView extends GetView<AccountsController> {
                                 ),
                                 title: Row(
                                   children: [
-                                    Text(controller.profileInfo?.data?.name ?? 'Name'),
+                                    Text(controller.profileData?.data?.name ?? 'Name'),
                                   ],
                                 ),
                                 subtitle: Text(controller.isProfileActive.value
@@ -89,7 +89,7 @@ class AccountsView extends GetView<AccountsController> {
                                           height: 5,
                                         ),
                                         Text(
-                                          '${controller.profileInfo?.data?.lastDonation.length ?? 0}',
+                                          '${controller.profileData?.data?.lastDonation.length ?? 0}',
                                         ),
                                         //const Text('2'),
                                         const Text('Total Donation'),
@@ -108,7 +108,7 @@ class AccountsView extends GetView<AccountsController> {
                                           height: 5,
                                         ),
                                         Text(
-                                          controller.profileInfo?.data?.bloodGroup ??
+                                          controller.profileData?.data?.bloodGroup ??
                                               'Blood Group',
                                         ),
                                         const Text('Blood Group'),
@@ -128,7 +128,7 @@ class AccountsView extends GetView<AccountsController> {
                                         ),
                                         Text(
                                           DateFormat('dd/MM/yyyy').format(
-                                              DateTime.parse(controller.profileInfo?.data
+                                              DateTime.parse(controller.profileData?.data
                                                       ?.lastDonation ??
                                                   DateTime.now().toString())),
                                         ),
@@ -159,7 +159,7 @@ class AccountsView extends GetView<AccountsController> {
                             ],
                           ),
                           subtitle:
-                              Text('+88 0${controller.profileInfo?.data?.mobile.toString()}'),
+                              Text('+88 ${controller.profileData?.data?.mobile.toString()}'),
                         ),
                         Container(height: 2, color: Colors.grey.shade100),
                         ListTile(
@@ -179,7 +179,7 @@ class AccountsView extends GetView<AccountsController> {
                             ],
                           ),
                           subtitle: Text(
-                            controller.profileInfo?.data?.email ?? 'N/A',
+                            controller.profileData?.data?.email ?? 'N/A',
                           ),
                         ),
                         Container(height: 2, color: Colors.grey.shade100),
@@ -206,7 +206,7 @@ class AccountsView extends GetView<AccountsController> {
                               Text('Address'),
                             ],
                           ),
-                          subtitle: Text(controller.profileInfo?.data?.address!.postOffice ?? ''),
+                          subtitle: Text(controller.profileData?.data?.address!.postOffice ?? ''),
                         ),
                         Container(height: 1, color: Colors.grey.shade100),
                         const SizedBox(height: 5.0),

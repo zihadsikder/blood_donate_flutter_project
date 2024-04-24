@@ -51,6 +51,7 @@ class Datum {
   final String? occupation;
   final bool? isWeight50Kg;
   final dynamic lastDonation;
+  final bool? isAvailable;
   final Address? address;
   final String? pic;
   final DateTime? createdAt;
@@ -66,6 +67,7 @@ class Datum {
     this.occupation,
     this.isWeight50Kg,
     this.lastDonation,
+    this.isAvailable,
     this.address,
     this.pic,
     this.createdAt,
@@ -73,43 +75,39 @@ class Datum {
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["_id"],
-        name: json["name"],
-        mobile: json["mobile"],
-        email: json["email"],
-        dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
-        bloodGroup: json["blood_group"],
-        isWeight50Kg: json["is_weight_50kg"],
-        lastDonation: json["last_donation"] == null
-            ? null
-            : DateTime.parse(json["last_donation"]),
-        address:
-            json["address"] == null ? null : Address.fromJson(json["address"]),
-        pic: json["pic"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
-        occupation: json["occupation"],
-        totalDonation: json["totalDonation"],
-      );
+    id: json["_id"],
+    name: json["name"],
+    mobile: json["mobile"],
+    email: json["email"],
+    dob: json["dob"] == null ? null : DateTime.parse(json["dob"]),
+    bloodGroup: json["blood_group"],
+    occupation: json["occupation"],
+    isWeight50Kg: json["is_weight_50kg"],
+    lastDonation: json["last_donation"],
+    isAvailable: json["isAvailable"],
+    address: json["address"] == null ? null : Address.fromJson(json["address"]),
+    pic: json["pic"],
+    createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+    totalDonation: json["totalDonation"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "_id": id,
-        "name": name,
-        "mobile": mobile,
-        "email": email,
-        "dob": dob?.toIso8601String(),
-        "blood_group": bloodGroup,
-        "is_weight_50kg": isWeight50Kg,
-        "last_donation": lastDonation?.toIso8601String(),
-        "address": address?.toJson(),
-        "pic": pic,
-        "created_at": createdAt?.toIso8601String(),
-        "occupation": occupation,
-        "totalDonation": totalDonation,
-      };
+    "_id": id,
+    "name": name,
+    "mobile": mobile,
+    "email": email,
+    "dob": dob?.toIso8601String(),
+    "blood_group": bloodGroup,
+    "occupation": occupation,
+    "is_weight_50kg": isWeight50Kg,
+    "last_donation": lastDonation,
+    "isAvailable": isAvailable,
+    "address": address?.toJson(),
+    "pic": pic,
+    "created_at": createdAt?.toIso8601String(),
+    "totalDonation": totalDonation,
+  };
 }
-
 class Address {
   final String? division;
   final String? district;

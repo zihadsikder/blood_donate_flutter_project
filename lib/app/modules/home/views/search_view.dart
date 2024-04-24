@@ -116,11 +116,16 @@ class SearchScreenView extends StatelessWidget {
                       itemBuilder: (context, index) {
                         final donor = controller.searchUser.value.data?[index];
                         if (donor != null) {
-                          String formattedLastDonation =
-                              donor.lastDonation != null
-                                  ? DateFormat('dd-MM-yyyy')
-                                      .format(donor.lastDonation!.toLocal())
-                                  : "N/A";
+                          DateTime? lastDonationDateTime;
+                          try {
+                            lastDonationDateTime = DateTime.parse(donor.lastDonation ?? "");
+                          } catch (e) {
+                            //print("Error parsing last donation date: $e");
+                          }
+
+                          String formattedLastDonation = lastDonationDateTime != null
+                              ? DateFormat('dd-MM-yyyy').format(lastDonationDateTime.toLocal())
+                              : "N/A";
                           return DonorCard(
                             name: donor.name ?? '',
                             bloodGroup: donor.bloodGroup ?? '',
@@ -129,7 +134,7 @@ class SearchScreenView extends StatelessWidget {
                                 donor.totalDonation?.toString() ?? '',
                             mobile: donor.mobile?.toString() ?? '',
                             address: donor.address?.postOffice ?? '',
-                            isEligibleToDonate: true,
+                            isEligibleToDonate: donor.isAvailable ?? true,
                           );
                         } else {
                           return const SizedBox(); // Return empty SizedBox if donor is null

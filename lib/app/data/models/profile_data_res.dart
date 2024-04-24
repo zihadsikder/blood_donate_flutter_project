@@ -44,6 +44,7 @@ class Data {
   final bool? isActive;
   final bool? isWeight50Kg;
   final dynamic lastDonation;
+  final int? totalDonation;
   final Address? address;
   final String? pic;
 
@@ -59,6 +60,7 @@ class Data {
     this.isActive,
     this.isWeight50Kg,
     this.lastDonation,
+    this.totalDonation,
     this.address,
     this.pic,
   });
@@ -75,6 +77,7 @@ class Data {
     isActive: json["isActive"],
     isWeight50Kg: json["is_weight_50kg"],
     lastDonation: json["last_donation"],
+    totalDonation: json["totalDonation"],
     address: json["address"] == null ? null : Address.fromJson(json["address"]),
     pic: json["pic"],
   );
@@ -91,6 +94,7 @@ class Data {
     "isActive": isActive,
     "is_weight_50kg": isWeight50Kg,
     "last_donation": lastDonation,
+    "totalDonation": totalDonation,
     "address": address?.toJson(),
     "pic": pic,
   };
