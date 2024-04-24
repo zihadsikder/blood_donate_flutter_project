@@ -13,9 +13,12 @@ import 'widget/logoutEleButton.dart';
 class AccountsView extends GetView<AccountsController> {
  const AccountsView({super.key});
 
-  //final profile = controller.profileData.value.data;
+
   @override
   Widget build(BuildContext context) {
+
+    final profile = controller.profileData.value.data;
+
     return PopScope(
       canPop: false,
       onPopInvoked: (value) {
@@ -53,7 +56,7 @@ class AccountsView extends GetView<AccountsController> {
                                 ),
                                 title: Row(
                                   children: [
-                                    Text(controller.profileData.value.data?.name ?? 'Name'),
+                                    Text(profile?.name ?? 'Name'),
                                   ],
                                 ),
                                 subtitle: Text(controller.isProfileActive.value
@@ -88,7 +91,7 @@ class AccountsView extends GetView<AccountsController> {
                                           height: 5,
                                         ),
                                         Text(
-                                          '${controller.profileData.value.data?.totalDonation ?? 0}',
+                                          '${profile?.totalDonation ?? 0}',
                                         ),
                                         //const Text('2'),
                                         const Text('Total Donation'),
@@ -107,7 +110,7 @@ class AccountsView extends GetView<AccountsController> {
                                           height: 5,
                                         ),
                                         Text(
-                                          controller.profileData.value.data?.bloodGroup ??
+                                          profile?.bloodGroup ??
                                               'Blood Group',
                                         ),
                                         const Text('Blood Group'),
@@ -127,8 +130,7 @@ class AccountsView extends GetView<AccountsController> {
                                         ),
                                         Text(
                                           DateFormat('dd/MM/yyyy').format(
-                                              DateTime.parse(controller.profileData.value.data
-                                                      ?.lastDonation ??
+                                              DateTime.parse(profile?.lastDonation ??
                                                   DateTime.now().toString())),
                                         ),
                                         const Text('Last Donation'),
@@ -158,7 +160,7 @@ class AccountsView extends GetView<AccountsController> {
                             ],
                           ),
                           subtitle:
-                              Text('+88 ${controller.profileData.value.data?.mobile.toString()}'),
+                              Text('+88 ${profile?.mobile.toString()}'),
                         ),
                         Container(height: 2, color: Colors.grey.shade100),
                         ListTile(
@@ -178,7 +180,7 @@ class AccountsView extends GetView<AccountsController> {
                             ],
                           ),
                           subtitle: Text(
-                            controller.profileData.value.data?.email ?? 'N/A',
+                            profile?.email ?? 'N/A',
                           ),
                         ),
                         Container(height: 2, color: Colors.grey.shade100),
@@ -205,7 +207,7 @@ class AccountsView extends GetView<AccountsController> {
                               Text('Address'),
                             ],
                           ),
-                          subtitle: Text(controller.profileData.value.data?.address!.postOffice ?? ''),
+                          subtitle: Text(profile?.address!.postOffice ?? ''),
                         ),
                         Container(height: 1, color: Colors.grey.shade100),
                         const SizedBox(height: 5.0),
