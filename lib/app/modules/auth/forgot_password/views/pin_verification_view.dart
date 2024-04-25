@@ -85,25 +85,11 @@ class PinVerificationView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 24,
+                  height: 4.0,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
-                      "Have an account?",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        Get.offNamed(Routes.LOGIN);
-                      },
-                      child: const Text(
-                        'Sign In',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
                     RichText(
                       text: TextSpan(
                         style: const TextStyle(
@@ -123,6 +109,9 @@ class PinVerificationView extends StatelessWidget {
                       ),
                     ),
                     TextButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+                      ),
                       onPressed: () {},
                       child: const Text(
                         'Resend Code',
@@ -130,7 +119,34 @@ class PinVerificationView extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
+                ),
+
+                const SizedBox(
+                  height: 4.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      "Have an account?",
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    TextButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+                      ),
+                      onPressed: () {
+                        Get.offNamed(Routes.LOGIN);
+                      },
+                      child: const Text(
+                        'Sign In',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
+                ),
+
               ],
             ),
           ),

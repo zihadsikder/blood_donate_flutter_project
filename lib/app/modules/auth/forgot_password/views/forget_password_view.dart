@@ -36,7 +36,8 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                 const SizedBox(
                   height: 8,
                 ),
-                Text('A 6 digit OTP will be sent to your mobile number', style: Theme.of(context).textTheme.bodySmall),
+                Text('A 6 digit OTP will be sent to your mobile number',
+                    style: Theme.of(context).textTheme.bodySmall),
                 const SizedBox(
                   height: 18,
                 ),
@@ -69,7 +70,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                   ),
                 ),
                 const SizedBox(
-                  height: 24,
+                  height: 18,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

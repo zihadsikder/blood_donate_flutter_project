@@ -187,7 +187,7 @@ class LoginView extends GetView<LoginController> {
                                   child: const Text(
                                     'Sign Up',
                                     style: TextStyle(
-                                        color: Colors.red, fontSize: 20),
+                                        color: Colors.red, fontSize: 16),
                                   ),
                                   onPressed: () {
                                     Get.toNamed(Routes.SIGNUP);

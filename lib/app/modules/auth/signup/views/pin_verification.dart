@@ -83,32 +83,40 @@ class PinVerificationView extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 24,
+                  height: 4.0,
                 ),
-                RichText(
-                  text: TextSpan(
-                    style: const TextStyle(
-                      color: Colors.grey,
-                    ),
-                    children: [
-                      const TextSpan(text: 'This code will expire '),
-                      // TODO - make this timer workable
-                      TextSpan(
-                        text: '120s',
-                        style: TextStyle(
-                          color: Colors.red.shade800,
-                          fontWeight: FontWeight.w600,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        style: const TextStyle(
+                          color: Colors.grey,
                         ),
+                        children: [
+                          const TextSpan(text: 'This code will expire '),
+                          // TODO - make this timer workable
+                          TextSpan(
+                            text: '120s',
+                            style: TextStyle(
+                              color: Colors.red.shade800,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Resend Code',
-                    style: TextStyle(color: Colors.grey),
-                  ),
+                    ),
+                    TextButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+                      ),
+                      onPressed: () {},
+                      child: const Text(
+                        'Resend Code',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
