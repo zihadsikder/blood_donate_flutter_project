@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:blood_bd/app/modules/auth/signup/views/register_pin_verification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -7,12 +8,9 @@ import '../../../../data/models/network_response.dart';
 import '../../../../data/models/request/registration_req.dart';
 import '../../../../data/repositories/auth_repository.dart';
 import '../../../../data/repositories/location_repository.dart';
-import '../../../../routes/app_pages.dart';
 
 class SignupController extends GetxController {
   final isLoading = false.obs;
-
-  final showOtpVerificationField = true.obs; // Add the showOtpVerificationField variable
 
   final formKey = GlobalKey<FormState>();
   final TextEditingController usernameTEController = TextEditingController();
@@ -69,10 +67,8 @@ class SignupController extends GetxController {
       // clear all the selected values and list
       selectedUpzila.value = '';
      // selectedUnion.value = '';
-
       upzilaList.clear();
       //unionList.clear();
-
       getUpzila(id: val);
 
       selectedDistrict.value = val;
@@ -83,11 +79,8 @@ class SignupController extends GetxController {
     if (val != null && val.isNotEmpty) {
       // clear all the selected values and list
       //selectedUnion.value = '';
-
       //unionList.clear();
-
       //getUnion(name: val);
-
       selectedUpzila.value = val;
     }
   }
@@ -110,8 +103,11 @@ class SignupController extends GetxController {
       if (response.isSuccess) {
         clearTextFields();
         isLoading.value = false;
-        Get.toNamed(Routes.LOGIN);
-        Get.snackbar('Welcome To', 'Largest Blood Donor Family');
+
+        Get.offAll(RegisterPinVerification);
+
+        //Get.toNamed(Routes.LOGIN);
+        //Get.snackbar('Welcome To', 'Largest Blood Donor Family');
       } else {
         isLoading.value = false;
       }
@@ -160,5 +156,6 @@ class SignupController extends GetxController {
     dobController.clear();
     mobileNumberTEController.clear();
     passwordTEController.clear();
+    otpTextEditController.clear();
   }
 }

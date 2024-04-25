@@ -4,8 +4,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../controllers/signup_controller.dart';
 
-class PinVerificationView extends StatelessWidget {
-  PinVerificationView({super.key});
+class RegisterPinVerification extends StatelessWidget {
+  RegisterPinVerification({super.key});
 
   final controller = Get.put(SignupController());
 
