@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-
 import '../../../../core/constants/app_assets.dart';
-import '../../../../routes/app_pages.dart';
-import '../controllers/forgot_password_controller.dart';
+import '../controllers/signup_controller.dart';
 
 class PinVerificationView extends StatelessWidget {
   PinVerificationView({super.key});
 
-  final controller = Get.put(ForgotPasswordController());
+  final controller = Get.put(SignupController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,7 @@ class PinVerificationView extends StatelessWidget {
                   height: 18,
                 ),
                 Form(
-                  key: controller.otpFormKey,
+                  key: controller.formKey,
                   child: PinCodeTextField(
                     controller: controller.otpTextEditController,
                     length: 6 ,
@@ -87,50 +85,31 @@ class PinVerificationView extends StatelessWidget {
                 const SizedBox(
                   height: 24,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Have an account?",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
+                RichText(
+                  text: TextSpan(
+                    style: const TextStyle(
+                      color: Colors.grey,
                     ),
-                    TextButton(
-                      onPressed: () {
-                        Get.offNamed(Routes.LOGIN);
-                      },
-                      child: const Text(
-                        'Sign In',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ),
-                    const SizedBox(height: 24),
-                    RichText(
-                      text: TextSpan(
-                        style: const TextStyle(
-                          color: Colors.grey,
+                    children: [
+                      const TextSpan(text: 'This code will expire '),
+                      // TODO - make this timer workable
+                      TextSpan(
+                        text: '120s',
+                        style: TextStyle(
+                          color: Colors.red.shade800,
+                          fontWeight: FontWeight.w600,
                         ),
-                        children: [
-                          const TextSpan(text: 'This code will expire '),
-                          // TODO - make this timer workable
-                          TextSpan(
-                            text: '120s',
-                            style: TextStyle(
-                              color: Colors.red.shade800,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ],
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Resend Code',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ),
-                  ],
-                )
+                    ],
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'Resend Code',
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                ),
               ],
             ),
           ),

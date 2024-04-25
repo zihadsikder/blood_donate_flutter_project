@@ -98,22 +98,10 @@ class SignupController extends GetxController {
   //   }
   //}
 
-  // Add OTP verification logic here
-  void toggleOtpVerificationField(bool value) {
-    showOtpVerificationField.value = value;
+
+  void verifyOtp() {
+    Get.off(() => ());
   }
-
-
-  //Future<bool> validateOTP() async {
-    // Implement your OTP validation logic here
-    // Return true if OTP is valid, false otherwise
-    // For example:
-    // if (otpTextEditController.text == '1234') {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-  //}
 
   Future<void> registration(RegistrationReq params) async {
     if (formKey.currentState!.validate()) {
