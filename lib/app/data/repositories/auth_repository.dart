@@ -20,4 +20,12 @@ class AuthRepository {
     );
     return response;
   }
+
+  static Future<NetworkResponse> verifyOtp(String mobile, String otp) async {
+    final NetworkResponse response = await ApiClient().postRequest(
+      ApiEndPoints.registerOtp,
+      body: {"mobile": mobile, "otp": otp},
+    );
+    return response;
+  }
 }

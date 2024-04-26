@@ -5,7 +5,8 @@ import '../../../../core/constants/app_assets.dart';
 import '../controllers/signup_controller.dart';
 
 class RegisterPinVerification extends StatelessWidget {
-  RegisterPinVerification({super.key});
+  RegisterPinVerification({super.key, required this.mobile});
+  final String mobile;
 
   final controller = Get.put(SignupController());
 
@@ -46,7 +47,7 @@ class RegisterPinVerification extends StatelessWidget {
                   height: 18,
                 ),
                 Form(
-                  key: controller.formKey,
+                  key: controller.otpFormKey,
                   child: PinCodeTextField(
                     controller: controller.otpTextEditController,
                     length: 6 ,
@@ -95,9 +96,8 @@ class RegisterPinVerification extends StatelessWidget {
                         ),
                         children: [
                           const TextSpan(text: 'This code will expire '),
-                          // TODO - make this timer workable
                           TextSpan(
-                            text: '120s',
+                            text: '300s',
                             style: TextStyle(
                               color: Colors.red.shade800,
                               fontWeight: FontWeight.w600,

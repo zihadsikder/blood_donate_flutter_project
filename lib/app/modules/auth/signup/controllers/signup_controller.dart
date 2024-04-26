@@ -6,13 +6,17 @@ import 'package:get/get.dart';
 import '../../../../data/models/area_res.dart';
 import '../../../../data/models/network_response.dart';
 import '../../../../data/models/request/registration_req.dart';
+import '../../../../data/models/user_model.dart';
 import '../../../../data/repositories/auth_repository.dart';
 import '../../../../data/repositories/location_repository.dart';
+import '../../../../routes/app_pages.dart';
+import '../../../../services/auth_cache.dart';
 
 class SignupController extends GetxController {
   final isLoading = false.obs;
 
   final formKey = GlobalKey<FormState>();
+  final otpFormKey = GlobalKey<FormState>();
   final TextEditingController usernameTEController = TextEditingController();
   final TextEditingController emailTEController = TextEditingController();
   final TextEditingController mobileNumberTEController =
@@ -92,22 +96,46 @@ class SignupController extends GetxController {
   //}
 
 
-  void verifyOtp() {
-    Get.off(() => ());
+  Future<void> verifyOtp() async {
+    if (otpFormKey.currentState!.validate()) {
+      isLoading.value = true;
+
+      final mobile = mobileNumberTEController.text.trim();
+      final otp = otpTextEditController.text.trim();
+
+      final response = await AuthRepository.verifyOtp(mobile, otp);
+
+      clearTextFields();
+
+      isLoading.value = false;
+
+      if (response.isSuccess && response.jsonResponse != null) {
+        LoginRes loginRes = loginResFromJson(response.jsonResponse!);
+
+        AuthCache.to.saveUserInformation(
+          loginRes.data?.accessToken ?? '',
+          loginRes,
+
+        );
+        Get.offAllNamed(Routes.BOTTOM_NAV);
+        Get.snackbar('Welcome', 'You are a member of our society');
+      }
+    }
   }
+
 
   Future<void> registration(RegistrationReq params) async {
     if (formKey.currentState!.validate()) {
       NetworkResponse response = await AuthRepository.registration(params);
       isLoading.value = false;
       if (response.isSuccess) {
-        clearTextFields();
+
         isLoading.value = false;
 
-        Get.offAll(RegisterPinVerification);
+        Get.to(()=> RegisterPinVerification(mobile : params.mobile));
 
         //Get.toNamed(Routes.LOGIN);
-        //Get.snackbar('Welcome To', 'Largest Blood Donor Family');
+        Get.snackbar('Message', 'An 6 digit OTP have been send your number');
       } else {
         isLoading.value = false;
       }
