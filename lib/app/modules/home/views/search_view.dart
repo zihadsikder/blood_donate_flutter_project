@@ -65,19 +65,13 @@ class SearchScreenView extends StatelessWidget {
                     items: controller.districtList,
                   ),
                   AreaDropDown(
-                    label: 'select upzila',
+                    label: 'select area',
                     onChanged: (String? val) {
                       controller.onSelectedUpzila(val);
                     },
                     items: controller.upzilaList,
                   ),
-                  // AreaDropDown(
-                  //   label: 'select union',
-                  //   onChanged: (String? val) {
-                  //     controller.onSelectedUnion(val);
-                  //   },
-                  //   items: controller.unionList,
-                  // ),
+
                   const SizedBox(height: 16.0),
                   SizedBox(
                     width: double.infinity,

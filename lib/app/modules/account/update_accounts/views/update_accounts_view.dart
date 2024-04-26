@@ -1,21 +1,33 @@
+import 'package:blood_bd/app/services/auth_cache.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
-
-import '../../../../core/widgets/dob_text_field.dart';
 import '../../../../data/models/request/update_req.dart';
 import '../../../auth/login/views/widgets/area_dropdown.dart';
 import '../../../auth/login/views/widgets/location_form.dart';
 import '../../accounts/views/widget/alert_cancel_button.dart';
 import '../controllers/update_accounts_controller.dart';
 
-
 class UpdateAccountsView extends GetView<UpdateAccountsController> {
- const UpdateAccountsView({super.key});
+  UpdateAccountsView({super.key});
+
+  final AuthCache authCache = Get.find<AuthCache>();
+  final userModel = AuthCache.to.getUser()?.data;
 
   @override
   Widget build(BuildContext context) {
+    controller.usernameTEController.text = userModel?.name ?? '';
+    controller.mobileTEController.text = userModel?.mobile ?? '';
+    controller.dateTEController.text = userModel?.dob?.toString() ?? '';
+    controller.emailTEController.text = userModel?.email ?? '';
+    controller.selectedBloodGroup.value = userModel?.bloodGroup ?? '';
+    controller.selectedDivision.value = userModel?.address?.division ?? '';
+    controller.selectedDistrict.value = userModel?.address?.district ?? '';
+    controller.selectedUpzila.value = userModel?.address?.area ?? '';
+    controller.postOfficeTEController.text =
+        userModel?.address?.postOffice ?? '';
+
     controller.getDivision();
+
     return AlertDialog(
       title: Form(
         key: controller.formKey,
@@ -35,7 +47,6 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
             ),
           ],
         ),
-
       ),
       content: SingleChildScrollView(
         child: Column(
@@ -55,22 +66,6 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
               ),
             ),
             Container(height: 1, color: Colors.grey.shade100),
-            DobTextField(
-                dbirthController: controller.dateTEController,
-                onTapSuffix: () async {
-                  DateTime? pickedDate = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(1950),
-                    lastDate: DateTime(2050),
-                  );
-                  if (pickedDate != null) {
-                    String formattedDate =
-                    DateFormat('yyyy-MM-dd').format(pickedDate);
-                    controller.dateTEController.text = formattedDate;
-                  }
-                }),
-            Container(height: 1, color: Colors.grey.shade100),
             BloodGroupDropdown(
               onSelectBloodGroup: (String? val) {
                 controller.onSelectedBloodGroup(val);
@@ -84,6 +79,12 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
                 controller.onSelectedDivision(val);
               },
               items: controller.divisionList,
+              validator: (String? value) {
+                if (value?.trim().isEmpty ?? true) {
+                  return 'Please Select division';
+                }
+                return null;
+              },
             ),
             AreaDropDown(
               label: 'select district',
@@ -91,21 +92,26 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
                 controller.onSelectedDistrict(val);
               },
               items: controller.districtList,
+              validator: (String? value) {
+                if (value?.trim().isEmpty ?? true) {
+                  return 'Please Select district';
+                }
+                return null;
+              },
             ),
             AreaDropDown(
-              label: 'select upzila',
+              label: 'select area',
               onChanged: (String? val) {
                 controller.onSelectedUpzila(val);
               },
               items: controller.upzilaList,
+              validator: (String? value) {
+                if (value?.trim().isEmpty ?? true) {
+                  return 'Please Select area';
+                }
+                return null;
+              },
             ),
-            // AreaDropDown(
-            //   label: 'select union',
-            //   onChanged: (String? val) {
-            //     controller.onSelectedUnion(val);
-            //   },
-            //   items: controller.unionList,
-            // ),
             const SizedBox(height: 8.0),
             TextFormField(
               controller: controller.postOfficeTEController,
@@ -126,19 +132,16 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
       actions: [
         const AlertCancelButton(),
         Obx(
-              ()=> Visibility(
+          () => Visibility(
             visible: controller.inProgress.value == false,
             replacement: const Center(child: CircularProgressIndicator()),
             child: TextButton(
-              onPressed: ()async {
-                if(controller.formKey.currentState!.validate()){
+              onPressed: () async {
+                if (controller.formKey.currentState!.validate()) {
                   final updateProfileParams = UpdateReq(
                     name: controller.usernameTEController.text,
-                    mobile:'01829252747',
-                    // mobile: controller.mobileTEController.text
-                    //     .trim(),
-                    email: 'niamot@gmail.com',
-                    //email: controller.emailTEController.text,
+                    mobile: controller.mobileTEController.text.trim(),
+                    email: controller.emailTEController.text,
                     dob: controller.dateTEController.text,
                     blood: controller.selectedBloodGroup.value,
                     weight: 'true',
@@ -151,10 +154,12 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
                   );
                   await controller.updateProfile(updateProfileParams);
                 }
-
               },
               style: TextButton.styleFrom(backgroundColor: Colors.red.shade800),
-              child: const Text('Save', style: TextStyle(color: Colors.white),),
+              child: const Text(
+                'Save',
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         ),

@@ -68,7 +68,7 @@ class AccountsView extends GetView<AccountsController> {
                                           barrierDismissible: false,
                                           context: context,
                                           builder: (context) =>
-                                              const UpdateAccountsView());
+                                              UpdateAccountsView());
                                     },
                                     child: Icon(
                                       Icons.edit,

@@ -115,32 +115,19 @@ class SignUpView extends GetView<SignupController> {
                       },
                     ),
                     AreaDropDown(
-                      label: 'select upzila',
+                      label: 'select area',
                       onChanged: (String? val) {
                         controller.onSelectedUpzila(val);
                       },
                       items: controller.upzilaList,
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
-                          return 'Please Select Upzila';
+                          return 'Please Select Area';
                         }
                         return null;
                       },
                     ),
-                    // AreaDropDown(
-                    //   union: true,
-                    //   label: 'select union',
-                    //   onChanged: (String? val) {
-                    //     controller.onSelectedUnion(val);
-                    //   },
-                    //   items: controller.unionList,
-                    //   validator: (String? value) {
-                    //     if (value?.trim().isEmpty ?? true) {
-                    //       return 'Please Select Union';
-                    //     }
-                    //     return null;
-                    //   },
-                    // ),
+
                     const SizedBox(height: 4.0),
                     TextFormField(
                       controller: controller.postOfficeTEController,
@@ -159,7 +146,7 @@ class SignUpView extends GetView<SignupController> {
                       keyboardType: TextInputType.emailAddress,
                       controller: controller.emailTEController,
                       decoration: const InputDecoration(
-                        labelText: "Email (Optional)",
+                        labelText: "Email",
                       ),
                       // validator: (String? value) {
                       //   bool isValidEmail = RegExp(
