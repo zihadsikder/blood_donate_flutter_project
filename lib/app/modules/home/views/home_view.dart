@@ -28,7 +28,7 @@ class HomeView extends GetView<HomeController> {
                       padding: EdgeInsets.all(8.0),
                       child: BannerCarousel(imageUrls: [
                         'assets/rltn.png',
-                        'assets/donation.png',
+                        //'assets/donation.png',
                         'assets/2.png',
                         'assets/3.png',
                         'assets/5.png',

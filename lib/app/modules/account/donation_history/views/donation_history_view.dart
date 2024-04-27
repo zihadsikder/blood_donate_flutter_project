@@ -11,7 +11,6 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Donation History'),
@@ -32,7 +31,8 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
                     decoration: const InputDecoration(
                         fillColor: Colors.white,
                         hintText: 'Donation Place',
-                        border: OutlineInputBorder(borderSide: BorderSide.none),
+                        border:
+                            OutlineInputBorder(borderSide: BorderSide.none),
                         suffixIcon: Icon(Icons.location_on)),
                     validator: (value) {
                       if (value?.trim().isEmpty ?? true) {
@@ -54,7 +54,7 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
                         if (pickedDate != null) {
                           // Convert pickedDate to a formatted string before assigning it
                           String formattedDate =
-                          DateFormat('yyyy-MM-dd').format(pickedDate);
+                              DateFormat('yyyy-MM-dd').format(pickedDate);
                           controller.dateTEController.text = formattedDate;
                         }
                       }),
@@ -87,7 +87,7 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
           Expanded(
             flex: 70,
             child: Obx(
-                  () {
+              () {
                 if (controller.inProgress.value) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (controller.donorHistoryList?.data != null) {
@@ -95,7 +95,7 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
                     itemCount: controller.donorHistoryList?.data!.length,
                     itemBuilder: (context, index) {
                       final donation =
-                      controller.donorHistoryList?.data![index];
+                          controller.donorHistoryList?.data![index];
 
                       return Padding(
                         padding: const EdgeInsets.all(5.0),
@@ -135,7 +135,8 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
                                               id: controller.donorHistoryList!
                                                   .data![index].id!),
                                       style: TextButton.styleFrom(
-                                          backgroundColor: Colors.red.shade800),
+                                          backgroundColor:
+                                              Colors.red.shade800),
                                       child: const Text(
                                         'Yes',
                                         style: TextStyle(color: Colors.white),

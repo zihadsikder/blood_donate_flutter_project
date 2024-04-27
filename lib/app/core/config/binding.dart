@@ -1,3 +1,8 @@
+import 'package:blood_bd/app/modules/auth/forgot_password/controllers/forgot_password_controller.dart';
+import 'package:blood_bd/app/modules/auth/login/controllers/login_controller.dart';
+import 'package:blood_bd/app/modules/auth/signup/controllers/signup_controller.dart';
+import 'package:blood_bd/app/modules/govt_services/controllers/govt_services_controller.dart';
+import 'package:blood_bd/app/modules/splash/controllers/splash_controller.dart';
 import 'package:get/get.dart';
 import '../../modules/account/accounts/controllers/accounts_controller.dart';
 import '../../modules/account/donation_history/controllers/donation_history_controller.dart';
@@ -15,5 +20,10 @@ class IntBinding extends Bindings {
     Get.lazyPut<DonationHistoryController>(()=>DonationHistoryController());
     Get.lazyPut<UpdateAccountsController>(()=>UpdateAccountsController());
     Get.lazyPut<ConnectivityController>(() => ConnectivityController());
+    Get.lazyPut<LoginController>(() => LoginController());
+    Get.lazyPut<ForgotPasswordController>(() => ForgotPasswordController());
+    Get.lazyPut<SignupController>(() => SignupController());
+    Get.lazyPut<GovtServicesController>(() => GovtServicesController());
+    Get.lazyPut<SplashController>(() => SplashController());
   }
 }

@@ -16,7 +16,7 @@ class AccountsView extends GetView<AccountsController> {
 
   @override
   Widget build(BuildContext context) {
-
+    controller.getProfileData();
     final profile = controller.profileData.value.data;
 
     return PopScope(

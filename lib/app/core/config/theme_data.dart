@@ -19,7 +19,7 @@ class AppThemeData {
         padding: const EdgeInsets.symmetric(vertical: 12),
         textStyle: const TextStyle(
           color: Colors.white,
-          fontSize: 20,
+          fontSize: 18,
           fontWeight: FontWeight.bold,
           letterSpacing: 0.5,
         ),

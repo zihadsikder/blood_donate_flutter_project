@@ -10,10 +10,13 @@ import '../controllers/signup_controller.dart';
 
 class SignUpView extends GetView<SignupController> {
   const SignUpView({super.key});
+
   @override
   Widget build(BuildContext context) {
+
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Account Registration'),
@@ -37,8 +40,9 @@ class SignUpView extends GetView<SignupController> {
                         ),
                       ),
                     ),
+                    const SizedBox(height: 4.0,),
                     Container(
-                      margin: const EdgeInsets.only(left: 20, right: 20),
+                      margin: const EdgeInsets.only( right: 20),
                       width: w,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +50,7 @@ class SignUpView extends GetView<SignupController> {
                           Text(
                             "Donate Blood, Save A Life",
                             style: TextStyle(
-                              fontSize: 24,
+                              fontSize: 20,
                               color: Colors.red.shade900,
                               fontWeight: FontWeight.bold,
                             ),
@@ -54,7 +58,7 @@ class SignUpView extends GetView<SignupController> {
                           Text(
                             "Provide Your Information",
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 16,
                               color: Colors.grey[500],
                               fontWeight: FontWeight.bold,
                             ),
@@ -75,7 +79,7 @@ class SignUpView extends GetView<SignupController> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 4.0),
+                    const SizedBox(height: 8.0),
                     BloodGroupDropdown(
                       onSelectBloodGroup: (String? val) {
                         controller.onSelectedBloodGroup(val);
@@ -128,7 +132,7 @@ class SignUpView extends GetView<SignupController> {
                       },
                     ),
 
-                    const SizedBox(height: 4.0),
+                    const SizedBox(height: 8.0),
                     TextFormField(
                       controller: controller.postOfficeTEController,
                       decoration: const InputDecoration(
@@ -141,25 +145,15 @@ class SignUpView extends GetView<SignupController> {
                         return null;
                       },
                     ),
-                    const SizedBox(height: 4.0),
+                    const SizedBox(height: 8.0),
                     TextFormField(
                       keyboardType: TextInputType.emailAddress,
                       controller: controller.emailTEController,
                       decoration: const InputDecoration(
                         labelText: "Email",
                       ),
-                      // validator: (String? value) {
-                      //   bool isValidEmail = RegExp(
-                      //           r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
-                      //       .hasMatch(value!);
-                      //
-                      //   if (!isValidEmail) {
-                      //     return 'Enter a valid email address';
-                      //   }
-                      //   return null;
-                      // },
                     ),
-                    const SizedBox(height: 4.0),
+                    const SizedBox(height: 8.0),
                     TextFormField(
                       controller: controller.mobileNumberTEController,
                       decoration: const InputDecoration(
@@ -176,7 +170,7 @@ class SignUpView extends GetView<SignupController> {
                       },
                     ),
 
-                    const SizedBox(height: 4.0),
+                    const SizedBox(height: 8.0),
                     DobTextField(
                         dbirthController: controller.dobController,
                         onTapSuffix: () async {
@@ -192,7 +186,7 @@ class SignUpView extends GetView<SignupController> {
                             controller.dobController.text = formattedDate;
                           }
                         }),
-                    const SizedBox(height: 4.0),
+                    const SizedBox(height: 8.0),
                     PasswordTextField(
                       passwordController: controller.passwordTEController,
                       obscureText: controller.obscureText.value,
@@ -205,7 +199,7 @@ class SignUpView extends GetView<SignupController> {
                         color: Colors.grey, // Customize the icon color as needed
                       ),
                     ),
-                    const SizedBox(height: 4.0),
+                    const SizedBox(height: 8.0),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -274,6 +268,9 @@ class SignUpView extends GetView<SignupController> {
                           style: Theme.of(context).textTheme.bodySmall,
                         ),
                         TextButton(
+                          style: const ButtonStyle(
+                            backgroundColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+                          ),
                           onPressed: () {
                             Get.back();
                           },
