@@ -1,3 +1,4 @@
+import 'package:blood_bd/app/data/repositories/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -6,11 +7,14 @@ import '../views/pin_verification_view.dart';
 import '../views/reset_password_view.dart';
 
 class ForgotPasswordController extends GetxController {
+
+  final isLoading = false.obs;
+
   final forgotPassFormKey = GlobalKey<FormState>();
   final otpFormKey = GlobalKey<FormState>();
   final resetPassFormKey = GlobalKey<FormState>();
 
-  final emailTextEditController = TextEditingController();
+  final numberTextEditController = TextEditingController();
   final otpTextEditController = TextEditingController();
   final passwordTextEditController = TextEditingController();
   final confirmPasswordTextEditController = TextEditingController();
@@ -22,21 +26,21 @@ class ForgotPasswordController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void sendOtp() {
-    // validate form
+  Future<void> sendOtp() async {
     if (forgotPassFormKey.currentState!.validate()) {
-      // send otp
-      Get.off(() => PinVerificationView());
+
+      isLoading.value = true;
+
+      final String mobile = numberTextEditController.text.trim();
+
+      final response = await AuthRepository.sendOtp(mobile);
+      isLoading.value = false;
+
+      if(response.isSuccess){
+        Get.off(() => PinVerificationView());
+        Get.snackbar('Message', 'An OTP send your mobile number!');
+      }
+
     }
   }
 

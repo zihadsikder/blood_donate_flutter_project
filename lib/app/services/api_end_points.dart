@@ -3,6 +3,7 @@ class ApiEndPoints {
   static const String registration = '$_baseUrl/auth/';
   static const String login = '$_baseUrl/auth/login';
   static const String registerOtp = '$_baseUrl/auth/register-otp-match';
+  static const String forgetPass = '$_baseUrl/auth/password-reset-request';
   static const String getDivisionData = '$_baseUrl/division';
   static const String getDistrictData = '$_baseUrl/district/';
   static const String getUpzilaData = '$_baseUrl/area/';

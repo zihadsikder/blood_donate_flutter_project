@@ -44,7 +44,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                 Form(
                   key: controller.forgotPassFormKey,
                   child: TextFormField(
-                    controller: controller.emailTextEditController,
+                    controller: controller.numberTextEditController,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       fillColor: Colors.white,
@@ -77,6 +77,9 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                   children: [
                     Text("Have an account?", style: Theme.of(context).textTheme.bodySmall),
                     TextButton(
+                      style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+                      ),
                       onPressed: () {
                         Get.back();
                       },

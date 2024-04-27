@@ -10,7 +10,7 @@ class AuthRepository {
       body: params.toJson(),
     );
 
-   return response;
+    return response;
   }
 
   static Future<NetworkResponse> login(String mobile, String password) async {
@@ -25,6 +25,14 @@ class AuthRepository {
     final NetworkResponse response = await ApiClient().postRequest(
       ApiEndPoints.registerOtp,
       body: {"mobile": mobile, "otp": otp},
+    );
+    return response;
+  }
+
+  static Future<NetworkResponse> sendOtp(String mobile) async {
+    final NetworkResponse response = await ApiClient().postRequest(
+      ApiEndPoints.forgetPass,
+      body: {"mobile": mobile},
     );
     return response;
   }
