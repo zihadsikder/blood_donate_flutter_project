@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DonorCard extends StatelessWidget {
@@ -23,6 +24,19 @@ class DonorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //
+    // // Parse the formatted last donation date
+    // final lastDonationDateTime = lastDonation != "N/A"
+    //     ? DateFormat('dd-MM-yyyy').parse(lastDonation)
+    //     : null;
+    //
+    // // Calculate the next eligible date for donation
+    // final nextEligibleDate = lastDonationDateTime?.add(const Duration(days: 90));
+    //
+    // // Check if the user is eligible to donate
+    // final isEligibleToDonate = lastDonationDateTime == null ||
+    //     DateTime.now().isAfter(nextEligibleDate ?? DateTime.now());
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

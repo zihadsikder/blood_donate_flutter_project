@@ -76,6 +76,7 @@ class DonationHistoryController extends GetxController {
       donorHistoryList!.data!.removeWhere((element) => element.id == id);
 
       Get.snackbar('Success', 'Delete Successful');
+      clearTextFields();
       return true;
     } else {
       return false;
