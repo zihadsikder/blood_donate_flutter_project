@@ -16,87 +16,85 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
         title: const Text('Donation History'),
         leading: const BackButton(color: Colors.white),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            color: Colors.white,
-            child: Form(
-              key: controller.formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: controller.placeTEController,
-                    decoration: const InputDecoration(
-                        fillColor: Colors.white,
-                        hintText: 'Donation Place',
-                        border:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                        suffixIcon: Icon(Icons.location_on)),
-                    validator: (value) {
-                      if (value?.trim().isEmpty ?? true) {
-                        return 'Enter Donation Place';
-                      }
-                      return null;
-                    },
-                  ),
-                  Container(height: 2, color: Colors.grey.shade100),
-                  DobTextField(
-                      dbirthController: controller.dateTEController,
-                      onTapSuffix: () async {
-                        DateTime? pickedDate = await showDatePicker(
-                          context: context,
-                          initialDate: DateTime.now(),
-                          firstDate: DateTime(1950),
-                          lastDate: DateTime(2050),
-                        );
-                        if (pickedDate != null) {
-                          // Convert pickedDate to a formatted string before assigning it
-                          String formattedDate =
-                              DateFormat('yyyy-MM-dd').format(pickedDate);
-                          controller.dateTEController.text = formattedDate;
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              color: Colors.white,
+              child: Form(
+                key: controller.formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: controller.placeTEController,
+                      decoration: const InputDecoration(
+                          fillColor: Colors.white,
+                          hintText: 'Donation Place',
+                          border:
+                              OutlineInputBorder(borderSide: BorderSide.none),
+                          suffixIcon: Icon(Icons.location_on)),
+                      validator: (value) {
+                        if (value?.trim().isEmpty ?? true) {
+                          return 'Enter Donation Place';
                         }
-                      }),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        await controller.addDonation(
-                          donationPlace: controller.placeTEController.text,
-                          donationDate: controller.dateTEController.text,
-                        );
+                        return null;
                       },
-                      child: const Text(
-                        'ADD DONATION',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                    Container(height: 2, color: Colors.grey.shade100),
+                    DobTextField(
+                        dbirthController: controller.dateTEController,
+                        onTapSuffix: () async {
+                          DateTime? pickedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime(1950),
+                            lastDate: DateTime(2050),
+                          );
+                          if (pickedDate != null) {
+                            // Convert pickedDate to a formatted string before assigning it
+                            String formattedDate =
+                                DateFormat('yyyy-MM-dd').format(pickedDate);
+                            controller.dateTEController.text = formattedDate;
+                          }
+                        }),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          await controller.addDonation(
+                            donationPlace: controller.placeTEController.text,
+                            donationDate: controller.dateTEController.text,
+                          );
+                        },
+                        child: const Text(
+                          'ADD DONATION',
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 4.0,
-          ),
-          Expanded(
-            flex: 70,
-            child: Obx(
+            const SizedBox(
+              height: 4.0,
+            ),
+            Obx(
               () {
                 if (controller.inProgress.value) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (controller.donorHistoryList?.data != null) {
-                  return ListView.builder(
-                    itemCount: controller.donorHistoryList?.data!.length,
-                    itemBuilder: (context, index) {
-                      final donation =
-                          controller.donorHistoryList?.data![index];
-
+                  return Column(
+                    children:
+                        controller.donorHistoryList!.data!.map((donation) {
+                      final index =
+                          controller.donorHistoryList!.data!.indexOf(donation);
                       return Padding(
                         padding: const EdgeInsets.all(5.0),
                         child: ListTile(
@@ -111,45 +109,45 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
                           ),
-                          title: Text(donation?.donationPlace ?? '',
+                          title: Text(donation.donationPlace ?? '',
                               style: const TextStyle(
                                   overflow: TextOverflow.ellipsis)),
                           subtitle: Text(
-                              'Date: ${DateFormat('yyyy.MM.dd').format(donation?.donationDate ?? DateTime.now())}'),
-                          trailing: const Icon(
-                            Icons.delete_outline_sharp,
-                          ),
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return AlertDialog(
-                                  title: const Text('Alert!'),
-                                  content: const Text(
-                                      'Are You Sure! Want to delete your donation history?'),
-                                  actions: [
-                                    const AlertCancelButton(),
-                                    TextButton(
-                                      onPressed: () =>
-                                          controller.deleteDonation(
-                                              id: controller.donorHistoryList!
-                                                  .data![index].id!),
-                                      style: TextButton.styleFrom(
-                                          backgroundColor:
-                                              Colors.red.shade800),
-                                      child: const Text(
-                                        'Yes',
-                                        style: TextStyle(color: Colors.white),
+                              'Date: ${DateFormat('yyyy.MM.dd').format(donation.donationDate ?? DateTime.now())}'),
+                          trailing: IconButton(
+                            icon: const Icon(Icons.delete_outline_sharp),
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: const Text('Alert!'),
+                                    content: const Text(
+                                        'Are You Sure! Want to delete your donation history?'),
+                                    actions: [
+                                      const AlertCancelButton(),
+                                      TextButton(
+                                        onPressed: () =>
+                                            controller.deleteDonation(
+                                                id: controller.donorHistoryList!
+                                                    .data![index].id!),
+                                        style: TextButton.styleFrom(
+                                            backgroundColor:
+                                                Colors.red.shade800),
+                                        child: const Text(
+                                          'Yes',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              },
-                            );
-                          },
+                                    ],
+                                  );
+                                },
+                              );
+                            },
+                          ),
                         ),
                       );
-                    },
+                    }).toList(),
                   );
                 } else {
                   return const Center(
@@ -157,8 +155,8 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
                 }
               },
             ),
-          )
-        ],
+          ],
+        ),
       ),
     );
   }
