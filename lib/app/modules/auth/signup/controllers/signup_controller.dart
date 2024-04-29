@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'package:blood_bd/app/modules/auth/signup/views/register_pin_verification.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,10 @@ class SignupController extends GetxController {
 
   final isWeightOk = false.obs;
   final obscureText = false.obs;
+
+  final remainingTime = 300.obs; // Initial time is 300 seconds
+  // Countdown timer
+  late Timer timer;
 
   final selectedBloodGroup = ''.obs;
 
@@ -94,7 +99,21 @@ class SignupController extends GetxController {
   //     selectedUnion.value = val;
   //   }
   //}
+  void startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      remainingTime.value--;
+      if (remainingTime.value <= 0) {
+        timer.cancel(); // Stop the timer when time's up
+        // You can add logic here for what to do when time's up
+      }
+    });
+  }
 
+  @override
+  void onClose() {
+    timer.cancel(); // Cancel the timer when the controller is closed
+    super.onClose();
+  }
 
   Future<void> verifyOtp() async {
     if (otpFormKey.currentState!.validate()) {
@@ -134,8 +153,9 @@ class SignupController extends GetxController {
 
         Get.to(()=> RegisterPinVerification(mobile : params.mobile));
 
-        //Get.toNamed(Routes.LOGIN);
         Get.snackbar('Message', 'An 6 digit OTP have been send your number');
+        remainingTime.value = 300; // Reset time to 300 seconds
+        startTimer();
       } else {
         isLoading.value = false;
       }
@@ -145,6 +165,7 @@ class SignupController extends GetxController {
   @override
   void onInit() {
     getDivision();
+    startTimer();
     super.onInit();
   }
 

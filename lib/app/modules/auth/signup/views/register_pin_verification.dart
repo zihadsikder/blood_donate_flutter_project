@@ -12,6 +12,9 @@ class RegisterPinVerification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    controller.startTimer();
+
     return Scaffold(
       body: SafeArea(
         child: Padding(

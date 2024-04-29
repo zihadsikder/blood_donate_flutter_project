@@ -29,11 +29,35 @@ class AuthRepository {
     return response;
   }
 
-  static Future<NetworkResponse> sendOtp(String mobile) async {
+  static Future<NetworkResponse> sendOtpForgetPass(String mobile) async {
     final NetworkResponse response = await ApiClient().postRequest(
       ApiEndPoints.forgetPass,
       body: {"mobile": mobile},
     );
     return response;
   }
+
+  static Future<NetworkResponse> resendOtp(String mobile) async {
+    final NetworkResponse response = await ApiClient().postRequest(
+      ApiEndPoints.resendOtp,
+      body: {"mobile": mobile},
+    );
+    return response;
+  }
+
+  static Future<NetworkResponse> forgetPassOtpVerify(String mobile, String otp) async {
+    final NetworkResponse response = await ApiClient().postRequest(
+      ApiEndPoints.forgetPassOtpMatch,
+      body: {"mobile": mobile, "otp": otp},
+    );
+    return response;
+  }
+
+  // static Future<NetworkResponse> resetPassword(String mobile, String otp) async {
+  //   final NetworkResponse response = await ApiClient().postRequest(
+  //     ApiEndPoints.passwordChange,
+  //     body: {"mobile": mobile, "otp": otp, "password": password },
+  //   );
+  //   return response;
+  // }
 }

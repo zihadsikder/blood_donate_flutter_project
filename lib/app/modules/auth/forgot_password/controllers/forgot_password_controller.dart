@@ -11,6 +11,8 @@ import '../views/reset_password_view.dart';
 class ForgotPasswordController extends GetxController {
   final isLoading = false.obs;
 
+  String mobile ='';
+
   final forgotPassFormKey = GlobalKey<FormState>();
   final otpFormKey = GlobalKey<FormState>();
   final resetPassFormKey = GlobalKey<FormState>();
@@ -49,31 +51,64 @@ class ForgotPasswordController extends GetxController {
     super.onClose();
   }
 
-  Future<void> sendOtp() async {
+  Future<void> sendOtpForgetPass() async {
     if (forgotPassFormKey.currentState!.validate()) {
-      //isLoading.value = true;
+      isLoading.value = true;
 
-      //final String mobile = numberTextEditController.text.trim();
+       mobile = numberTextEditController.text.trim();
 
-      //final response = await AuthRepository.sendOtp(mobile);
-      //isLoading.value = false;
+      final response = await AuthRepository.sendOtpForgetPass(mobile);
+      isLoading.value = false;
 
-      // if (response.isSuccess) {
-      //
-      // }
-      Get.off(() => PinVerificationView());
-      Get.snackbar('Message', 'An OTP send your mobile number!');
-
-      remainingTime.value = 300; // Reset time to 300 seconds
-      startTimer();
+      if (response.isSuccess) {
+        Get.off(() => PinVerificationView(mobile: mobile,));
+        Get.snackbar('Message', 'An OTP send your mobile number!');
+        // Start the countdown timer after sending OTP
+        remainingTime.value = 300; // Reset time to 300 seconds
+        startTimer();
+      }
     }
   }
 
-  void verifyOtp() {
-    Get.off(() => ResetPasswordView());
+  Future<void> forgetPassOtpVerify() async {
+    if (otpFormKey.currentState!.validate()) {
+      isLoading.value = true;
+
+      final String mobile = numberTextEditController.text.trim();
+      final String otp = otpTextEditController.text.trim();
+
+      final response = await AuthRepository.forgetPassOtpVerify(mobile,otp);
+      isLoading.value = false;
+
+      if (response.isSuccess) {
+        Get.off(() => ResetPasswordView());
+        Get.snackbar('Message', 'An OTP send your mobile number!');
+        // Start the countdown timer after sending OTP
+        remainingTime.value = 300; // Reset time to 300 seconds
+        startTimer();
+      }
+    }
+
   }
 
   void resetPassword() {
     Get.offAllNamed(Routes.LOGIN);
   }
+
+  void resendOtp() async {
+    isLoading.value = true;
+
+    mobile = numberTextEditController.text.trim();
+
+    final response = await AuthRepository.resendOtp(mobile); // Pass the mobile number
+    isLoading.value = false;
+
+    if (response.isSuccess) {
+      Get.snackbar('Message', 'An OTP has been sent to your mobile number. Please check!');
+      // Start the countdown timer after sending OTP
+      remainingTime.value = 300; // Reset time to 300 seconds
+      startTimer();
+    }
+  }
+
 }

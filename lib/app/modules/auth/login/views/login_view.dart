@@ -153,7 +153,7 @@ class LoginView extends GetView<LoginController> {
                                       ),),
                                   child: const Center(
                                     child: Text(
-                                      "Login",
+                                      "Sign In",
                                       style: TextStyle(
                                           color: Colors.white,
                                           fontWeight: FontWeight.bold,

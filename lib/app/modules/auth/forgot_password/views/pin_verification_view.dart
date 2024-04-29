@@ -7,12 +7,15 @@ import '../../../../routes/app_pages.dart';
 import '../controllers/forgot_password_controller.dart';
 
 class PinVerificationView extends StatelessWidget {
-  PinVerificationView({super.key});
+  PinVerificationView({super.key, required this.mobile});
+  final String mobile;
 
   final controller = Get.put(ForgotPasswordController());
 
   @override
   Widget build(BuildContext context) {
+
+    controller.startTimer();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -80,14 +83,18 @@ class PinVerificationView extends StatelessWidget {
                   ),
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: controller.verifyOtp,
-                      child: const Text('Verify'),
+                    child: Visibility(
+                      visible: controller.isLoading.value = true,
+                      child: ElevatedButton(
+                        onPressed: controller.forgetPassOtpVerify,
+                        child: const Text('Verify'),
+                      ),
                     ),
                   ),
                   const SizedBox(
                     height: 4.0,
                   ),
+                  if (controller.remainingTime.value > 0)// Hide when time is 0
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -116,11 +123,7 @@ class PinVerificationView extends StatelessWidget {
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
                         ),
-                        onPressed: () {
-                          // Restart the timer
-                          controller.remainingTime.value = 300; // Reset time to 300 seconds
-                          controller.startTimer();
-                        },
+                        onPressed: () => controller.resendOtp(),
                         child: const Text(
                           'Resend Code',
                           style: TextStyle(color: Colors.grey),
