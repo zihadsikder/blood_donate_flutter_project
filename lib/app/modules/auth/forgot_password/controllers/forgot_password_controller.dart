@@ -84,7 +84,7 @@ class ForgotPasswordController extends GetxController {
 
       if (response.isSuccess) {
         Get.off(() => ResetPasswordView(mobile: mobile, otp: otp));
-        Get.snackbar('Message', 'An OTP has been sent to your mobile number!');
+
         remainingTime.value = 300; // Reset time to 300 seconds
         startTimer();
       }
@@ -114,17 +114,13 @@ class ForgotPasswordController extends GetxController {
   void resendOtp(mobile) async {
     isLoading.value = true;
 
-    final String mobile = numberTextEditController.text.trim();
-
     final response =
         await AuthRepository.resendOtp(mobile); // Pass the mobile number
     isLoading.value = false;
 
     if (response.isSuccess) {
-      Get.off(() => PinVerificationView(mobile: mobile,));
-      Get.snackbar('Message',
-          'An OTP has been sent to your mobile number. Please check!');
-      // Start the countdown timer after sending OTP
+      Get.off(() => PinVerificationView(mobile: mobile,),);
+
       remainingTime.value = 300; // Reset time to 300 seconds
       startTimer();
     }

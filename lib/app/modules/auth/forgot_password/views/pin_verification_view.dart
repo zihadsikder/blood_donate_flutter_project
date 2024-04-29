@@ -98,7 +98,6 @@ class PinVerificationView extends  StatelessWidget {
                   const SizedBox(
                     height: 4.0,
                   ),
-                  //if (controller.remainingTime.value > 0)// Hide when time is 0
 
                   //if (controller.remainingTime.value > 0)
                     Row(
@@ -110,7 +109,7 @@ class PinVerificationView extends  StatelessWidget {
                               color: Colors.grey,
                             ),
                             children: [
-                              const TextSpan(text: 'This code will expire in'),
+                              const TextSpan(text: 'This code will expire in '),
                               // Use a TextSpan here to hold the countdown time
                               TextSpan(
                                 text: '${controller.remainingTime.value}s',
