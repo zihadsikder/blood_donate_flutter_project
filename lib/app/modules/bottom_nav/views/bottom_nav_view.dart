@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../services/network.dart';
 import '../../account/accounts/views/accounts_view.dart';
 import '../../govt_services/views/govt_services_view.dart';
 import '../../home/views/home_view.dart';
@@ -21,6 +22,7 @@ class BottomNavView extends GetView<BottomNavController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ConnectivityController());
     return GetBuilder<BottomNavController>(
       builder: (controller) {
         return Scaffold(

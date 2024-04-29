@@ -44,6 +44,7 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
                     ),
                     Container(height: 2, color: Colors.grey.shade100),
                     DobTextField(
+                        labelText: 'Date of Donation',
                         dbirthController: controller.dateTEController,
                         onTapSuffix: () async {
                           DateTime? pickedDate = await showDatePicker(

@@ -75,7 +75,7 @@ class SignupController extends GetxController {
     if (val != null && val.isNotEmpty) {
       // clear all the selected values and list
       selectedUpzila.value = '';
-     // selectedUnion.value = '';
+      // selectedUnion.value = '';
       upzilaList.clear();
       //unionList.clear();
       getUpzila(id: val);
@@ -99,6 +99,14 @@ class SignupController extends GetxController {
   //     selectedUnion.value = val;
   //   }
   //}
+
+  @override
+  void onInit() {
+    getDivision();
+    startTimer();
+    super.onInit();
+  }
+
   void startTimer() {
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       remainingTime.value--;
@@ -134,7 +142,6 @@ class SignupController extends GetxController {
         AuthCache.to.saveUserInformation(
           loginRes.data?.accessToken ?? '',
           loginRes,
-
         );
         Get.offAllNamed(Routes.BOTTOM_NAV);
         Get.snackbar('Welcome', 'You are a member of our society');
@@ -142,16 +149,14 @@ class SignupController extends GetxController {
     }
   }
 
-
   Future<void> registration(RegistrationReq params) async {
     if (formKey.currentState!.validate()) {
       NetworkResponse response = await AuthRepository.registration(params);
       isLoading.value = false;
       if (response.isSuccess) {
-
         isLoading.value = false;
 
-        Get.to(()=> RegisterPinVerification(mobile : params.mobile));
+        Get.to(() => RegisterPinVerification(mobile: params.mobile));
 
         Get.snackbar('Message', 'An 6 digit OTP have been send your number');
         remainingTime.value = 300; // Reset time to 300 seconds
@@ -162,19 +167,11 @@ class SignupController extends GetxController {
     }
   }
 
-  @override
-  void onInit() {
-    getDivision();
-    startTimer();
-    super.onInit();
-  }
-
   Future<void> getDivision() async {
     isLoading.value = true;
     final NetworkResponse response = await LocationRepository.getDivision();
     divisionList.value = areaFromJson(response.jsonResponse!).data ?? [];
     isLoading.value = false;
-
   }
 
   Future<void> getDistrict({required String id}) async {

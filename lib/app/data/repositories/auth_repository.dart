@@ -29,6 +29,15 @@ class AuthRepository {
     return response;
   }
 
+  static Future<NetworkResponse> forgetPassOtpVerify(String mobile, String otp) async {
+    final NetworkResponse response = await ApiClient().postRequest(
+      ApiEndPoints.forgetPassOtpMatch,
+      body: {"mobile": mobile, "otp": otp},
+    );
+    return response;
+  }
+
+
   static Future<NetworkResponse> sendOtpForgetPass(String mobile) async {
     final NetworkResponse response = await ApiClient().postRequest(
       ApiEndPoints.forgetPass,
@@ -36,6 +45,7 @@ class AuthRepository {
     );
     return response;
   }
+
 
   static Future<NetworkResponse> resendOtp(String mobile) async {
     final NetworkResponse response = await ApiClient().postRequest(
@@ -45,19 +55,12 @@ class AuthRepository {
     return response;
   }
 
-  static Future<NetworkResponse> forgetPassOtpVerify(String mobile, String otp) async {
+
+  static Future<NetworkResponse> resetPassword(String mobile, String otp, String password) async {
     final NetworkResponse response = await ApiClient().postRequest(
-      ApiEndPoints.forgetPassOtpMatch,
-      body: {"mobile": mobile, "otp": otp},
+      ApiEndPoints.passwordChange,
+      body: {"mobile": mobile, "otp": otp, "password": password },
     );
     return response;
   }
-
-  // static Future<NetworkResponse> resetPassword(String mobile, String otp) async {
-  //   final NetworkResponse response = await ApiClient().postRequest(
-  //     ApiEndPoints.passwordChange,
-  //     body: {"mobile": mobile, "otp": otp, "password": password },
-  //   );
-  //   return response;
-  // }
 }

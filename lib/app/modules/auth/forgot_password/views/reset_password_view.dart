@@ -7,9 +7,15 @@ import '../../../../routes/app_pages.dart';
 import '../controllers/forgot_password_controller.dart';
 
 class ResetPasswordView extends StatelessWidget {
-  ResetPasswordView({super.key});
+  ResetPasswordView({super.key,
+    required this.mobile,
+    required this.otp});
 
   final controller = Get.put(ForgotPasswordController());
+
+  final String mobile;
+  final String otp;
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +48,8 @@ class ResetPasswordView extends StatelessWidget {
                 ),
                 const Text(
                   'Minimum password length should be more than 8 letters',
-                  style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
+                  style: TextStyle(
+                      color: Colors.grey, fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
                   height: 18,
@@ -53,30 +60,33 @@ class ResetPasswordView extends StatelessWidget {
                     children: [
                       PasswordTextField(
                         passwordController:
-                        controller.passwordTextEditController,
+                            controller.passwordTextEditController,
                         obscureText: controller.obscureText.value,
                         onTapSuffix: () {
                           controller.obscureText.value =
-                          !controller.obscureText.value;
+                              !controller.obscureText.value;
                         },
-                        suffixIcon:  Icon(
-                          controller.obscureText.value ? Icons.visibility : Icons.visibility_off,
-                          color: Colors.grey, // Customize the icon color as needed
+                        suffixIcon: Icon(
+                          controller.obscureText.value
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color:
+                              Colors.grey, // Customize the icon color as needed
                         ),
                       ),
-                      TextFormField(
-                        decoration: const InputDecoration(
-                          fillColor: Colors.white,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide.none,
-                          ),
-                          hintText: 'Confirm Password',
-                        ),
-                      ),
+                      // TextFormField(
+                      //   decoration: const InputDecoration(
+                      //     fillColor: Colors.white,
+                      //     filled: true,
+                      //     border: OutlineInputBorder(
+                      //       borderSide: BorderSide.none,
+                      //     ),
+                      //     focusedBorder: OutlineInputBorder(
+                      //       borderSide: BorderSide.none,
+                      //     ),
+                      //     hintText: 'Confirm Password',
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
@@ -86,7 +96,13 @@ class ResetPasswordView extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: controller.resetPassword,
+                    onPressed: () =>
+                      controller.resetPassword(
+                          mobile,
+                          otp
+                      ),
+
+
                     child: const Text('Confirm'),
                   ),
                 ),
@@ -98,7 +114,10 @@ class ResetPasswordView extends StatelessWidget {
                   children: [
                     const Text(
                       "Have an account?",
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black54),
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black54),
                     ),
                     TextButton(
                       onPressed: () {

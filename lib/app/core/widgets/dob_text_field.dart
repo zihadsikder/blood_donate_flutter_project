@@ -5,10 +5,13 @@ class DobTextField extends StatelessWidget {
     super.key,
     required this.dbirthController,
     required this.onTapSuffix,
+    required this.labelText,
+
 
   });
 
   final TextEditingController dbirthController;
+  final String labelText;
   final VoidCallback onTapSuffix;
 
 
@@ -18,7 +21,7 @@ class DobTextField extends StatelessWidget {
       controller: dbirthController,
       readOnly: true,
       decoration: InputDecoration(
-        labelText: 'Date of Birth',
+        labelText: labelText,
         suffixIcon: IconButton(
           onPressed: onTapSuffix,
           icon: const Icon(Icons.calendar_today, color: Colors.grey),

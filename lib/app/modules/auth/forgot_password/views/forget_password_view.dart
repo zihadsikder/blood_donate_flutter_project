@@ -64,12 +64,9 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: Visibility(
-                    visible: controller.isLoading.value = true,
-                    child: ElevatedButton(
-                      onPressed: controller.sendOtpForgetPass,
-                      child: const Icon(Icons.arrow_circle_right_outlined),
-                    ),
+                  child: ElevatedButton(
+                    onPressed: controller.sendOtpForgetPass,
+                    child: const Icon(Icons.arrow_circle_right_outlined),
                   ),
                 ),
                 const SizedBox(
@@ -78,10 +75,12 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Have an account?", style: Theme.of(context).textTheme.bodySmall),
+                    Text("Have an account?",
+                        style: Theme.of(context).textTheme.bodySmall),
                     TextButton(
                       style: const ButtonStyle(
-                        backgroundColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+                        backgroundColor:
+                            MaterialStatePropertyAll<Color>(Colors.transparent),
                       ),
                       onPressed: () {
                         Get.back();

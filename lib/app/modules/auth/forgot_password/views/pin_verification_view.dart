@@ -6,11 +6,12 @@ import '../../../../core/constants/app_assets.dart';
 import '../../../../routes/app_pages.dart';
 import '../controllers/forgot_password_controller.dart';
 
-class PinVerificationView extends StatelessWidget {
+class PinVerificationView extends  StatelessWidget {
   PinVerificationView({super.key, required this.mobile});
-  final String mobile;
 
   final controller = Get.put(ForgotPasswordController());
+
+  final String mobile;
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +85,12 @@ class PinVerificationView extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: Visibility(
-                      visible: controller.isLoading.value = true,
+                      //visible: controller.isLoading.value = true,
+                      replacement: const Center(child: CircularProgressIndicator()),
                       child: ElevatedButton(
-                        onPressed: controller.forgetPassOtpVerify,
+                        onPressed: () {
+                          controller.forgetPassOtpVerify(mobile);
+                        },
                         child: const Text('Verify'),
                       ),
                     ),
@@ -94,8 +98,10 @@ class PinVerificationView extends StatelessWidget {
                   const SizedBox(
                     height: 4.0,
                   ),
-                  if (controller.remainingTime.value > 0)// Hide when time is 0
-                  Row(
+                  //if (controller.remainingTime.value > 0)// Hide when time is 0
+
+                  //if (controller.remainingTime.value > 0)
+                    Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                        RichText(
@@ -104,7 +110,7 @@ class PinVerificationView extends StatelessWidget {
                               color: Colors.grey,
                             ),
                             children: [
-                              const TextSpan(text: 'This code will expire '),
+                              const TextSpan(text: 'This code will expire in'),
                               // Use a TextSpan here to hold the countdown time
                               TextSpan(
                                 text: '${controller.remainingTime.value}s',
@@ -123,10 +129,13 @@ class PinVerificationView extends StatelessWidget {
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
                         ),
-                        onPressed: () => controller.resendOtp(),
-                        child: const Text(
-                          'Resend Code',
-                          style: TextStyle(color: Colors.grey),
+                        onPressed: () => controller.resendOtp(mobile),
+                        child: Visibility(
+                          visible: controller.remainingTime.value <= 0,
+                          child: const Text(
+                            'Resend Code',
+                            style: TextStyle(color: Colors.grey),
+                          ),
                         ),
                       ),
                     ],

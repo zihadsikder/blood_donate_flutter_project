@@ -1,6 +1,16 @@
 import 'package:get/get.dart';
 
+import '../../../services/network.dart';
+
 class BottomNavController extends GetxController {
+
+  final connectivityController = Get.find<ConnectivityController>();
+
+  @override
+  void onInit() {
+    super.onInit();
+    connectivityController;
+  }
 
   int selectedIndex = 0;
 

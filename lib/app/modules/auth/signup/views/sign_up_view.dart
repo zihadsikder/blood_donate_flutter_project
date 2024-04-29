@@ -13,7 +13,6 @@ class SignUpView extends GetView<SignupController> {
 
   @override
   Widget build(BuildContext context) {
-
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
 
@@ -40,9 +39,11 @@ class SignUpView extends GetView<SignupController> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 4.0,),
+                    const SizedBox(
+                      height: 4.0,
+                    ),
                     Container(
-                      margin: const EdgeInsets.only( right: 20),
+                      margin: const EdgeInsets.only(right: 20),
                       width: w,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -131,7 +132,6 @@ class SignUpView extends GetView<SignupController> {
                         return null;
                       },
                     ),
-
                     const SizedBox(height: 8.0),
                     TextFormField(
                       controller: controller.postOfficeTEController,
@@ -162,30 +162,31 @@ class SignUpView extends GetView<SignupController> {
                       keyboardType: TextInputType.phone,
                       validator: (String? value) {
                         bool isValidPhoneNumber =
-                        RegExp(r"^0[0-9]{10}$").hasMatch(value!);
+                            RegExp(r"^0[0-9]{10}$").hasMatch(value!);
                         if (!isValidPhoneNumber) {
                           return 'Enter a valid 11-digit mobile number starting with 0';
                         }
                         return null;
                       },
                     ),
-
                     const SizedBox(height: 8.0),
                     DobTextField(
-                        dbirthController: controller.dobController,
-                        onTapSuffix: () async {
-                          DateTime? pickedDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1950),
-                            lastDate: DateTime(2050),
-                          );
-                          if (pickedDate != null) {
-                            String formattedDate =
-                                DateFormat('yyyy-MM-dd').format(pickedDate);
-                            controller.dobController.text = formattedDate;
-                          }
-                        }),
+                      dbirthController: controller.dobController,
+                      labelText: 'Date of Birth',
+                      onTapSuffix: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1950),
+                          lastDate: DateTime(2050),
+                        );
+                        if (pickedDate != null) {
+                          String formattedDate =
+                              DateFormat('yyyy-MM-dd').format(pickedDate);
+                          controller.dobController.text = formattedDate;
+                        }
+                      },
+                    ),
                     const SizedBox(height: 8.0),
                     PasswordTextField(
                       passwordController: controller.passwordTEController,
@@ -194,9 +195,12 @@ class SignUpView extends GetView<SignupController> {
                         controller.obscureText.value =
                             !controller.obscureText.value;
                       },
-                      suffixIcon:  Icon(
-                        controller.obscureText.value ? Icons.visibility_off : Icons.visibility,
-                        color: Colors.grey, // Customize the icon color as needed
+                      suffixIcon: Icon(
+                        controller.obscureText.value
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color:
+                            Colors.grey, // Customize the icon color as needed
                       ),
                     ),
                     const SizedBox(height: 8.0),
@@ -247,7 +251,9 @@ class SignUpView extends GetView<SignupController> {
                                   divisionId: controller.selectedDivision.value,
                                   districtId: controller.selectedDistrict.value,
                                   areaId: controller.selectedUpzila.value,
-                                  postOffice: controller.postOfficeTEController.text.trim(),
+                                  postOffice: controller
+                                      .postOfficeTEController.text
+                                      .trim(),
                                 ),
                               );
                               await controller.registration(registrationParams);
@@ -269,7 +275,8 @@ class SignUpView extends GetView<SignupController> {
                         ),
                         TextButton(
                           style: const ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+                            backgroundColor: MaterialStatePropertyAll<Color>(
+                                Colors.transparent),
                           ),
                           onPressed: () {
                             Get.back();

@@ -99,10 +99,13 @@ class RegisterPinVerification extends StatelessWidget {
                         ),
                         children: [
                           const TextSpan(text: 'This code will expire '),
+                          // Use a TextSpan here to hold the countdown time
                           TextSpan(
-                            text: '300s',
+                            text: '${controller.remainingTime.value}s',
                             style: TextStyle(
-                              color: Colors.red.shade800,
+                              color: controller.remainingTime.value > 60
+                                  ? Colors.grey.shade800
+                                  : Colors.red.shade800,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
