@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../data/models/donor_history_list_model.dart';
 import '../../../../data/models/network_response.dart';
 import '../../../../services/api_client.dart';
 import '../../../../services/api_end_points.dart';
+import '../../accounts/controllers/accounts_controller.dart';
 
 class DonationHistoryController extends GetxController {
-
   final TextEditingController placeTEController = TextEditingController();
   final TextEditingController dateTEController = TextEditingController();
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  final updateProfileData = Get.find<AccountsController>();
   final inProgress = false.obs;
 
   DonorHistoryList? donorHistoryList;
@@ -44,6 +43,7 @@ class DonationHistoryController extends GetxController {
         clearTextFields();
         inProgress.value = true;
         await getDonationList();
+        updateProfileData.profileData();
         Get.snackbar('Success', 'Add Donation Successful');
       } else {
         inProgress.value = false;
@@ -55,7 +55,7 @@ class DonationHistoryController extends GetxController {
     inProgress.value = true;
 
     final NetworkResponse response =
-    await ApiClient().getRequest(ApiEndPoints.getDonorList);
+        await ApiClient().getRequest(ApiEndPoints.getDonorList);
     inProgress.value = false;
     if (response.isSuccess) {
       donorHistoryList = donorHistoryListFromJson(response.jsonResponse!);
@@ -70,7 +70,7 @@ class DonationHistoryController extends GetxController {
     Get.back();
 
     final response =
-    await ApiClient().delRequest(ApiEndPoints.deleteDonation + id);
+        await ApiClient().delRequest(ApiEndPoints.deleteDonation + id);
     inProgress.value = false;
     if (response.isSuccess) {
       donorHistoryList!.data!.removeWhere((element) => element.id == id);
@@ -82,9 +82,9 @@ class DonationHistoryController extends GetxController {
       return false;
     }
   }
+
   void clearTextFields() {
     placeTEController.clear();
     dateTEController.clear();
   }
-
 }

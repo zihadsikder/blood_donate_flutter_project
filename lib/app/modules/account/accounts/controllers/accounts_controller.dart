@@ -14,16 +14,13 @@ class AccountsController extends GetxController {
   final TextEditingController usernameTEController = TextEditingController();
   final TextEditingController emailTEController = TextEditingController();
   final TextEditingController mobileTEController = TextEditingController();
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   AuthCache get authCache => Get.find<AuthCache>();
 
   final inProgress = false.obs;
-
   final isProfileActive = true.obs;
 
-   //ProfileData? profileData ;
    final profileData = ProfileData().obs;
 
   @override

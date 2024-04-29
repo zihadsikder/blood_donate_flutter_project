@@ -11,8 +11,7 @@ import 'widget/activated_profile.dart';
 import 'widget/logoutEleButton.dart';
 
 class AccountsView extends GetView<AccountsController> {
- const AccountsView({super.key});
-
+  const AccountsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,215 +25,218 @@ class AccountsView extends GetView<AccountsController> {
       },
       child: Scaffold(
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                ProfileSummaryCard(),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Obx(
-                    () => Column(
-                      children: [
-                        Card(
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                                width: 0, color: Colors.transparent),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Column(
-                            children: [
-                              ListTile(
-                                shape: RoundedRectangleBorder(
-                                  side: const BorderSide(
-                                      width: 0, color: Colors.transparent),
-                                  borderRadius: BorderRadius.circular(8),
+          child: RefreshIndicator(
+            onRefresh: () => controller.getProfileData(),
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  ProfileSummaryCard(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Obx(
+                      () => Column(
+                        children: [
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                  width: 0, color: Colors.transparent),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  shape: RoundedRectangleBorder(
+                                    side: const BorderSide(
+                                        width: 0, color: Colors.transparent),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  leading: const CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    backgroundImage:
+                                        AssetImage('assets/blood.png'),
+                                  ),
+                                  title: Row(
+                                    children: [
+                                      Text(profile?.name ?? 'Name'),
+                                    ],
+                                  ),
+                                  subtitle: Text(controller.isProfileActive.value
+                                      ? 'Active'
+                                      : 'Inactive'),
+                                  trailing: GestureDetector(
+                                      onTap: () {
+                                        showDialog(
+                                            barrierDismissible: false,
+                                            context: context,
+                                            builder: (context) =>
+                                                UpdateAccountsView());
+                                      },
+                                      child: Icon(
+                                        Icons.edit,
+                                        color: Colors.red.shade800,
+                                      )),
                                 ),
-                                leading: const CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  backgroundImage:
-                                      AssetImage('assets/blood.png'),
-                                ),
-                                title: Row(
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
-                                    Text(profile?.name ?? 'Name'),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.bloodtype_outlined,
+                                            color: Colors.red.shade900,
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            '${profile?.totalDonation ?? 0}',
+                                          ),
+                                          //const Text('2'),
+                                          const Text('Total Donation'),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.bloodtype_outlined,
+                                            color: Colors.red.shade900,
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            profile?.bloodGroup ?? 'Blood Group',
+                                          ),
+                                          const Text('Blood Group'),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Icon(
+                                            Icons.bloodtype_outlined,
+                                            color: Colors.red.shade900,
+                                          ),
+                                          const SizedBox(
+                                            height: 5,
+                                          ),
+                                          Text(
+                                            DateFormat('dd/MM/yyyy').format(
+                                                DateTime.parse(profile
+                                                        ?.lastDonation ??
+                                                    DateTime.now().toString())),
+                                          ),
+                                          const Text('Last Donation'),
+                                        ],
+                                      ),
+                                    ),
                                   ],
                                 ),
-                                subtitle: Text(controller.isProfileActive.value
-                                    ? 'Active'
-                                    : 'Inactive'),
-                                trailing: GestureDetector(
-                                    onTap: () {
-                                      showDialog(
-                                          barrierDismissible: false,
-                                          context: context,
-                                          builder: (context) =>
-                                              UpdateAccountsView());
-                                    },
-                                    child: Icon(
-                                      Icons.edit,
-                                      color: Colors.red.shade800,
-                                    )),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      children: [
-                                        Icon(
-                                          Icons.bloodtype_outlined,
-                                          color: Colors.red.shade900,
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(
-                                          '${profile?.totalDonation ?? 0}',
-                                        ),
-                                        //const Text('2'),
-                                        const Text('Total Donation'),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      children: [
-                                        Icon(
-                                          Icons.bloodtype_outlined,
-                                          color: Colors.red.shade900,
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(
-                                          profile?.bloodGroup ??
-                                              'Blood Group',
-                                        ),
-                                        const Text('Blood Group'),
-                                      ],
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Column(
-                                      children: [
-                                        Icon(
-                                          Icons.bloodtype_outlined,
-                                          color: Colors.red.shade900,
-                                        ),
-                                        const SizedBox(
-                                          height: 5,
-                                        ),
-                                        Text(
-                                          DateFormat('dd/MM/yyyy').format(
-                                              DateTime.parse(profile?.lastDonation ??
-                                                  DateTime.now().toString())),
-                                        ),
-                                        const Text('Last Donation'),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 8.0),
-                        ListTile(
-                          shape: RoundedRectangleBorder(
-                            side:
-                                const BorderSide(width: 2, color: Colors.white),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          leading: Icon(
-                            Icons.call,
-                            color: Colors.red.shade700,
-                            size: 30,
-                          ),
-                          title: const Row(
-                            children: [
-                              Text('Mobile'),
-                            ],
-                          ),
-                          subtitle:
-                              Text('+88 ${profile?.mobile.toString()}'),
-                        ),
-                        Container(height: 2, color: Colors.grey.shade100),
-                        ListTile(
-                          shape: RoundedRectangleBorder(
-                            side:
-                                const BorderSide(width: 2, color: Colors.white),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          leading: Icon(
-                            Icons.email_outlined,
-                            color: Colors.red.shade700,
-                            size: 30,
-                          ),
-                          title: const Row(
-                            children: [
-                              Text('Email'),
-                            ],
-                          ),
-                          subtitle: Text(
-                            profile?.email ?? 'N/A',
-                          ),
-                        ),
-                        Container(height: 2, color: Colors.grey.shade100),
-                        ListTile(
-                          shape: RoundedRectangleBorder(
-                            side:
-                                const BorderSide(width: 2, color: Colors.white),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          leading: SizedBox(
-                            width: 32,
-                            //color: Colors.grey,
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: Image.asset(
-                                'assets/map.png',
-                                height: 36,
-                                width: 24,
-                              ),
+                              ],
                             ),
                           ),
-                          title: const Row(
-                            children: [
-                              Text('Address'),
-                            ],
+                          const SizedBox(height: 8.0),
+                          ListTile(
+                            shape: RoundedRectangleBorder(
+                              side:
+                                  const BorderSide(width: 2, color: Colors.white),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            leading: Icon(
+                              Icons.call,
+                              color: Colors.red.shade700,
+                              size: 30,
+                            ),
+                            title: const Row(
+                              children: [
+                                Text('Mobile'),
+                              ],
+                            ),
+                            subtitle: Text('+88 ${profile?.mobile.toString()}'),
                           ),
-                          subtitle: Text(profile?.address!.postOffice ?? ''),
-                        ),
-                        Container(height: 1, color: Colors.grey.shade100),
-                        const SizedBox(height: 5.0),
-                        const DonationHistory(),
-                        ActivatedProfile(
-                          testValue: Text(
-                            controller.isProfileActive.value
-                                ? 'Deactivate Your Profile!'
-                                : 'Activate Your Profile!',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16),
+                          Container(height: 2, color: Colors.grey.shade100),
+                          ListTile(
+                            shape: RoundedRectangleBorder(
+                              side:
+                                  const BorderSide(width: 2, color: Colors.white),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            leading: Icon(
+                              Icons.email_outlined,
+                              color: Colors.red.shade700,
+                              size: 30,
+                            ),
+                            title: const Row(
+                              children: [
+                                Text('Email'),
+                              ],
+                            ),
+                            subtitle: Text(
+                              profile?.email ?? 'N/A',
+                            ),
                           ),
-                          value: controller.isProfileActive.value,
-                          onChanged: (isActive) async {
-                            controller.isProfileActive.value = isActive;
-                            await controller.toggleProfileActivation(isActive);
-                          },
-                        ),
-                        const SizedBox(height: 16),
-                        LogoutEleButton(
-                          onPress: () => controller.logout(),
-                        ),
-                      ],
+                          Container(height: 2, color: Colors.grey.shade100),
+                          ListTile(
+                            shape: RoundedRectangleBorder(
+                              side:
+                                  const BorderSide(width: 2, color: Colors.white),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            leading: SizedBox(
+                              width: 32,
+                              //color: Colors.grey,
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Image.asset(
+                                  'assets/map.png',
+                                  height: 36,
+                                  width: 24,
+                                ),
+                              ),
+                            ),
+                            title: const Row(
+                              children: [
+                                Text('Address'),
+                              ],
+                            ),
+                            subtitle: Text(profile?.address!.postOffice ?? ''),
+                          ),
+                          Container(height: 1, color: Colors.grey.shade100),
+                          const SizedBox(height: 5.0),
+                          const DonationHistory(),
+                          ActivatedProfile(
+                            testValue: Text(
+                              controller.isProfileActive.value
+                                  ? 'Deactivate Your Profile!'
+                                  : 'Activate Your Profile!',
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                            value: controller.isProfileActive.value,
+                            onChanged: (isActive) async {
+                              controller.isProfileActive.value = isActive;
+                              await controller.toggleProfileActivation(isActive);
+                            },
+                          ),
+                          const SizedBox(height: 16),
+                          LogoutEleButton(
+                            onPress: () => controller.logout(),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -15,7 +15,7 @@ class BottomNavView extends GetView<BottomNavController> {
   List pages = [
     const HomeView(),
     GovtServicesView(),
-    AccountsView(),
+    const AccountsView(),
     const SettingView(),
   ];
 
