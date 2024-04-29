@@ -51,7 +51,6 @@ class ForgotPasswordController extends GetxController {
 
   Future<void> sendOtpForgetPass() async {
     if (forgotPassFormKey.currentState!.validate()) {
-
       isLoading.value = true;
 
       final mobile = numberTextEditController.text;
@@ -61,8 +60,7 @@ class ForgotPasswordController extends GetxController {
 
       if (response.isSuccess) {
         Get.off(
-          () => PinVerificationView(mobile: mobile
-          ),
+          () => PinVerificationView(mobile: mobile),
         );
         Get.snackbar('Message', 'An OTP send your mobile number!');
 
@@ -98,7 +96,7 @@ class ForgotPasswordController extends GetxController {
       final String password = passwordTextEditController.text.trim();
 
       final response =
-          await AuthRepository.resetPassword(mobile,  otp, password);
+          await AuthRepository.resetPassword(mobile, otp, password);
       isLoading.value = false;
 
       if (response.isSuccess) {
@@ -119,7 +117,12 @@ class ForgotPasswordController extends GetxController {
     isLoading.value = false;
 
     if (response.isSuccess) {
-      Get.off(() => PinVerificationView(mobile: mobile,),);
+      Get.off(
+        () => PinVerificationView(
+          mobile: mobile,
+        ),
+      );
+      Get.snackbar('Message', 'An OTP send your mobile number again. Please check!');
 
       remainingTime.value = 300; // Reset time to 300 seconds
       startTimer();

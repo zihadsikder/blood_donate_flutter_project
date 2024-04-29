@@ -7,15 +7,12 @@ import '../../../../routes/app_pages.dart';
 import '../controllers/forgot_password_controller.dart';
 
 class ResetPasswordView extends StatelessWidget {
-  ResetPasswordView({super.key,
-    required this.mobile,
-    required this.otp});
+  ResetPasswordView({super.key, required this.mobile, required this.otp});
 
   final controller = Get.put(ForgotPasswordController());
 
   final String mobile;
   final String otp;
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,14 +82,10 @@ class ResetPasswordView extends StatelessWidget {
                   child: Visibility(
                     visible: controller.isLoading.value == false,
                     replacement: const Center(
-                      child: CircularProgressIndicator(
-                      ),),
+                      child: CircularProgressIndicator(),
+                    ),
                     child: ElevatedButton(
-                      onPressed: () =>
-                        controller.resetPassword(
-                            mobile,
-                            otp
-                        ),
+                      onPressed: () => controller.resetPassword(mobile, otp),
                       child: const Text('Confirm'),
                     ),
                   ),

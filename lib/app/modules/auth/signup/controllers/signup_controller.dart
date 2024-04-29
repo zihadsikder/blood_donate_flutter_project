@@ -102,8 +102,8 @@ class SignupController extends GetxController {
 
   @override
   void onInit() {
-    getDivision();
     startTimer();
+    getDivision();
     super.onInit();
   }
 
@@ -120,21 +120,20 @@ class SignupController extends GetxController {
   @override
   void onClose() {
     timer.cancel(); // Cancel the timer when the controller is closed
-    super.onClose();
+    //super.onClose();
   }
 
-  Future<void> verifyOtp() async {
+    void verifyOtp(mobile) async {
     if (otpFormKey.currentState!.validate()) {
       isLoading.value = true;
 
-      final mobile = mobileNumberTEController.text.trim();
       final otp = otpTextEditController.text.trim();
 
       final response = await AuthRepository.verifyOtp(mobile, otp);
 
-      clearTextFields();
-
       isLoading.value = false;
+
+      clearTextFields();
 
       if (response.isSuccess && response.jsonResponse != null) {
         LoginRes loginRes = loginResFromJson(response.jsonResponse!);
@@ -149,6 +148,24 @@ class SignupController extends GetxController {
     }
   }
 
+  void resendOtp(mobile) async {
+    isLoading.value = true;
+
+    final response =
+    await AuthRepository.resendOtp(mobile); // Pass the mobile number
+    isLoading.value = false;
+
+    if (response.isSuccess) {
+      Get.off(
+            () => RegisterPinVerification(mobile: mobile));
+
+      Get.snackbar('Message', 'An OTP has been sent to your mobile number again. Please check!');
+
+      remainingTime.value = 300; // Reset time to 300 seconds
+      startTimer();
+    }
+  }
+
   Future<void> registration(RegistrationReq params) async {
     if (formKey.currentState!.validate()) {
       isLoading.value = true;
@@ -159,7 +176,8 @@ class SignupController extends GetxController {
 
       if (response.isSuccess) {
 
-        Get.to(() => RegisterPinVerification(mobile: params.mobile));
+        Get.off(
+                () => RegisterPinVerification(mobile: params.mobile));
 
         Get.snackbar('Message', 'An 6 digit OTP have been send your number');
         remainingTime.value = 300; // Reset time to 300 seconds

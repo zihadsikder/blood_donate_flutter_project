@@ -6,7 +6,7 @@ import '../../../../core/constants/app_assets.dart';
 import '../../../../routes/app_pages.dart';
 import '../controllers/forgot_password_controller.dart';
 
-class PinVerificationView extends  StatelessWidget {
+class PinVerificationView extends StatelessWidget {
   PinVerificationView({super.key, required this.mobile});
 
   final controller = Get.put(ForgotPasswordController());
@@ -15,7 +15,6 @@ class PinVerificationView extends  StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     controller.startTimer();
     return Scaffold(
       body: SafeArea(
@@ -23,7 +22,7 @@ class PinVerificationView extends  StatelessWidget {
           padding: const EdgeInsets.all(24.0),
           child: SingleChildScrollView(
             child: Obx(
-              ()=> Column(
+              () => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
@@ -47,7 +46,8 @@ class PinVerificationView extends  StatelessWidget {
                   ),
                   const Text(
                     'A 6 digit OTP will be sent to your mobile number',
-                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        color: Colors.grey, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
                     height: 18,
@@ -56,7 +56,7 @@ class PinVerificationView extends  StatelessWidget {
                     key: controller.otpFormKey,
                     child: PinCodeTextField(
                       controller: controller.otpTextEditController,
-                      length: 6 ,
+                      length: 6,
                       obscureText: false,
                       animationType: AnimationType.fade,
                       pinTheme: PinTheme(
@@ -86,7 +86,9 @@ class PinVerificationView extends  StatelessWidget {
                     width: double.infinity,
                     child: Visibility(
                       visible: controller.isLoading.value == false,
-                      replacement: const Center(child: CircularProgressIndicator(),),
+                      replacement: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
                       child: ElevatedButton(
                         onPressed: () {
                           controller.forgetPassOtpVerify(mobile);
@@ -100,33 +102,33 @@ class PinVerificationView extends  StatelessWidget {
                   ),
 
                   //if (controller.remainingTime.value > 0)
-                    Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                       RichText(
-                          text: TextSpan(
-                            style: const TextStyle(
-                              color: Colors.grey,
-                            ),
-                            children: [
-                              const TextSpan(text: 'This code will expire in '),
-                              // Use a TextSpan here to hold the countdown time
-                              TextSpan(
-                                text: '${controller.remainingTime.value}s',
-                                style: TextStyle(
-                                  color: controller.remainingTime.value > 60
-                                      ? Colors.grey.shade800
-                                      : Colors.red.shade800,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                            ],
+                      RichText(
+                        text: TextSpan(
+                          style: const TextStyle(
+                            color: Colors.grey,
                           ),
+                          children: [
+                            const TextSpan(text: 'This code will expire in '),
+                            // Use a TextSpan here to hold the countdown time
+                            TextSpan(
+                              text: '${controller.remainingTime.value}s',
+                              style: TextStyle(
+                                color: controller.remainingTime.value > 60
+                                    ? Colors.grey.shade800
+                                    : Colors.red.shade800,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
                         ),
-
+                      ),
                       TextButton(
                         style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.transparent),
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Colors.transparent),
                         ),
                         onPressed: () => controller.resendOtp(mobile),
                         child: Visibility(
@@ -140,7 +142,6 @@ class PinVerificationView extends  StatelessWidget {
                     ],
                   ),
 
-
                   const SizedBox(
                     height: 4.0,
                   ),
@@ -153,7 +154,8 @@ class PinVerificationView extends  StatelessWidget {
                       ),
                       TextButton(
                         style: const ButtonStyle(
-                          backgroundColor: MaterialStatePropertyAll<Color>(Colors.transparent),
+                          backgroundColor: MaterialStatePropertyAll<Color>(
+                              Colors.transparent),
                         ),
                         onPressed: () {
                           Get.offNamed(Routes.LOGIN);
@@ -166,7 +168,6 @@ class PinVerificationView extends  StatelessWidget {
                       const SizedBox(height: 24),
                     ],
                   ),
-
                 ],
               ),
             ),
