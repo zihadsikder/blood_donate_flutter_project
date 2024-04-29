@@ -1,10 +1,12 @@
+// To parse this JSON data, do
+//
+//     final searchUserModel = searchUserModelFromJson(jsonString);
+
 import 'dart:convert';
 
-SearchUserModel searchUserModelFromJson(String str) =>
-    SearchUserModel.fromJson(json.decode(str));
+SearchUserModel searchUserModelFromJson(String str) => SearchUserModel.fromJson(json.decode(str));
 
-String searchUserModelToJson(SearchUserModel data) =>
-    json.encode(data.toJson());
+String searchUserModelToJson(SearchUserModel data) => json.encode(data.toJson());
 
 class SearchUserModel {
   final Pagination? pagination;
@@ -19,26 +21,19 @@ class SearchUserModel {
     this.message,
   });
 
-  factory SearchUserModel.fromJson(Map<String, dynamic> json) =>
-      SearchUserModel(
-        pagination: json["pagination"] == null
-            ? null
-            : Pagination.fromJson(json["pagination"]),
-        data: json["data"] == null
-            ? []
-            : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
-        status: json["status"],
-        message: json["message"],
-      );
+  factory SearchUserModel.fromJson(Map<String, dynamic> json) => SearchUserModel(
+    pagination: json["pagination"] == null ? null : Pagination.fromJson(json["pagination"]),
+    data: json["data"] == null ? [] : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
+    status: json["status"],
+    message: json["message"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "pagination": pagination?.toJson(),
-        "data": data == null
-            ? []
-            : List<dynamic>.from(data!.map((x) => x.toJson())),
-        "status": status,
-        "message": message,
-      };
+    "pagination": pagination?.toJson(),
+    "data": data == null ? [] : List<dynamic>.from(data!.map((x) => x.toJson())),
+    "status": status,
+    "message": message,
+  };
 }
 
 class Datum {
@@ -50,11 +45,11 @@ class Datum {
   final String? bloodGroup;
   final String? occupation;
   final bool? isWeight50Kg;
-  final dynamic lastDonation;
-  final bool? isAvailable;
+  final DateTime? lastDonation;
   final Address? address;
   final String? pic;
   final DateTime? createdAt;
+  final bool? isAvailable;
   final int? totalDonation;
 
   Datum({
@@ -67,10 +62,10 @@ class Datum {
     this.occupation,
     this.isWeight50Kg,
     this.lastDonation,
-    this.isAvailable,
     this.address,
     this.pic,
     this.createdAt,
+    this.isAvailable,
     this.totalDonation,
   });
 
@@ -83,11 +78,11 @@ class Datum {
     bloodGroup: json["blood_group"],
     occupation: json["occupation"],
     isWeight50Kg: json["is_weight_50kg"],
-    lastDonation: json["last_donation"],
-    isAvailable: json["isAvailable"],
+    lastDonation: json["last_donation"] == null ? null : DateTime.parse(json["last_donation"]),
     address: json["address"] == null ? null : Address.fromJson(json["address"]),
     pic: json["pic"],
     createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
+    isAvailable: json["isAvailable"],
     totalDonation: json["totalDonation"],
   );
 
@@ -100,14 +95,15 @@ class Datum {
     "blood_group": bloodGroup,
     "occupation": occupation,
     "is_weight_50kg": isWeight50Kg,
-    "last_donation": lastDonation,
-    "isAvailable": isAvailable,
+    "last_donation": lastDonation?.toIso8601String(),
     "address": address?.toJson(),
     "pic": pic,
     "created_at": createdAt?.toIso8601String(),
+    "isAvailable": isAvailable,
     "totalDonation": totalDonation,
   };
 }
+
 class Address {
   final String? division;
   final String? district;
@@ -122,18 +118,18 @@ class Address {
   });
 
   factory Address.fromJson(Map<String, dynamic> json) => Address(
-        division: json["division"],
-        district: json["district"],
-        area: json["area"],
-        postOffice: json["post_office"],
-      );
+    division: json["division"],
+    district: json["district"],
+    area: json["area"],
+    postOffice: json["post_office"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "division": division,
-        "district": district,
-        "area": area,
-        "post_office": postOffice,
-      };
+    "division": division,
+    "district": district,
+    "area": area,
+    "post_office": postOffice,
+  };
 }
 
 class Pagination {
@@ -150,16 +146,16 @@ class Pagination {
   });
 
   factory Pagination.fromJson(Map<String, dynamic> json) => Pagination(
-        totalData: json["total_data"],
-        totalPage: json["total_page"],
-        currentPage: json["current_page"],
-        dataLoadCurrentPage: json["data_load_current_page"],
-      );
+    totalData: json["total_data"],
+    totalPage: json["total_page"],
+    currentPage: json["current_page"],
+    dataLoadCurrentPage: json["data_load_current_page"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "total_data": totalData,
-        "total_page": totalPage,
-        "current_page": currentPage,
-        "data_load_current_page": dataLoadCurrentPage,
-      };
+    "total_data": totalData,
+    "total_page": totalPage,
+    "current_page": currentPage,
+    "data_load_current_page": dataLoadCurrentPage,
+  };
 }
