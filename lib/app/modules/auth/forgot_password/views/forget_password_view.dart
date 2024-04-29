@@ -64,9 +64,15 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: controller.sendOtpForgetPass,
-                    child: const Icon(Icons.arrow_circle_right_outlined),
+                  child: Visibility(
+                    visible: controller.isLoading.value == false,
+                    replacement: const Center(
+                      child: CircularProgressIndicator(
+                      ),),
+                    child: ElevatedButton(
+                      onPressed: controller.sendOtpForgetPass,
+                      child: const Icon(Icons.arrow_circle_right_outlined),
+                    ),
                   ),
                 ),
                 const SizedBox(

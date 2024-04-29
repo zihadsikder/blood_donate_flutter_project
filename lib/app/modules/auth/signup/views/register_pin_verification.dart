@@ -81,9 +81,15 @@ class RegisterPinVerification extends StatelessWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: controller.verifyOtp,
-                    child: const Text('Verify'),
+                  child: Visibility(
+                    visible: controller.isLoading.value == false,
+                    replacement: const Center(
+                      child: CircularProgressIndicator(
+                      ),),
+                    child: ElevatedButton(
+                      onPressed: controller.verifyOtp,
+                      child: const Text('Verify'),
+                    ),
                   ),
                 ),
                 const SizedBox(

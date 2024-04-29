@@ -74,19 +74,6 @@ class ResetPasswordView extends StatelessWidget {
                               Colors.grey, // Customize the icon color as needed
                         ),
                       ),
-                      // TextFormField(
-                      //   decoration: const InputDecoration(
-                      //     fillColor: Colors.white,
-                      //     filled: true,
-                      //     border: OutlineInputBorder(
-                      //       borderSide: BorderSide.none,
-                      //     ),
-                      //     focusedBorder: OutlineInputBorder(
-                      //       borderSide: BorderSide.none,
-                      //     ),
-                      //     hintText: 'Confirm Password',
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
@@ -95,15 +82,19 @@ class ResetPasswordView extends StatelessWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () =>
-                      controller.resetPassword(
-                          mobile,
-                          otp
-                      ),
-
-
-                    child: const Text('Confirm'),
+                  child: Visibility(
+                    visible: controller.isLoading.value == false,
+                    replacement: const Center(
+                      child: CircularProgressIndicator(
+                      ),),
+                    child: ElevatedButton(
+                      onPressed: () =>
+                        controller.resetPassword(
+                            mobile,
+                            otp
+                        ),
+                      child: const Text('Confirm'),
+                    ),
                   ),
                 ),
                 const SizedBox(

@@ -151,18 +151,19 @@ class SignupController extends GetxController {
 
   Future<void> registration(RegistrationReq params) async {
     if (formKey.currentState!.validate()) {
+      isLoading.value = true;
+
       NetworkResponse response = await AuthRepository.registration(params);
+
       isLoading.value = false;
+
       if (response.isSuccess) {
-        isLoading.value = false;
 
         Get.to(() => RegisterPinVerification(mobile: params.mobile));
 
         Get.snackbar('Message', 'An 6 digit OTP have been send your number');
         remainingTime.value = 300; // Reset time to 300 seconds
         startTimer();
-      } else {
-        isLoading.value = false;
       }
     }
   }

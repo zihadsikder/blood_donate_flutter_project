@@ -85,8 +85,8 @@ class PinVerificationView extends  StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: Visibility(
-                      //visible: controller.isLoading.value = true,
-                      replacement: const Center(child: CircularProgressIndicator()),
+                      visible: controller.isLoading.value == false,
+                      replacement: const Center(child: CircularProgressIndicator(),),
                       child: ElevatedButton(
                         onPressed: () {
                           controller.forgetPassOtpVerify(mobile);
