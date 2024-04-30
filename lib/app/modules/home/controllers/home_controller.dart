@@ -35,7 +35,6 @@ class HomeController extends GetxController {
 
   // TODO: Implement _loadInterstitialAd()
   void loadInterstitialAd() {
-
     InterstitialAd.load(
       adUnitId: AdHelper.interstitialAdUnitId,
       request: const AdRequest(),
@@ -43,14 +42,12 @@ class HomeController extends GetxController {
         onAdLoaded: (ad) {
           ad.fullScreenContentCallback = FullScreenContentCallback(
             onAdDismissedFullScreenContent: (ad) {
-              Get.to(()=> SearchScreenView());
+              Get.to(() => SearchScreenView());
             },
           );
-            interstitialAd = ad;
+          interstitialAd = ad;
         },
-        onAdFailedToLoad: (err) {
-
-        },
+        onAdFailedToLoad: (err) {},
       ),
     );
   }
@@ -73,7 +70,6 @@ class HomeController extends GetxController {
 
   onSelectedDistrict(String? val) {
     if (val != null && val.isNotEmpty) {
-
       selectedUpzila.value = '';
       upzilaList.clear();
       getUpzila(id: val);
@@ -105,7 +101,8 @@ class HomeController extends GetxController {
 
   Future<void> getDistrict({required String id}) async {
     isLoading.value = true;
-    final NetworkResponse response = await LocationRepository.getDistrict(id: id);
+    final NetworkResponse response =
+        await LocationRepository.getDistrict(id: id);
     districtList.value = areaFromJson(response.jsonResponse!).data ?? [];
     isLoading.value = false;
   }
@@ -117,19 +114,23 @@ class HomeController extends GetxController {
     isLoading.value = false;
   }
 
-
   Future<bool> searchDonor(
-      String bloodGroup, String division, String district, String upzila,) async {
+    String bloodGroup,
+    String division,
+    String district,
+    String upzila,
+  ) async {
     if (formKey.currentState!.validate()) {
       isLoading.value = true;
 
-      final response = await ApiClient().getRequest("${ApiEndPoints.getSearchDonor}"
-          "blood_group=$bloodGroup"
-          "&division_id=$division"
-          "&district_id=$district"
-          "&area_id=$upzila"
-          //"&post_office=$postOffice"
-      );
+      final response =
+          await ApiClient().getRequest("${ApiEndPoints.getSearchDonor}"
+              "blood_group=$bloodGroup"
+              "&division_id=$division"
+              "&district_id=$district"
+              "&area_id=$upzila"
+              //"&post_office=$postOffice"
+              );
 
       isLoading.value = false;
 

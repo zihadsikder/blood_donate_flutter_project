@@ -44,7 +44,7 @@ class DonationHistoryController extends GetxController {
         inProgress.value = true;
         await getDonationList();
         updateProfileData.profileData();
-        Get.snackbar('Success', 'Add Donation Successful');
+        Get.snackbar('Message', response.message ?? 'Try Again Later');
       } else {
         inProgress.value = false;
       }

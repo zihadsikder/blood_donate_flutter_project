@@ -62,8 +62,7 @@ class ForgotPasswordController extends GetxController {
         Get.off(
           () => PinVerificationView(mobile: mobile),
         );
-        Get.snackbar('Message', 'An OTP send your mobile number!');
-
+        Get.snackbar('Message', response.message ?? 'Something Error!');
         remainingTime.value = 300; // Reset time to 300 seconds
         startTimer();
       }
@@ -101,7 +100,9 @@ class ForgotPasswordController extends GetxController {
 
       if (response.isSuccess) {
         Get.offAllNamed(Routes.LOGIN);
-        Get.snackbar('Congress!', 'You have successfully change your password');
+
+        Get.snackbar('Message', response.message ?? 'Something Error!');
+
         // Start the countdown timer after sending OTP
         remainingTime.value = 300; // Reset time to 300 seconds
         startTimer();
@@ -122,7 +123,7 @@ class ForgotPasswordController extends GetxController {
           mobile: mobile,
         ),
       );
-      Get.snackbar('Message', 'An OTP send your mobile number again. Please check!');
+      Get.snackbar('Message', response.message ?? 'Something Error!');
 
       remainingTime.value = 300; // Reset time to 300 seconds
       startTimer();

@@ -6,31 +6,34 @@ import '../data/models/network_response.dart';
 import 'auth_cache.dart';
 
 class ApiClient {
-
   final auth = Get.find<AuthCache>();
 
-  Future<NetworkResponse> postRequest(String url, {Map<String, dynamic>? body, String? token}) async {
+  Future<NetworkResponse> postRequest(String url,
+      {Map<String, dynamic>? body, String? token}) async {
     try {
       log(url);
       log(body.toString());
-      final response = await post(Uri.parse(url), body: jsonEncode(body), headers: {
+      final response =
+          await post(Uri.parse(url), body: jsonEncode(body), headers: {
         'Content-Type': 'application/json',
-        'Authorization': AuthCache.to.checkAuthState() ? "Bearer ${AuthCache.to.getToken()}" : "",
+        'Authorization': AuthCache.to.checkAuthState()
+            ? "Bearer ${AuthCache.to.getToken()}"
+            : "",
       });
       log(response.statusCode.toString());
       log(response.body.toString());
       if (response.statusCode == 200) {
-        final  responseBodyJson = jsonDecode(response.body);
+        final responseBodyJson = jsonDecode(response.body);
         return NetworkResponse(
           isSuccess: true,
           jsonResponse: response.body,
           statusCode: 200,
           message: responseBodyJson['message'] ?? 'Something went wrong',
-
         );
       } else {
-        final  responseBodyJson = jsonDecode(response.body);
-        Get.snackbar('Message', responseBodyJson['message'] ?? 'Try Again Later');
+        final responseBodyJson = jsonDecode(response.body);
+        Get.snackbar(
+            'Message', responseBodyJson['message'] ?? 'Try Again Later');
 
         return NetworkResponse(
           isSuccess: false,
@@ -50,13 +53,15 @@ class ApiClient {
       log(token.toString());
       final response = await get(Uri.parse(url), headers: {
         'Content-Type': 'application/json',
-        'Authorization': AuthCache.to.checkAuthState() ? "Bearer ${AuthCache.to.getToken()}" : "",
+        'Authorization': AuthCache.to.checkAuthState()
+            ? "Bearer ${AuthCache.to.getToken()}"
+            : "",
       });
       log(response.headers.toString());
       log(response.statusCode.toString());
       log(response.body.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
-        final  responseBodyJson = jsonDecode(response.body);
+        final responseBodyJson = jsonDecode(response.body);
 
         return NetworkResponse(
           isSuccess: true,
@@ -72,8 +77,9 @@ class ApiClient {
           jsonResponse: jsonDecode(response.body),
         );
       } else {
-        final  responseBodyJson = jsonDecode(response.body);
-        Get.snackbar('Message', responseBodyJson['message'] ?? 'Try Again Later');
+        final responseBodyJson = jsonDecode(response.body);
+        Get.snackbar(
+            'Message', responseBodyJson['message'] ?? 'Try Again Later');
 
         return NetworkResponse(
           isSuccess: false,
@@ -87,25 +93,33 @@ class ApiClient {
     }
   }
 
-  Future<NetworkResponse> putRequest(String url, {Map<String, dynamic>? body, String? token}) async {
+  Future<NetworkResponse> putRequest(String url,
+      {Map<String, dynamic>? body, String? token}) async {
     try {
       log(url);
       log(body.toString());
-      final response = await put(Uri.parse(url), body: jsonEncode(body), headers: {
+      final response =
+          await put(Uri.parse(url), body: jsonEncode(body), headers: {
         'Content-Type': 'application/json',
-        'Authorization': AuthCache.to.checkAuthState() ? "Bearer ${AuthCache.to.getToken()}" : "",
+        'Authorization': AuthCache.to.checkAuthState()
+            ? "Bearer ${AuthCache.to.getToken()}"
+            : "",
       });
       log(response.statusCode.toString());
       log(response.body.toString());
+
       if (response.statusCode == 200) {
+        final  responseBodyJson = jsonDecode(response.body);
         return NetworkResponse(
           isSuccess: true,
           jsonResponse: response.body,
           statusCode: 200,
+          message: responseBodyJson['message'] ?? 'Something went wrong',
         );
       } else {
-        final  responseBodyJson = jsonDecode(response.body);
-        Get.snackbar('Message', responseBodyJson['message'] ?? 'Try Again Later');
+        final responseBodyJson = jsonDecode(response.body);
+        Get.snackbar(
+            'Message', responseBodyJson['message'] ?? 'Try Again Later');
 
         return NetworkResponse(
           isSuccess: false,
@@ -119,12 +133,16 @@ class ApiClient {
     }
   }
 
-  Future<NetworkResponse> delRequest(String url, ) async {
+  Future<NetworkResponse> delRequest(
+    String url,
+  ) async {
     try {
       log(url);
       final response = await delete(Uri.parse(url), headers: {
         'Content-Type': 'application/json',
-        'Authorization': AuthCache.to.checkAuthState() ? "Bearer ${AuthCache.to.getToken()}" : "",
+        'Authorization': AuthCache.to.checkAuthState()
+            ? "Bearer ${AuthCache.to.getToken()}"
+            : "",
       });
       log(response.headers.toString());
       log(response.statusCode.toString());
@@ -136,15 +154,15 @@ class ApiClient {
           statusCode: 200,
         );
       } else if (response.statusCode == 401) {
-
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
           jsonResponse: jsonDecode(response.body),
         );
       } else {
-        final  responseBodyJson = jsonDecode(response.body);
-        Get.snackbar('Message', responseBodyJson['message'] ?? 'Try Again Later');
+        final responseBodyJson = jsonDecode(response.body);
+        Get.snackbar(
+            'Message', responseBodyJson['message'] ?? 'Try Again Later');
 
         return NetworkResponse(
           isSuccess: false,

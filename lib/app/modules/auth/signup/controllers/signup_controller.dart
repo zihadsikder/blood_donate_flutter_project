@@ -123,7 +123,7 @@ class SignupController extends GetxController {
     //super.onClose();
   }
 
-    void verifyOtp(mobile) async {
+  void verifyOtp(mobile) async {
     if (otpFormKey.currentState!.validate()) {
       isLoading.value = true;
 
@@ -152,14 +152,13 @@ class SignupController extends GetxController {
     isLoading.value = true;
 
     final response =
-    await AuthRepository.resendOtp(mobile); // Pass the mobile number
+        await AuthRepository.resendOtp(mobile); // Pass the mobile number
     isLoading.value = false;
 
     if (response.isSuccess) {
-      Get.off(
-            () => RegisterPinVerification(mobile: mobile));
+      Get.off(() => RegisterPinVerification(mobile: mobile));
 
-      Get.snackbar('Message', 'An OTP has been sent to your mobile number again. Please check!');
+      Get.snackbar('Message', response.message ?? 'Something Error!');
 
       remainingTime.value = 300; // Reset time to 300 seconds
       startTimer();
@@ -175,11 +174,9 @@ class SignupController extends GetxController {
       isLoading.value = false;
 
       if (response.isSuccess) {
+        Get.off(() => RegisterPinVerification(mobile: params.mobile));
 
-        Get.off(
-                () => RegisterPinVerification(mobile: params.mobile));
-
-        Get.snackbar('Message', 'An 6 digit OTP have been send your number');
+        Get.snackbar('Message', response.message ?? 'Something Error!');
         remainingTime.value = 300; // Reset time to 300 seconds
         startTimer();
       }

@@ -8,7 +8,6 @@ import '../../../../data/repositories/account_repository.dart';
 import '../../../../data/repositories/location_repository.dart';
 
 class UpdateAccountsController extends GetxController {
-
   final TextEditingController usernameTEController = TextEditingController();
   final TextEditingController dateTEController = TextEditingController();
   final TextEditingController emailTEController = TextEditingController();
@@ -36,7 +35,6 @@ class UpdateAccountsController extends GetxController {
 
   void onSelectedDivision(String? val) {
     if (val != null && val.isNotEmpty) {
-
       selectedDistrict.value = '';
       selectedUpzila.value = '';
 
@@ -51,7 +49,6 @@ class UpdateAccountsController extends GetxController {
 
   onSelectedDistrict(String? val) {
     if (val != null && val.isNotEmpty) {
-
       selectedUpzila.value = '';
 
       upzilaList.clear();
@@ -64,7 +61,6 @@ class UpdateAccountsController extends GetxController {
 
   onSelectedUpzila(String? val) {
     if (val != null && val.isNotEmpty) {
-
       selectedUpzila.value = val;
     }
   }
@@ -85,7 +81,7 @@ class UpdateAccountsController extends GetxController {
   Future<void> getDistrict({required String id}) async {
     inProgress.value = true;
     final NetworkResponse response =
-    await LocationRepository.getDistrict(id: id);
+        await LocationRepository.getDistrict(id: id);
     districtList.value = areaFromJson(response.jsonResponse!).data ?? [];
     inProgress.value = false;
   }
@@ -103,10 +99,10 @@ class UpdateAccountsController extends GetxController {
       inProgress.value = false;
       if (response.isSuccess) {
         inProgress.value = true;
+        Get.snackbar('Message', response.message ?? 'Something Error!');
       } else {
         inProgress.value = false;
       }
     }
   }
-
 }

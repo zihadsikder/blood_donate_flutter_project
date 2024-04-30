@@ -21,7 +21,7 @@ class AccountsController extends GetxController {
   final inProgress = false.obs;
   final isProfileActive = true.obs;
 
-   final profileData = ProfileData().obs;
+  final profileData = ProfileData().obs;
 
   @override
   void onInit() {
@@ -73,7 +73,7 @@ class AccountsController extends GetxController {
     );
 
     final response =
-        await ApiClient().postRequest(ApiEndPoints.logout, body: {});
+    await ApiClient().postRequest(ApiEndPoints.logout, body: {});
     inProgress.value = false;
     if (response.isSuccess) {
       Get.back();

@@ -16,7 +16,7 @@ class LoginController extends GetxController {
 
   final isLoading = false.obs;
 
- final connectivityController = Get.find<ConnectivityController>();
+  final connectivityController = Get.find<ConnectivityController>();
 
   @override
   void onInit() {
@@ -26,27 +26,25 @@ class LoginController extends GetxController {
 
   Future<void> login() async {
     if (formKey.currentState!.validate()) {
-    isLoading.value = true;
+      isLoading.value = true;
 
-    final mobile = numberTEController.text.trim();
-    final password = passwordTEController.text.trim();
+      final mobile = numberTEController.text.trim();
+      final password = passwordTEController.text.trim();
 
-    final response = await AuthRepository.login(mobile, password);
-    isLoading.value = false;
+      final response = await AuthRepository.login(mobile, password);
+      isLoading.value = false;
 
 
-    if (response.isSuccess && response.jsonResponse != null) {
-      LoginRes loginRes = loginResFromJson(response.jsonResponse!);
+      if (response.isSuccess && response.jsonResponse != null) {
+        LoginRes loginRes = loginResFromJson(response.jsonResponse!);
 
-      AuthCache.to.saveUserInformation(
-        loginRes.data?.accessToken ?? '',
-        loginRes,
-      );
-      Get.toNamed(Routes.BOTTOM_NAV);
-      Get.snackbar('Message', response.message ?? 'Try Again Later');
-      //Get.snackbar('Message', 'Login Successful');
-
+        AuthCache.to.saveUserInformation(
+          loginRes.data?.accessToken ?? '',
+          loginRes,
+        );
+        Get.toNamed(Routes.BOTTOM_NAV);
+        Get.snackbar('Message', response.message ?? 'Try Again Later');
+      }
     }
-  }
   }
 }
