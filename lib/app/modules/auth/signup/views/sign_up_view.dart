@@ -164,7 +164,7 @@ class SignUpView extends GetView<SignupController> {
                         bool isValidPhoneNumber =
                             RegExp(r"^0[0-9]{10}$").hasMatch(value!);
                         if (!isValidPhoneNumber) {
-                          return 'Enter a valid 11-digit mobile number starting with 0';
+                          return 'Enter a valid 11-digit mobile number';
                         }
                         return null;
                       },

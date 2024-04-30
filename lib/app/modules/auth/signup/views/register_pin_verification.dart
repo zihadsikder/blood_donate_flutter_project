@@ -74,6 +74,12 @@ class RegisterPinVerification extends StatelessWidget {
                         return true;
                       },
                       appContext: context,
+                      validator: (String? value) {
+                        if (value?.trim().isEmpty ?? true) {
+                          return 'Please put your OTP';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   const SizedBox(
