@@ -43,7 +43,8 @@ class LoginController extends GetxController {
         loginRes,
       );
       Get.toNamed(Routes.BOTTOM_NAV);
-      Get.snackbar('Message', 'Login Successful');
+      Get.snackbar('Message', response.message ?? 'Try Again Later');
+      //Get.snackbar('Message', 'Login Successful');
 
     }
   }

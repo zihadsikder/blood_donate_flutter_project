@@ -20,10 +20,12 @@ class ApiClient {
       log(response.statusCode.toString());
       log(response.body.toString());
       if (response.statusCode == 200) {
+        final  responseBodyJson = jsonDecode(response.body);
         return NetworkResponse(
           isSuccess: true,
           jsonResponse: response.body,
           statusCode: 200,
+          message: responseBodyJson['message'] ?? 'Something went wrong',
 
         );
       } else {
@@ -54,10 +56,13 @@ class ApiClient {
       log(response.statusCode.toString());
       log(response.body.toString());
       if (response.statusCode == 200 || response.statusCode == 201) {
+        final  responseBodyJson = jsonDecode(response.body);
+
         return NetworkResponse(
           isSuccess: true,
           jsonResponse: response.body,
           statusCode: 200,
+          message: responseBodyJson['message'] ?? 'Something went wrong',
         );
       } else if (response.statusCode == 401) {
         //backToLogin();
