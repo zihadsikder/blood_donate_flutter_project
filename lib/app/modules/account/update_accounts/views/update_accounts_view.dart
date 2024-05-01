@@ -116,11 +116,11 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
             TextFormField(
               controller: controller.postOfficeTEController,
               decoration: const InputDecoration(
-                labelText: 'Post Office',
+                labelText: 'Address',
               ),
               validator: (String? value) {
                 if (value?.trim().isEmpty ?? true) {
-                  return 'Enter your post office';
+                  return 'Enter your address';
                 }
                 return null;
               },

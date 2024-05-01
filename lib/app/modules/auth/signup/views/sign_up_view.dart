@@ -141,7 +141,7 @@ class SignUpView extends GetView<SignupController> {
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
-                          return 'Enter your post office';
+                          return 'Enter your address';
                         }
                         return null;
                       },
