@@ -26,7 +26,7 @@ class ExercisesScreen extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 8.0),
               const ImagesAssets(
-                height: 280,
+
                 asset: AppAssets.fitness,
 
               ),
@@ -46,7 +46,7 @@ class ExercisesScreen extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 300,
+
                 asset: AppAssets.squat,
               ),
               const SizedBox(height: 10),
@@ -58,7 +58,7 @@ class ExercisesScreen extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 350,
+
                 asset: AppAssets.pushup,
               ),
               const SizedBox(height: 10),
@@ -70,7 +70,7 @@ class ExercisesScreen extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 250,
+
                 asset: AppAssets.ankle,
               ),
               const SizedBox(height: 10),
@@ -82,7 +82,7 @@ class ExercisesScreen extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 250,
+                //height: 250,
                 asset: AppAssets.breathing,
               ),
               const SizedBox(height: 10),
@@ -94,7 +94,7 @@ class ExercisesScreen extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 250,
+
                 asset: AppAssets.ex5,
               ),
               const SizedBox(height: 10),
@@ -106,7 +106,7 @@ class ExercisesScreen extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 280,
+
                 asset: AppAssets.crunches,
               ),
               const SizedBox(height: 10),

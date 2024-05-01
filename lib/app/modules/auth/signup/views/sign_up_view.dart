@@ -36,6 +36,7 @@ class SignUpView extends GetView<SignupController> {
                       decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage('assets/bbbb.png'),
+                          fit: BoxFit.fill,
                         ),
                       ),
                     ),
@@ -71,7 +72,7 @@ class SignUpView extends GetView<SignupController> {
                     TextFormField(
                       controller: controller.usernameTEController,
                       decoration: const InputDecoration(
-                        labelText: 'User Name',
+                        labelText: 'Full Name',
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
@@ -136,7 +137,7 @@ class SignUpView extends GetView<SignupController> {
                     TextFormField(
                       controller: controller.postOfficeTEController,
                       decoration: const InputDecoration(
-                        labelText: 'Post Office',
+                        labelText: 'Address',
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {

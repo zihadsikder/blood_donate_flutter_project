@@ -35,7 +35,8 @@ class _BannerCarouselState extends State<BannerCarousel> {
         },
         //Slider Container properties
         options: CarouselOptions(
-          height:widget.height ?? 300.0,
+          height: MediaQuery.of(context).size.width * 0.8, // Adjust this value as per your requirement
+          //height:widget.height ?? 300.0,
           enlargeCenterPage: true,
           autoPlay: true,
           aspectRatio: 16 / 9,

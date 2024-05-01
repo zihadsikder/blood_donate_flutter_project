@@ -80,6 +80,7 @@ class RegisterPinVerification extends StatelessWidget {
                         }
                         return null;
                       },
+                      keyboardType: TextInputType.phone,
                     ),
                   ),
                   const SizedBox(

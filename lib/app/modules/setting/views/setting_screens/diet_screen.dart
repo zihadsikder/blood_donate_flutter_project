@@ -38,7 +38,7 @@ class DietChart extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+
                 asset: AppAssets.water,
               ),
               const SizedBox(height: 10),
@@ -50,7 +50,7 @@ class DietChart extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+
                 asset: AppAssets.lentils,
               ),
               const SizedBox(height: 10),
@@ -62,7 +62,7 @@ class DietChart extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+
                 asset: AppAssets.spinach,
               ),
               const SizedBox(height: 10),
@@ -74,7 +74,7 @@ class DietChart extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+
                 asset: AppAssets.lean,
               ),
               const SizedBox(height: 10),
@@ -86,7 +86,7 @@ class DietChart extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+
                 asset: AppAssets.watermelon,
               ),
               const SizedBox(height: 10),
@@ -108,7 +108,7 @@ class DietChart extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+
                 asset: AppAssets.juice,
               ),
               const SizedBox(height: 10),
@@ -120,7 +120,7 @@ class DietChart extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+
                 asset: AppAssets.avocado,
               ),
               const SizedBox(height: 10),
@@ -132,7 +132,7 @@ class DietChart extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+
                 asset: AppAssets.cookies,
               ),
               const SizedBox(height: 10),
@@ -144,7 +144,7 @@ class DietChart extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+
                 asset: AppAssets.cereal,
               ),
               const SizedBox(height: 10),
@@ -156,7 +156,7 @@ class DietChart extends StatelessWidget {
                   style: headLineTextStyle),
               const SizedBox(height: 10),
               const ImagesAssets(
-                height: 210,
+
                 asset: AppAssets.mocktails,
               ),
               const SizedBox(height: 10),

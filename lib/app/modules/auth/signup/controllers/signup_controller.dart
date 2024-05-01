@@ -174,7 +174,7 @@ class SignupController extends GetxController {
       isLoading.value = false;
 
       if (response.isSuccess) {
-        Get.off(() => RegisterPinVerification(mobile: params.mobile));
+        Get.to(() => RegisterPinVerification(mobile: params.mobile));
 
         Get.snackbar('Message', response.message ?? 'Something Error!');
         remainingTime.value = 300; // Reset time to 300 seconds

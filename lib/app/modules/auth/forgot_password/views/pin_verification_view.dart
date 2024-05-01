@@ -83,7 +83,9 @@ class PinVerificationView extends StatelessWidget {
                         }
                         return null;
                       },
+                      keyboardType: TextInputType.phone,
                     ),
+
                   ),
                   const SizedBox(
                     height: 16,
