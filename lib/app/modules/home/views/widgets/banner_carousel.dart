@@ -26,7 +26,8 @@ class _BannerCarouselState extends State<BannerCarousel> {
             },
             viewportFraction: 1,
             // enableInfiniteScroll: false,
-            // autoPlay: true,
+            autoPlay: true,
+            autoPlayAnimationDuration: const Duration(milliseconds: 1000),
           ),
           items: widget.imageUrls.map((imageUrl) {
             return Builder(
