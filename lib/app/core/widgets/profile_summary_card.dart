@@ -6,7 +6,7 @@ import '../../modules/home/controllers/home_controller.dart';
 import '../../modules/home/views/search_view.dart';
 
 class ProfileSummaryCard extends StatelessWidget {
-   ProfileSummaryCard({
+  ProfileSummaryCard({
     super.key,
     this.enableOnTap = true,
   });
@@ -31,7 +31,7 @@ class ProfileSummaryCard extends StatelessWidget {
         child: Image.asset('assets/blogo.png'),
       ),
       title: const Text(
-        'GIVE BLOOD  SAVE LIFE',
+        'BLOOD BD',
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
       ),
       subtitle: const Text(

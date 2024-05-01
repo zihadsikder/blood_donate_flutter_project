@@ -20,7 +20,7 @@ class ForgotPasswordController extends GetxController {
   final passwordTextEditController = TextEditingController();
   final confirmPasswordTextEditController = TextEditingController();
 
-  final obscureText = true.obs;
+  final obscureText = false.obs;
 
   final remainingTime = '5:00'.obs; // Initial time is 300 seconds
 

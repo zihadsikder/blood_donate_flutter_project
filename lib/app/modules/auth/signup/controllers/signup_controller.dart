@@ -102,9 +102,10 @@ class SignupController extends GetxController {
 
   @override
   void onInit() {
+    super.onInit();
     startTimer();
     getDivision();
-    super.onInit();
+
   }
 
   void startTimer() {
@@ -123,7 +124,7 @@ class SignupController extends GetxController {
   }
 
   void cancelTimer() {
-    timer.cancel(); // Cancel the timer
+    timer.cancel();// Cancel the timer
   }
 
   @override
@@ -166,7 +167,7 @@ class SignupController extends GetxController {
     isLoading.value = false;
 
     if (response.isSuccess) {
-      Get.off(() => RegisterPinVerification(mobile: mobile));
+      Get.off(() => RegisterPinVerification(mobile: mobile),);
 
       Get.snackbar('Message', response.message ?? 'Something Error!');
 

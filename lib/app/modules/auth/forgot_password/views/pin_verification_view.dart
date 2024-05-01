@@ -146,9 +146,9 @@ class PinVerificationView extends StatelessWidget {
                         child: Visibility(
                           visible:
                               controller.remainingTime.value == 'Time\'s Up' || false ,
-                          child: const Text(
+                          child: Text(
                             'Resend Code',
-                            style: TextStyle(color: Colors.grey),
+                            style: TextStyle(color: Colors.grey.shade800),
                           ),
                         ),
                       ),
