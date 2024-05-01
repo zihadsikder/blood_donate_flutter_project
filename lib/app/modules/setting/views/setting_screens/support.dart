@@ -33,9 +33,9 @@ class Support extends StatelessWidget {
                   side: BorderSide.none,
                 ),
                 leading: Icon(Icons.email_outlined, color: Colors.red.shade800),
-                title: const Text("islanditltd@gmail.com"),
+                title: const Text("blooddonorbd.island@gmail.com"),
                 onTap: () {
-                  _launchEmailSubmission('islanditltd@gmail.com');
+                  _launchEmailSubmission('blooddonorbd.island@gmail.com');
                 },
               ),
             ],
