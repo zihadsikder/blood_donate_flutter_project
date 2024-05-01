@@ -113,9 +113,7 @@ class RegisterPinVerification extends StatelessWidget {
                           children: [
                             const TextSpan(
                                 text: 'This code will expire in:',
-                                style: TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                )),
+                                ),
                             // Use a TextSpan here to hold the countdown time
                             TextSpan(
                               text: controller.remainingTime.value,
@@ -138,7 +136,7 @@ class RegisterPinVerification extends StatelessWidget {
                         onPressed: () => controller.resendOtp(mobile),
                         child: Visibility(
                           visible:
-                              controller.remainingTime.value == 'Time\'s Up',
+                              controller.remainingTime.value == 'Time\'s Up' || false ,
                           child: const Text(
                             'Resend Code',
                             style: TextStyle(color: Colors.grey),

@@ -122,10 +122,14 @@ class SignupController extends GetxController {
     });
   }
 
+  void cancelTimer() {
+    timer.cancel(); // Cancel the timer
+  }
+
   @override
   void onClose() {
     timer.cancel(); // Cancel the timer when the controller is closed
-    //super.onClose();
+    super.onClose();
   }
 
   void verifyOtp(mobile) async {
@@ -149,6 +153,7 @@ class SignupController extends GetxController {
         );
         Get.offAllNamed(Routes.BOTTOM_NAV);
         Get.snackbar('Welcome', 'You are a member of our society');
+        cancelTimer();
       }
     }
   }

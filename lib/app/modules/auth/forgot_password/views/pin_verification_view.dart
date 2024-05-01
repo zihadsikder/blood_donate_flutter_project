@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -146,7 +145,7 @@ class PinVerificationView extends StatelessWidget {
                         onPressed: () => controller.resendOtp(mobile),
                         child: Visibility(
                           visible:
-                              controller.remainingTime.value == 'Time\'s Up',
+                              controller.remainingTime.value == 'Time\'s Up' || false ,
                           child: const Text(
                             'Resend Code',
                             style: TextStyle(color: Colors.grey),
