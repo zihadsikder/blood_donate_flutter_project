@@ -37,6 +37,7 @@ class ApiClient {
           'Message',
           responseBodyJson['message'] ?? 'Try Again Later',
           backgroundColor: Colors.red,
+          colorText: Colors.white,
         );
 
         return NetworkResponse(
@@ -86,6 +87,7 @@ class ApiClient {
           'Message',
           responseBodyJson['message'] ?? 'Try Again Later',
           backgroundColor: Colors.red,
+          colorText: Colors.white,
         );
 
         return NetworkResponse(
@@ -129,6 +131,7 @@ class ApiClient {
           'Message',
           responseBodyJson['message'] ?? 'Try Again Later',
           backgroundColor: Colors.red,
+          colorText: Colors.white,
         );
 
         return NetworkResponse(
@@ -175,6 +178,7 @@ class ApiClient {
           'Message',
           responseBodyJson['message'] ?? 'Try Again Later',
           backgroundColor: Colors.red,
+          colorText: Colors.white,
         );
 
         return NetworkResponse(
