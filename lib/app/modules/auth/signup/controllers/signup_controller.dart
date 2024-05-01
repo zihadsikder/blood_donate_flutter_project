@@ -31,7 +31,7 @@ class SignupController extends GetxController {
   final isWeightOk = false.obs;
   final obscureText = false.obs;
 
-  final remainingTime = 300.obs; // Initial time is 300 seconds
+  final remainingTime = '5:00'.obs; // Initial time is 300 seconds
   // Countdown timer
   late Timer timer;
 
@@ -108,12 +108,17 @@ class SignupController extends GetxController {
   }
 
   void startTimer() {
+    int totalTimeInSeconds = 300; // 5 minutes
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      remainingTime.value--;
-      if (remainingTime.value <= 0) {
+      totalTimeInSeconds--;
+      if (totalTimeInSeconds <= 0) {
         timer.cancel(); // Stop the timer when time's up
-        // You can add logic here for what to do when time's up
+        remainingTime.value = 'Time\'s Up'; // Set time's up message
+        return;
       }
+      int minutes = totalTimeInSeconds ~/ 60;
+      int seconds = totalTimeInSeconds % 60;
+      remainingTime.value = '$minutes:${seconds.toString().padLeft(2, '0')}';
     });
   }
 
@@ -160,7 +165,7 @@ class SignupController extends GetxController {
 
       Get.snackbar('Message', response.message ?? 'Something Error!');
 
-      remainingTime.value = 300; // Reset time to 300 seconds
+      remainingTime.value = '5:00'; // Reset time to 300 seconds
       startTimer();
     }
   }
@@ -177,7 +182,7 @@ class SignupController extends GetxController {
         Get.to(() => RegisterPinVerification(mobile: params.mobile));
 
         Get.snackbar('Message', response.message ?? 'Something Error!');
-        remainingTime.value = 300; // Reset time to 300 seconds
+        remainingTime.value = '5:00'; // Reset time to 300 seconds
         startTimer();
       }
     }

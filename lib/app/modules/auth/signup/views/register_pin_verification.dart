@@ -7,7 +7,6 @@ import '../controllers/signup_controller.dart';
 class RegisterPinVerification extends StatelessWidget {
   RegisterPinVerification({super.key, required this.mobile});
 
-
   final controller = Get.put(SignupController());
   final String mobile;
 
@@ -20,7 +19,7 @@ class RegisterPinVerification extends StatelessWidget {
           padding: const EdgeInsets.all(24.0),
           child: SingleChildScrollView(
             child: Obx(
-              ()=> Column(
+              () => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
@@ -44,7 +43,8 @@ class RegisterPinVerification extends StatelessWidget {
                   ),
                   const Text(
                     'A 6 digit OTP will be sent to your mobile number',
-                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w600),
+                    style: TextStyle(
+                        color: Colors.grey, fontWeight: FontWeight.w600),
                   ),
                   const SizedBox(
                     height: 18,
@@ -53,7 +53,7 @@ class RegisterPinVerification extends StatelessWidget {
                     key: controller.otpFormKey,
                     child: PinCodeTextField(
                       controller: controller.otpTextEditController,
-                      length: 6 ,
+                      length: 6,
                       obscureText: false,
                       animationType: AnimationType.fade,
                       pinTheme: PinTheme(
@@ -91,12 +91,10 @@ class RegisterPinVerification extends StatelessWidget {
                     child: Visibility(
                       //visible: controller.isLoading.value == false,
                       replacement: const Center(
-                        child: CircularProgressIndicator(
-                        ),),
+                        child: CircularProgressIndicator(),
+                      ),
                       child: ElevatedButton(
-                        onPressed:()=>
-                          controller.verifyOtp(mobile),
-
+                        onPressed: () => controller.verifyOtp(mobile),
                         child: const Text('Verify'),
                       ),
                     ),
@@ -113,14 +111,19 @@ class RegisterPinVerification extends StatelessWidget {
                             color: Colors.grey,
                           ),
                           children: [
-                            const TextSpan(text: 'This code will expire in '),
+                            const TextSpan(
+                                text: 'This code will expire in:',
+                                style: TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                )),
                             // Use a TextSpan here to hold the countdown time
                             TextSpan(
-                              text: '${controller.remainingTime.value}s',
+                              text: controller.remainingTime.value,
                               style: TextStyle(
-                                color: controller.remainingTime.value > 60
-                                    ? Colors.grey.shade800
-                                    : Colors.red.shade800,
+                                color:
+                                    controller.remainingTime.value.contains(':')
+                                        ? Colors.grey.shade800
+                                        : Colors.red.shade800,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -134,7 +137,8 @@ class RegisterPinVerification extends StatelessWidget {
                         ),
                         onPressed: () => controller.resendOtp(mobile),
                         child: Visibility(
-                          visible: controller.remainingTime.value <= 0,
+                          visible:
+                              controller.remainingTime.value == 'Time\'s Up',
                           child: const Text(
                             'Resend Code',
                             style: TextStyle(color: Colors.grey),

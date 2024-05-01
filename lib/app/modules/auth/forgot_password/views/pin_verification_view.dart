@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -85,7 +86,6 @@ class PinVerificationView extends StatelessWidget {
                       },
                       keyboardType: TextInputType.phone,
                     ),
-
                   ),
                   const SizedBox(
                     height: 16,
@@ -119,14 +119,19 @@ class PinVerificationView extends StatelessWidget {
                             color: Colors.grey,
                           ),
                           children: [
-                            const TextSpan(text: 'This code will expire in '),
+                            const TextSpan(
+                              text: 'This code will expire in:',
+                              style: TextStyle(overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
                             // Use a TextSpan here to hold the countdown time
                             TextSpan(
-                              text: '${controller.remainingTime.value}s',
+                              text: controller.remainingTime.value,
                               style: TextStyle(
-                                color: controller.remainingTime.value > 60
-                                    ? Colors.grey.shade800
-                                    : Colors.red.shade800,
+                                color:
+                                    controller.remainingTime.value.contains(':')
+                                        ? Colors.grey.shade800
+                                        : Colors.red.shade800,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -140,7 +145,8 @@ class PinVerificationView extends StatelessWidget {
                         ),
                         onPressed: () => controller.resendOtp(mobile),
                         child: Visibility(
-                          visible: controller.remainingTime.value <= 0,
+                          visible:
+                              controller.remainingTime.value == 'Time\'s Up',
                           child: const Text(
                             'Resend Code',
                             style: TextStyle(color: Colors.grey),

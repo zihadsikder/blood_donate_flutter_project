@@ -22,7 +22,7 @@ class ForgotPasswordController extends GetxController {
 
   final obscureText = true.obs;
 
-  final remainingTime = 300.obs; // Initial time is 300 seconds
+  final remainingTime = '5:00'.obs; // Initial time is 300 seconds
 
   // Countdown timer
   late Timer timer;
@@ -34,19 +34,28 @@ class ForgotPasswordController extends GetxController {
   }
 
   void startTimer() {
+    int totalTimeInSeconds = 300; // 5 minutes
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      remainingTime.value--;
-      if (remainingTime.value <= 0) {
+      totalTimeInSeconds--;
+      if (totalTimeInSeconds <= 0) {
         timer.cancel(); // Stop the timer when time's up
-        // You can add logic here for what to do when time's up
+        remainingTime.value = 'Time\'s Up'; // Set time's up message
+        return;
       }
+      int minutes = totalTimeInSeconds ~/ 60;
+      int seconds = totalTimeInSeconds % 60;
+      remainingTime.value = '$minutes:${seconds.toString().padLeft(2, '0')}';
     });
+  }
+
+  void cancelTimer() {
+    timer.cancel(); // Cancel the timer
   }
 
   @override
   void onClose() {
     timer.cancel(); // Cancel the timer when the controller is closed
-    // super.onClose();
+    super.onClose();
   }
 
   Future<void> sendOtpForgetPass() async {
@@ -63,7 +72,7 @@ class ForgotPasswordController extends GetxController {
           () => PinVerificationView(mobile: mobile),
         );
         Get.snackbar('Message', response.message ?? 'Something Error!');
-        remainingTime.value = 300; // Reset time to 300 seconds
+        remainingTime.value = '5:00'; // Reset time to 300 seconds
         startTimer();
       }
     }
@@ -81,9 +90,7 @@ class ForgotPasswordController extends GetxController {
 
       if (response.isSuccess) {
         Get.off(() => ResetPasswordView(mobile: mobile, otp: otp));
-
-        remainingTime.value = 300; // Reset time to 300 seconds
-        startTimer();
+        cancelTimer(); // Cancel the timer
       }
     }
   }
@@ -102,10 +109,6 @@ class ForgotPasswordController extends GetxController {
         Get.offAllNamed(Routes.LOGIN);
 
         Get.snackbar('Message', response.message ?? 'Something Error!');
-
-        // Start the countdown timer after sending OTP
-        remainingTime.value = 300; // Reset time to 300 seconds
-        startTimer();
       }
     }
   }
@@ -125,7 +128,7 @@ class ForgotPasswordController extends GetxController {
       );
       Get.snackbar('Message', response.message ?? 'Something Error!');
 
-      remainingTime.value = 300; // Reset time to 300 seconds
+      remainingTime.value = '5:00'; // Reset time to 300 seconds
       startTimer();
     }
   }

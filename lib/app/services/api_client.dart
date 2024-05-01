@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 import '../data/models/network_response.dart';
@@ -33,7 +34,10 @@ class ApiClient {
       } else {
         final responseBodyJson = jsonDecode(response.body);
         Get.snackbar(
-            'Message', responseBodyJson['message'] ?? 'Try Again Later');
+          'Message',
+          responseBodyJson['message'] ?? 'Try Again Later',
+          backgroundColor: Colors.red,
+        );
 
         return NetworkResponse(
           isSuccess: false,
@@ -79,7 +83,10 @@ class ApiClient {
       } else {
         final responseBodyJson = jsonDecode(response.body);
         Get.snackbar(
-            'Message', responseBodyJson['message'] ?? 'Try Again Later');
+          'Message',
+          responseBodyJson['message'] ?? 'Try Again Later',
+          backgroundColor: Colors.red,
+        );
 
         return NetworkResponse(
           isSuccess: false,
@@ -109,7 +116,7 @@ class ApiClient {
       log(response.body.toString());
 
       if (response.statusCode == 200) {
-        final  responseBodyJson = jsonDecode(response.body);
+        final responseBodyJson = jsonDecode(response.body);
         return NetworkResponse(
           isSuccess: true,
           jsonResponse: response.body,
@@ -119,7 +126,10 @@ class ApiClient {
       } else {
         final responseBodyJson = jsonDecode(response.body);
         Get.snackbar(
-            'Message', responseBodyJson['message'] ?? 'Try Again Later');
+          'Message',
+          responseBodyJson['message'] ?? 'Try Again Later',
+          backgroundColor: Colors.red,
+        );
 
         return NetworkResponse(
           isSuccess: false,
@@ -162,7 +172,10 @@ class ApiClient {
       } else {
         final responseBodyJson = jsonDecode(response.body);
         Get.snackbar(
-            'Message', responseBodyJson['message'] ?? 'Try Again Later');
+          'Message',
+          responseBodyJson['message'] ?? 'Try Again Later',
+          backgroundColor: Colors.red,
+        );
 
         return NetworkResponse(
           isSuccess: false,
