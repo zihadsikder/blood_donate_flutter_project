@@ -69,7 +69,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ],
                         )),
-                    //Image.asset('assets/savelife.png'),
+                    Image.asset('assets/savelife.png'),
                   ],
                 ),
               ),

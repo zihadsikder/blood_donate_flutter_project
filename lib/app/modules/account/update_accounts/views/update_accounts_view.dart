@@ -59,13 +59,13 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
               ),
             ),
             Container(height: 1, color: Colors.grey.shade100),
-            TextFormField(
-              controller: controller.mobileTEController,
-              decoration: const InputDecoration(
-                hintText: ('Number'),
-              ),
-            ),
-            Container(height: 1, color: Colors.grey.shade100),
+            // TextFormField(
+            //   controller: controller.mobileTEController,
+            //   decoration: const InputDecoration(
+            //     hintText: ('Number'),
+            //   ),
+            // ),
+            //Container(height: 1, color: Colors.grey.shade100),
             BloodGroupDropdown(
               onSelectBloodGroup: (String? val) {
                 controller.onSelectedBloodGroup(val);

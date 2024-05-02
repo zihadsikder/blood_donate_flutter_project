@@ -53,9 +53,8 @@ class GovtServicesView extends GetView<GovtServicesController> {
 
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    //     statusBarColor: Colors.red.shade800,
-    //     statusBarIconBrightness: Brightness.light));
+    //double deviceWidth = MediaQuery.of(context).size.width;
+    //int crossAxisCount = (deviceWidth / 150).floor(); // Adjust 150 according to your need
     return PopScope(
       canPop: false,
       onPopInvoked: (value) {
@@ -71,6 +70,9 @@ class GovtServicesView extends GetView<GovtServicesController> {
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
+                    //crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 8.0, // Adjust as needed
+                    mainAxisSpacing: 8.0, // Adjust as needed
                   ),
                   itemCount: websites.length,
                   itemBuilder: (context, index) {

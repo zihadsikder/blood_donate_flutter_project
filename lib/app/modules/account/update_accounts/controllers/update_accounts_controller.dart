@@ -95,13 +95,11 @@ class UpdateAccountsController extends GetxController {
 
   Future<void> updateProfile(UpdateReq params) async {
     if (formKey.currentState!.validate()) {
+      inProgress.value = true;
       NetworkResponse response = await AccountRepository.updateProfile(params);
       inProgress.value = false;
       if (response.isSuccess) {
-        inProgress.value = true;
         Get.snackbar('Message', response.message ?? 'Something Error!');
-      } else {
-        inProgress.value = false;
       }
     }
   }

@@ -3,14 +3,9 @@ import 'package:flutter/services.dart';
 
 import '../widget/privacy_text.dart';
 
-class PrivacyScreen extends StatefulWidget {
+class PrivacyScreen extends StatelessWidget {
   const PrivacyScreen({super.key});
 
-  @override
-  State<PrivacyScreen> createState() => _PrivacyScreenState();
-}
-
-class _PrivacyScreenState extends State<PrivacyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

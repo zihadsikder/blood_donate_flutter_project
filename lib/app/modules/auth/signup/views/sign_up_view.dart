@@ -76,7 +76,7 @@ class SignUpView extends GetView<SignupController> {
                       ),
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
-                          return 'Enter your name';
+                          return 'Enter your full name';
                         }
                         return null;
                       },
