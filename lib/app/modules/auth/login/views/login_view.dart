@@ -254,12 +254,24 @@ class LoginView extends GetView<LoginController> {
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(50),
                                           color: Colors.red.shade800),
-                                      child: const Center(
-                                        child: Text(
-                                          "Google",
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: [
+                                            Image.asset('assets/google.png',height: 18,),
+                                            const SizedBox(width: 8),
+                                          // Icon(
+                                          // Icons.g_mobiledata_outlined,
+                                          // // You can change this to the desired Facebook icon
+                                          // color: Colors.white,),
+                                            const Text(
+                                              "Google",
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
                                         ),
                                       ),
                                     ),
