@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:blood_bd/app/modules/auth/signup/views/register_pin_verification.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +11,7 @@ import '../../../../data/repositories/auth_repository.dart';
 import '../../../../data/repositories/location_repository.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../../services/auth_cache.dart';
+import '../views/register_otp_verify.dart';
 
 class SignupController extends GetxController {
   final isLoading = false.obs;

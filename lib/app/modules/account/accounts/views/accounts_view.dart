@@ -15,8 +15,6 @@ class AccountsView extends GetView<AccountsController> {
 
   @override
   Widget build(BuildContext context) {
-   
-    //final profile = controller.profileData.value.data;
 
     return PopScope(
       canPop: false,
@@ -26,19 +24,19 @@ class AccountsView extends GetView<AccountsController> {
       child: Scaffold(
         body: Obx(
           () => SafeArea(
-            child: controller.profileData.value.data == null
-                ? const Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : RefreshIndicator(
-                    onRefresh: () => controller.getProfileData(),
-                    child: SingleChildScrollView(
-                      physics: const AlwaysScrollableScrollPhysics(),
-                      child: Column(
-                        children: [
-                          ProfileSummaryCard(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  ProfileSummaryCard(),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: controller.profileData.value.data == null
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : RefreshIndicator(
+                            onRefresh: () => controller.getProfileData(),
                             child: Column(
                               children: [
                                 Card(
@@ -64,7 +62,9 @@ class AccountsView extends GetView<AccountsController> {
                                         ),
                                         title: Row(
                                           children: [
-                                            Text(controller.profileData.value.data?.name ?? 'Name'),
+                                            Text(controller.profileData.value
+                                                    .data?.name ??
+                                                'Name'),
                                           ],
                                         ),
                                         subtitle: Text(
@@ -119,7 +119,8 @@ class AccountsView extends GetView<AccountsController> {
                                                   height: 5,
                                                 ),
                                                 Text(
-                                                  controller.profileData.value.data?.bloodGroup ??
+                                                  controller.profileData.value
+                                                          .data?.bloodGroup ??
                                                       'Blood Group',
                                                 ),
                                                 const Text('Blood Group'),
@@ -138,11 +139,14 @@ class AccountsView extends GetView<AccountsController> {
                                                   height: 5,
                                                 ),
                                                 Text(
-                                                  DateFormat('dd/MM/yyyy')
-                                                      .format(DateTime.parse(
-                                                          controller.profileData.value.data?.lastDonation ??
-                                                              DateTime.now()
-                                                                  .toString())),
+                                                  DateFormat('dd/MM/yyyy').format(
+                                                      DateTime.parse(controller
+                                                              .profileData
+                                                              .value
+                                                              .data
+                                                              ?.lastDonation ??
+                                                          DateTime.now()
+                                                              .toString())),
                                                 ),
                                                 const Text('Last Donation'),
                                               ],
@@ -170,8 +174,8 @@ class AccountsView extends GetView<AccountsController> {
                                       Text('Mobile'),
                                     ],
                                   ),
-                                  subtitle:
-                                      Text('+88 ${controller.profileData.value.data?.mobile.toString()}'),
+                                  subtitle: Text(
+                                      '+88 ${controller.profileData.value.data?.mobile.toString()}'),
                                 ),
                                 Container(
                                     height: 2, color: Colors.grey.shade100),
@@ -192,7 +196,8 @@ class AccountsView extends GetView<AccountsController> {
                                     ],
                                   ),
                                   subtitle: Text(
-                                    controller.profileData.value.data?.email ?? 'N/A',
+                                    controller.profileData.value.data?.email ??
+                                        'N/A',
                                   ),
                                 ),
                                 Container(
@@ -220,8 +225,9 @@ class AccountsView extends GetView<AccountsController> {
                                       Text('Address'),
                                     ],
                                   ),
-                                  subtitle:
-                                      Text(controller.profileData.value.data?.address!.postOffice ?? ''),
+                                  subtitle: Text(controller.profileData.value
+                                          .data?.address!.postOffice ??
+                                      ''),
                                 ),
                                 Container(
                                     height: 1, color: Colors.grey.shade100),
@@ -250,10 +256,10 @@ class AccountsView extends GetView<AccountsController> {
                               ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
                   ),
+                ],
+              ),
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton(
