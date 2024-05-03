@@ -191,15 +191,15 @@ class SignUpView extends GetView<SignupController> {
                     const SizedBox(height: 8.0),
                     PasswordTextField(
                       passwordController: controller.passwordTEController,
-                      obscureText: controller.obscureText.value,
+                      obscureText: !controller.obscureText.value,
                       onTapSuffix: () {
                         controller.obscureText.value =
                             !controller.obscureText.value;
                       },
                       suffixIcon: Icon(
                         controller.obscureText.value
-                            ? Icons.visibility_off
-                            : Icons.visibility,
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color:
                             Colors.grey, // Customize the icon color as needed
                       ),

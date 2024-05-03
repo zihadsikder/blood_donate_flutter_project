@@ -22,13 +22,13 @@ class ForgotPasswordController extends GetxController {
 
   final obscureText = false.obs;
 
-  final remainingTime = '5:00'.obs; // Initial time is 300 seconds
+  final remainingTime = '5:00'.obs;
 
-  // Countdown timer
   late Timer timer;
 
   @override
   void onInit() {
+    startTimer();
     super.onInit();
   }
 
@@ -47,21 +47,10 @@ class ForgotPasswordController extends GetxController {
     });
   }
 
-  void cancelTimer() {
-    timer.cancel(); // Cancel the timer
-  }
-
-  @override
-  void onClose() {
-    timer.cancel(); // Cancel the timer when the controller is closed
-    super.onClose();
-  }
-
   Future<void> sendOtpForgetPass() async {
-    remainingTime.value = '5:00'; // Reset time to 300 seconds
-
     if (forgotPassFormKey.currentState!.validate()) {
       isLoading.value = true;
+      remainingTime.value = '5:00'; // Reset time to 300 seconds
 
       final mobile = numberTextEditController.text;
 
@@ -91,7 +80,6 @@ class ForgotPasswordController extends GetxController {
 
       if (response.isSuccess) {
         Get.off(() => ResetPasswordView(mobile: mobile, otp: otp));
-        cancelTimer(); // Cancel the timer
       }
     }
   }

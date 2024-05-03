@@ -32,7 +32,7 @@ class SignupController extends GetxController {
   final obscureText = false.obs;
 
   final remainingTime = '5:00'.obs; // Initial time is 300 seconds
-  // Countdown timer
+
   late Timer timer;
 
   final selectedBloodGroup = ''.obs;
@@ -104,7 +104,6 @@ class SignupController extends GetxController {
   void onInit() {
     super.onInit();
     getDivision();
-
   }
 
   void startTimer() {
@@ -120,16 +119,6 @@ class SignupController extends GetxController {
       int seconds = totalTimeInSeconds % 60;
       remainingTime.value = '$minutes:${seconds.toString().padLeft(2, '0')}';
     });
-  }
-
-  void cancelTimer() {
-    timer.cancel();// Cancel the timer
-  }
-
-  @override
-  void onClose() {
-    timer.cancel(); // Cancel the timer when the controller is closed
-    super.onClose();
   }
 
   void verifyOtp(mobile) async {
@@ -152,8 +141,7 @@ class SignupController extends GetxController {
           loginRes,
         );
         Get.offAllNamed(Routes.BOTTOM_NAV);
-        Get.snackbar('Welcome', 'You are a member of our society');
-        cancelTimer();
+        Get.snackbar('Message', response.message ?? 'Something Error!');
       }
     }
   }
@@ -167,11 +155,11 @@ class SignupController extends GetxController {
     isLoading.value = false;
 
     if (response.isSuccess) {
-      Get.off(() => RegisterPinVerification(mobile: mobile),);
+      Get.off(
+        () => RegisterPinVerification(mobile: mobile),
+      );
 
       Get.snackbar('Message', response.message ?? 'Something Error!');
-
-      
       startTimer();
     }
   }
@@ -179,20 +167,19 @@ class SignupController extends GetxController {
   Future<void> registration(RegistrationReq params) async {
     if (formKey.currentState!.validate()) {
       isLoading.value = true;
-      remainingTime.value = '5:00'; 
+      remainingTime.value = '5:00';
 
       NetworkResponse response = await AuthRepository.registration(params);
 
       isLoading.value = false;
 
       if (response.isSuccess) {
-        Get.to(() => RegisterPinVerification(mobile: params.mobile));
-
+        Get.off(() => RegisterPinVerification(mobile: params.mobile));
         Get.snackbar('Message', response.message ?? 'Something Error!');
-       
         startTimer();
       }
     }
+    Get.to(() => RegisterPinVerification(mobile: params.mobile));
   }
 
   Future<void> getDivision() async {
