@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/widgets/otp_screen.dart';
-
 import '../controllers/forgot_password_controller.dart';
 
 class PinVerificationView extends StatelessWidget {
   PinVerificationView({super.key, required this.mobile});
 
   final controller = Get.put(ForgotPasswordController());
-
   final String mobile;
 
   @override

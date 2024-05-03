@@ -102,8 +102,9 @@ class SignupController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
+    //startTimer();
     getDivision();
+    super.onInit();
   }
 
   void startTimer() {
@@ -126,12 +127,9 @@ class SignupController extends GetxController {
       isLoading.value = true;
 
       final otp = otpTextEditController.text.trim();
-
       final response = await AuthRepository.verifyOtp(mobile, otp);
 
       isLoading.value = false;
-
-      clearTextFields();
 
       if (response.isSuccess && response.jsonResponse != null) {
         LoginRes loginRes = loginResFromJson(response.jsonResponse!);
@@ -148,38 +146,36 @@ class SignupController extends GetxController {
 
   void resendOtp(mobile) async {
     isLoading.value = true;
-    remainingTime.value = '5:00'; // Reset time to 300 seconds
 
     final response =
         await AuthRepository.resendOtp(mobile); // Pass the mobile number
     isLoading.value = false;
 
     if (response.isSuccess) {
+      startTimer();
       Get.off(
         () => RegisterPinVerification(mobile: mobile),
       );
 
       Get.snackbar('Message', response.message ?? 'Something Error!');
-      startTimer();
+
     }
   }
 
   Future<void> registration(RegistrationReq params) async {
     if (formKey.currentState!.validate()) {
       isLoading.value = true;
-      remainingTime.value = '5:00';
 
       NetworkResponse response = await AuthRepository.registration(params);
 
       isLoading.value = false;
 
       if (response.isSuccess) {
-        Get.off(() => RegisterPinVerification(mobile: params.mobile));
-        Get.snackbar('Message', response.message ?? 'Something Error!');
         startTimer();
+        Get.to(() => RegisterPinVerification(mobile: params.mobile));
+        Get.snackbar('Message', response.message ?? 'Something Error!');
       }
     }
-    Get.to(() => RegisterPinVerification(mobile: params.mobile));
   }
 
   Future<void> getDivision() async {

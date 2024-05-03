@@ -50,7 +50,6 @@ class ForgotPasswordController extends GetxController {
   Future<void> sendOtpForgetPass() async {
     if (forgotPassFormKey.currentState!.validate()) {
       isLoading.value = true;
-      remainingTime.value = '5:00'; // Reset time to 300 seconds
 
       final mobile = numberTextEditController.text;
 
@@ -103,8 +102,7 @@ class ForgotPasswordController extends GetxController {
   }
 
   void resendOtp(mobile) async {
-    remainingTime.value = '5:00'; // Reset time to 300 seconds
-
+    //remainingTime.value = '5:00'; // Reset time to 300 seconds
     isLoading.value = true;
 
     final response =
