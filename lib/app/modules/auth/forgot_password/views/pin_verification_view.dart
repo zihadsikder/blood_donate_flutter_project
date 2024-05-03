@@ -15,7 +15,7 @@ class PinVerificationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.startTimer();
+    
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -145,7 +145,7 @@ class PinVerificationView extends StatelessWidget {
                         onPressed: () => controller.resendOtp(mobile),
                         child: Visibility(
                           visible:
-                              controller.remainingTime.value == 'Time\'s Up' || false ,
+                              controller.remainingTime.value == 'Time\'s Up' ,
                           child: Text(
                             'Resend Code',
                             style: TextStyle(color: Colors.grey.shade800),

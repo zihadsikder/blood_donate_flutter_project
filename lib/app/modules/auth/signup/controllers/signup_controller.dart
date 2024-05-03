@@ -103,7 +103,6 @@ class SignupController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    startTimer();
     getDivision();
 
   }
@@ -161,6 +160,7 @@ class SignupController extends GetxController {
 
   void resendOtp(mobile) async {
     isLoading.value = true;
+    remainingTime.value = '5:00'; // Reset time to 300 seconds
 
     final response =
         await AuthRepository.resendOtp(mobile); // Pass the mobile number
@@ -171,7 +171,7 @@ class SignupController extends GetxController {
 
       Get.snackbar('Message', response.message ?? 'Something Error!');
 
-      remainingTime.value = '5:00'; // Reset time to 300 seconds
+      
       startTimer();
     }
   }
@@ -179,6 +179,7 @@ class SignupController extends GetxController {
   Future<void> registration(RegistrationReq params) async {
     if (formKey.currentState!.validate()) {
       isLoading.value = true;
+      remainingTime.value = '5:00'; 
 
       NetworkResponse response = await AuthRepository.registration(params);
 
@@ -188,7 +189,7 @@ class SignupController extends GetxController {
         Get.to(() => RegisterPinVerification(mobile: params.mobile));
 
         Get.snackbar('Message', response.message ?? 'Something Error!');
-        remainingTime.value = '5:00'; // Reset time to 300 seconds
+       
         startTimer();
       }
     }

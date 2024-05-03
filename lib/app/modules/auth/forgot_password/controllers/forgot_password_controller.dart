@@ -30,7 +30,6 @@ class ForgotPasswordController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    startTimer();
   }
 
   void startTimer() {
@@ -59,6 +58,8 @@ class ForgotPasswordController extends GetxController {
   }
 
   Future<void> sendOtpForgetPass() async {
+    remainingTime.value = '5:00'; // Reset time to 300 seconds
+
     if (forgotPassFormKey.currentState!.validate()) {
       isLoading.value = true;
 
@@ -68,12 +69,12 @@ class ForgotPasswordController extends GetxController {
       isLoading.value = false;
 
       if (response.isSuccess) {
+        Get.snackbar('Message', response.message ?? 'Something Error!');
+
+        startTimer();
         Get.off(
           () => PinVerificationView(mobile: mobile),
         );
-        Get.snackbar('Message', response.message ?? 'Something Error!');
-        remainingTime.value = '5:00'; // Reset time to 300 seconds
-        startTimer();
       }
     }
   }
@@ -114,6 +115,8 @@ class ForgotPasswordController extends GetxController {
   }
 
   void resendOtp(mobile) async {
+    remainingTime.value = '5:00'; // Reset time to 300 seconds
+
     isLoading.value = true;
 
     final response =
@@ -121,15 +124,14 @@ class ForgotPasswordController extends GetxController {
     isLoading.value = false;
 
     if (response.isSuccess) {
+      Get.snackbar('Message', response.message ?? 'Something Error!');
+
+      startTimer();
       Get.off(
         () => PinVerificationView(
           mobile: mobile,
         ),
       );
-      Get.snackbar('Message', response.message ?? 'Something Error!');
-
-      remainingTime.value = '5:00'; // Reset time to 300 seconds
-      startTimer();
     }
   }
 }

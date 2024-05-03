@@ -12,7 +12,6 @@ class RegisterPinVerification extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.startTimer();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -89,7 +88,7 @@ class RegisterPinVerification extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: Visibility(
-                      //visible: controller.isLoading.value == false,
+                      visible: controller.isLoading.value == false,
                       replacement: const Center(
                         child: CircularProgressIndicator(),
                       ),
@@ -136,9 +135,9 @@ class RegisterPinVerification extends StatelessWidget {
                         onPressed: () => controller.resendOtp(mobile),
                         child: Visibility(
                           visible:
-                              controller.remainingTime.value == 'Time\'s Up' || false ,
+                              controller.remainingTime.value == 'Time\'s Up',
                           child: Text(
-                            'Resend Code',
+                            'Resend OTP',
                             style: TextStyle(color: Colors.grey.shade800),
                           ),
                         ),
