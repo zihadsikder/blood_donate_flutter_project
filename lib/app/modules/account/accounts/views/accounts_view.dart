@@ -15,7 +15,6 @@ class AccountsView extends GetView<AccountsController> {
 
   @override
   Widget build(BuildContext context) {
-
     return PopScope(
       canPop: false,
       onPopInvoked: (value) {
@@ -24,20 +23,20 @@ class AccountsView extends GetView<AccountsController> {
       child: Scaffold(
         body: Obx(
           () => SafeArea(
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Column(
-                children: [
-                  ProfileSummaryCard(),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: controller.profileData.value.data == null
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : RefreshIndicator(
-                            onRefresh: () => controller.getProfileData(),
-                            child: Column(
+            child: RefreshIndicator(
+              onRefresh: () => controller.getProfileData(),
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  children: [
+                    ProfileSummaryCard(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: controller.profileData.value.data == null
+                          ? const Center(
+                              child: CircularProgressIndicator(),
+                            )
+                          : Column(
                               children: [
                                 Card(
                                   shape: RoundedRectangleBorder(
@@ -139,14 +138,20 @@ class AccountsView extends GetView<AccountsController> {
                                                   height: 5,
                                                 ),
                                                 Text(
-                                                  DateFormat('dd/MM/yyyy').format(
-                                                      DateTime.parse(controller
+                                                  controller
                                                               .profileData
                                                               .value
                                                               .data
-                                                              ?.lastDonation ??
-                                                          DateTime.now()
-                                                              .toString())),
+                                                              ?.lastDonation !=
+                                                          null
+                                                      ? DateFormat('dd/MM/yyyy')
+                                                          .format(DateTime
+                                                              .parse(controller
+                                                                  .profileData
+                                                                  .value
+                                                                  .data
+                                                                  ?.lastDonation))
+                                                      : 'N/A',
                                                 ),
                                                 const Text('Last Donation'),
                                               ],
@@ -255,9 +260,9 @@ class AccountsView extends GetView<AccountsController> {
                                 ),
                               ],
                             ),
-                          ),
-                  ),
-                ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
