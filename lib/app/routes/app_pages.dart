@@ -1,10 +1,11 @@
 import 'package:get/get.dart';
 
 import '../modules/account/accounts/bindings/accounts_binding.dart';
+import '../modules/account/accounts/views/accounts_view.dart';
 import '../modules/account/donation_history/bindings/donation_history_binding.dart';
 import '../modules/account/donation_history/views/donation_history_view.dart';
-import '../modules/account/accounts/views/accounts_view.dart';
 import '../modules/account/update_accounts/bindings/update_accounts_binding.dart';
+import '../modules/account/update_accounts/views/update_accounts_view.dart';
 import '../modules/auth/forgot_password/bindings/forgot_password_binding.dart';
 import '../modules/auth/forgot_password/views/forget_password_view.dart';
 import '../modules/auth/login/bindings/login_binding.dart';
@@ -17,11 +18,12 @@ import '../modules/govt_services/bindings/govt_services_binding.dart';
 import '../modules/govt_services/views/govt_services_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/auth/pin_verification/bindings/pin_verification_binding.dart';
+import '../modules/auth/pin_verification/views/pin_verification_view.dart';
 import '../modules/setting/bindings/setting_binding.dart';
 import '../modules/setting/views/setting_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
-import '../modules/account/update_accounts/views/update_accounts_view.dart';
 
 part 'app_routes.dart';
 
@@ -83,8 +85,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.UPDATE_ACCOUNTS,
-      page: () =>  UpdateAccountsView(),
+      page: () => UpdateAccountsView(),
       binding: UpdateAccountsBinding(),
+    ),
+    GetPage(
+      name: _Paths.PIN_VERIFICATION,
+      page: () => const PinVerificationView(),
+      binding: PinVerificationBinding(),
     ),
   ];
 }

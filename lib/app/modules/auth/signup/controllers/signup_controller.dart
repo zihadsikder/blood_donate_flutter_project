@@ -1,17 +1,16 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:blood_bd/app/modules/auth/pin_verification/controllers/pin_verification_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../data/models/area_res.dart';
 import '../../../../data/models/network_response.dart';
 import '../../../../data/models/request/registration_req.dart';
-import '../../../../data/models/user_model.dart';
 import '../../../../data/repositories/auth_repository.dart';
 import '../../../../data/repositories/location_repository.dart';
 import '../../../../routes/app_pages.dart';
-import '../../../../services/auth_cache.dart';
-import '../views/register_otp_verify.dart';
+
 
 class SignupController extends GetxController {
   final isLoading = false.obs;
@@ -28,12 +27,10 @@ class SignupController extends GetxController {
   final TextEditingController weightTEController = TextEditingController();
   final TextEditingController postOfficeTEController = TextEditingController();
 
+  final timeStart = Get.put<PinVerificationController>(PinVerificationController());
+
   final isWeightOk = false.obs;
   final obscureText = false.obs;
-
-  final remainingTime = '5:00'.obs; // Initial time is 300 seconds
-
-  late Timer timer;
 
   final selectedBloodGroup = ''.obs;
 
@@ -102,64 +99,9 @@ class SignupController extends GetxController {
 
   @override
   void onInit() {
-    //startTimer();
+    timeStart.startTimer();
     getDivision();
     super.onInit();
-  }
-
-  void startTimer() {
-    int totalTimeInSeconds = 300; // 5 minutes
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      totalTimeInSeconds--;
-      if (totalTimeInSeconds <= 0) {
-        timer.cancel(); // Stop the timer when time's up
-        remainingTime.value = 'Time\'s Up'; // Set time's up message
-        return;
-      }
-      int minutes = totalTimeInSeconds ~/ 60;
-      int seconds = totalTimeInSeconds % 60;
-      remainingTime.value = '$minutes:${seconds.toString().padLeft(2, '0')}';
-    });
-  }
-
-  void verifyOtp(mobile) async {
-    if (otpFormKey.currentState!.validate()) {
-      isLoading.value = true;
-
-      final otp = otpTextEditController.text.trim();
-      final response = await AuthRepository.verifyOtp(mobile, otp);
-
-      isLoading.value = false;
-
-      if (response.isSuccess && response.jsonResponse != null) {
-        LoginRes loginRes = loginResFromJson(response.jsonResponse!);
-
-        AuthCache.to.saveUserInformation(
-          loginRes.data?.accessToken ?? '',
-          loginRes,
-        );
-        Get.offAllNamed(Routes.BOTTOM_NAV);
-        Get.snackbar('Message', response.message ?? 'Something Error!');
-      }
-    }
-  }
-
-  void resendOtp(mobile) async {
-    isLoading.value = true;
-
-    final response =
-        await AuthRepository.resendOtp(mobile); // Pass the mobile number
-    isLoading.value = false;
-
-    if (response.isSuccess) {
-      startTimer();
-      Get.off(
-        () => RegisterPinVerification(mobile: mobile),
-      );
-
-      Get.snackbar('Message', response.message ?? 'Something Error!');
-
-    }
   }
 
   Future<void> registration(RegistrationReq params) async {
@@ -171,8 +113,11 @@ class SignupController extends GetxController {
       isLoading.value = false;
 
       if (response.isSuccess) {
-        startTimer();
-        Get.to(() => RegisterPinVerification(mobile: params.mobile));
+        Get.offNamed(Routes.PIN_VERIFICATION, arguments: {
+          'from_screen': Routes.PIN_VERIFICATION,
+          'mobile_number': params.mobile,
+        });
+        timeStart.startTimer();
         Get.snackbar('Message', response.message ?? 'Something Error!');
       }
     }

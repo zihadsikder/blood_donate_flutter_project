@@ -5,8 +5,6 @@ import '../constants/app_assets.dart';
 class OtpScreen extends StatelessWidget {
   const OtpScreen({
     super.key,
-
-
     required this.textController,
     required this.verifyVisible,
     required this.verifyOnPressed,

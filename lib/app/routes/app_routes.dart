@@ -13,6 +13,7 @@ abstract class Routes {
   static const GOVT_SERVICES = _Paths.GOVT_SERVICES;
   static const DONATION_HISTORY = _Paths.DONATION_HISTORY;
   static const UPDATE_ACCOUNTS = _Paths.UPDATE_ACCOUNTS;
+  static const PIN_VERIFICATION = _Paths.PIN_VERIFICATION;
 }
 
 abstract class _Paths {
@@ -28,4 +29,5 @@ abstract class _Paths {
   static const GOVT_SERVICES = '/govt-services';
   static const DONATION_HISTORY = '/donation-history';
   static const UPDATE_ACCOUNTS = '/update-accounts';
+  static const PIN_VERIFICATION = '/pin-verification';
 }
