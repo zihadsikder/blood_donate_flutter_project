@@ -82,7 +82,6 @@ class PinVerificationController extends GetxController {
   }
 
   void resendOtp() async {
-    //remainingTime.value = '5:00'; // Reset time to 300 seconds
     isLoading.value = true;
 
     if (mobileNumber != null) {

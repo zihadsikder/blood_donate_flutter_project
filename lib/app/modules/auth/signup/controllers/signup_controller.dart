@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:blood_bd/app/modules/auth/pin_verification/controllers/pin_verification_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,7 +26,6 @@ class SignupController extends GetxController {
   final TextEditingController weightTEController = TextEditingController();
   final TextEditingController postOfficeTEController = TextEditingController();
 
-  final timeStart = Get.put<PinVerificationController>(PinVerificationController());
 
   final isWeightOk = false.obs;
   final obscureText = false.obs;
@@ -99,7 +97,7 @@ class SignupController extends GetxController {
 
   @override
   void onInit() {
-    timeStart.startTimer();
+
     getDivision();
     super.onInit();
   }
@@ -117,7 +115,6 @@ class SignupController extends GetxController {
           'from_screen': Routes.PIN_VERIFICATION,
           'mobile_number': params.mobile,
         });
-        timeStart.startTimer();
         Get.snackbar('Message', response.message ?? 'Something Error!');
       }
     }
