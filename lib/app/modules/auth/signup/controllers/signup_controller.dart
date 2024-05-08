@@ -111,7 +111,7 @@ class SignupController extends GetxController {
       isLoading.value = false;
 
       if (response.isSuccess) {
-        Get.offNamed(Routes.PIN_VERIFICATION, arguments: {
+        Get.toNamed(Routes.PIN_VERIFICATION, arguments: {
           'from_screen': Routes.PIN_VERIFICATION,
           'mobile_number': params.mobile,
         });

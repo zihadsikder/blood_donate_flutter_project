@@ -57,17 +57,20 @@ class PinVerificationController extends GetxController {
 
       final otp = otpTextEditController.text.trim();
 
-      if (fromScreen == Routes.FORGOT_PASSWORD) {
+      if (fromScreen == Routes.SIGNUP) {
         final response =
-            await AuthRepository.forgetPassOtpVerify(mobileNumber!, otp);
+        await AuthRepository.forgetPassOtpVerify(mobileNumber!, otp);
         isLoading.value = false;
 
         if (response.isSuccess) {
           Get.off(() => ResetPasswordView(mobile: mobileNumber!, otp: otp));
+        } else {
+          Get.snackbar('Error', response.message ?? 'Failed to verify OTP');
         }
       } else {
         final response = await AuthRepository.verifyOtp(mobileNumber!, otp);
         isLoading.value = false;
+
         if (response.isSuccess) {
           LoginRes loginRes = loginResFromJson(response.jsonResponse!);
 
@@ -76,6 +79,8 @@ class PinVerificationController extends GetxController {
             loginRes,
           );
           Get.offNamed(Routes.BOTTOM_NAV);
+        } else {
+          Get.snackbar('Error', response.message ?? 'Failed to verify OTP');
         }
       }
     }
