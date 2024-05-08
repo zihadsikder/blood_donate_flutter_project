@@ -15,6 +15,7 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
 
   @override
   Widget build(BuildContext context) {
+
     controller.usernameTEController.text = userModel?.name ?? '';
     controller.mobileTEController.text = userModel?.mobile ?? '';
     controller.dateTEController.text = userModel?.dob?.toString() ?? '';
@@ -23,141 +24,140 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
     controller.selectedDivision.value = userModel?.address?.division ?? '';
     controller.selectedDistrict.value = userModel?.address?.district ?? '';
     controller.selectedUpzila.value = userModel?.address?.area ?? '';
-    controller.postOfficeTEController.text =
-        userModel?.address?.postOffice ?? '';
+    //controller.postOfficeTEController.text =userModel?.address?.postOffice ?? '';
 
-    controller.getDivision();
 
-    return AlertDialog(
-      title: Form(
-        key: controller.formKey,
-        child: Column(
-          children: [
-            Row(
+
+    return Obx(
+      ()=> AlertDialog(
+        title: Form(
+          key: controller.formKey,
+          child: Column(
               children: [
-                const Text("Edit Your Profile", style: TextStyle(fontSize: 16)),
-                const Spacer(),
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.highlight_remove_outlined),
-                )
+                Row(
+                  children: [
+                    const Text("Edit Your Profile", style: TextStyle(fontSize: 16)),
+                    const Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.highlight_remove_outlined),
+                    )
+                  ],
+                ),
               ],
             ),
-          ],
         ),
-      ),
-      content: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            TextFormField(
-              controller: controller.usernameTEController,
-              decoration: const InputDecoration(
-                hintText: 'Name',
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFormField(
+                controller: controller.usernameTEController,
+                decoration: const InputDecoration(
+                  hintText: 'Name',
+                ),
               ),
-            ),
-            Container(height: 1, color: Colors.grey.shade100),
+              Container(height: 1, color: Colors.grey.shade100),
 
-            BloodGroupDropdown(
-              onSelectBloodGroup: (String? val) {
-                controller.onSelectedBloodGroup(val);
-              },
-            ),
-            const SizedBox(height: 8.0),
-            Container(height: 1, color: Colors.grey.shade100),
-            AreaDropDown(
-              label: 'select division',
-              onChanged: (String? val) {
-                controller.onSelectedDivision(val);
-              },
-              items: controller.divisionList,
-              validator: (String? value) {
-                if (value?.trim().isEmpty ?? true) {
-                  return 'Please Select division';
-                }
-                return null;
-              },
-            ),
-            AreaDropDown(
-              label: 'select district',
-              onChanged: (String? val) {
-                controller.onSelectedDistrict(val);
-              },
-              items: controller.districtList,
-              validator: (String? value) {
-                if (value?.trim().isEmpty ?? true) {
-                  return 'Please Select district';
-                }
-                return null;
-              },
-            ),
-            AreaDropDown(
-              label: 'select area',
-              onChanged: (String? val) {
-                controller.onSelectedUpzila(val);
-              },
-              items: controller.upzilaList,
-              validator: (String? value) {
-                if (value?.trim().isEmpty ?? true) {
-                  return 'Please Select area';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 8.0),
-            TextFormField(
-              controller: controller.postOfficeTEController,
-              decoration: const InputDecoration(
-                labelText: 'Address',
+              BloodGroupDropdown(
+                onSelectBloodGroup: (String? val) {
+                  controller.onSelectedBloodGroup(val);
+                },
               ),
-              validator: (String? value) {
-                if (value?.trim().isEmpty ?? true) {
-                  return 'Enter your address';
-                }
-                return null;
-              },
-            ),
-            const SizedBox(height: 8.0),
-          ],
-        ),
-      ),
-      actions: [
-        const AlertCancelButton(),
-        Obx(
-          () => Visibility(
-            visible: controller.inProgress.value == false,
-            replacement: const Center(child: CircularProgressIndicator()),
-            child: TextButton(
-              onPressed: () async {
-                if (controller.formKey.currentState!.validate()) {
-                  final updateProfileParams = UpdateReq(
-                    name: controller.usernameTEController.text,
-                    mobile: controller.mobileTEController.text.trim(),
-                    email: controller.emailTEController.text,
-                    dob: controller.dateTEController.text,
-                    blood: controller.selectedBloodGroup.value,
-                    weight: 'true',
-                    address: Address(
-                      divisionId: controller.selectedDivision.value,
-                      districtId: controller.selectedDistrict.value,
-                      areaId: controller.selectedUpzila.value,
-                      postOffice: controller.postOfficeTEController.text,
-                    ),
-                  );
-                  await controller.updateProfile(updateProfileParams);
-                }
-              },
-              style: TextButton.styleFrom(backgroundColor: Colors.red.shade800),
-              child: const Text(
-                'Save',
-                style: TextStyle(color: Colors.white),
+              const SizedBox(height: 8.0),
+              Container(height: 1, color: Colors.grey.shade100),
+              AreaDropDown(
+                label: 'select division',
+                onChanged: (String? val) {
+                  controller.onSelectedDivision(val);
+                },
+                items: controller.divisionList,
+                validator: (String? value) {
+                  if (value?.trim().isEmpty ?? true) {
+                    return 'Please Select division';
+                  }
+                  return null;
+                },
               ),
-            ),
+              AreaDropDown(
+                label: 'select district',
+                onChanged: (String? val) {
+                  controller.onSelectedDistrict(val);
+                },
+                items: controller.districtList,
+                validator: (String? value) {
+                  if (value?.trim().isEmpty ?? true) {
+                    return 'Please Select district';
+                  }
+                  return null;
+                },
+              ),
+              AreaDropDown(
+                label: 'select area',
+                onChanged: (String? val) {
+                  controller.onSelectedUpzila(val);
+                },
+                items: controller.upzilaList,
+                validator: (String? value) {
+                  if (value?.trim().isEmpty ?? true) {
+                    return 'Please Select area';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 8.0),
+              TextFormField(
+                controller: controller.postOfficeTEController,
+                decoration: const InputDecoration(
+                  labelText: 'Address',
+                ),
+                validator: (String? value) {
+                  if (value?.trim().isEmpty ?? true) {
+                    return 'Enter your address';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 8.0),
+            ],
           ),
         ),
-      ],
+        actions: [
+          const AlertCancelButton(),
+            Visibility(
+              visible: controller.inProgress.value == false,
+              replacement: const Center(child: CircularProgressIndicator()),
+              child: TextButton(
+                onPressed: () async {
+                  if (controller.formKey.currentState!.validate()) {
+                    final updateProfileParams = UpdateReq(
+                      name: controller.usernameTEController.text,
+                      mobile: controller.mobileTEController.text.trim(),
+                      email: controller.emailTEController.text,
+                      dob: controller.dateTEController.text,
+                      blood: controller.selectedBloodGroup.value,
+                      weight: 'true',
+                      address: Address(
+                        divisionId: controller.selectedDivision.value,
+                        districtId: controller.selectedDistrict.value,
+                        areaId: controller.selectedUpzila.value,
+                        postOffice: controller.postOfficeTEController.text,
+                      ),
+                    );
+                    await controller.updateProfile(updateProfileParams);
+                  }
+                },
+                style: TextButton.styleFrom(backgroundColor: Colors.red.shade800),
+                child: const Text(
+                  'Save',
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

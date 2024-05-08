@@ -1,3 +1,4 @@
+import 'package:blood_bd/app/modules/setting/views/setting_screens/terms_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/widgets/profile_summary_card.dart';
@@ -77,6 +78,20 @@ class SettingView extends GetView<SettingController> {
                   title: const Text('Diet Chart'),
                   onTap: () {
                     Get.to(const DietChart());
+                  },
+                  trailing: const Icon(Icons.arrow_forward_ios, size: 20),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                ListTile(
+                  shape: const RoundedRectangleBorder(
+                    side: BorderSide.none,
+                  ),
+                  leading: Icon(Icons.playlist_add_check, color: Colors.red.shade800),
+                  title: const Text('Terms &  Conditions'),
+                  onTap: () {
+                    Get.to(TermsAndConditionsPage());
                   },
                   trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),

@@ -71,7 +71,6 @@ class SearchScreenView extends StatelessWidget {
                     },
                     items: controller.upzilaList,
                   ),
-
                   const SizedBox(height: 16.0),
                   SizedBox(
                     width: double.infinity,
@@ -85,7 +84,7 @@ class SearchScreenView extends StatelessWidget {
                             controller.selectedDivision.value,
                             controller.selectedDistrict.value,
                             controller.selectedUpzila.value),
-                            //controller.selectedUnion.value),
+                        //controller.selectedUnion.value),
                         child: const Text('Search'),
                       ),
                     ),
@@ -106,19 +105,24 @@ class SearchScreenView extends StatelessWidget {
                     ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.searchUser.value.data?.length ?? 0,
+                      itemCount:
+                          controller.searchUser.value.data?.length ?? 0,
                       itemBuilder: (context, index) {
-                        final donor = controller.searchUser.value.data?[index];
+                        final donor =
+                            controller.searchUser.value.data?[index];
                         if (donor != null) {
-                          String formattedLastDonation = donor.lastDonation != null
-                              ? DateFormat('dd-MM-yyyy').format(donor.lastDonation!)
-                              : "N/A";
+                          String formattedLastDonation =
+                              donor.lastDonation != null
+                                  ? DateFormat('dd-MM-yyyy')
+                                      .format(donor.lastDonation!)
+                                  : "N/A";
 
                           return DonorCard(
                             name: donor.name ?? '',
                             bloodGroup: donor.bloodGroup ?? '',
                             lastDonation: formattedLastDonation,
-                            totalDonations: donor.totalDonation?.toString() ?? '',
+                            totalDonations:
+                                donor.totalDonation?.toString() ?? '',
                             mobile: donor.mobile?.toString() ?? '',
                             address: donor.address?.postOffice ?? '',
                             isEligibleToDonate: donor.isAvailable ?? true,
@@ -126,7 +130,6 @@ class SearchScreenView extends StatelessWidget {
                         } else {
                           return const SizedBox(); // Return empty SizedBox if donor is null
                         }
-
                       },
                     ),
                 ],

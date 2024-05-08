@@ -67,8 +67,8 @@ class UpdateAccountsController extends GetxController {
 
   @override
   void onInit() {
-    getDivision();
     super.onInit();
+    getDivision();
   }
 
   Future<void> getDivision() async {
