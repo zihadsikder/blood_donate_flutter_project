@@ -10,10 +10,6 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    // final controller = Get.put(HomeController());
-    //
-    // controller.onInit();
-
     return PopScope(
       canPop: false,
       child: Scaffold(
