@@ -59,7 +59,7 @@ class ResetPasswordView extends StatelessWidget {
                         PasswordTextField(
                           passwordController:
                               controller.passwordTextEditController,
-                          obscureText: controller.obscureText.value,
+                          obscureText: !controller.obscureText.value,
                           onTapSuffix: () {
                             controller.obscureText.value =
                                 !controller.obscureText.value;

@@ -136,7 +136,7 @@ class HomeController extends GetxController {
 
       if (response.isSuccess) {
         searchUser.value = searchUserModelFromJson(response.jsonResponse!);
-        Get.snackbar('Message', response.message ?? 'Try Again Later');
+        //Get.snackbar('Message', response.message ?? 'Try Again Later');
 
         return true;
       } else {

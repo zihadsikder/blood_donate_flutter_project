@@ -70,7 +70,7 @@ class LoginView extends GetView<LoginController> {
                     child: Form(
                       key: controller.formKey,
                       child: Obx(
-                        ()=> Column(
+                        () => Column(
                           children: [
                             const SizedBox(
                               height: 40,
@@ -119,14 +119,18 @@ class LoginView extends GetView<LoginController> {
                                     child: PasswordTextField(
                                       passwordController:
                                           controller.passwordTEController,
-                                      obscureText: !controller.obscureText.value,
+                                      obscureText:
+                                          !controller.obscureText.value,
                                       onTapSuffix: () {
                                         controller.obscureText.value =
-                                        !controller.obscureText.value;
+                                            !controller.obscureText.value;
                                       },
-                                      suffixIcon:  Icon(
-                                        controller.obscureText.value ? Icons.visibility : Icons.visibility_off,
-                                        color: Colors.grey, // Customize the icon color as needed
+                                      suffixIcon: Icon(
+                                        controller.obscureText.value
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                        color: Colors
+                                            .grey, // Customize the icon color as needed
                                       ),
                                     ),
                                   ),
@@ -148,8 +152,8 @@ class LoginView extends GetView<LoginController> {
                                 child: Visibility(
                                   visible: controller.isLoading.value == false,
                                   replacement: const Center(
-                                      child: CircularProgressIndicator(
-                                      ),),
+                                    child: CircularProgressIndicator(),
+                                  ),
                                   child: const Center(
                                     child: Text(
                                       "Sign In",
@@ -169,7 +173,9 @@ class LoginView extends GetView<LoginController> {
                               },
                               child: const Text(
                                 "Forgot Password!",
-                                style: TextStyle(color: Colors.grey,fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold),
                               ),
                             ),
                             const SizedBox(
@@ -194,88 +200,88 @@ class LoginView extends GetView<LoginController> {
                                 )
                               ],
                             ),
-                          //   const Text(
-                          //     "Continue with social media",
-                          //     style: TextStyle(color: Colors.grey),
-                          //   ),
-                          //   const SizedBox(
-                          //     height: 16,
-                          //   ),
-                          //   Row(
-                          //     children: [
-                          //       Expanded(
-                          //         child: GestureDetector(
-                          //           onTap: () {
-                          //             // Your onTap action here
-                          //             // For example, you can open Facebook when tapped
-                          //             launchFacebook();
-                          //           },
-                          //           child: Container(
-                          //             height: 50,
-                          //             decoration: BoxDecoration(
-                          //               borderRadius: BorderRadius.circular(50),
-                          //               color: Colors.red.shade800,
-                          //             ),
-                          //             child: const Row(
-                          //               mainAxisAlignment:
-                          //                   MainAxisAlignment.center,
-                          //               children: [
-                          //                 Icon(
-                          //                   Icons.facebook,
-                          //                   // You can change this to the desired Facebook icon
-                          //                   color: Colors.white,
-                          //                 ),
-                          //                 SizedBox(width: 8),
-                          //                 // Adjust the spacing between icon and text
-                          //                 Text(
-                          //                   "Facebook",
-                          //                   style: TextStyle(
-                          //                     color: Colors.white,
-                          //                     fontWeight: FontWeight.bold,
-                          //                   ),
-                          //                 ),
-                          //               ],
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       ),
-                          //       const SizedBox(
-                          //         width: 30,
-                          //       ),
-                          //       Expanded(
-                          //         child: GestureDetector(
-                          //           onTap: () {
-                          //             // Your onTap action here
-                          //             // For example, you can open Facebook when tapped
-                          //             launchGoogle();
-                          //           },
-                          //           child: Container(
-                          //             height: 50,
-                          //             decoration: BoxDecoration(
-                          //                 borderRadius: BorderRadius.circular(50),
-                          //                 color: Colors.red.shade800),
-                          //             child: Center(
-                          //               child: Row(
-                          //                 mainAxisAlignment:
-                          //                 MainAxisAlignment.center,
-                          //                 children: [
-                          //                   Image.asset('assets/google.png',height: 18,),
-                          //                   const SizedBox(width: 8),
-                          //                   const Text(
-                          //                     "Google",
-                          //                     style: TextStyle(
-                          //                         color: Colors.white,
-                          //                         fontWeight: FontWeight.bold),
-                          //                   ),
-                          //                 ],
-                          //               ),
-                          //             ),
-                          //           ),
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   )
-                           ],
+                            //   const Text(
+                            //     "Continue with social media",
+                            //     style: TextStyle(color: Colors.grey),
+                            //   ),
+                            //   const SizedBox(
+                            //     height: 16,
+                            //   ),
+                            //   Row(
+                            //     children: [
+                            //       Expanded(
+                            //         child: GestureDetector(
+                            //           onTap: () {
+                            //             // Your onTap action here
+                            //             // For example, you can open Facebook when tapped
+                            //             launchFacebook();
+                            //           },
+                            //           child: Container(
+                            //             height: 50,
+                            //             decoration: BoxDecoration(
+                            //               borderRadius: BorderRadius.circular(50),
+                            //               color: Colors.red.shade800,
+                            //             ),
+                            //             child: const Row(
+                            //               mainAxisAlignment:
+                            //                   MainAxisAlignment.center,
+                            //               children: [
+                            //                 Icon(
+                            //                   Icons.facebook,
+                            //                   // You can change this to the desired Facebook icon
+                            //                   color: Colors.white,
+                            //                 ),
+                            //                 SizedBox(width: 8),
+                            //                 // Adjust the spacing between icon and text
+                            //                 Text(
+                            //                   "Facebook",
+                            //                   style: TextStyle(
+                            //                     color: Colors.white,
+                            //                     fontWeight: FontWeight.bold,
+                            //                   ),
+                            //                 ),
+                            //               ],
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //       const SizedBox(
+                            //         width: 30,
+                            //       ),
+                            //       Expanded(
+                            //         child: GestureDetector(
+                            //           onTap: () {
+                            //             // Your onTap action here
+                            //             // For example, you can open Facebook when tapped
+                            //             launchGoogle();
+                            //           },
+                            //           child: Container(
+                            //             height: 50,
+                            //             decoration: BoxDecoration(
+                            //                 borderRadius: BorderRadius.circular(50),
+                            //                 color: Colors.red.shade800),
+                            //             child: Center(
+                            //               child: Row(
+                            //                 mainAxisAlignment:
+                            //                 MainAxisAlignment.center,
+                            //                 children: [
+                            //                   Image.asset('assets/google.png',height: 18,),
+                            //                   const SizedBox(width: 8),
+                            //                   const Text(
+                            //                     "Google",
+                            //                     style: TextStyle(
+                            //                         color: Colors.white,
+                            //                         fontWeight: FontWeight.bold),
+                            //                   ),
+                            //                 ],
+                            //               ),
+                            //             ),
+                            //           ),
+                            //         ),
+                            //       ),
+                            //     ],
+                            //   )
+                          ],
                         ),
                       ),
                     ),
@@ -288,6 +294,7 @@ class LoginView extends GetView<LoginController> {
       ),
     );
   }
+
   void launchFacebook() {}
 
   void launchGoogle() {}

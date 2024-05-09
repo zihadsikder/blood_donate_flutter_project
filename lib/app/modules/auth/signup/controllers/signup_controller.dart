@@ -112,7 +112,7 @@ class SignupController extends GetxController {
 
       if (response.isSuccess) {
         Get.toNamed(Routes.PIN_VERIFICATION, arguments: {
-          'from_screen': Routes.PIN_VERIFICATION,
+          'from_screen': Routes.SIGNUP,
           'mobile_number': params.mobile,
         });
         Get.snackbar('Message', response.message ?? 'Something Error!');

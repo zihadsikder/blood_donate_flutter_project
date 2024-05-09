@@ -56,7 +56,7 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
-                        hintText: 'Number',
+                        hintText: '018********',
                       ),
                       validator: (String? value) {
                         bool isValidPhoneNumber =

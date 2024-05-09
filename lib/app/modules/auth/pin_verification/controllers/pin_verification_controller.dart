@@ -57,9 +57,9 @@ class PinVerificationController extends GetxController {
 
       final otp = otpTextEditController.text.trim();
 
-      if (fromScreen == Routes.SIGNUP) {
+      if (fromScreen == Routes.FORGOT_PASSWORD) {
         final response =
-        await AuthRepository.forgetPassOtpVerify(mobileNumber!, otp);
+            await AuthRepository.forgetPassOtpVerify(mobileNumber!, otp);
         isLoading.value = false;
 
         if (response.isSuccess) {

@@ -38,7 +38,7 @@ class ForgotPasswordController extends GetxController {
 
         //Get.offNamed(Routes.PIN_VERIFICATION);
         Get.offNamed(Routes.PIN_VERIFICATION, arguments: {
-          'from_screen': Routes.PIN_VERIFICATION,
+          'from_screen': Routes.FORGOT_PASSWORD,
           'mobile_number': mobile,
         });
 
