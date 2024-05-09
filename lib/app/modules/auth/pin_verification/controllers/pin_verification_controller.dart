@@ -65,7 +65,6 @@ class PinVerificationController extends GetxController {
         if (response.isSuccess) {
           Get.off(() => ResetPasswordView(mobile: mobileNumber!, otp: otp));
         }
-
       } else {
         final response = await AuthRepository.verifyOtp(mobileNumber!, otp);
         isLoading.value = false;
@@ -87,14 +86,25 @@ class PinVerificationController extends GetxController {
     isLoading.value = true;
 
     if (mobileNumber != null) {
-      final response = await AuthRepository.resendOtp(
-          mobileNumber!); // Pass the mobile number
-      isLoading.value = false;
+      if (fromScreen == Routes.FORGOT_PASSWORD) {
+        final response = await AuthRepository.resendOtp(mobileNumber!);
+        isLoading.value = false;
 
-      if (response.isSuccess) {
-        Get.snackbar('Message', response.message ?? 'Something Error!');
-        //startTimer();
-        Get.offNamed(Routes.PIN_VERIFICATION);
+        if (response.isSuccess) {
+          Get.snackbar('Message', response.message ?? 'Something Error!');
+          startTimer();
+          Get.offNamed(Routes.PIN_VERIFICATION);
+        }
+      } else {
+        final response = await AuthRepository.resendOtp(
+            mobileNumber!); // Pass the mobile number
+        isLoading.value = false;
+
+        if (response.isSuccess) {
+          Get.snackbar('Message', response.message ?? 'Something Error!');
+          startTimer();
+          Get.offNamed(Routes.PIN_VERIFICATION);
+        }
       }
     }
   }
