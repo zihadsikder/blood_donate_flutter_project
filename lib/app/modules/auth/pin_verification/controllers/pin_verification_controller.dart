@@ -93,7 +93,7 @@ class PinVerificationController extends GetxController {
 
       if (response.isSuccess) {
         Get.snackbar('Message', response.message ?? 'Something Error!');
-        startTimer();
+        //startTimer();
         Get.offNamed(Routes.PIN_VERIFICATION);
       }
     }

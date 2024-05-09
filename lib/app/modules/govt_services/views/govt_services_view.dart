@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -83,14 +84,22 @@ class GovtServicesView extends GetView<GovtServicesController> {
                       child: Card(
                         elevation: 1,
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          //mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Image.asset(
-                              websites[index].profilePicAsset,
-                              width: 100,
-                              height: 100,
+                            Expanded(
+                              child: Center(
+                                child: Image.asset(
+                                  websites[index].profilePicAsset,
+                                  width: 100,
+                                  height: 100,
+                                ),
+                              ),
                             ),
-                            Text(websites[index].name),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(websites[index].name,
+                              textAlign: TextAlign.center,),
+                            ),
                           ],
                         ),
                       ),
