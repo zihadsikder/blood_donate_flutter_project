@@ -86,25 +86,14 @@ class PinVerificationController extends GetxController {
     isLoading.value = true;
 
     if (mobileNumber != null) {
-      if (fromScreen == Routes.FORGOT_PASSWORD) {
-        final response = await AuthRepository.resendOtp(mobileNumber!);
-        isLoading.value = false;
+      final response = await AuthRepository.resendOtp(
+          mobileNumber!); // Pass the mobile number
+      isLoading.value = false;
 
-        if (response.isSuccess) {
-          Get.snackbar('Message', response.message ?? 'Something Error!');
-          startTimer();
-          Get.offNamed(Routes.PIN_VERIFICATION);
-        }
-      } else {
-        final response = await AuthRepository.resendOtp(
-            mobileNumber!); // Pass the mobile number
-        isLoading.value = false;
-
-        if (response.isSuccess) {
-          Get.snackbar('Message', response.message ?? 'Something Error!');
-          startTimer();
-          Get.offNamed(Routes.PIN_VERIFICATION);
-        }
+      if (response.isSuccess) {
+        Get.snackbar('Message', response.message ?? 'Something Error!');
+        startTimer();
+        Get.offNamed(Routes.PIN_VERIFICATION);
       }
     }
   }
