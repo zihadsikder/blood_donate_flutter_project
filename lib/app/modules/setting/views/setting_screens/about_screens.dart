@@ -2,9 +2,8 @@ import 'package:blood_bd/app/modules/home/views/widgets/banner_carousel.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-
 class AboutInfoScreen extends StatelessWidget {
- const AboutInfoScreen({super.key });
+  const AboutInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,9 @@ class AboutInfoScreen extends StatelessWidget {
                     'assets/p7.jpg',
                   ],
                 ),
-                const SizedBox(height: 8.0,),
+                const SizedBox(
+                  height: 8.0,
+                ),
                 Container(
                   color: Colors.grey.shade200,
                   child: Row(
@@ -39,7 +40,8 @@ class AboutInfoScreen extends StatelessWidget {
                         width: 60,
                         child: InkWell(
                           onTap: () {
-                            launch('https://www.facebook.com/provater.surjo.foundation?mibextid=ZbWKwL');
+                            launch(
+                                'https://www.facebook.com/provater.surjo.foundation?mibextid=ZbWKwL');
                           },
                           child: const Icon(Icons.facebook_outlined, size: 48),
                         ),
@@ -57,8 +59,11 @@ class AboutInfoScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(height: 16.0,),
-                const Text('মানুষের সেবা করার দৃঢ় প্রত্যয় নিয়ে ২০১৯ সালের ২৮ জুন আমরা "প্রভাতের সূর্য" নামে একটি অরাজনৈতিক সামাজিক সংগঠন প্রতিষ্ঠা করি "আলোর পথে হাটবে তুমি, দেখবে পুরো বিশ্ব" এই স্লোগান সামনে রেখে প্রথমে আমরা বস্তি এলাকার সুবিধা বঞ্চিত শিশুদের কে অস্থায়ী স্কুলের মাধ্যমে বিনামূল্যে শিক্ষাক্রম চালিয়ে আসি। এবং মুমূর্ষু রোগীদের জন্য ফেসবুকে "প্রভাতের সূর্য ব্লাড ব্যাংক" নামে একটি গ্রুপ খুলে বিনামূল্যে ব্লাড ডোনাশেন কার্যক্রম শুরু করি যা বর্তমানে এখনো চলমান। সেই লক্ষে আমরা ২০২৪ সালে Blood Bd নামে সম্পূর্ণ বিনামূল্যে এই এ্যাপসটি প্রতিষ্ঠা করি যাতে একজন রক্তগ্রহিতা খুব সহজেই রক্তদাতার সন্ধ্যান পায়। আমরা চেষ্টা করে যচ্ছি যাতে ব্লাড এর অভাবে কোনো মানুষ মারা না যায় এবং ব্লাড ডোনেশন প্রক্রিয়া কিভাবে আরো সহজ করা যায় সেই লক্ষ্যে এই এ্যাপসটি বেশি বেশি শেয়ার করুন এবং আত্মীয়-স্বজন ও বন্ধু-বান্ধবদের সঠিক তথ্য প্রদান করে এই এ্যাপসটি ব্যবহারে উদ্বুদ্ধ করুন। বর্তামানে আমাদের App Version ও Web Version চালু আছে www.blooddonorbd.com নামে। আমাদের এ অগ্রযাত্রায় আমরা সবসময় আপনাদের কাছ থেকে দোয়া প্রত্যাশী। এছাড়াও যে কোনো ধরণের সহযোগীতায় আমাদের সাপোর্ট টিম আছে আপনাদের পাশে।'),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                const Text(
+                    'মানুষের সেবা করার দৃঢ় প্রত্যয় নিয়ে ২০১৯ সালের ২৮ জুন আমরা "প্রভাতের সূর্য" নামে একটি অরাজনৈতিক সামাজিক সংগঠন প্রতিষ্ঠা করি "আলোর পথে হাটবে তুমি, দেখবে পুরো বিশ্ব" এই স্লোগান সামনে রেখে প্রথমে আমরা বস্তি এলাকার সুবিধা বঞ্চিত শিশুদের কে অস্থায়ী স্কুলের মাধ্যমে বিনামূল্যে শিক্ষাক্রম চালিয়ে আসি। এবং মুমূর্ষু রোগীদের জন্য ফেসবুকে "প্রভাতের সূর্য ব্লাড ব্যাংক" নামে একটি গ্রুপ খুলে বিনামূল্যে ব্লাড ডোনাশেন কার্যক্রম শুরু করি যা বর্তমানে এখনো চলমান। সেই লক্ষে আমরা ২০২৪ সালে Blood Bd নামে সম্পূর্ণ বিনামূল্যে এই এ্যাপসটি Play Store এ publish করি যাতে একজন রক্তগ্রহিতা খুব সহজেই রক্তদাতার সন্ধ্যান পায়। আমরা চেষ্টা করে যচ্ছি যাতে ব্লাড এর অভাবে কোনো মানুষ মারা না যায় এবং ব্লাড ডোনেশন প্রক্রিয়া কিভাবে আরো সহজ করা যায় সেই লক্ষ্যে এই এ্যাপসটি বেশি বেশি শেয়ার করুন এবং আত্মীয়-স্বজন ও বন্ধু-বান্ধবদের সঠিক তথ্য প্রদান করে এই এ্যাপসটি ব্যবহারে উদ্বুদ্ধ করুন। বর্তামানে আমাদের App Version ও Web Version চালু আছে www.blooddonorbd.com নামে। আমাদের এ অগ্রযাত্রায় আমরা সবসময় আপনাদের কাছ থেকে দোয়া প্রত্যাশী। এছাড়াও যে কোনো ধরণের সহযোগীতায় আমাদের সাপোর্ট টিম আছে আপনাদের পাশে।'),
               ],
             ),
           ),
@@ -67,18 +72,17 @@ class AboutInfoScreen extends StatelessWidget {
     );
   }
 
-  // void _launchURL(String url) async {
-  //   await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-  //     return Scaffold(
-  //       appBar: AppBar(
-  //         title: Text('Web View'),
-  //       ),
-  //       body: WebView(
-  //         initialUrl: url,
-  //         javascriptMode: JavascriptMode.unrestricted,
-  //       ),
-  //     );
-  //   }));
-  // }
+// void _launchURL(String url) async {
+//   await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Web View'),
+//       ),
+//       body: WebView(
+//         initialUrl: url,
+//         javascriptMode: JavascriptMode.unrestricted,
+//       ),
+//     );
+//   }));
+// }
 }
-
