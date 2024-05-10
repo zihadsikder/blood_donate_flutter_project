@@ -26,6 +26,9 @@ class SettingView extends GetView<SettingController> {
             child: Column(
               children: [
                 ProfileSummaryCard(),
+                const SizedBox(
+                  height: 8,
+                ),
                 ListTile(
                   shape: const RoundedRectangleBorder(
                     side: BorderSide.none,
