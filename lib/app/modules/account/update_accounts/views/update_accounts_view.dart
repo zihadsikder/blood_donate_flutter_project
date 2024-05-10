@@ -36,7 +36,7 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
               children: [
                 Row(
                   children: [
-                    const Text("Edit Your Profile", style: TextStyle(fontSize: 16)),
+                    const Text("Update Your Profile", style: TextStyle(fontSize: 16)),
                     const Spacer(),
                     IconButton(
                       onPressed: () {

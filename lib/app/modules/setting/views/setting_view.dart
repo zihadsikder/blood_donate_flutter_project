@@ -1,3 +1,4 @@
+import 'package:blood_bd/app/modules/setting/views/setting_screens/about_screens.dart';
 import 'package:blood_bd/app/modules/setting/views/setting_screens/terms_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +26,21 @@ class SettingView extends GetView<SettingController> {
             child: Column(
               children: [
                 ProfileSummaryCard(),
+                ListTile(
+                  shape: const RoundedRectangleBorder(
+                    side: BorderSide.none,
+                  ),
+                  leading: Icon(Icons.read_more_outlined,
+                      color: Colors.red.shade800),
+                  title: const Text("About Us"),
+                  onTap: () {
+                    Get.to(const AboutInfoScreen());
+                  },
+                  trailing: const Icon(Icons.arrow_forward_ios, size: 20),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
                 ListTile(
                   shape: const RoundedRectangleBorder(
                     side: BorderSide.none,

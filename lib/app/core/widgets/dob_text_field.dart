@@ -30,7 +30,7 @@ class DobTextField extends StatelessWidget {
       keyboardType: TextInputType.datetime,
       validator: (String? value) {
         if (value?.trim().isEmpty ?? true) {
-          return 'Enter your Date of Birth';
+          return 'Enter Date';
         }
         return null;
       },
