@@ -124,7 +124,7 @@ class SearchScreenView extends StatelessWidget {
                             totalDonations:
                                 donor.totalDonation?.toString() ?? '',
                             mobile: donor.mobile?.toString() ?? '',
-                            address: donor.address?.postOffice ?? '',
+                            address: "${donor.address?.postOffice}, ${donor.address?.area}, ${donor.address?.district}" ,
                             isEligibleToDonate: donor.isAvailable ?? true,
                           );
                         } else {

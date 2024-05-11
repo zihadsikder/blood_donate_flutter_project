@@ -23,7 +23,6 @@ class DonorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -70,21 +69,6 @@ class DonorCard extends StatelessWidget {
                     color: Colors.red,
                   ),
                 ),
-              //const Icon(Icons.lock)
-            ],
-          ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Last Donation: $lastDonation'),
-              Text('Total Donations: $totalDonations'),
-              Text('Address: $address'),
-            ],
-          ),
-          // Add call and sms buttons here
-          trailing: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
               // Show lock icon if the user is not eligible to donate
               if (!isEligibleToDonate)
                 Icon(Icons.lock_clock_outlined, color: Colors.red.shade800),
@@ -103,7 +87,19 @@ class DonorCard extends StatelessWidget {
                     _launchSmsApp(mobile);
                   },
                 ),
-              ]
+              ],
+              //const Icon(Icons.lock)
+            ],
+          ),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Last Donation: $lastDonation'),
+              Text('Total Donations: $totalDonations'),
+              Text(
+                'Address: $address',
+                style: const TextStyle(overflow: TextOverflow.ellipsis),
+              ),
             ],
           ),
         ),
