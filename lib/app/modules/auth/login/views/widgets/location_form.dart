@@ -13,17 +13,19 @@ class BloodGroupDropdown extends StatelessWidget {
   ];
   final void Function(String?)? onSelectBloodGroup;
   final String? Function(String?)? validator;
+  final String labelText;
 
   BloodGroupDropdown({
     super.key,
     this.onSelectBloodGroup,
     this.validator,
+  required this.labelText,
   });
 
   @override
   Widget build(BuildContext context) => DropdownButtonFormField<String>(
-        decoration: const InputDecoration(
-          labelText: 'Select Blood Group',
+        decoration:  InputDecoration(
+          labelText: labelText,
           //labelStyle: TextStyle(fontSize: 18),
         ),
         onChanged: onSelectBloodGroup,

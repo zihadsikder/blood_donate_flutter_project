@@ -39,6 +39,7 @@ class SearchScreenView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   BloodGroupDropdown(
+              labelText:'Select Blood Group',
                     onSelectBloodGroup: (String? val) {
                       controller.onSelectedBloodGroup(val);
                     },

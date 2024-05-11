@@ -46,6 +46,7 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
               ),
               Container(height: 1, color: Colors.grey.shade100),
               BloodGroupDropdown(
+                labelText:controller.profileData.value.data?.bloodGroup ?? '',
                 onSelectBloodGroup: (String? val) {
                   controller.onSelectedBloodGroup(val);
                 },
@@ -53,7 +54,8 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
               const SizedBox(height: 8.0),
               Container(height: 1, color: Colors.grey.shade100),
               AreaDropDown(
-                label: 'select division',
+                label:
+                    controller.profileData.value.data?.address?.division?.toString() ?? '',
                 onChanged: (String? val) {
                   controller.onSelectedDivision(val);
                 },
@@ -98,7 +100,7 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
                   labelText: 'Address',
                 ),
                 validator: (String? value) {
-                  if (value?.trim().isEmpty ?? true) {
+                  if (value?.trim().isNotEmpty ?? true) {
                     return 'Enter your address';
                   }
                   return null;

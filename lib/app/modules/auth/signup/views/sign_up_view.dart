@@ -83,6 +83,7 @@ class SignUpView extends GetView<SignupController> {
                     ),
                     const SizedBox(height: 8.0),
                     BloodGroupDropdown(
+                      labelText:'Select Blood Group',
                       onSelectBloodGroup: (String? val) {
                         controller.onSelectedBloodGroup(val);
                       },

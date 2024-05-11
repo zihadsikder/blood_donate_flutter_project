@@ -21,6 +21,7 @@ class IntBinding extends Bindings {
 
     Get.lazyPut<AccountsController>(() => AccountsController());
     Get.lazyPut<DonationHistoryController>(()=>DonationHistoryController());
+
     Get.lazyPut<UpdateAccountsController>(()=>UpdateAccountsController());
     Get.lazyPut<ConnectivityController>(() => ConnectivityController());
 
