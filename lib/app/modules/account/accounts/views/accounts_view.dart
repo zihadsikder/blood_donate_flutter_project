@@ -120,7 +120,7 @@ class AccountsView extends GetView<AccountsController> {
                                                 Text(
                                                   controller.profileData.value
                                                           .data?.bloodGroup ??
-                                                      'Blood Group',
+                                                      '',
                                                 ),
                                                 const Text('Blood Group'),
                                               ],
