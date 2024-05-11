@@ -1,10 +1,10 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=C:\src\flutter
-FLUTTER_APPLICATION_PATH=C:\Users\USER\blood_donate_flutter_project
+FLUTTER_ROOT=C:\devTools\flutter_3_16_0
+FLUTTER_APPLICATION_PATH=C:\Users\KayesAshfaq\Development\blood_donate_flutter_project
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_BUILD_DIR=build
-FLUTTER_BUILD_NAME=1.1.0
-FLUTTER_BUILD_NUMBER=3
+FLUTTER_BUILD_NAME=1.2.0
+FLUTTER_BUILD_NUMBER=4
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=true
 TREE_SHAKE_ICONS=false

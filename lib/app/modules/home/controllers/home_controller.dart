@@ -95,7 +95,10 @@ class HomeController extends GetxController {
   Future<void> getDivision() async {
     isLoading.value = true;
     final NetworkResponse response = await LocationRepository.getDivision();
-    divisionList.value = areaFromJson(response.jsonResponse!).data ?? [];
+
+    if (response.isSuccess && response.jsonResponse != null) {
+      divisionList.value = areaFromJson(response.jsonResponse!).data ?? [];
+    }
     isLoading.value = false;
   }
 

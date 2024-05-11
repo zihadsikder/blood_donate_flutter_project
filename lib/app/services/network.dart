@@ -12,25 +12,26 @@ class ConnectivityController extends GetxController {
   }
 
   void _updateConnectionStatus(ConnectivityResult connectivityResult) {
-
-
     if (connectivityResult == ConnectivityResult.none) {
       Get.rawSnackbar(
-        messageText: const Text(
-          'PLEASE CONNECT TO THE INTERNET',
-          style: TextStyle(color: Colors.white),
-        ),
-        isDismissible: false,
-        duration: const Duration(days: 1),
-        backgroundColor: Colors.black54,
-        icon: const Icon(Icons.wifi_off, color: Colors.white, size: 35,),
-        margin: EdgeInsets.zero,
-        snackStyle: SnackStyle.GROUNDED,
-        snackPosition: SnackPosition.TOP
-      );
+          messageText: const Text(
+            'PLEASE CONNECT TO THE INTERNET',
+            style: TextStyle(color: Colors.white),
+          ),
+          isDismissible: false,
+          duration: const Duration(days: 1),
+          backgroundColor: Colors.black54,
+          icon: const Icon(
+            Icons.wifi_off,
+            color: Colors.white,
+            size: 35,
+          ),
+          margin: EdgeInsets.zero,
+          snackStyle: SnackStyle.GROUNDED,
+          snackPosition: SnackPosition.TOP);
     } else {
       if (Get.isSnackbarOpen) {
-          Get.closeCurrentSnackbar();
+        Get.closeCurrentSnackbar();
       }
     }
   }

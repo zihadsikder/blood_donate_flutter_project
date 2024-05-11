@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/widgets/profile_summary_card.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../bottom_nav/controllers/bottom_nav_controller.dart';
 import '../../donation_history/views/donation_history_view.dart';
 import '../../donation_history/views/widget/donation_history.dart';
@@ -271,7 +272,7 @@ class AccountsView extends GetView<AccountsController> {
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.red.shade700,
           onPressed: () {
-            Get.to(() => const DonationHistoryView());
+            Get.toNamed(Routes.DONATION_HISTORY);
           },
           child: const Icon(Icons.add),
         ),
