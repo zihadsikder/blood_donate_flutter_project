@@ -233,8 +233,7 @@ class AccountsView extends GetView<AccountsController> {
                                   subtitle: Text("${controller.profileData.value
                                       .data?.address!.postOffice}, ${controller.profileData.value
                                       .data?.address!.area}, ${controller.profileData.value
-                                      .data?.address!.district}." ??
-                                      ''),
+                                      .data?.address!.district}."),
                                 ),
                                 Container(
                                     height: 1, color: Colors.grey.shade100),
