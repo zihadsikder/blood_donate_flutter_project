@@ -81,7 +81,7 @@ class UpdateAccountsController extends GetxController {
     inProgress.value = true;
 
     final NetworkResponse response =
-    await ApiClient().getRequest(ApiEndPoints.getProfileData);
+        await ApiClient().getRequest(ApiEndPoints.getProfileData);
     inProgress.value = false;
     if (response.isSuccess) {
       if (response.jsonResponse != null) {
@@ -95,25 +95,19 @@ class UpdateAccountsController extends GetxController {
   }
 
   void setProfileDataToTextFields() {
-    usernameTEController.text =
-        profileData.value.data?.name ?? '';
-    mobileTEController.text =
-        profileData.value.data?.mobile ?? '';
-    dateTEController.text =
-        profileData.value.data?.dob?.toString() ?? '';
-   emailTEController.text =
-        profileData.value.data?.email ?? '';
-    selectedBloodGroup.value =
-        profileData.value.data?.bloodGroup ?? '';
+    usernameTEController.text = profileData.value.data?.name ?? '';
+    mobileTEController.text = profileData.value.data?.mobile ?? '';
+    dateTEController.text = profileData.value.data?.dob?.toString() ?? '';
+    emailTEController.text = profileData.value.data?.email ?? '';
+    selectedBloodGroup.value = profileData.value.data?.bloodGroup ?? '';
     selectedDivision.value =
         profileData.value.data?.address?.divisionId?.toString() ?? '';
-   selectedDistrict.value =
+    selectedDistrict.value =
         profileData.value.data?.address?.districtId?.toString() ?? '';
     selectedUpzila.value =
         profileData.value.data?.address?.areaId?.toString() ?? '';
     postOfficeTEController.text =
         profileData.value.data?.address?.postOffice ?? '';
-
   }
 
   Future<void> getDivision() async {
@@ -137,7 +131,6 @@ class UpdateAccountsController extends GetxController {
     upzilaList.value = areaFromJson(response.jsonResponse!).data ?? [];
     inProgress.value = false;
   }
-
 
   Future<void> updateProfile(UpdateReq params) async {
     if (formKey.currentState!.validate()) {

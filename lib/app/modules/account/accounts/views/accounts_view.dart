@@ -76,7 +76,7 @@ class AccountsView extends GetView<AccountsController> {
                                                   barrierDismissible: false,
                                                   context: context,
                                                   builder: (context) =>
-                                                      UpdateAccountsView());
+                                                      const UpdateAccountsView());
                                             },
                                             child: Icon(
                                               Icons.edit,
@@ -230,8 +230,10 @@ class AccountsView extends GetView<AccountsController> {
                                       Text('Address'),
                                     ],
                                   ),
-                                  subtitle: Text(controller.profileData.value
-                                          .data?.address!.postOffice ??
+                                  subtitle: Text("${controller.profileData.value
+                                      .data?.address!.postOffice}, ${controller.profileData.value
+                                      .data?.address!.area}, ${controller.profileData.value
+                                      .data?.address!.district}." ??
                                       ''),
                                 ),
                                 Container(
