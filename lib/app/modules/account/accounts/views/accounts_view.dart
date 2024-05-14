@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import '../../../../core/widgets/profile_summary_card.dart';
 import '../../../../routes/app_pages.dart';
 import '../../../bottom_nav/controllers/bottom_nav_controller.dart';
-import '../../donation_history/views/donation_history_view.dart';
 import '../../donation_history/views/widget/donation_history.dart';
 import '../../update_accounts/views/update_accounts_view.dart';
 import '../controllers/accounts_controller.dart';
