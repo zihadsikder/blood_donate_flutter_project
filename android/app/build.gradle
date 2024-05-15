@@ -55,7 +55,7 @@ android {
             // storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
             // storePassword keystoreProperties['storePassword']
 
-            storeFile file('C:Users/KayesAshfaq/Development/blood_donate_flutter_project/android/blood_donor_app.jks')
+            storeFile file('C:\\Users\\USER\\blood_donate_flutter_project\\android\\key.jks')
             storePassword '12345678'
             keyAlias = 'key0'
             keyPassword '12345678'
@@ -64,6 +64,8 @@ android {
 
     buildTypes {
         release {
+            shrinkResources true
+            minifyEnabled true
             signingConfig signingConfigs.release
             //signingConfig signingConfigs.debug
         }

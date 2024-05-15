@@ -102,8 +102,10 @@ class LoginView extends GetView<LoginController> {
                                               TextStyle(color: Colors.grey),
                                           border: InputBorder.none),
                                       validator: (String? value) {
-                                        if (value?.trim().isEmpty ?? true) {
-                                          return 'Enter Your Number';
+                                        bool isValidPhoneNumber =
+                                        RegExp(r"^0[0-9]{10}$").hasMatch(value!);
+                                        if (!isValidPhoneNumber) {
+                                          return 'Enter a valid 11-digit mobile number';
                                         }
                                         return null;
                                       },
