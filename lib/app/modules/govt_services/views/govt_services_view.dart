@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -67,6 +65,12 @@ class GovtServicesView extends GetView<GovtServicesController> {
             children: [
               ProfileSummaryCard(),
               const SizedBox(height: 16),
+              const Text(
+                'Accessible only for bangladeshi people',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -97,8 +101,10 @@ class GovtServicesView extends GetView<GovtServicesController> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text(websites[index].name,
-                              textAlign: TextAlign.center,),
+                              child: Text(
+                                websites[index].name,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                           ],
                         ),
