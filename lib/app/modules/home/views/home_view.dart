@@ -1,6 +1,10 @@
+import 'package:blood_bd/app/modules/home/views/widgets/home_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/widgets/profile_summary_card.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 import 'search_view.dart';
 import 'widgets/banner_carousel.dart';
@@ -59,7 +63,7 @@ class HomeView extends GetView<HomeController> {
                                 width: 16,
                               ),
                               Text(
-                                'FIND DONOR',
+                                'FIND DONOR/রক্তদাতা খুঁজুন',
                                 style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -75,7 +79,9 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
         ),
+        floatingActionButton: HomeActionButton(),
       ),
     );
   }
 }
+

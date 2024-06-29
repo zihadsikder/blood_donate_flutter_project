@@ -85,7 +85,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.UPDATE_ACCOUNTS,
-      page: () => UpdateAccountsView(),
+      page: () => const UpdateAccountsView(),
       binding: UpdateAccountsBinding(),
     ),
     GetPage(

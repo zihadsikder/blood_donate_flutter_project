@@ -65,12 +65,6 @@ class GovtServicesView extends GetView<GovtServicesController> {
             children: [
               ProfileSummaryCard(),
               const SizedBox(height: 16),
-              const Text(
-                'Accessible only for bangladeshi people',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

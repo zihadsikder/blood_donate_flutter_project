@@ -59,7 +59,7 @@ class LoginView extends GetView<LoginController> {
             ),
             const SizedBox(height: 10),
             Expanded(
-              flex: 3,
+              flex: 8,
               child: Container(
                 clipBehavior: Clip.hardEdge,
                 decoration: const BoxDecoration(
@@ -76,7 +76,7 @@ class LoginView extends GetView<LoginController> {
                         () => Column(
                           children: [
                             const SizedBox(
-                              height: 40,
+                              height: 30,
                             ),
                             Container(
                               decoration: BoxDecoration(
@@ -185,7 +185,7 @@ class LoginView extends GetView<LoginController> {
                               ),
                             ),
                             const SizedBox(
-                              height: 16,
+                              height: 14,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -215,49 +215,48 @@ class LoginView extends GetView<LoginController> {
               ),
             ),
             Expanded(
+              flex: 1,
               child: Container(
                 color: Colors.white,
-                child: Column(
-                  children: [
-                    const Spacer(),
-                    Text(
-                      'By proceeding I accept the BLOOD BD',
-                      style: TextStyle(color: Colors.grey.shade500),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: () {
-                            Get.to(() => PrivacyScreen());
-                          },
-                          child: Text(
-                            'PRIVACY       ||',
-                            style: TextStyle(
-                                color: Colors.grey.shade700,
-                                fontWeight: FontWeight.bold),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Text(
+                        'By proceeding I accept the BLOOD BD',
+                        style: TextStyle(color: Colors.grey.shade500),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => const PrivacyScreen());
+                            },
+                            child: Text(
+                              'PRIVACY       ||',
+                              style: TextStyle(
+                                  color: Colors.grey.shade700,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Get.to(() => Support());
-                          },
-                          child: Text(
-                            'SUPPORT',
-                            style: TextStyle(
-                                color: Colors.grey.shade700,
-                                fontWeight: FontWeight.bold),
+                          TextButton(
+                            onPressed: () {
+                              Get.to(() => const Support());
+                            },
+                            child: Text(
+                              'SUPPORT',
+                              style: TextStyle(
+                                  color: Colors.grey.shade700,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 14.0,
-                    )
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

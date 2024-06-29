@@ -42,7 +42,8 @@ class AboutInfoScreen extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             launch(
-                                'https://www.facebook.com/provater.surjo.foundation?mibextid=ZbWKwL');
+                                'https://www.facebook.com/provater.surjo.foundation?mibextid=ZbWKwL',
+                            );
                           },
                           child: const Icon(Icons.facebook_outlined, size: 48),
                         ),
@@ -63,7 +64,6 @@ class AboutInfoScreen extends StatelessWidget {
                               'https://play.google.com/store/apps/details?id=com.bloodbd.app';
                           Share.share('Check out this awesome app: $appLink');
                           Navigator.of(context).pop();
-                          //shareAppLink(context);
                         },
                         icon: const Icon(Icons.share_outlined, size: 35,
                         ),
