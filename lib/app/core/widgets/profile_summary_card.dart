@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import '../../modules/home/controllers/home_controller.dart';
 import '../../modules/home/views/search_view.dart';
+import '../../modules/setting/controllers/setting_controller.dart';
 
 class ProfileSummaryCard extends StatelessWidget {
   ProfileSummaryCard({
@@ -11,7 +11,7 @@ class ProfileSummaryCard extends StatelessWidget {
     this.enableOnTap = true,
   });
 
-  final controller = Get.put(HomeController());
+  final controller = Get.put(SettingController());
 
   final bool enableOnTap;
 
@@ -41,13 +41,9 @@ class ProfileSummaryCard extends StatelessWidget {
       trailing: IconButton(
         onPressed: () {
           // Display an Interstitial Ad
-          if (controller.interstitialAd != null) {
-            controller.interstitialAd!.show();
-          } else {
+          controller.showInterstitialAd(() {
             Get.to(() => SearchScreenView());
-          }
-
-          controller.loadInterstitialAd;
+          });
         },
         icon: const Icon(Icons.search_outlined, color: Colors.white),
       ),

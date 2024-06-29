@@ -5,10 +5,13 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/widgets/profile_summary_card.dart';
 import '../../../data/models/request/service_data_req.dart';
 import '../../bottom_nav/controllers/bottom_nav_controller.dart';
+import '../../setting/controllers/setting_controller.dart';
 import '../controllers/govt_services_controller.dart';
 
 class GovtServicesView extends GetView<GovtServicesController> {
   GovtServicesView({super.key});
+
+  final addController = Get.put(SettingController());
 
   final List<ServiceData> websites = [
     ServiceData(
@@ -77,7 +80,11 @@ class GovtServicesView extends GetView<GovtServicesController> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        _launchUrl(websites[index].link);
+                        // Display an Interstitial Ad
+                        addController.showInterstitialAd(() {
+                          _launchUrl(websites[index].link);
+                        });
+
                       },
                       child: Card(
                         elevation: 1,

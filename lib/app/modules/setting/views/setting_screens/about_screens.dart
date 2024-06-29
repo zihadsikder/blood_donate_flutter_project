@@ -1,10 +1,14 @@
 import 'package:blood_bd/app/modules/home/views/widgets/banner_carousel.dart';
+import 'package:blood_bd/app/modules/setting/controllers/setting_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutInfoScreen extends StatelessWidget {
-  const AboutInfoScreen({super.key});
+  AboutInfoScreen({super.key});
+
+  final settingController = Get.find<SettingController>();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,7 @@ class AboutInfoScreen extends StatelessWidget {
                         child: InkWell(
                           onTap: () {
                             launch(
-                                'https://www.facebook.com/provater.surjo.foundation?mibextid=ZbWKwL',
+                              'https://www.facebook.com/provater.surjo.foundation?mibextid=ZbWKwL',
                             );
                           },
                           child: const Icon(Icons.facebook_outlined, size: 48),
@@ -53,7 +57,10 @@ class AboutInfoScreen extends StatelessWidget {
                         width: 56,
                         child: IconButton(
                           onPressed: () {
-                            launch('https://blooddonorbd.com/');
+                            // Display an Interstitial Ad
+                            settingController.showInterstitialAd(() {
+                              launch('https://blooddonorbd.com/');
+                            });
                           },
                           icon: Image.asset('assets/webicon.png'),
                         ),
@@ -65,7 +72,9 @@ class AboutInfoScreen extends StatelessWidget {
                           Share.share('Check out this awesome app: $appLink');
                           Navigator.of(context).pop();
                         },
-                        icon: const Icon(Icons.share_outlined, size: 35,
+                        icon: const Icon(
+                          Icons.share_outlined,
+                          size: 35,
                         ),
                       ),
                     ],

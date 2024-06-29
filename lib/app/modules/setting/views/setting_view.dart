@@ -38,7 +38,7 @@ class SettingView extends GetView<SettingController> {
                       color: Colors.red.shade800),
                   title: const Text("About Us"),
                   onTap: () {
-                    Get.to(const AboutInfoScreen());
+                    Get.to(AboutInfoScreen());
                   },
                   trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
@@ -64,11 +64,12 @@ class SettingView extends GetView<SettingController> {
                   shape: const RoundedRectangleBorder(
                     side: BorderSide.none,
                   ),
-                  leading:
-                  Icon(Icons.star_rate_outlined, color: Colors.red.shade800),
+                  leading: Icon(Icons.star_rate_outlined,
+                      color: Colors.red.shade800),
                   title: const Text("Rate Us"),
                   onTap: () {
-                    launch('https://play.google.com/store/apps/details?id=com.bloodbd.app');
+                    launch(
+                        'https://play.google.com/store/apps/details?id=com.bloodbd.app');
                   },
                   trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
@@ -98,7 +99,10 @@ class SettingView extends GetView<SettingController> {
                       Icon(Icons.fitness_center, color: Colors.red.shade800),
                   title: const Text('Exercise Guidelines'),
                   onTap: () {
-                    Get.to(const ExercisesScreen());
+                    // Display an Interstitial Ad
+                    controller.showInterstitialAd(() {
+                      Get.to(const ExercisesScreen());
+                    });
                   },
                   trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
@@ -112,7 +116,10 @@ class SettingView extends GetView<SettingController> {
                   leading: Icon(Icons.fastfood, color: Colors.red.shade800),
                   title: const Text('Diet Chart'),
                   onTap: () {
-                    Get.to(const DietChart());
+                    // Display an Interstitial Ad
+                    controller.showInterstitialAd(() {
+                      Get.to(const DietChart());
+                    });
                   },
                   trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
@@ -123,7 +130,8 @@ class SettingView extends GetView<SettingController> {
                   shape: const RoundedRectangleBorder(
                     side: BorderSide.none,
                   ),
-                  leading: Icon(Icons.playlist_add_check, color: Colors.red.shade800),
+                  leading: Icon(Icons.playlist_add_check,
+                      color: Colors.red.shade800),
                   title: const Text('Terms &  Conditions'),
                   onTap: () {
                     Get.to(TermsAndConditionsPage());

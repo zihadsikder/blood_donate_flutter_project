@@ -24,54 +24,51 @@ class HomeActionButton extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20), // No border
-                    color:
-                    Colors.white70, // Background color of the container
+                    color: Colors.white70, // Background color of the container
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      ListTile(
-                        leading: const Icon(Icons.add_a_photo_outlined),
-                        title: const Text(
-                            'আপনার রক্ত ডোনেশনের ছবি ফেসবুকে শেয়ার করে অন্যদের উৎসাহিত করুন!'),
-                        onTap: () {
-                          // Implement the functionality for sharing donation picture in FB
-                          // final fbUrl =
-                          //     'https://www.facebook.com/groups/provater.surjo.bloodbank/?ref=share&mibextid=NSMWBT';
-                          // canLaunch(fbUrl).then(
-                          //       (canLaunch) {
-                          //     if (canLaunch) {
-                          //       launch(fbUrl);
-                          //     }
-                          //
-                          //   },
-                          // );
-                          launch('https://www.facebook.com/groups/provater.surjo.bloodbank/?ref=share&mibextid=NSMWBT',
-                          );
-                        },
-                      ),
-                      ListTile(
-                        leading: const Icon(Icons.bloodtype_sharp),
-                        title: const Text(
-                            'রক্ত দেওয়ার পর আপনার ডোনেশন হিস্টোরি এড করে প্রোফাইল লক রাখুন!'),
-                        onTap: () {
-                          Get.toNamed(Routes.DONATION_HISTORY);
-                        },
-                      ),
-                      ListTile(
-                        leading: const Icon(Icons.share_outlined),
-                        title: const Text(
-                            'এ্যাপটি সবার সাথে শেয়ার করে রক্তদান প্রক্রিয়া আরো সহজ করে তুলুন!'),
-                        onTap: () {
-                          const appLink =
-                              'https://play.google.com/store/apps/details?id=com.bloodbd.app';
-                          Share.share(
-                              'Check out this awesome app: $appLink');
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                    ],
-                  ),
+                  child:  Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ListTile(
+                          leading: const Icon(Icons.add_a_photo_outlined),
+                          title: const Text(
+                              'আপনার রক্ত ডোনেশনের ছবি ফেসবুকে শেয়ার করে অন্যদের উৎসাহিত করুন!'),
+                          onTap: () {
+                            //Implement the functionality for sharing donation picture in FB
+                            const fbUrl =
+                                'https://www.facebook.com/groups/provater.surjo.bloodbank/?ref=share&mibextid=NSMWBT';
+                            canLaunch(fbUrl).then(
+                              (canLaunch) {
+                                if (canLaunch) {
+                                  launch(fbUrl);
+                                }
+                              },
+                            );
+                            // launch('https://www.facebook.com/groups/provater.surjo.bloodbank/?ref=share&mibextid=NSMWBT',
+                            // );
+                          },
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.bloodtype_sharp),
+                          title: const Text(
+                              'রক্ত দেওয়ার পর আপনার ডোনেশন হিস্টোরি এড করে প্রোফাইল লক রাখুন!'),
+                          onTap: () {
+                            Get.toNamed(Routes.DONATION_HISTORY);
+                          },
+                        ),
+                        ListTile(
+                          leading: const Icon(Icons.share_outlined),
+                          title: const Text(
+                              'এ্যাপটি সবার সাথে শেয়ার করে রক্তদান প্রক্রিয়া আরো সহজ করে তুলুন!'),
+                          onTap: () {
+                            const appLink =
+                                'https://play.google.com/store/apps/details?id=com.bloodbd.app';
+                            Share.share('Check out this awesome app: $appLink');
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    ),
                 ),
               ),
             );

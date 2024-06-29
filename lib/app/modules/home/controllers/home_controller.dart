@@ -31,27 +31,6 @@ class HomeController extends GetxController {
   final upzilaList = <AreaModel>[].obs;
   final selectedUpzila = ''.obs;
 
-  InterstitialAd? interstitialAd;
-
-  // TODO: Implement _loadInterstitialAd()
-  void loadInterstitialAd() {
-    InterstitialAd.load(
-      adUnitId: AdHelper.interstitialAdUnitId,
-      request: const AdRequest(),
-      adLoadCallback: InterstitialAdLoadCallback(
-        onAdLoaded: (ad) {
-          ad.fullScreenContentCallback = FullScreenContentCallback(
-            onAdDismissedFullScreenContent: (ad) {
-              Get.to(() => SearchScreenView());
-            },
-          );
-          interstitialAd = ad;
-        },
-        onAdFailedToLoad: (err) {},
-      ),
-    );
-  }
-
   void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
   }
@@ -87,9 +66,7 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     getDivision();
-    loadInterstitialAd();
     connectivityController;
-    loadInterstitialAd();
   }
 
   Future<void> getDivision() async {
@@ -155,10 +132,5 @@ class HomeController extends GetxController {
       }
     }
     return false;
-  }
-
-  Future<InitializationStatus> _initGoogleMobileAds() {
-    // TODO: Initialize Google Mobile Ads SDK
-    return MobileAds.instance.initialize();
   }
 }
