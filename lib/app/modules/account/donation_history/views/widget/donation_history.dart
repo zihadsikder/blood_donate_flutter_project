@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../routes/app_pages.dart';
-import '../donation_history_view.dart';
 
 class DonationHistory extends StatelessWidget {
   const DonationHistory({

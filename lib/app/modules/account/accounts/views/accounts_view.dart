@@ -77,6 +77,7 @@ class AccountsView extends GetView<AccountsController> {
                                                   context: context,
                                                   builder: (context) =>
                                                       const UpdateAccountsView());
+
                                             },
                                             child: Icon(
                                               Icons.edit,
@@ -267,13 +268,6 @@ class AccountsView extends GetView<AccountsController> {
               ),
             ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.red.shade700,
-          onPressed: () {
-            Get.toNamed(Routes.DONATION_HISTORY);
-          },
-          child: const Icon(Icons.add),
         ),
       ),
     );
