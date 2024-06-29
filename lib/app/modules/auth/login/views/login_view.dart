@@ -1,3 +1,5 @@
+import 'package:blood_bd/app/modules/setting/views/setting_screens/privacy_screen.dart';
+import 'package:blood_bd/app/modules/setting/views/setting_screens/support.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -57,6 +59,7 @@ class LoginView extends GetView<LoginController> {
             ),
             const SizedBox(height: 10),
             Expanded(
+              flex: 3,
               child: Container(
                 clipBehavior: Clip.hardEdge,
                 decoration: const BoxDecoration(
@@ -103,7 +106,8 @@ class LoginView extends GetView<LoginController> {
                                           border: InputBorder.none),
                                       validator: (String? value) {
                                         bool isValidPhoneNumber =
-                                        RegExp(r"^0[0-9]{10}$").hasMatch(value!);
+                                            RegExp(r"^0[0-9]{10}$")
+                                                .hasMatch(value!);
                                         if (!isValidPhoneNumber) {
                                           return 'Enter a valid 11-digit mobile number';
                                         }
@@ -209,14 +213,54 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
               ),
+            ),
+            Expanded(
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  children: [
+                    const Spacer(),
+                    Text(
+                      'By proceeding I accept the BLOOD BD',
+                      style: TextStyle(color: Colors.grey.shade500),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            Get.to(() => PrivacyScreen());
+                          },
+                          child: Text(
+                            'PRIVACY       ||',
+                            style: TextStyle(
+                                color: Colors.grey.shade700,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Get.to(() => Support());
+                          },
+                          child: Text(
+                            'SUPPORT',
+                            style: TextStyle(
+                                color: Colors.grey.shade700,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 14.0,
+                    )
+                  ],
+                ),
+              ),
             )
           ],
         ),
       ),
     );
   }
-
-  void launchFacebook() {}
-
-  void launchGoogle() {}
 }
