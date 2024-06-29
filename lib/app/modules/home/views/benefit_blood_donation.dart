@@ -23,7 +23,7 @@ class BenefitBloodDonation extends StatelessWidget {
               Text(
                 'শারীরিক ও মানসিকভাবে সুস্থ ১৮ থেকে ৬৫ বছর বয়সী যে কেউ নিয়মিত অন্যকে রক্ত দিতে পারেন। তবে রক্ত দিতে চাইলে কিছু বিষয়ে জেনে নেওয়া দরকার।',
                 style: TextStyle(
-                  fontSize: 24.0,
+                  fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
