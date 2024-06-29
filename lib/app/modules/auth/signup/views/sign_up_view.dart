@@ -152,7 +152,7 @@ class SignUpView extends GetView<SignupController> {
                       keyboardType: TextInputType.emailAddress,
                       controller: controller.emailTEController,
                       decoration: const InputDecoration(
-                        labelText: "Email",
+                        labelText: "Email(Optional)",
                       ),
                     ),
                     const SizedBox(height: 8.0),
