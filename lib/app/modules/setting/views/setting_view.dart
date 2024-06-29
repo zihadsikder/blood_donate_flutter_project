@@ -2,6 +2,7 @@ import 'package:blood_bd/app/modules/setting/views/setting_screens/about_screens
 import 'package:blood_bd/app/modules/setting/views/setting_screens/terms_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/widgets/profile_summary_card.dart';
 import '../../bottom_nav/controllers/bottom_nav_controller.dart';
 import '../controllers/setting_controller.dart';
@@ -53,6 +54,21 @@ class SettingView extends GetView<SettingController> {
                   title: const Text("Support"),
                   onTap: () {
                     Get.to(const Support());
+                  },
+                  trailing: const Icon(Icons.arrow_forward_ios, size: 20),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                ListTile(
+                  shape: const RoundedRectangleBorder(
+                    side: BorderSide.none,
+                  ),
+                  leading:
+                  Icon(Icons.star_rate_outlined, color: Colors.red.shade800),
+                  title: const Text("Rate Us"),
+                  onTap: () {
+                    launch('https://play.google.com/store/apps/details?id=com.bloodbd.app');
                   },
                   trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
