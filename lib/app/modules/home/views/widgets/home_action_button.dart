@@ -17,7 +17,7 @@ class HomeActionButton extends StatelessWidget {
       onPressed: () {
         showModalBottomSheet(
           context: context,
-          backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25.0),
@@ -30,12 +30,12 @@ class HomeActionButton extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     ListTile(
-                      shape: RoundedRectangleBorder(
+                      shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30.0),
                           topRight: Radius.circular(30.0),
                         ),
-                        side: BorderSide(color: Colors.transparent),
+                        side: BorderSide(color: Colors.white),
                       ),
                       leading: const Icon(Icons.add_a_photo_outlined),
                       title: const Text(
@@ -70,7 +70,7 @@ class HomeActionButton extends StatelessWidget {
                       title: const Text(
                           'রক্তদানের এসব উপকারের কথা কি জানতেন...!'),
                       onTap: () {
-                        Get.to(()=> BenefitBloodDonation());
+                        Get.to(()=> const BenefitBloodDonation());
                       },
                       trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                     ),
