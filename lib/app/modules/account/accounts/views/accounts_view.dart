@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/widgets/profile_summary_card.dart';
-import '../../../../routes/app_pages.dart';
 import '../../../bottom_nav/controllers/bottom_nav_controller.dart';
 import '../../donation_history/views/widget/donation_history.dart';
 import '../../update_accounts/views/update_accounts_view.dart';
@@ -77,7 +76,6 @@ class AccountsView extends GetView<AccountsController> {
                                                   context: context,
                                                   builder: (context) =>
                                                       const UpdateAccountsView());
-
                                             },
                                             child: Icon(
                                               Icons.edit,

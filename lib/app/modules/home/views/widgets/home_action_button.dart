@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../routes/app_pages.dart';
 
 class HomeActionButton extends StatelessWidget {
   const HomeActionButton({
@@ -51,16 +50,6 @@ class HomeActionButton extends StatelessWidget {
                             }
                           },
                         );
-                      },
-                      trailing: const Icon(Icons.arrow_forward_ios, size: 20),
-                    ),
-                    ListTile(
-                      shape: Border.all(color: Colors.transparent),
-                      leading: const Icon(Icons.bloodtype_sharp),
-                      title: const Text(
-                          'রক্ত দেওয়ার পর আপনার ডোনেশন হিস্টোরি এড করে প্রোফাইল লক রাখুন!'),
-                      onTap: () {
-                        Get.toNamed(Routes.DONATION_HISTORY);
                       },
                       trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                     ),
