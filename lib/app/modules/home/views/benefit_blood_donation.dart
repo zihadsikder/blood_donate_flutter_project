@@ -69,7 +69,7 @@ class BenefitBloodDonation extends StatelessWidget {
               ),
               SizedBox(height: 8.0),
               Text(
-                '* কআগে থেকে উচ্চ কোলেস্টেরল থাকলে নিয়মিত রক্তদানে কোলেস্টেরলের মাত্রা কমে যায়।',
+                '* আগে থেকে উচ্চ কোলেস্টেরল থাকলে নিয়মিত রক্তদানে কোলেস্টেরলের মাত্রা কমে যায়।',
               ),
               SizedBox(height: 8.0),
               Text(
