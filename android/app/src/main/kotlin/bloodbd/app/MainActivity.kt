@@ -1,4 +1,4 @@
-package com.bloodbd.app
+package bloodbd.app
 import io.flutter.embedding.android.FlutterActivity
 
 class MainActivity: FlutterActivity()

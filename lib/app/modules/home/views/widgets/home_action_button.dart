@@ -70,7 +70,7 @@ class HomeActionButton extends StatelessWidget {
                           'এ্যাপটি সবার সাথে শেয়ার করে রক্তদান প্রক্রিয়া আরো সহজ করে তুলুন!'),
                       onTap: () {
                         const appLink =
-                            'https://play.google.com/store/apps/details?id=com.bloodbd.app';
+                            'https://play.google.com/store/apps/details?id=bloodbd.app';
                         Share.share('Check out this awesome app: $appLink');
                         Navigator.of(context).pop();
                       },

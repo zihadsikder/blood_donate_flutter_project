@@ -68,7 +68,7 @@ class AboutInfoScreen extends StatelessWidget {
                       IconButton(
                         onPressed: () {
                           const appLink =
-                              'https://play.google.com/store/apps/details?id=com.bloodbd.app';
+                              'https://play.google.com/store/apps/details?id=bloodbd.app';
                           Share.share('Check out this awesome app: $appLink');
                           Navigator.of(context).pop();
                         },
