@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-import '../../../core/utils/ad_helper.dart';
 import '../../../data/models/area_res.dart';
 import '../../../data/models/network_response.dart';
 import '../../../data/models/search_user_model.dart';

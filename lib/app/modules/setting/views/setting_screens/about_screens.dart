@@ -57,10 +57,11 @@ class AboutInfoScreen extends StatelessWidget {
                         width: 56,
                         child: IconButton(
                           onPressed: () {
+                            launch('https://blooddonorbd.com/');
                             // Display an Interstitial Ad
-                            settingController.showInterstitialAd(() {
-                              launch('https://blooddonorbd.com/');
-                            });
+                            // settingController.showInterstitialAd(() {
+                            //   launch('https://blooddonorbd.com/');
+                            // });
                           },
                           icon: Image.asset('assets/webicon.png'),
                         ),
@@ -70,7 +71,7 @@ class AboutInfoScreen extends StatelessWidget {
                           const appLink =
                               'https://play.google.com/store/apps/details?id=bloodbd.app';
                           Share.share('Check out this awesome app: $appLink');
-                          Navigator.of(context).pop();
+                          //Navigator.of(context).pop();
                         },
                         icon: const Icon(
                           Icons.share_outlined,

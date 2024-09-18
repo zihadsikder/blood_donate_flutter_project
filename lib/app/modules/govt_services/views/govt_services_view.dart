@@ -80,10 +80,11 @@ class GovtServicesView extends GetView<GovtServicesController> {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
+                        _launchUrl(websites[index].link);
                         // Display an Interstitial Ad
-                        addController.showInterstitialAd(() {
-                          _launchUrl(websites[index].link);
-                        });
+                        // addController.showInterstitialAd(() {
+                        //   _launchUrl(websites[index].link);
+                        // });
 
                       },
                       child: Card(

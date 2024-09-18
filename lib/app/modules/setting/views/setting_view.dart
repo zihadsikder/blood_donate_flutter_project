@@ -69,7 +69,7 @@ class SettingView extends GetView<SettingController> {
                   title: const Text("Rate Us"),
                   onTap: () {
                     launch(
-                        'https://play.google.com/store/apps/details?id=com.bloodbd.app');
+                        'https://play.google.com/store/apps/details?id=bloodbd.app');
                   },
                   trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
@@ -99,10 +99,11 @@ class SettingView extends GetView<SettingController> {
                       Icon(Icons.fitness_center, color: Colors.red.shade800),
                   title: const Text('Exercise Guidelines'),
                   onTap: () {
+                    Get.to(const ExercisesScreen());
                     // Display an Interstitial Ad
-                    controller.showInterstitialAd(() {
-                      Get.to(const ExercisesScreen());
-                    });
+                    // controller.showInterstitialAd(() {
+                    //   Get.to(const ExercisesScreen());
+                    // });
                   },
                   trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
@@ -116,10 +117,11 @@ class SettingView extends GetView<SettingController> {
                   leading: Icon(Icons.fastfood, color: Colors.red.shade800),
                   title: const Text('Diet Chart'),
                   onTap: () {
+                    Get.to(const DietChart());
                     // Display an Interstitial Ad
-                    controller.showInterstitialAd(() {
-                      Get.to(const DietChart());
-                    });
+                    // controller.showInterstitialAd(() {
+                    //   Get.to(const DietChart());
+                    // });
                   },
                   trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),

@@ -40,10 +40,11 @@ class ProfileSummaryCard extends StatelessWidget {
       ),
       trailing: IconButton(
         onPressed: () {
+          Get.to(() => SearchScreenView());
           // Display an Interstitial Ad
-          controller.showInterstitialAd(() {
-            Get.to(() => SearchScreenView());
-          });
+          // controller.showInterstitialAd(() {
+          //   Get.to(() => SearchScreenView());
+          // });
         },
         icon: const Icon(Icons.search_outlined, color: Colors.white),
       ),
