@@ -24,7 +24,7 @@ class SplashView extends GetView<SplashController> {
             const Spacer(),
             const CircularProgressIndicator(),
             const SizedBox(height: 8.0),
-            const Text('Version 1.5.9'),
+            const Text('Version 1.6.11'),
             const SizedBox(height: 8.0),
           ],
         ),

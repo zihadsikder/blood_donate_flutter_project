@@ -40,17 +40,22 @@ class HomeActionButton extends StatelessWidget {
                       title: const Text(
                           'আপনার রক্ত ডোনেশনের ছবি ফেসবুকে শেয়ার করে অন্যদের উৎসাহিত করুন!'),
                       onTap: () {
-                        //Implement the functionality for sharing donation picture in FB
-                        const fbUrl =
-                            'https://www.facebook.com/groups/provater.surjo.bloodbank/?ref=share&mibextid=NSMWBT';
-                        canLaunch(fbUrl).then(
-                          (canLaunch) {
-                            if (canLaunch) {
-                              launch(fbUrl);
-                            }
-                          },
+                        launch(
+                          'https://www.facebook.com/groups/provater.surjo.bloodbank/?ref=share&mibextid=NSMWBT',
                         );
                       },
+                      // onTap: () {
+                      //   //Implement the functionality for sharing donation picture in FB
+                      //   const fbUrl =
+                      //       'https://www.facebook.com/groups/provater.surjo.bloodbank/?ref=share&mibextid=NSMWBT';
+                      //   canLaunch(fbUrl).then(
+                      //     (canLaunch) {
+                      //       if (canLaunch) {
+                      //         launch(fbUrl);
+                      //       }
+                      //     },
+                      //   );
+                      // },
                       trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                     ),
                     ListTile(

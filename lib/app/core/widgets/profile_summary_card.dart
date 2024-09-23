@@ -31,7 +31,7 @@ class ProfileSummaryCard extends StatelessWidget {
         child: Image.asset('assets/blogo.png'),
       ),
       title: const Text(
-        'BLOOD BD',
+        'BLOOD SHEBA',
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700),
       ),
       subtitle: const Text(
