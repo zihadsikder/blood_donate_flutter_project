@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../../../../core/config/app_colors.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../widget/image_assets.dart';
 
@@ -14,12 +15,12 @@ class ExercisesScreen extends StatelessWidget {
         leading: const BackButton(color: Colors.white),
         title: const Text('Exercises'),
         systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.red.shade800,
+            statusBarColor: AppColors.buttonColor,
             statusBarIconBrightness: Brightness.light),
       ),
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16),
+          margin: const EdgeInsets.symmetric(horizontal: 8),
 
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../core/config/app_colors.dart';
 import '../../auth/login/views/widgets/area_dropdown.dart';
 import '../../auth/login/views/widgets/location_form.dart';
 
@@ -26,7 +27,7 @@ class SearchScreenView extends StatelessWidget {
           borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.red.shade800,
+            statusBarColor: AppColors.buttonColor,
             statusBarIconBrightness: Brightness.light),
       ),
       body: SingleChildScrollView(

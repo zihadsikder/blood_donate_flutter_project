@@ -1,4 +1,4 @@
-
+import 'package:blood_bd/app/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -26,31 +26,36 @@ class BottomNavView extends GetView<BottomNavController> {
     return GetBuilder<BottomNavController>(
       builder: (controller) {
         return Scaffold(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.secondaryColor,
           body: pages[controller.currentIndex],
           bottomNavigationBar: ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(30.0),
               topRight: Radius.circular(30.0),
             ),
-            child: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              backgroundColor: Colors.red.shade900,
-              onTap: controller.changeIndex,
-              currentIndex: controller.currentIndex,
-              selectedItemColor: Colors.white,
-              unselectedItemColor: Colors.grey.shade500,
-              showUnselectedLabels: true,
-              showSelectedLabels: true,
-              items: const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(label: ("Home"), icon: Icon(Icons.home)),
-                BottomNavigationBarItem(
-                    label: ("Services"), icon: Icon(Icons.dashboard_outlined)),
-                BottomNavigationBarItem(
-                    label: ("Account"), icon: Icon(Icons.person)),
-                BottomNavigationBarItem(
-                    label: ("Settings"), icon: Icon(Icons.settings)),
-              ],
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: AppColors.appGradient
+              ),
+              child: BottomNavigationBar(
+                type: BottomNavigationBarType.fixed,
+                backgroundColor: Colors.transparent,
+                onTap: controller.changeIndex,
+                currentIndex: controller.currentIndex,
+                selectedItemColor: AppColors.secondaryColor,
+                unselectedItemColor: Colors.grey.shade500,
+                showUnselectedLabels: true,
+                showSelectedLabels: true,
+                items: const <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(label: ("Home"), icon: Icon(Icons.home)),
+                  BottomNavigationBarItem(
+                      label: ("Services"), icon: Icon(Icons.dashboard_outlined)),
+                  BottomNavigationBarItem(
+                      label: ("Account"), icon: Icon(Icons.person)),
+                  BottomNavigationBarItem(
+                      label: ("Settings"), icon: Icon(Icons.settings)),
+                ],
+              ),
             ),
           ),
         );

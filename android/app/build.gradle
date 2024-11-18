@@ -23,7 +23,7 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "bloodbd.app"
+    namespace "roktersondane.com"
     compileSdk flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
@@ -41,7 +41,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "bloodbd.app"
+        applicationId "roktersondane.com"
         minSdkVersion 21 //flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
@@ -50,11 +50,6 @@ android {
 
      signingConfigs {
         release {
-            // keyAlias keystoreProperties['keyAlias']
-            // keyPassword keystoreProperties['keyPassword']
-            // storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
-            // storePassword keystoreProperties['storePassword']
-
             storeFile file('E:\\ostad_batch4\\blood_donate_flutter_project\\android\\key.jks')
             storePassword '12345678'
             keyAlias = 'key0'
@@ -64,8 +59,8 @@ android {
 
     buildTypes {
         release {
-            shrinkResources true
-            minifyEnabled true
+//            shrinkResources ture
+//            minifyEnabled ture
             signingConfig signingConfigs.release
             //signingConfig signingConfigs.debug
         }

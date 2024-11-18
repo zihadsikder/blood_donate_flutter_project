@@ -1,6 +1,10 @@
+import 'package:blood_bd/app/core/constants/app_assets.dart';
+import 'package:blood_bd/app/modules/account/accounts/views/widget/accounts_info.dart';
+import 'package:blood_bd/app/modules/account/accounts/views/widget/donation_info.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import '../../../../core/config/app_colors.dart';
 import '../../../../core/widgets/profile_summary_card.dart';
 import '../../../bottom_nav/controllers/bottom_nav_controller.dart';
 import '../../donation_history/views/widget/donation_history.dart';
@@ -55,8 +59,8 @@ class AccountsView extends GetView<AccountsController> {
                                         ),
                                         leading: const CircleAvatar(
                                           backgroundColor: Colors.white,
-                                          backgroundImage:
-                                              AssetImage('assets/blood.png'),
+                                          backgroundImage: AssetImage(
+                                              AppAssets.profileAccount),
                                         ),
                                         title: Row(
                                           children: [
@@ -79,82 +83,37 @@ class AccountsView extends GetView<AccountsController> {
                                             },
                                             child: Icon(
                                               Icons.edit,
-                                              color: Colors.red.shade800,
+                                              color: AppColors.bgColor,
                                             )),
                                       ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceAround,
                                         children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                Icon(
-                                                  Icons.bloodtype_outlined,
-                                                  color: Colors.red.shade900,
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  '${controller.profileData.value.data?.totalDonation ?? 0}',
-                                                ),
-                                                //const Text('2'),
-                                                const Text('Total Donation'),
-                                              ],
-                                            ),
+                                          DonationInfo(
+                                            value:
+                                                '${controller.profileData.value.data?.totalDonation ?? 0}',
+                                            text: 'Total Donation',
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                Icon(
-                                                  Icons.bloodtype_outlined,
-                                                  color: Colors.red.shade900,
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  controller.profileData.value
-                                                          .data?.bloodGroup ??
-                                                      '',
-                                                ),
-                                                const Text('Blood Group'),
-                                              ],
-                                            ),
+                                          DonationInfo(
+                                            value: controller.profileData.value
+                                                    .data?.bloodGroup ??
+                                                '',
+                                            text: 'Blood Group',
                                           ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                Icon(
-                                                  Icons.bloodtype_outlined,
-                                                  color: Colors.red.shade900,
-                                                ),
-                                                const SizedBox(
-                                                  height: 5,
-                                                ),
-                                                Text(
-                                                  controller
-                                                              .profileData
-                                                              .value
-                                                              .data
-                                                              ?.lastDonation !=
-                                                          null
-                                                      ? DateFormat('dd/MM/yyyy')
-                                                          .format(DateTime
-                                                              .parse(controller
-                                                                  .profileData
-                                                                  .value
-                                                                  .data
-                                                                  ?.lastDonation))
-                                                      : 'N/A',
-                                                ),
-                                                const Text('Last Donation'),
-                                              ],
-                                            ),
+                                          DonationInfo(
+                                            value: controller.profileData.value
+                                                        .data?.lastDonation !=
+                                                    null
+                                                ? DateFormat('dd/MM/yyyy')
+                                                    .format(DateTime.parse(
+                                                        controller
+                                                            .profileData
+                                                            .value
+                                                            .data
+                                                            ?.lastDonation))
+                                                : 'N/A',
+                                            text: 'Last Donation',
                                           ),
                                         ],
                                       ),
@@ -162,77 +121,28 @@ class AccountsView extends GetView<AccountsController> {
                                   ),
                                 ),
                                 const SizedBox(height: 8.0),
-                                ListTile(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 2, color: Colors.white),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  leading: Icon(
-                                    Icons.call,
-                                    color: Colors.red.shade700,
-                                    size: 30,
-                                  ),
-                                  title: const Row(
-                                    children: [
-                                      Text('Mobile'),
-                                    ],
-                                  ),
-                                  subtitle: Text(
-                                      '+88 ${controller.profileData.value.data?.mobile.toString()}'),
+                                AccountsInfo(
+                                  icon: Icons.call,
+                                  text: 'Mobile',
+                                  value:
+                                      '+88 ${controller.profileData.value.data?.mobile.toString()}',
                                 ),
                                 Container(
                                     height: 2, color: Colors.grey.shade100),
-                                ListTile(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 2, color: Colors.white),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  leading: Icon(
-                                    Icons.email_outlined,
-                                    color: Colors.red.shade700,
-                                    size: 30,
-                                  ),
-                                  title: const Row(
-                                    children: [
-                                      Text('Email'),
-                                    ],
-                                  ),
-                                  subtitle: Text(
-                                    controller.profileData.value.data?.email ??
-                                        'N/A',
-                                  ),
+                                AccountsInfo(
+                                  icon: Icons.email_outlined,
+                                  text: 'Email',
+                                  value: controller
+                                          .profileData.value.data?.email ??
+                                      'N/A',
                                 ),
                                 Container(
                                     height: 2, color: Colors.grey.shade100),
-                                ListTile(
-                                  shape: RoundedRectangleBorder(
-                                    side: const BorderSide(
-                                        width: 2, color: Colors.white),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  leading: SizedBox(
-                                    width: 32,
-                                    //color: Colors.grey,
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      child: Image.asset(
-                                        'assets/map.png',
-                                        height: 36,
-                                        width: 24,
-                                      ),
-                                    ),
-                                  ),
-                                  title: const Row(
-                                    children: [
-                                      Text('Address'),
-                                    ],
-                                  ),
-                                  subtitle: Text("${controller.profileData.value
-                                      .data?.address!.postOffice}, ${controller.profileData.value
-                                      .data?.address!.area}, ${controller.profileData.value
-                                      .data?.address!.district}."),
+                                AccountsInfo(
+                                  icon: Icons.maps_home_work_outlined,
+                                  text: 'Address',
+                                  value:
+                                      "${controller.profileData.value.data?.address!.postOffice}, ${controller.profileData.value.data?.address!.area}, ${controller.profileData.value.data?.address!.district}.",
                                 ),
                                 Container(
                                     height: 1, color: Colors.grey.shade100),

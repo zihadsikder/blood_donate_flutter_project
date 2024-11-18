@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../core/config/app_colors.dart';
+
 class BenefitBloodDonation extends StatelessWidget {
   const BenefitBloodDonation({super.key});
 
@@ -11,7 +13,7 @@ class BenefitBloodDonation extends StatelessWidget {
         leading: const BackButton(color: Colors.white),
         title: const Text('Benefits of Donating Blood'),
         systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.red.shade800,
+            statusBarColor: AppColors.buttonColor,
             statusBarIconBrightness: Brightness.light),
       ),
       body: const SingleChildScrollView(

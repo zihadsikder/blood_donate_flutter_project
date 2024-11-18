@@ -6,9 +6,11 @@ import 'package:get/get.dart';
 import '../../../../data/models/area_res.dart';
 import '../../../../data/models/network_response.dart';
 import '../../../../data/models/request/registration_req.dart';
+import '../../../../data/models/user_model.dart';
 import '../../../../data/repositories/auth_repository.dart';
 import '../../../../data/repositories/location_repository.dart';
 import '../../../../routes/app_pages.dart';
+import '../../../../services/auth_cache.dart';
 
 
 class SignupController extends GetxController {
@@ -51,14 +53,14 @@ class SignupController extends GetxController {
 
   void onSelectedDivision(String? val) {
     if (val != null && val.isNotEmpty) {
-      // clear all the selected values and list
+      /// clear all the selected values and list
       selectedDistrict.value = '';
       selectedUpzila.value = '';
-      //selectedUnion.value = '';
+      ///selectedUnion.value = '';
 
       districtList.clear();
       upzilaList.clear();
-      //unionList.clear();
+      ///unionList.clear();
 
       getDistrict(id: val);
 
@@ -68,11 +70,11 @@ class SignupController extends GetxController {
 
   onSelectedDistrict(String? val) {
     if (val != null && val.isNotEmpty) {
-      // clear all the selected values and list
+      /// clear all the selected values and list
       selectedUpzila.value = '';
-      // selectedUnion.value = '';
+      /// selectedUnion.value = '';
       upzilaList.clear();
-      //unionList.clear();
+      ///unionList.clear();
       getUpzila(id: val);
 
       selectedDistrict.value = val;
@@ -110,12 +112,24 @@ class SignupController extends GetxController {
 
       isLoading.value = false;
 
+      /// for otp screen
+      // if (response.isSuccess) {
+      //   Get.toNamed(Routes.PIN_VERIFICATION, arguments: {
+      //     'from_screen': Routes.SIGNUP,
+      //     'mobile_number': params.mobile,
+      //   });
+      //   Get.snackbar('Message', response.message ?? 'Something Error!');
+      // }
+
+      /// if hide otp screen
       if (response.isSuccess) {
-        Get.toNamed(Routes.PIN_VERIFICATION, arguments: {
-          'from_screen': Routes.SIGNUP,
-          'mobile_number': params.mobile,
-        });
-        Get.snackbar('Message', response.message ?? 'Something Error!');
+        LoginRes loginRes = loginResFromJson(response.jsonResponse!);
+
+        AuthCache.to.saveUserInformation(
+          loginRes.data?.accessToken ?? '',
+          loginRes,
+        );
+        Get.offNamed(Routes.BOTTOM_NAV);
       }
     }
   }

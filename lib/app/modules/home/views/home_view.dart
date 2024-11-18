@@ -1,3 +1,6 @@
+import 'package:blood_bd/app/core/config/app_colors.dart';
+import 'package:blood_bd/app/core/constants/app_assets.dart';
+import 'package:blood_bd/app/core/constants/app_text_style.dart';
 import 'package:blood_bd/app/modules/home/views/widgets/home_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,42 +26,36 @@ class HomeView extends GetView<HomeController> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: BannerCarousel(imageUrls: [
-                          'assets/rltn.png',
-                          'assets/zihad.jpg',
-                          'assets/fayez.jpg',
-                          'assets/hand.jpeg',
-                          'assets/5.png',
-                        ]),
-                      ),
+                      const BannerCarousel(imageUrls: [
+                        AppAssets.home1,
+                        AppAssets.home2,
+                        AppAssets.home3,
+                        AppAssets.home4,
+                        AppAssets.home5,
+                      ]),
                       const SizedBox(height: 12),
                       ElevatedButton(
                           onPressed: () {
                             Get.to(() => SearchScreenView());
                           },
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.search,
                                 size: 32,
-                                color: Colors.white,
+                                color:AppColors.textColor,
                               ),
-                              SizedBox(
-                                width: 16,
+                              const SizedBox(
+                                width: 16
                               ),
                               Text(
                                 'FIND DONOR/রক্তদাতা খুঁজুন',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
+                                style: AppTextStyles.textStyle(),
                               ),
                             ],
                           )),
-                      Image.asset('assets/savelife.png'),
+                      Image.asset(AppAssets.homeView),
                     ],
                   ),
                 ),

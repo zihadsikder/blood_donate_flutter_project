@@ -1,9 +1,13 @@
 import 'package:blood_bd/app/modules/home/views/widgets/banner_carousel.dart';
 import 'package:blood_bd/app/modules/setting/controllers/setting_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../../../../core/config/app_colors.dart';
+import '../../../../core/constants/app_assets.dart';
 
 class AboutInfoScreen extends StatelessWidget {
   AboutInfoScreen({super.key});
@@ -15,6 +19,9 @@ class AboutInfoScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('About Us'),
+        systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: AppColors.buttonColor,
+            statusBarIconBrightness: Brightness.light),
       ),
       body: SingleChildScrollView(
         child: SafeArea(
@@ -22,65 +29,9 @@ class AboutInfoScreen extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                const BannerCarousel(
-                  imageUrls: [
-                    'assets/p1.jpg',
-                    'assets/p3.jpg',
-                    'assets/p2.jpg',
-                    'assets/p4.jpg',
-                    'assets/p5.jpg',
-                    'assets/p6.jpg',
-                    'assets/p7.jpg',
-                  ],
-                ),
-                const SizedBox(
-                  height: 8.0,
-                ),
-                Container(
-                  color: Colors.grey.shade200,
-                  child: Row(
-                    children: [
-                      SizedBox(
-                        height: 60,
-                        width: 60,
-                        child: InkWell(
-                          onTap: () {
-                            launch(
-                              'https://www.facebook.com/provater.surjo.foundation?mibextid=ZbWKwL',
-                            );
-                          },
-                          child: const Icon(Icons.facebook_outlined, size: 48),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 56,
-                        width: 56,
-                        child: IconButton(
-                          onPressed: () {
-                            launch('https://blooddonorbd.com/');
-                            // Display an Interstitial Ad
-                            // settingController.showInterstitialAd(() {
-                            //   launch('https://blooddonorbd.com/');
-                            // });
-                          },
-                          icon: Image.asset('assets/webicon.png'),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          const appLink =
-                              'https://play.google.com/store/apps/details?id=bloodbd.app';
-                          Share.share('Check out this awesome app: $appLink');
-                          //Navigator.of(context).pop();
-                        },
-                        icon: const Icon(
-                          Icons.share_outlined,
-                          size: 35,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                buildBannerCarousel,
+                const SizedBox(height: 8.0),
+                buildContainer,
                 const SizedBox(
                   height: 16.0,
                 ),
@@ -89,6 +40,68 @@ class AboutInfoScreen extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  BannerCarousel get buildBannerCarousel {
+    return const BannerCarousel(
+      imageUrls: [
+        AppAssets.about1,
+        AppAssets.about2,
+        AppAssets.about3,
+        AppAssets.about4,
+        AppAssets.about5,
+        AppAssets.about6,
+        AppAssets.about7,
+      ],
+    );
+  }
+
+  Container get buildContainer {
+    return Container(
+      color: Colors.grey.shade200,
+      child: Row(
+        children: [
+          SizedBox(
+            height: 60,
+            width: 60,
+            child: InkWell(
+              onTap: () {
+                launch(
+                  'https://www.facebook.com/provater.surjo.foundation?mibextid=ZbWKwL',
+                );
+              },
+              child: const Icon(Icons.facebook_outlined, size: 48),
+            ),
+          ),
+          SizedBox(
+            height: 56,
+            width: 56,
+            child: IconButton(
+              onPressed: () {
+                launch('https://blooddonorbd.com/');
+                // Display an Interstitial Ad
+                // settingController.showInterstitialAd(() {
+                //   launch('https://blooddonorbd.com/');
+                // });
+              },
+              icon: Image.asset('assets/webicon.png'),
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              const appLink =
+                  'https://play.google.com/store/apps/details?id=bloodbd.app';
+              Share.share('Check out this awesome app: $appLink');
+              //Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.share_outlined,
+              size: 35,
+            ),
+          ),
+        ],
       ),
     );
   }

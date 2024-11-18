@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../core/config/app_colors.dart';
+
 
 class HomeActionButton extends StatelessWidget {
   const HomeActionButton({
@@ -16,7 +18,7 @@ class HomeActionButton extends StatelessWidget {
       onPressed: () {
         showModalBottomSheet(
           context: context,
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.secondaryColor,
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(25.0),
@@ -34,7 +36,7 @@ class HomeActionButton extends StatelessWidget {
                           topLeft: Radius.circular(30.0),
                           topRight: Radius.circular(30.0),
                         ),
-                        side: BorderSide(color: Colors.white),
+                        side: BorderSide(color: AppColors.secondaryColor),
                       ),
                       leading: const Icon(Icons.add_a_photo_outlined),
                       title: const Text(

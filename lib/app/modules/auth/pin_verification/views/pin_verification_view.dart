@@ -1,3 +1,4 @@
+import 'package:blood_bd/app/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ import '../controllers/pin_verification_controller.dart';
 
 class PinVerificationView extends GetView<PinVerificationController> {
   const PinVerificationView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +18,7 @@ class PinVerificationView extends GetView<PinVerificationController> {
           padding: const EdgeInsets.all(24.0),
           child: SingleChildScrollView(
             child: Obx(
-                  () => Column(
+              () => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
@@ -39,7 +41,7 @@ class PinVerificationView extends GetView<PinVerificationController> {
                     height: 8,
                   ),
                   const Text(
-                    'A 6 digit OTP have been sent to your mobile number',
+                    'A 6 digit OTP have been sent to your email',
                     style: TextStyle(
                         color: Colors.grey, fontWeight: FontWeight.w600),
                   ),
@@ -58,10 +60,10 @@ class PinVerificationView extends GetView<PinVerificationController> {
                         borderRadius: BorderRadius.circular(5),
                         fieldHeight: 50,
                         fieldWidth: 40,
-                        activeFillColor: Colors.white,
-                        activeColor: Colors.green,
-                        selectedFillColor: Colors.white,
-                        inactiveFillColor: Colors.white,
+                        activeFillColor: AppColors.secondaryColor,
+                        activeColor: AppColors.buttonColor,
+                        selectedFillColor: AppColors.secondaryColor,
+                        inactiveFillColor: AppColors.secondaryColor,
                       ),
                       animationDuration: const Duration(milliseconds: 300),
                       enableActiveFill: true,
@@ -87,12 +89,11 @@ class PinVerificationView extends GetView<PinVerificationController> {
                     width: double.infinity,
                     child: Visibility(
                       visible: controller.isLoading.value == false,
-
                       replacement: const Center(
                         child: CircularProgressIndicator(),
                       ),
                       child: ElevatedButton(
-                        onPressed:  () => controller.otpVerify(),
+                        onPressed: () => controller.otpVerify(),
                         child: const Text('Verify'),
                       ),
                     ),
@@ -116,9 +117,10 @@ class PinVerificationView extends GetView<PinVerificationController> {
                             TextSpan(
                               text: controller.remainingTime.value,
                               style: TextStyle(
-                                color: controller.remainingTime.value.contains(':')
-                                    ? Colors.grey.shade800
-                                    : Colors.red.shade800,
+                                color:
+                                    controller.remainingTime.value.contains(':')
+                                        ? Colors.grey.shade800
+                                        : AppColors.bgColor,
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -132,7 +134,8 @@ class PinVerificationView extends GetView<PinVerificationController> {
                         ),
                         onPressed: () => controller.resendOtp(),
                         child: Visibility(
-                          visible: controller.remainingTime.value == 'Time\'s Up',
+                          visible:
+                              controller.remainingTime.value == 'Time\'s Up',
                           child: Text(
                             'Resend OTP',
                             style: TextStyle(color: Colors.grey.shade800),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../core/config/app_colors.dart';
 import '../../../../core/widgets/dob_text_field.dart';
 import '../../accounts/views/widget/alert_cancel_button.dart';
 import '../controllers/donation_history_controller.dart';
@@ -14,75 +15,13 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Donation History'),
-        leading: const BackButton(color: Colors.white),
+        leading: const BackButton(color: AppColors.secondaryColor),
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              color: Colors.white,
-              child: Form(
-                key: controller.formKey,
-                child: Column(
-                  children: [
-                    TextFormField(
-                      controller: controller.placeTEController,
-                      decoration: const InputDecoration(
-                          fillColor: Colors.white,
-                          hintText: 'Donation Place',
-                          border:
-                              OutlineInputBorder(borderSide: BorderSide.none),
-                          suffixIcon: Icon(Icons.location_on)),
-                      validator: (value) {
-                        if (value?.trim().isEmpty ?? true) {
-                          return 'Enter Donation Place';
-                        }
-                        return null;
-                      },
-                    ),
-                    Container(height: 2, color: Colors.grey.shade100),
-                    DobTextField(
-                        labelText: 'Date of Donation',
-                        dbirthController: controller.dateTEController,
-                        onTapSuffix: () async {
-                          DateTime? pickedDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1950),
-                            lastDate: DateTime(2050),
-                          );
-                          if (pickedDate != null) {
-                            // Convert pickedDate to a formatted string before assigning it
-                            String formattedDate =
-                                DateFormat('yyyy-MM-dd').format(pickedDate);
-                            controller.dateTEController.text = formattedDate;
-                          }
-                        }),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          await controller.addDonation(
-                            donationPlace: controller.placeTEController.text,
-                            donationDate: controller.dateTEController.text,
-                          );
-                        },
-                        child: const Text(
-                          'ADD DONATION',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            inputField(context),
             const SizedBox(
               height: 4.0,
             ),
@@ -103,7 +42,7 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
                             side: BorderSide(color: Colors.grey.shade100),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          tileColor: Colors.white,
+                          tileColor: AppColors.secondaryColor,
                           leading: CircleAvatar(
                             backgroundColor: Colors.red,
                             child: Text('${index + 1}',
@@ -134,10 +73,10 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
                                                     .data![index].id!),
                                         style: TextButton.styleFrom(
                                             backgroundColor:
-                                                Colors.red.shade800),
-                                        child: const Text(
+                                            AppColors.bgColor),
+                                        child:  const Text(
                                           'Yes',
-                                          style: TextStyle(color: Colors.white),
+                                          style: TextStyle(color: AppColors.secondaryColor),
                                         ),
                                       ),
                                     ],
@@ -160,5 +99,71 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
         ),
       ),
     );
+  }
+
+  Container inputField(BuildContext context) {
+    return Container(
+            padding: const EdgeInsets.all(8),
+            color: AppColors.secondaryColor,
+            child: Form(
+              key: controller.formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    controller: controller.placeTEController,
+                    decoration: const InputDecoration(
+                        fillColor: AppColors.secondaryColor,
+                        hintText: 'Donation Place',
+                        border:
+                            OutlineInputBorder(borderSide: BorderSide.none),
+                        suffixIcon: Icon(Icons.location_on)),
+                    validator: (value) {
+                      if (value?.trim().isEmpty ?? true) {
+                        return 'Enter Donation Place';
+                      }
+                      return null;
+                    },
+                  ),
+                  Container(height: 2, color: Colors.grey.shade100),
+                  DobTextField(
+                      labelText: 'Date of Donation',
+                      dbirthController: controller.dateTEController,
+                      onTapSuffix: () async {
+                        DateTime? pickedDate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1950),
+                          lastDate: DateTime(2050),
+                        );
+                        if (pickedDate != null) {
+                          // Convert pickedDate to a formatted string before assigning it
+                          String formattedDate =
+                              DateFormat('yyyy-MM-dd').format(pickedDate);
+                          controller.dateTEController.text = formattedDate;
+                        }
+                      }),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        await controller.addDonation(
+                          donationPlace: controller.placeTEController.text,
+                          donationDate: controller.dateTEController.text,
+                        );
+                      },
+                      child: const Text(
+                        'ADD DONATION',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
   }
 }

@@ -31,7 +31,7 @@
     <!--#enddocregion android-queries-->
 
     <application
-        android:label="Blood Sheba"
+        android:label="রক্তের সন্ধ্যানে"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -65,4 +65,10 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+    </queries>
 </manifest>

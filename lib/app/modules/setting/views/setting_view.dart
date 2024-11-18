@@ -1,5 +1,7 @@
+import 'package:blood_bd/app/core/config/app_colors.dart';
 import 'package:blood_bd/app/modules/setting/views/setting_screens/about_screens.dart';
 import 'package:blood_bd/app/modules/setting/views/setting_screens/terms_conditions.dart';
+import 'package:blood_bd/app/modules/setting/views/widget/list_title_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -28,118 +30,80 @@ class SettingView extends GetView<SettingController> {
               children: [
                 ProfileSummaryCard(),
                 const SizedBox(
-                  height: 8,
-                ),
-                ListTile(
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide.none,
-                  ),
-                  leading: Icon(Icons.read_more_outlined,
-                      color: Colors.red.shade800),
-                  title: const Text("About Us"),
-                  onTap: () {
-                    Get.to(AboutInfoScreen());
-                  },
-                  trailing: const Icon(Icons.arrow_forward_ios, size: 20),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                ListTile(
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide.none,
-                  ),
-                  leading:
-                      Icon(Icons.support_agent, color: Colors.red.shade800),
-                  title: const Text("Support"),
-                  onTap: () {
-                    Get.to(const Support());
-                  },
-                  trailing: const Icon(Icons.arrow_forward_ios, size: 20),
-                ),
-                const SizedBox(
                   height: 8
                 ),
-                ListTile(
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide.none,
-                  ),
-                  leading: Icon(Icons.privacy_tip_outlined,
-                      color: Colors.red.shade800),
-                  title: const Text("Privacy Policy"),
+                ListTitleWidgets(
+                  icon: Icons.read_more_outlined,
+                  text: "About Us",
+                  onTap:  () {
+                    Get.to(AboutInfoScreen());
+                  },
+                ),
+                const SizedBox(height: 8),
+                ListTitleWidgets(
+                  icon: Icons.support_agent,
+                  text: "Support",
+                  onTap:  () {
+                    Get.to(const Support());
+                  },
+                ),
+                const SizedBox(height: 8),
+                ListTitleWidgets(
+                  icon: Icons.privacy_tip_outlined,
+                  text: "Privacy Policy",
                   onTap: () {
                     Get.to(const PrivacyScreen());
                   },
-                  trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
-                const SizedBox(
-                    height: 8
-                ),
-                ListTile(
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide.none,
-                  ),
-                  leading: Icon(Icons.playlist_add_check,
-                      color: Colors.red.shade800),
-                  title: const Text('Terms &  Conditions'),
-                  onTap: () {
-                    Get.to(TermsAndConditionsPage());
+                const SizedBox(height: 8),
+                ListTitleWidgets(
+                  icon: Icons.playlist_add_check,
+                  text: "Terms &  Conditions",
+                  onTap:  () {
+                    Get.to(const TermsAndConditionsPage());
                   },
-                  trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
-                const SizedBox(
-                    height: 8
-                ),
-                ListTile(
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide.none,
-                  ),
-                  leading: Icon(Icons.star_rate_outlined,
-                      color: Colors.red.shade800),
-                  title: const Text("Rate Us"),
-                  onTap: () {
+                const SizedBox(height: 8),
+                ListTitleWidgets(
+                  icon: Icons.star_rate_outlined,
+                  text: "Rate Us",
+                  onTap:   () {
                     launch(
                         'https://play.google.com/store/apps/details?id=bloodbd.app');
                   },
-                  trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
-                const SizedBox(
-                  height: 8
+                const SizedBox(height: 8),
+                ListTitleWidgets(
+                  icon: Icons.update_outlined,
+                  text: "Check Update!",
+                  onTap:   () {
+                    launch(
+                        'https://play.google.com/store/apps/details?id=bloodbd.app');
+                  },
                 ),
-
-                ListTile(
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide.none,
-                  ),
-                  leading:
-                      Icon(Icons.fitness_center, color: Colors.red.shade800),
-                  title: const Text('Exercise Guidelines'),
-                  onTap: () {
+                const SizedBox(height: 8),
+                ListTitleWidgets(
+                  icon: Icons.fitness_center,
+                  text: "Exercise Guidelines",
+                  onTap:  () {
                     Get.to(const ExercisesScreen());
                     // Display an Interstitial Ad
                     // controller.showInterstitialAd(() {
                     //   Get.to(const ExercisesScreen());
                     // });
                   },
-                  trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
-                const SizedBox(
-                  height: 8
-                ),
-                ListTile(
-                  shape: const RoundedRectangleBorder(
-                    side: BorderSide.none,
-                  ),
-                  leading: Icon(Icons.fastfood, color: Colors.red.shade800),
-                  title: const Text('Diet Chart'),
-                  onTap: () {
+                const SizedBox(height: 8),
+                ListTitleWidgets(
+                  icon: Icons.fastfood,
+                  text: "Diet Chart",
+                  onTap:  () {
                     Get.to(const DietChart());
                     // Display an Interstitial Ad
                     // controller.showInterstitialAd(() {
                     //   Get.to(const DietChart());
                     // });
                   },
-                  trailing: const Icon(Icons.arrow_forward_ios, size: 20),
                 ),
               ],
             ),
@@ -166,3 +130,4 @@ class SettingView extends GetView<SettingController> {
     );
   }
 }
+

@@ -1,3 +1,4 @@
+import 'package:blood_bd/app/core/config/app_colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -53,7 +54,7 @@ class SignUpView extends GetView<SignupController> {
                             "Donate Blood, Save A Life",
                             style: TextStyle(
                               fontSize: 20,
-                              color: Colors.red.shade900,
+                              color: AppColors.buttonColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -83,7 +84,7 @@ class SignUpView extends GetView<SignupController> {
                     ),
                     const SizedBox(height: 8.0),
                     BloodGroupDropdown(
-                      labelText:'Select Blood Group',
+                      labelText: 'Select Blood Group',
                       onSelectBloodGroup: (String? val) {
                         controller.onSelectedBloodGroup(val);
                       },
@@ -152,8 +153,18 @@ class SignUpView extends GetView<SignupController> {
                       keyboardType: TextInputType.emailAddress,
                       controller: controller.emailTEController,
                       decoration: const InputDecoration(
-                        labelText: "Email(Optional)",
+                        labelText: "Email(Mandatory)",
                       ),
+                      validator: (String? value) {
+                        bool isValidEmail = RegExp(
+                                r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                            .hasMatch(value!);
+
+                        if (!isValidEmail) {
+                          return 'Enter a valid email address';
+                        }
+                        return null;
+                      },
                     ),
                     const SizedBox(height: 8.0),
                     TextFormField(

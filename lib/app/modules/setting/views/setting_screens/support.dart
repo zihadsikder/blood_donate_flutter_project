@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../../core/config/app_colors.dart';
+
 class Support extends StatelessWidget {
   const Support({super.key});
 
@@ -12,27 +14,25 @@ class Support extends StatelessWidget {
       backgroundColor: Colors.grey.shade100,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: ListView(
             children: [
               ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide.none,
                 ),
-                leading: Icon(Icons.phone_rounded, color: Colors.red.shade800),
+                leading: Icon(Icons.phone_rounded, color: AppColors.bgColor),
                 title: const Text("+880 157 5589 936", style: TextStyle()),
                 onTap: () {
                   _launchPhoneDialer("+8801575589936");
                 },
               ),
-              const SizedBox(
-                height: 8,
-              ),
+              const SizedBox(height: 8),
               ListTile(
                 shape: const RoundedRectangleBorder(
                   side: BorderSide.none,
                 ),
-                leading: Icon(Icons.email_outlined, color: Colors.red.shade800),
+                leading: Icon(Icons.email_outlined, color: AppColors.bgColor),
                 title: const Text("blooddonorbd.island@gmail.com"),
                 onTap: () {
                   _launchEmailSubmission('blooddonorbd.island@gmail.com');
@@ -50,7 +50,7 @@ class Support extends StatelessWidget {
       leading: const BackButton(color: Colors.white),
       title: const Text('Support'),
       systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: Colors.red.shade800,
+          statusBarColor: AppColors.buttonColor,
           statusBarIconBrightness: Brightness.light),
     );
   }
@@ -75,7 +75,4 @@ class Support extends StatelessWidget {
       throw 'Could not launch $email';
     }
   }
-
-
-
 }

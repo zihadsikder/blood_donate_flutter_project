@@ -1,38 +1,31 @@
+import 'package:blood_bd/app/core/config/app_colors.dart';
+import 'package:blood_bd/app/core/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 
 class AppThemeData {
   static ThemeData lightThemeData = ThemeData(
-    primaryColor: Colors.red.shade900,
-    primarySwatch: Colors.red,
+    primaryColor: AppColors.primaryColor,
+    primarySwatch: Colors.green,
     useMaterial3: false,
     // colorScheme: ColorScheme.fromSwatch(
     //       primarySwatch: Colors.red
     //     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.red.shade900,
-        foregroundColor: Colors.white,
+        backgroundColor: AppColors.buttonColor,
+        foregroundColor: AppColors.secondaryColor,
         elevation: 5,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        textStyle: const TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          letterSpacing: 0.5,
-        ),
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        textStyle: AppTextStyles.buttonStyle(),
       ),
     ),
     appBarTheme: AppBarTheme(
-      titleTextStyle: const TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 18,
-        color: Colors.white,
-      ),
-      backgroundColor: Colors.red.shade900,
-      foregroundColor: Colors.white,
+      titleTextStyle:AppTextStyles.buttonStyle(),
+      backgroundColor: AppColors.buttonColor,
+      foregroundColor: AppColors.secondaryColor,
       elevation: 5,
     ),
     listTileTheme: ListTileThemeData(
@@ -45,49 +38,38 @@ class AppThemeData {
     cardTheme: CardTheme(
       //elevation: 0.5,
       //shadowColor: Colors.red.shade700,
-      color: Colors.white,
+      color: AppColors.secondaryColor,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4.0),
           side: BorderSide(color: Colors.red.shade100)),
     ),
-    textButtonTheme: TextButtonThemeData(
-      style: ButtonStyle(
-        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-          const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        ),
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-        textStyle: MaterialStateProperty.all<TextStyle>(
-          const TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        // Add other styles as needed
-      ),
-    ),
-    inputDecorationTheme: const InputDecorationTheme(
+    // textButtonTheme: TextButtonThemeData(
+    //   style: ButtonStyle(
+    //     padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+    //       const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+    //     ),
+    //     backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+    //     textStyle: MaterialStateProperty.all<TextStyle>(
+    //       const TextStyle(
+    //         fontWeight: FontWeight.bold,
+    //       ),
+    //     ),
+    //     // Add other styles as needed
+    //   ),
+    // ),
+    inputDecorationTheme: InputDecorationTheme(
       // contentPadding: const EdgeInsets.symmetric(
       //   horizontal: 16,
       //   vertical: 8,
       // ),
-      fillColor: Colors.white,
+      fillColor: AppColors.secondaryColor,
       filled: true,
-      border: OutlineInputBorder(borderSide: BorderSide.none),
-      focusedBorder: OutlineInputBorder(
+      border: const OutlineInputBorder(borderSide: BorderSide.none),
+      focusedBorder: const OutlineInputBorder(
         borderSide: BorderSide.none,
       ),
       hintStyle: TextStyle(
-        color: Colors.grey,
-      ),
-    ),
-    textTheme: TextTheme(
-      titleLarge: const TextStyle(
-        fontSize: 32,
-        fontWeight: FontWeight.bold,
-      ),
-      bodySmall: TextStyle(
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-        color: Colors.grey.shade600,
+        color: AppColors.hintStyle,
       ),
     ),
   );

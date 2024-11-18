@@ -1,8 +1,10 @@
+import 'package:blood_bd/app/core/constants/app_text_style.dart';
 import 'package:blood_bd/app/modules/setting/views/setting_screens/privacy_screen.dart';
 import 'package:blood_bd/app/modules/setting/views/setting_screens/support.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/config/app_colors.dart';
 import '../../../../core/constants/app_assets.dart';
 import '../../../../core/widgets/password_text_field.dart';
 import '../../../../routes/app_pages.dart';
@@ -17,11 +19,7 @@ class LoginView extends GetView<LoginController> {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          Colors.red.shade900,
-          Colors.red.shade800,
-          Colors.red.shade500,
-        ])),
+            gradient: AppColors.appGradient),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -38,21 +36,22 @@ class LoginView extends GetView<LoginController> {
                     children: [
                       Text(
                         "Welcome",
-                        style: TextStyle(color: Colors.white, fontSize: 36),
+                        style: TextStyle(color: AppColors.secondaryColor, fontSize: 36),
                       ),
                       SizedBox(
                         height: 10,
                       ),
                       Text(
-                        "A Smart Blood Donation System",
-                        style: TextStyle(color: Colors.white, fontSize: 10),
+                        "A Smart & Easy Blood Donation System",
+                        style: TextStyle(color: AppColors.secondaryColor, fontSize: 10),
                       ),
                     ],
                   ),
                   Image.asset(
-                    AppAssets.loginLogo,
+                    AppAssets.loginLogo1,
                     width: 150,
-                    height: 80,
+                    height: 100,
+                    fit: BoxFit.contain,
                   ),
                 ],
               ),
@@ -63,7 +62,7 @@ class LoginView extends GetView<LoginController> {
               child: Container(
                 clipBehavior: Clip.hardEdge,
                 decoration: const BoxDecoration(
-                    color: Colors.white,
+                    color: AppColors.secondaryColor,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(40),
                         topRight: Radius.circular(40))),
@@ -80,7 +79,7 @@ class LoginView extends GetView<LoginController> {
                             ),
                             Container(
                               decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: AppColors.secondaryColor,
                                   borderRadius: BorderRadius.circular(10),
                                   boxShadow: const [
                                     BoxShadow(
@@ -154,19 +153,16 @@ class LoginView extends GetView<LoginController> {
                                     const EdgeInsets.symmetric(horizontal: 50),
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50),
-                                    color: Colors.red.shade800),
+                                    color: AppColors.buttonColor),
                                 child: Visibility(
                                   visible: controller.isLoading.value == false,
                                   replacement: const Center(
                                     child: CircularProgressIndicator(),
                                   ),
-                                  child: const Center(
+                                  child: Center(
                                     child: Text(
                                       "Sign In",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16),
+                                      style: AppTextStyles.textStyle()
                                     ),
                                   ),
                                 ),
@@ -195,11 +191,9 @@ class LoginView extends GetView<LoginController> {
                                   style: TextStyle(color: Colors.grey.shade500),
                                 ),
                                 TextButton(
-                                  child: const Text(
+                                  child:  Text(
                                     'Sign Up',
-                                    style: TextStyle(
-                                        color: Colors.red, fontSize: 16),
-                                  ),
+                                    style: AppTextStyles.textStyle(color: AppColors.buttonColor),),
                                   onPressed: () {
                                     Get.toNamed(Routes.SIGNUP);
                                   },
@@ -222,7 +216,7 @@ class LoginView extends GetView<LoginController> {
                   child: Column(
                     children: [
                       Text(
-                        'By proceeding I accept the BLOOD BD',
+                        'By proceeding I accept the BLOOD APP',
                         style: TextStyle(color: Colors.grey.shade500),
                       ),
                       Row(

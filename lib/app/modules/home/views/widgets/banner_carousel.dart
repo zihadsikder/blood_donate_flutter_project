@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/config/app_colors.dart';
+
 class BannerCarousel extends StatefulWidget {
   const BannerCarousel({super.key, this.height, required this.imageUrls});
 
@@ -37,10 +39,9 @@ class _BannerCarouselState extends State<BannerCarousel> {
                     // TODO: make it horizontal alignment
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.symmetric(horizontal: 1.0),
                       decoration: BoxDecoration(
                           //color: AppColors.primaryColor,
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.zero,
                           image: DecorationImage(
                             image: AssetImage(imageUrl),
                             fit: BoxFit.fill,
@@ -53,9 +54,7 @@ class _BannerCarouselState extends State<BannerCarousel> {
             );
           }).toList(),
         ),
-        const SizedBox(
-          height: 6,
-        ),
+        const SizedBox(height: 6),
         ValueListenableBuilder(
             valueListenable: _currentIndex,
             builder: (context, index, _) {
@@ -69,10 +68,12 @@ class _BannerCarouselState extends State<BannerCarousel> {
                       width: 12,
                       margin: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
+                          gradient: AppColors.appGradient,
                           color: i == index ? Colors.red : Colors.transparent,
                           border: Border.all(
-                            color:
-                                i == index ? Colors.red : Colors.grey.shade400,
+                            color: i == index
+                                ? AppColors.buttonColor
+                                : Colors.grey.shade400,
                           ),
                           borderRadius: BorderRadius.circular(30)),
                     ),

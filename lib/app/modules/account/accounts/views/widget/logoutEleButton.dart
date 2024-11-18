@@ -1,3 +1,4 @@
+import 'package:blood_bd/app/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'alert_cancel_button.dart';
@@ -34,7 +35,7 @@ class _LogoutEleButtonState extends State<LogoutEleButton> {
                             onPressed: () {
                               Navigator.pop(context);
                             },
-                            icon: const Icon(Icons.highlight_remove_outlined))
+                            icon: Icon(Icons.highlight_remove_outlined,color: AppColors.bgColor,))
                       ],
                     ),
                     content: const Text(
@@ -44,9 +45,9 @@ class _LogoutEleButtonState extends State<LogoutEleButton> {
                       TextButton(
                         onPressed: widget.onPress,
                         style: TextButton.styleFrom(
-                            backgroundColor: Colors.red.shade800),
+                            backgroundColor: AppColors.buttonColor),
                         child: const Text('Logout',
-                            style: TextStyle(color: Colors.white)),
+                            style: TextStyle(color: AppColors.secondaryColor)),
                       ),
                     ],
                   );

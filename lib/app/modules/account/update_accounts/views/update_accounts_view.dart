@@ -1,3 +1,4 @@
+import 'package:blood_bd/app/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../data/models/request/update_req.dart';
@@ -135,10 +136,11 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
                   await controller.updateProfile(updateProfileParams);
                 }
               },
-              style: TextButton.styleFrom(backgroundColor: Colors.red.shade800),
+              style: TextButton.styleFrom(backgroundColor: AppColors.buttonColor),
               child: const Text(
                 'Update',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: AppColors.secondaryColor
+                ),
               ),
             ),
           ),

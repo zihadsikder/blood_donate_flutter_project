@@ -1,3 +1,4 @@
+import 'package:blood_bd/app/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,7 +12,7 @@ class PrivacyScreen extends StatelessWidget {
         leading: const BackButton(color: Colors.white),
         title: const Text('Privacy Policy'),
         systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.red.shade800,
+            statusBarColor: AppColors.buttonColor,
             statusBarIconBrightness: Brightness.light),
       ),
       body: const SingleChildScrollView(
