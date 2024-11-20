@@ -7,7 +7,6 @@ import '../../../data/models/request/service_data_req.dart';
 import '../views/screens/webview_page.dart';
 
 class GovtServicesController extends GetxController {
-
   @override
   void onInit() {
     super.onInit();
@@ -16,13 +15,13 @@ class GovtServicesController extends GetxController {
   final List<ServiceData> websites = [
     ServiceData(
       name: 'Hospital',
-      link: ()=> Get.to(const HospitalService()),
+      link: () => Get.to(const HospitalService()),
       profilePicAsset: AppAssets.hospital,
       isUrl: true,
     ),
     ServiceData(
       name: 'Ambulance',
-      link: ()=> Get.to(const AmbulanceServices()),
+      link: () => Get.to(const AmbulanceServices()),
       profilePicAsset: AppAssets.ambulance,
       isUrl: false,
     ),
@@ -70,18 +69,18 @@ class GovtServicesController extends GetxController {
     ),
   ];
 
- // Future<void> handleServiceTap(ServiceData service) async {
- //   if (service.isUrl) {
- //     final Uri uri = Uri.parse(service.link);
- //     if (await canLaunchUrl(uri)) {
- //       await launchUrl(uri);
- //     } else {
- //       Get.snackbar("Error", "Could not launch ${service.link}");
- //     }
- //   } else {
- //     Get.to(service.link);
- //   }
- // }
+  // Future<void> handleServiceTap(ServiceData service) async {
+  //   if (service.isUrl) {
+  //     final Uri uri = Uri.parse(service.link);
+  //     if (await canLaunchUrl(uri)) {
+  //       await launchUrl(uri);
+  //     } else {
+  //       Get.snackbar("Error", "Could not launch ${service.link}");
+  //     }
+  //   } else {
+  //     Get.to(service.link);
+  //   }
+  // }
   void handleServiceTap(ServiceData service) {
     if (service.isUrl) {
       Get.to(() => WebViewPage(url: service.link, title: service.name));
@@ -91,7 +90,4 @@ class GovtServicesController extends GetxController {
       Get.snackbar("Error", "Invalid service link.");
     }
   }
-
-
-
 }

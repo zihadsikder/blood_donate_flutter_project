@@ -19,7 +19,8 @@ class CardWidgets extends StatelessWidget {
             child: Row(
               children: [
                 Text(tittle,
-                    style: AppTextStyles.textStyle(color: Colors.black)),
+                    style: AppTextStyles.textStyle(color: Colors.black),
+                    overflow: TextOverflow.ellipsis),
                 const Spacer(),
                 const Icon(Icons.arrow_forward_ios)
               ],

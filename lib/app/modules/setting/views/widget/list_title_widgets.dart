@@ -4,10 +4,15 @@ import '../../../../core/config/app_colors.dart';
 
 class ListTitleWidgets extends StatelessWidget {
   const ListTitleWidgets({
-    super.key, required this.icon, required this.text, required this.onTap,
+    super.key,
+    required this.icon,
+    required this.text,
+    required this.onTap,
+    this.trailingIcon,
   });
 
   final IconData icon;
+  final IconData? trailingIcon;
   final String text;
   final VoidCallback onTap;
 
@@ -17,11 +22,15 @@ class ListTitleWidgets extends StatelessWidget {
       shape: const RoundedRectangleBorder(
         side: BorderSide.none,
       ),
-      leading: Icon(icon,
-          color: AppColors.bgColor),
-      title: Text(text),
+      leading: Icon(icon, color: AppColors.bgColor),
+      title: Text(
+        text,
+        style: const TextStyle(overflow: TextOverflow.ellipsis),
+      ),
       onTap: onTap,
-      trailing: const Icon(Icons.arrow_forward_ios, size: 20),
+      trailing: trailingIcon != null
+          ? Icon(trailingIcon, size: 20)
+          : null, // Conditionally render the trailing icon
     );
   }
 }

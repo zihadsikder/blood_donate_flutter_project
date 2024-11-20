@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:blood_bd/app/modules/setting/views/widget/list_title_widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../core/config/app_colors.dart';
 import '../../../../core/widgets/app_bar_widgets.dart';
 
 class Support extends StatelessWidget {
@@ -17,27 +17,20 @@ class Support extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: ListView(
             children: [
-              ListTile(
-                shape: const RoundedRectangleBorder(
-                  side: BorderSide.none,
-                ),
-                leading: Icon(Icons.phone_rounded, color: AppColors.bgColor),
-                title: const Text("+880 157 5589 936", style: TextStyle()),
-                onTap: () {
-                  _launchPhoneDialer("+8801575589936");
-                },
-              ),
+              ListTitleWidgets
+                (icon: Icons.phone_rounded,
+                  text: '+880 157 5589 936',
+                  onTap: () {
+                    _launchPhoneDialer("+8801575589936");
+                  }, ),
               const SizedBox(height: 8),
-              ListTile(
-                shape: const RoundedRectangleBorder(
-                  side: BorderSide.none,
-                ),
-                leading: Icon(Icons.email_outlined, color: AppColors.bgColor),
-                title: const Text("blooddonorbd.island@gmail.com"),
+              ListTitleWidgets
+                (icon: Icons.email_outlined,
+                text: 'blooddonorbd.island@gmail.com',
                 onTap: () {
                   _launchEmailSubmission('blooddonorbd.island@gmail.com');
-                },
-              ),
+                },),
+
             ],
           ),
         ),

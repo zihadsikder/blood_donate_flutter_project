@@ -38,6 +38,7 @@ class SettingView extends GetView<SettingController> {
                   onTap:  () {
                     Get.to(AboutInfoScreen());
                   },
+                  trailingIcon: Icons.arrow_forward_ios,
                 ),
                 const SizedBox(height: 8),
                 ListTitleWidgets(
@@ -46,6 +47,7 @@ class SettingView extends GetView<SettingController> {
                   onTap:  () {
                     Get.to(const Support());
                   },
+                  trailingIcon: Icons.arrow_forward_ios,
                 ),
                 const SizedBox(height: 8),
                 ListTitleWidgets(
@@ -54,6 +56,7 @@ class SettingView extends GetView<SettingController> {
                   onTap: () {
                     Get.to(const PrivacyScreen());
                   },
+                  trailingIcon: Icons.arrow_forward_ios,
                 ),
                 const SizedBox(height: 8),
                 ListTitleWidgets(
@@ -62,6 +65,7 @@ class SettingView extends GetView<SettingController> {
                   onTap:  () {
                     Get.to(const TermsAndConditionsPage());
                   },
+                  trailingIcon: Icons.arrow_forward_ios,
                 ),
                 const SizedBox(height: 8),
                 ListTitleWidgets(
@@ -71,6 +75,7 @@ class SettingView extends GetView<SettingController> {
                     launch(
                         'https://play.google.com/store/apps/details?id=roktersondane.com');
                   },
+                  trailingIcon: Icons.arrow_forward_ios,
                 ),
                 const SizedBox(height: 8),
                 ListTitleWidgets(
@@ -80,6 +85,7 @@ class SettingView extends GetView<SettingController> {
                     launch(
                         'https://play.google.com/store/apps/details?id=roktersondane.com');
                   },
+                  trailingIcon: Icons.arrow_forward_ios,
                 ),
                 const SizedBox(height: 8),
                 ListTitleWidgets(
@@ -91,7 +97,7 @@ class SettingView extends GetView<SettingController> {
                     // controller.showInterstitialAd(() {
                     //   Get.to(const ExercisesScreen());
                     // });
-                  },
+                  }, trailingIcon: Icons.arrow_forward_ios,
                 ),
                 const SizedBox(height: 8),
                 ListTitleWidgets(
@@ -104,6 +110,7 @@ class SettingView extends GetView<SettingController> {
                     //   Get.to(const DietChart());
                     // });
                   },
+                  trailingIcon: Icons.arrow_forward_ios,
                 ),
               ],
             ),
