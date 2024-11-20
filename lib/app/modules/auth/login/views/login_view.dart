@@ -47,11 +47,13 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ],
                   ),
-                  Image.asset(
-                    AppAssets.loginLogo1,
-                    width: 150,
-                    height: 100,
-                    fit: BoxFit.contain,
+                  Flexible(
+                    child: Image.asset(
+                      AppAssets.loginLogo1,
+                      width: 150,
+                      height: 100,
+                      fit: BoxFit.contain,
+                    ),
                   ),
                 ],
               ),

@@ -1,3 +1,5 @@
+import 'package:blood_bd/app/core/config/app_colors.dart';
+import 'package:blood_bd/app/core/constants/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -51,38 +53,30 @@ class DonorCard extends StatelessWidget {
                 child: Center(
                   child: Text(
                     bloodGroup,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red.shade900,
-                    ),
+                    style: AppTextStyles.textStyle( color: AppColors.bgColor,),
                   ),
                 ),
               ),
               const SizedBox(width: 8.0),
               if (!isEligibleToDonate)
-                const Text(
+                Text(
                   'Available Soon...',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red,
-                  ),
+                  style: AppTextStyles.textStyle(fontSize: 14, color: Colors.red)
                 ),
               // Show lock icon if the user is not eligible to donate
               if (!isEligibleToDonate)
-                Icon(Icons.lock_clock_outlined, color: Colors.red.shade800),
+                Icon(Icons.lock_clock_outlined, color: AppColors.bgColor),
 
               // Show call and SMS buttons if the user is eligible to donate
               if (isEligibleToDonate) ...[
                 IconButton(
-                  icon: Icon(Icons.phone, color: Colors.red.shade800),
+                  icon: Icon(Icons.phone, color: AppColors.bgColor),
                   onPressed: () {
                     _launchPhoneDialer(mobile);
                   },
                 ),
                 IconButton(
-                  icon: Icon(Icons.sms, color: Colors.red.shade800),
+                  icon: Icon(Icons.sms, color:AppColors.bgColor),
                   onPressed: () {
                     _launchSmsApp(mobile);
                   },

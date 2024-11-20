@@ -17,7 +17,7 @@ class GovtServicesController extends GetxController {
       name: 'Hospital',
       link: () => Get.to(const HospitalService()),
       profilePicAsset: AppAssets.hospital,
-      isUrl: true,
+      isUrl: false,
     ),
     ServiceData(
       name: 'Ambulance',

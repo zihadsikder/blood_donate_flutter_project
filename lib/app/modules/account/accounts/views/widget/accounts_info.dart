@@ -30,7 +30,7 @@ final IconData icon;
         ],
       ),
       subtitle: Text(
-        value
+        value,style: const TextStyle(overflow: TextOverflow.ellipsis),
          ),
     );
   }

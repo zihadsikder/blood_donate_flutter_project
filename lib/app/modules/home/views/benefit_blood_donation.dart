@@ -1,22 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
-import '../../../core/config/app_colors.dart';
+import '../../../core/widgets/app_bar_widgets.dart';
 
 class BenefitBloodDonation extends StatelessWidget {
   const BenefitBloodDonation({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const BackButton(color: Colors.white),
-        title: const Text('Benefits of Donating Blood'),
-        systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: AppColors.buttonColor,
-            statusBarIconBrightness: Brightness.light),
-      ),
-      body: const SingleChildScrollView(
+    return const Scaffold(
+      appBar: AppBarWidgets(title: 'Benefits of Donating Blood'),
+      body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(8.0),
           child: Column(

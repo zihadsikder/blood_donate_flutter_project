@@ -8,7 +8,6 @@ import '../../../data/repositories/location_repository.dart';
 import '../../../services/api_client.dart';
 import '../../../services/api_end_points.dart';
 import '../../../services/network.dart';
-import '../views/search_view.dart';
 
 class HomeController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -17,6 +16,7 @@ class HomeController extends GetxController {
 
   final searchUser = SearchUserModel().obs;
   final isLoading = false.obs;
+
 
   final selectedBloodGroup = ''.obs;
 
@@ -132,3 +132,4 @@ class HomeController extends GetxController {
     return false;
   }
 }
+
