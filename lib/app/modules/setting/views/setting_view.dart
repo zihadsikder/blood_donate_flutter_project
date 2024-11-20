@@ -69,7 +69,7 @@ class SettingView extends GetView<SettingController> {
                   text: "Rate Us",
                   onTap:   () {
                     launch(
-                        'https://play.google.com/store/apps/details?id=bloodbd.app');
+                        'https://play.google.com/store/apps/details?id=roktersondane.com');
                   },
                 ),
                 const SizedBox(height: 8),
@@ -78,7 +78,7 @@ class SettingView extends GetView<SettingController> {
                   text: "Check Update!",
                   onTap:   () {
                     launch(
-                        'https://play.google.com/store/apps/details?id=bloodbd.app');
+                        'https://play.google.com/store/apps/details?id=roktersondane.com');
                   },
                 ),
                 const SizedBox(height: 8),

@@ -1,6 +1,5 @@
 import 'package:blood_bd/app/core/config/app_colors.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../services/network.dart';
@@ -33,29 +32,24 @@ class BottomNavView extends GetView<BottomNavController> {
               topLeft: Radius.circular(30.0),
               topRight: Radius.circular(30.0),
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: AppColors.appGradient
-              ),
-              child: BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                backgroundColor: Colors.transparent,
-                onTap: controller.changeIndex,
-                currentIndex: controller.currentIndex,
-                selectedItemColor: AppColors.secondaryColor,
-                unselectedItemColor: Colors.grey.shade500,
-                showUnselectedLabels: true,
-                showSelectedLabels: true,
-                items: const <BottomNavigationBarItem>[
-                  BottomNavigationBarItem(label: ("Home"), icon: Icon(Icons.home)),
-                  BottomNavigationBarItem(
-                      label: ("Services"), icon: Icon(Icons.dashboard_outlined)),
-                  BottomNavigationBarItem(
-                      label: ("Account"), icon: Icon(Icons.person)),
-                  BottomNavigationBarItem(
-                      label: ("Settings"), icon: Icon(Icons.settings)),
-                ],
-              ),
+            child: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: AppColors.buttonColor,
+              onTap: controller.changeIndex,
+              currentIndex: controller.currentIndex,
+              selectedItemColor: AppColors.secondaryColor,
+              unselectedItemColor: Colors.grey.shade500,
+              showUnselectedLabels: true,
+              showSelectedLabels: true,
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(label: ("Home"), icon: Icon(Icons.home)),
+                BottomNavigationBarItem(
+                    label: ("Services"), icon: Icon(Icons.dashboard_outlined)),
+                BottomNavigationBarItem(
+                    label: ("Account"), icon: Icon(Icons.person)),
+                BottomNavigationBarItem(
+                    label: ("Settings"), icon: Icon(Icons.settings)),
+              ],
             ),
           ),
         );

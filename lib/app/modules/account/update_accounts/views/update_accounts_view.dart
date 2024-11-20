@@ -28,7 +28,7 @@ class UpdateAccountsView extends GetView<UpdateAccountsController> {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: const Icon(Icons.highlight_remove_outlined),
+                    icon: Icon(Icons.highlight_remove_outlined,color: AppColors.bgColor,),
                   )
                 ],
               ),

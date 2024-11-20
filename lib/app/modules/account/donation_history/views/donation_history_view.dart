@@ -73,7 +73,7 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
                                                     .data![index].id!),
                                         style: TextButton.styleFrom(
                                             backgroundColor:
-                                            AppColors.bgColor),
+                                            AppColors.buttonColor),
                                         child:  const Text(
                                           'Yes',
                                           style: TextStyle(color: AppColors.secondaryColor),
