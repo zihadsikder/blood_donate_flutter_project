@@ -1,6 +1,6 @@
 class ServiceData {
   final String name;
-  final String link;
+  final dynamic link; // Can be either a String (URL) or a Function (for navigation)
   final String profilePicAsset;
   final bool isUrl; // Determines the navigation type
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import '../../../../core/config/app_colors.dart';
 import '../../../../core/constants/app_assets.dart';
+import '../../../../core/widgets/app_bar_widgets.dart';
 import '../widget/image_assets.dart';
 
 class ExercisesScreen extends StatelessWidget {
@@ -11,13 +10,7 @@ class ExercisesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        leading: const BackButton(color: Colors.white),
-        title: const Text('Exercises'),
-        systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: AppColors.buttonColor,
-            statusBarIconBrightness: Brightness.light),
-      ),
+      appBar: const AppBarWidgets(title: 'Exercises'),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 8),

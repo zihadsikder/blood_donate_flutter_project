@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/config/app_colors.dart';
+import '../../../../core/widgets/app_bar_widgets.dart';
 
 class Support extends StatelessWidget {
   const Support({super.key});
@@ -10,7 +10,7 @@ class Support extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      appBar: const AppBarWidgets(title: 'Support'),
       backgroundColor: Colors.grey.shade100,
       body: SafeArea(
         child: Padding(
@@ -42,16 +42,6 @@ class Support extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  AppBar buildAppBar() {
-    return AppBar(
-      leading: const BackButton(color: Colors.white),
-      title: const Text('Support'),
-      systemOverlayStyle: SystemUiOverlayStyle(
-          statusBarColor: AppColors.buttonColor,
-          statusBarIconBrightness: Brightness.light),
     );
   }
 

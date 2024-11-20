@@ -1,3 +1,6 @@
+import 'package:blood_bd/app/core/widgets/card_widgets.dart';
+import 'package:blood_bd/app/modules/govt_services/views/screens/calculate_bmi.dart';
+import 'package:blood_bd/app/modules/govt_services/views/screens/emergency_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +23,12 @@ class GovtServicesView extends GetView<GovtServicesController> {
           body: Column(
             children: [
               ProfileSummaryCard(),
-              const SizedBox(height: 16),
+              CardWidgets(tittle: 'Emergency Hotline Service', onTap: () {
+                Get.to(EmergencyServices());
+              }),
+              CardWidgets(tittle: 'Calculate Your BMI', onTap: () {
+                Get.to(CalculateBmi());
+              }),
               Expanded(
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

@@ -1,7 +1,10 @@
+import 'package:blood_bd/app/modules/govt_services/views/screens/ambulance_services.dart';
+import 'package:blood_bd/app/modules/govt_services/views/screens/hospital_service.dart';
 import 'package:get/get.dart';
 
+import '../../../core/constants/app_assets.dart';
 import '../../../data/models/request/service_data_req.dart';
-import '../views/webview_page.dart';
+import '../views/screens/webview_page.dart';
 
 class GovtServicesController extends GetxController {
 
@@ -12,39 +15,57 @@ class GovtServicesController extends GetxController {
 
   final List<ServiceData> websites = [
     ServiceData(
+      name: 'Hospital',
+      link: ()=> Get.to(const HospitalService()),
+      profilePicAsset: AppAssets.hospital,
+      isUrl: true,
+    ),
+    ServiceData(
+      name: 'Ambulance',
+      link: ()=> Get.to(const AmbulanceServices()),
+      profilePicAsset: AppAssets.ambulance,
+      isUrl: false,
+    ),
+    ServiceData(
+      name: 'E-Passport',
+      link: 'https://www.epassport.gov.bd/landing',
+      profilePicAsset: AppAssets.passport,
+      isUrl: true,
+    ),
+    ServiceData(
       name: 'Bus Tickets',
       link: 'https://www.shohoz.com/bus-tickets',
-      profilePicAsset: "assets/bus.png",
+      profilePicAsset: AppAssets.bus,
       isUrl: true,
     ),
     ServiceData(
       name: 'Train Tickets',
       link: 'https://eticket.railway.gov.bd/',
-      profilePicAsset: "assets/train.png",
+      profilePicAsset: AppAssets.train,
       isUrl: true,
     ),
     ServiceData(
       name: 'Air Tickets',
       link: 'https://www.biman-airlines.com/',
-      profilePicAsset: "assets/biman.png",
+      profilePicAsset: AppAssets.air,
       isUrl: true,
     ),
     ServiceData(
       name: 'Result',
-      link: 'http://www.educationboardresults.gov.bd/',
-      profilePicAsset: "assets/result.png",
+      link: 'https://eboardresults.com/bn/ebr.app/home/',
+      profilePicAsset: AppAssets.result,
       isUrl: true,
     ),
     ServiceData(
       name: 'Search Jobs',
       link: 'https://www.bdjobs.com/',
-      profilePicAsset: "assets/bdjobs.png",
+      profilePicAsset: AppAssets.jobs,
       isUrl: true,
     ),
     ServiceData(
       name: 'XI Admission',
       link: 'https://xiclassadmission.com.bd/',
-      profilePicAsset: "assets/admission.png",
+      profilePicAsset: AppAssets.admission,
       isUrl: true,
     ),
   ];
@@ -64,11 +85,13 @@ class GovtServicesController extends GetxController {
   void handleServiceTap(ServiceData service) {
     if (service.isUrl) {
       Get.to(() => WebViewPage(url: service.link, title: service.name));
+    } else if (service.link is Function) {
+      service.link(); // Invoke the navigation function
     } else {
-      // Navigate to another page
-      Get.toNamed(service.link); // Ensure proper routing
+      Get.snackbar("Error", "Invalid service link.");
     }
   }
+
 
 
 }

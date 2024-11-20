@@ -1,4 +1,5 @@
 import 'package:blood_bd/app/core/constants/app_assets.dart';
+import 'package:blood_bd/app/core/widgets/card_widgets.dart';
 import 'package:blood_bd/app/modules/account/accounts/views/widget/accounts_info.dart';
 import 'package:blood_bd/app/modules/account/accounts/views/widget/donation_info.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +7,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../core/config/app_colors.dart';
 import '../../../../core/widgets/profile_summary_card.dart';
+import '../../../../routes/app_pages.dart';
 import '../../../bottom_nav/controllers/bottom_nav_controller.dart';
-import '../../donation_history/views/widget/donation_history.dart';
 import '../../update_accounts/views/update_accounts_view.dart';
 import '../controllers/accounts_controller.dart';
 import 'widget/activated_profile.dart';
@@ -147,7 +148,12 @@ class AccountsView extends GetView<AccountsController> {
                                 Container(
                                     height: 1, color: Colors.grey.shade100),
                                 const SizedBox(height: 5.0),
-                                const DonationHistory(),
+                                CardWidgets(
+                                  tittle: 'Donation History',
+                                  onTap: () {
+                                    Get.toNamed(Routes.DONATION_HISTORY);
+                                  },
+                                ),
                                 ActivatedProfile(
                                   testValue: Text(
                                     controller.isProfileActive.value

@@ -35,8 +35,15 @@ class AppAssets {
   static const String about6 = '$imagePath/p6.jpg';
   static const String about7 = '$imagePath/p7.jpg';
   static const String profileAccount = '$imagePath/blood.png';
-  //static const String ex5 = '$imagePath/ex-5.jpg';
-  //static const String ex5 = '$imagePath/ex-5.jpg';
+  static const String bus = '$imagePath/bus.png';
+  static const String train = '$imagePath/train.png';
+  static const String air = '$imagePath/biman.png';
+  static const String result = '$imagePath/result.png';
+  static const String jobs = '$imagePath/bdjobs.png';
+  static const String admission = '$imagePath/admission.png';
+  static const String hospital = '$imagePath/hospital.jpeg';
+  static const String ambulance = '$imagePath/ambulance.png';
+  static const String passport = '$imagePath/passport.jpeg';
 
 
 

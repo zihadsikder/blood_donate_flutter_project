@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../core/config/app_colors.dart';
+import '../../../../core/widgets/app_bar_widgets.dart';
 import '../../../../core/widgets/dob_text_field.dart';
 import '../../accounts/views/widget/alert_cancel_button.dart';
 import '../controllers/donation_history_controller.dart';
@@ -13,10 +14,7 @@ class DonationHistoryView extends GetView<DonationHistoryController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Donation History'),
-        leading: const BackButton(color: AppColors.secondaryColor),
-      ),
+      appBar: const AppBarWidgets(title: 'Donation History'),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,

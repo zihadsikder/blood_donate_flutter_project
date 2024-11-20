@@ -1,13 +1,12 @@
 import 'package:blood_bd/app/modules/home/views/widgets/banner_carousel.dart';
 import 'package:blood_bd/app/modules/setting/controllers/setting_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../core/config/app_colors.dart';
 import '../../../../core/constants/app_assets.dart';
+import '../../../../core/widgets/app_bar_widgets.dart';
 
 class AboutInfoScreen extends StatelessWidget {
   AboutInfoScreen({super.key});
@@ -17,12 +16,7 @@ class AboutInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('About Us'),
-        systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: AppColors.buttonColor,
-            statusBarIconBrightness: Brightness.light),
-      ),
+      appBar: const AppBarWidgets(title: 'About Us'),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -129,3 +123,4 @@ class AboutInfoScreen extends StatelessWidget {
     );
   }
 }
+

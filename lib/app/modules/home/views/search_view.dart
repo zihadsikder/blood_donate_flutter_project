@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
-import '../../../core/config/app_colors.dart';
+import '../../../core/widgets/app_bar_widgets.dart';
 import '../../auth/login/views/widgets/area_dropdown.dart';
 import '../../auth/login/views/widgets/location_form.dart';
 
@@ -20,16 +20,8 @@ class SearchScreenView extends StatelessWidget {
   Widget build(BuildContext context) {
     controller.getDivision();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Find A Blood Donor"),
-        centerTitle: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(20)),
-        ),
-        systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: AppColors.buttonColor,
-            statusBarIconBrightness: Brightness.light),
-      ),
+      appBar: const AppBarWidgets(title: 'Find A Blood Donor'),
+
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
