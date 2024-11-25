@@ -86,7 +86,7 @@ class AboutInfoScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               const appLink =
-                  'https://play.google.com/store/apps/details?id=bloodbd.app';
+                  'https://play.google.com/store/apps/details?id=roktersondane.com ';
               Share.share('Check out this awesome app: $appLink');
               //Navigator.of(context).pop();
             },
@@ -119,7 +119,8 @@ class AboutInfoScreen extends StatelessWidget {
       ' ব্যবহারে উদ্বুদ্ধ করুন। বর্তামানে আমাদের App Version ও Web Version চালু '
       'আছে www.blooddonorbd.com নামে। আমাদের এ অগ্রযাত্রায় আমরা সবসময় '
       'আপনাদের কাছ থেকে দোয়া প্রত্যাশী। এছাড়াও যে কোনো ধরণের সহযোগীতায় আমাদের '
-      'সাপোর্ট টিম আছে আপনাদের পাশে।',
+      'সাপোর্ট টিম আছে আপনাদের পাশে। এবং ডেভেলপার সম্পর্কে জানতে Setting Screen'
+          ' হতে About Us এ Double click করুন |',
     );
   }
 }

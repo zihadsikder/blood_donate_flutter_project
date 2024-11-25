@@ -1,4 +1,4 @@
-import 'package:blood_bd/app/core/config/app_colors.dart';
+import 'package:blood_bd/app/core/constants/app_text_style.dart';
 import 'package:blood_bd/app/modules/setting/views/setting_screens/about_screens.dart';
 import 'package:blood_bd/app/modules/setting/views/setting_screens/terms_conditions.dart';
 import 'package:blood_bd/app/modules/setting/views/widget/list_title_widgets.dart';
@@ -32,13 +32,18 @@ class SettingView extends GetView<SettingController> {
                 const SizedBox(
                   height: 8
                 ),
-                ListTitleWidgets(
-                  icon: Icons.read_more_outlined,
-                  text: "About Us",
-                  onTap:  () {
-                    Get.to(AboutInfoScreen());
+                GestureDetector(
+                  onDoubleTap: (){
+                    showDeveloperInfoDialog(context);
                   },
-                  trailingIcon: Icons.arrow_forward_ios,
+                  child: ListTitleWidgets(
+                    icon: Icons.read_more_outlined,
+                    text: "About Us",
+                    onTap:  () {
+                      Get.to(AboutInfoScreen());
+                    },
+                    trailingIcon: Icons.arrow_forward_ios,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 ListTitleWidgets(
@@ -133,6 +138,29 @@ class SettingView extends GetView<SettingController> {
         //   ),
         // ),
         // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      ),
+    );
+  }
+  void showDeveloperInfoDialog(BuildContext context) {
+    Get.dialog(
+      AlertDialog(
+        title: const Text("Developer Information"),
+        content:  Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text("Name: Abu Sayed Md Zihad",style: AppTextStyles.textStyle(color: Colors.black),),
+            const Text("Role: Software Engr."),
+            const Text("Institution: B.Sc. in CSE from WUB"),
+            const Text("Email: zihadsikder.engr@gmail.com"),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Get.back(), // Close dialog
+            child: const Text("Close"),
+          ),
+        ],
       ),
     );
   }
