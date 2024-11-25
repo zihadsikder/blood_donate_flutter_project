@@ -17,7 +17,6 @@ class HomeController extends GetxController {
   final searchUser = SearchUserModel().obs;
   final isLoading = false.obs;
 
-
   final selectedBloodGroup = ''.obs;
 
   final divisionList = <AreaModel>[].obs;
@@ -131,5 +130,29 @@ class HomeController extends GetxController {
     }
     return false;
   }
-}
 
+  /// showExitConfirmationDialog
+  Future<bool> showExitConfirmationDialog(BuildContext context) async {
+    return await Get.dialog<bool>(
+          AlertDialog(
+            title: const Text("Exit App"),
+            content: const Text("Are you sure you want to exit the app?"),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Get.back(result: false); // Stay in the app
+                },
+                child: const Text("Cancel"),
+              ),
+              TextButton(
+                onPressed: () {
+                  Get.back(result: true); // Exit the app
+                },
+                child: const Text("Exit"),
+              ),
+            ],
+          ),
+        ) ??
+        false; // Default to false if dialog is dismissed
+  }
+}

@@ -2,6 +2,7 @@ import 'package:blood_bd/app/core/config/app_colors.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../../../../core/constants/app_assets.dart';
 import '../../../../core/widgets/dob_text_field.dart';
 import '../../../../data/models/request/registration_req.dart';
 import '../../login/views/widgets/area_dropdown.dart';
@@ -36,7 +37,7 @@ class SignUpView extends GetView<SignupController> {
                       height: h * 0.3,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image: AssetImage('assets/bbbb.png'),
+                          image: AssetImage(AppAssets.signIn),
                           fit: BoxFit.fill,
                         ),
                       ),

@@ -12,9 +12,9 @@ import '../controllers/bottom_nav_controller.dart';
 class BottomNavView extends GetView<BottomNavController> {
    BottomNavView({super.key});
 
-  List pages = [
+  final List pages = [
     const HomeView(),
-    GovtServicesView(),
+    const GovtServicesView(),
     const AccountsView(),
     const SettingView(),
   ];

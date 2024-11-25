@@ -75,7 +75,7 @@ class PinVerificationView extends GetView<PinVerificationController> {
                       appContext: context,
                       validator: (String? value) {
                         if (value?.trim().isEmpty ?? true) {
-                          return 'Please put your OTP';
+                          return 'Please fill the OTP field';
                         }
                         return null;
                       },

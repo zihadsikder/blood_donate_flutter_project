@@ -45,7 +45,7 @@ class ResetPasswordView extends StatelessWidget {
                     height: 8,
                   ),
                   const Text(
-                    'Minimum password length should be more than 8 letters',
+                    'Minimum password length should be more than 6 letters',
                     style: TextStyle(
                         color: Colors.grey, fontWeight: FontWeight.w600),
                   ),
@@ -92,7 +92,7 @@ class ResetPasswordView extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: 24,
+                    height: 24
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

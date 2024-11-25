@@ -30,9 +30,9 @@ class PasswordTextField extends StatelessWidget {
       keyboardType: TextInputType.visiblePassword,
       validator: (String? value) {
         if (value?.trim().isEmpty ?? true) {
-          return 'Enter 8 digit password';
-        } else if (value!.length < 8) {
-          return 'Password must be at least 8 characters long';
+          return 'Enter a 6 digit password';
+        } else if (value!.length < 6) {
+          return 'Password must be at least 6 characters long';
         }
         return null;
       },

@@ -2,6 +2,7 @@ class AppAssets {
   static const String imagePath = 'assets';
   static const String loginLogo = '$imagePath/blood.png';
   static const String loginLogo1 = '$imagePath/logoV.png';
+  static const String signIn = '$imagePath/signIn.png';
   static const String logo = '$imagePath/blood_logo.png';
   static const String fitness = '$imagePath/fitness.jpg';
   static const String squat = '$imagePath/squat.jpg';

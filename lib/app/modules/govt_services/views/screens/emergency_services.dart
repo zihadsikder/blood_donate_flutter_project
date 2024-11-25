@@ -10,7 +10,7 @@ class EmergencyServices extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarWidgets(title: 'Support'),
+      appBar: const AppBarWidgets(title: 'Emergency Support!'),
       backgroundColor: Colors.grey.shade100,
       body: SafeArea(
         child: Padding(

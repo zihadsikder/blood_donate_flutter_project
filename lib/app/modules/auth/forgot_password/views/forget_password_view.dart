@@ -31,13 +31,13 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                     height: 16,
                   ),
                   Text(
-                    'Your Mobile Number',
+                    'Enter Your Email',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(
                     height: 8,
                   ),
-                  Text('A 6 digit OTP will be sent to your mobile number',
+                  Text('A 6 digit OTP will be sent to your email',
                       style: Theme.of(context).textTheme.bodySmall),
                   const SizedBox(
                     height: 18,
@@ -56,13 +56,15 @@ class ForgotPasswordView extends GetView<ForgotPasswordController> {
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
-                        hintText: '018********',
+                        hintText: '......@gmail.com',
                       ),
                       validator: (String? value) {
-                        bool isValidPhoneNumber =
-                        RegExp(r"^0[0-9]{10}$").hasMatch(value!);
-                        if (!isValidPhoneNumber) {
-                          return 'Enter a valid 11-digit mobile number';
+                        bool isValidEmail = RegExp(
+                            r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")
+                            .hasMatch(value!);
+
+                        if (!isValidEmail) {
+                          return 'Enter a valid email address';
                         }
                         return null;
                       },
