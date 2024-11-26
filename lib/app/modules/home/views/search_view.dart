@@ -20,7 +20,6 @@ class SearchScreenView extends StatelessWidget {
     controller.getDivision();
     return Scaffold(
       appBar: const AppBarWidgets(title: 'Find A Blood Donor'),
-
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
@@ -31,7 +30,7 @@ class SearchScreenView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   BloodGroupDropdown(
-              labelText:'Select Blood Group',
+                    labelText: 'Select Blood Group',
                     onSelectBloodGroup: (String? val) {
                       controller.onSelectedBloodGroup(val);
                     },
@@ -73,11 +72,11 @@ class SearchScreenView extends StatelessWidget {
                           const Center(child: CircularProgressIndicator()),
                       child: ElevatedButton(
                         onPressed: () => controller.searchDonor(
-                            controller.selectedBloodGroup.value,
-                            controller.selectedDivision.value,
-                            controller.selectedDistrict.value,
-                            controller.selectedUpzila.value),
-                        //controller.selectedUnion.value),
+                          controller.selectedBloodGroup.value,
+                          controller.selectedDivision.value,
+                          controller.selectedDistrict.value,
+                          controller.selectedUpzila.value,
+                        ),
                         child: const Text('Search'),
                       ),
                     ),
@@ -95,35 +94,64 @@ class SearchScreenView extends StatelessWidget {
                     ),
                   if (!controller.isLoading.value &&
                       (controller.searchUser.value.data?.isNotEmpty ?? false))
-                    ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount:
-                          controller.searchUser.value.data?.length ?? 0,
-                      itemBuilder: (context, index) {
-                        final donor =
-                            controller.searchUser.value.data?[index];
-                        if (donor != null) {
-                          String formattedLastDonation =
-                              donor.lastDonation != null
-                                  ? DateFormat('dd-MM-yyyy')
-                                      .format(donor.lastDonation!)
-                                  : "N/A";
-
-                          return DonorCard(
-                            name: donor.name ?? '',
-                            bloodGroup: donor.bloodGroup ?? '',
-                            lastDonation: formattedLastDonation,
-                            totalDonations:
-                                donor.totalDonation?.toString() ?? '',
-                            mobile: donor.mobile?.toString() ?? '',
-                            address: "${donor.address?.postOffice}, ${donor.address?.area}, ${donor.address?.district}" ,
-                            isEligibleToDonate: donor.isAvailable ?? true,
+                    NotificationListener<ScrollNotification>(
+                      onNotification: (scrollInfo) {
+                        if (scrollInfo.metrics.pixels ==
+                                scrollInfo.metrics.maxScrollExtent &&
+                            !controller.isFetchingMore.value) {
+                          controller.searchDonor(
+                            controller.selectedBloodGroup.value,
+                            controller.selectedDivision.value,
+                            controller.selectedDistrict.value,
+                            controller.selectedUpzila.value,
+                            isLoadMore: true,
                           );
-                        } else {
-                          return const SizedBox(); // Return empty SizedBox if donor is null
                         }
+                        return false;
                       },
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount:
+                            controller.searchUser.value.data?.length ?? 0 + 1,
+                        itemBuilder: (context, index) {
+                          if (index <
+                              controller.searchUser.value.data!.length) {
+                            final donor =
+                                controller.searchUser.value.data?[index];
+                            if (donor != null) {
+                              String formattedLastDonation =
+                                  donor.lastDonation != null
+                                      ? DateFormat('dd-MM-yyyy')
+                                          .format(donor.lastDonation!)
+                                      : "N/A";
+
+                              return DonorCard(
+                                name: donor.name ?? '',
+                                bloodGroup: donor.bloodGroup ?? '',
+                                lastDonation: formattedLastDonation,
+                                totalDonations:
+                                    donor.totalDonation?.toString() ?? '',
+                                mobile: donor.mobile?.toString() ?? '',
+                                address:
+                                    "${donor.address?.postOffice}, ${donor.address?.area}, ${donor.address?.district}",
+                                isEligibleToDonate: donor.isAvailable ?? true,
+                              );
+                            } else {
+                              return const SizedBox();
+                            }
+                          } else {
+                            return controller.isFetchingMore.value
+                                ? const Center(
+                                    child: Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  )
+                                : const SizedBox();
+                          }
+                        },
+                      ),
                     ),
                 ],
               ),
@@ -134,4 +162,3 @@ class SearchScreenView extends StatelessWidget {
     );
   }
 }
-

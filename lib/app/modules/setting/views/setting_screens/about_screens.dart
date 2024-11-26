@@ -1,3 +1,4 @@
+import 'package:blood_bd/app/modules/govt_services/views/screens/webview_page.dart';
 import 'package:blood_bd/app/modules/home/views/widgets/banner_carousel.dart';
 import 'package:blood_bd/app/modules/setting/controllers/setting_controller.dart';
 import 'package:flutter/material.dart';
@@ -74,13 +75,17 @@ class AboutInfoScreen extends StatelessWidget {
             width: 56,
             child: IconButton(
               onPressed: () {
-                launch('https://blooddonorbd.com/');
+                Get.to(
+                  () => const WebViewPage(
+                      url: 'https://blooddonorbd.com/',
+                      title: 'Blood Donors Are Real Heroes'),
+                );
                 // Display an Interstitial Ad
                 // settingController.showInterstitialAd(() {
                 //   launch('https://blooddonorbd.com/');
                 // });
               },
-              icon: Image.asset('assets/webicon.png'),
+              icon: Image.asset(AppAssets.webIcon),
             ),
           ),
           IconButton(
@@ -120,8 +125,7 @@ class AboutInfoScreen extends StatelessWidget {
       'আছে www.blooddonorbd.com নামে। আমাদের এ অগ্রযাত্রায় আমরা সবসময় '
       'আপনাদের কাছ থেকে দোয়া প্রত্যাশী। এছাড়াও যে কোনো ধরণের সহযোগীতায় আমাদের '
       'সাপোর্ট টিম আছে আপনাদের পাশে। এবং ডেভেলপার সম্পর্কে জানতে Setting Screen'
-          ' হতে About Us এ Double click করুন |',
+      ' হতে About Us এ Double click করুন |',
     );
   }
 }
-

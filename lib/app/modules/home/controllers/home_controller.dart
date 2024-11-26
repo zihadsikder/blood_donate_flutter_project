@@ -16,17 +16,19 @@ class HomeController extends GetxController {
 
   final searchUser = SearchUserModel().obs;
   final isLoading = false.obs;
+  final isFetchingMore = false.obs;
 
   final selectedBloodGroup = ''.obs;
-
   final divisionList = <AreaModel>[].obs;
   final selectedDivision = ''.obs;
-
   final districtList = <AreaModel>[].obs;
   final selectedDistrict = ''.obs;
-
   final upzilaList = <AreaModel>[].obs;
   final selectedUpzila = ''.obs;
+
+  // Pagination state
+  int currentPage = 1;
+  int totalPages = 1;
 
   void onSelectedBloodGroup(String? val) {
     selectedBloodGroup.value = val ?? '';
@@ -91,44 +93,53 @@ class HomeController extends GetxController {
     isLoading.value = false;
   }
 
-  Future<bool> searchDonor(
+  Future<void> searchDonor(
     String bloodGroup,
     String division,
     String district,
-    String upzila,
-  ) async {
-    if (formKey.currentState!.validate()) {
-      isLoading.value = true;
-
-      final response =
-          await ApiClient().getRequest("${ApiEndPoints.getSearchDonor}"
-              "blood_group=$bloodGroup"
-              "&division_id=$division"
-              "&district_id=$district"
-              "&area_id=$upzila"
-              //"&post_office=$postOffice"
-              );
-
-      isLoading.value = false;
-
-      if (response.isSuccess) {
-        searchUser.value = searchUserModelFromJson(response.jsonResponse!);
-        //Get.snackbar('Message', response.message ?? 'Try Again Later');
-
-        return true;
-      } else {
-        Get.showSnackbar(
-          const GetSnackBar(
-            title: 'Search Donor Fail',
-            duration: Duration(seconds: 2),
-            isDismissible: true,
-            message: 'No donor found at this moment',
-          ),
-        );
-        return false;
-      }
+    String upzila, {
+    bool isLoadMore = false,
+  }) async {
+    if (!isLoadMore && formKey.currentState!.validate()) {
+      currentPage = 1; // Reset to the first page for fresh search
+      searchUser.value = SearchUserModel(data: []);
     }
-    return false;
+
+    if (currentPage > totalPages) return; // Prevent extra API calls
+
+    isLoading.value = !isLoadMore;
+    isFetchingMore.value = isLoadMore;
+
+    final response = await ApiClient().getRequest(
+      "${ApiEndPoints.getSearchDonor}"
+      "blood_group=$bloodGroup"
+      "&division_id=$division"
+      "&district_id=$district"
+      "&area_id=$upzila"
+      "&page=$currentPage&limit=50",
+    );
+
+    isLoading.value = false;
+    isFetchingMore.value = false;
+
+    if (response.isSuccess) {
+      final newSearchUser = searchUserModelFromJson(response.jsonResponse!);
+      totalPages = newSearchUser.pagination?.totalPage ?? 1;
+      currentPage++;
+
+      searchUser.update((val) {
+        val?.data?.addAll(newSearchUser.data ?? []);
+      });
+    } else {
+      Get.showSnackbar(
+        const GetSnackBar(
+          title: 'Search Donor Fail',
+          duration: Duration(seconds: 2),
+          isDismissible: true,
+          message: 'No donor found at this moment',
+        ),
+      );
+    }
   }
 
   /// showExitConfirmationDialog

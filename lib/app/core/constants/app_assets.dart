@@ -45,6 +45,7 @@ class AppAssets {
   static const String hospital = '$imagePath/hospital.jpeg';
   static const String ambulance = '$imagePath/ambulance.png';
   static const String passport = '$imagePath/passport.jpeg';
+  static const String webIcon = '$imagePath/webIcon.png';
 
 
 
